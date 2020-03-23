@@ -6,10 +6,10 @@ import '../../../../core/error/Faliure.dart';
 import '../entities/empty_entity.dart';
 import '../repos/splash_screen_repo.dart';
 
-class NavigateToMainScreen implements UseCase<EmptyEntity,NoParams>{
+class NavigateToLoginScreen implements UseCase<EmptyEntity,NoParams>{
   SplashScreenRepo _splashScreenRepo;
 
-  NavigateToMainScreen({@required SplashScreenRepo splashScreenRepo}) {
+  NavigateToLoginScreen({@required SplashScreenRepo splashScreenRepo}) {
     this._splashScreenRepo = splashScreenRepo;
   }
 
