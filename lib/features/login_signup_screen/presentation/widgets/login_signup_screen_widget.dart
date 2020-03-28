@@ -28,7 +28,7 @@ class _LoginSignupScreenWidgetState extends State<LoginSignupScreenWidget> {
           children: <Widget>[
             TweenAnimationBuilder(
               tween: Tween<double>(begin: 200, end: 130),
-              duration: Duration(milliseconds: 750),
+              duration: Duration(milliseconds: 900),
               builder: (BuildContext context, double size, Widget child) {
                 return Image(
                   key: Key('logo_image'),
@@ -182,9 +182,12 @@ class _LoginSignupScreenWidgetState extends State<LoginSignupScreenWidget> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
                 FloatingActionButton(
-                  child: Image(
-                    image: AssetImage('icons/google.png'),
-                    color: Colors.white,
+                  child: Container(
+                    height: 30,
+                    child: Image(
+                      image: AssetImage('icons/google.png'),
+                      color: Colors.white,
+                    ),
                   ),
                   onPressed: () {},
                 ),
@@ -194,7 +197,16 @@ class _LoginSignupScreenWidgetState extends State<LoginSignupScreenWidget> {
                     right: 30,
                   ),
                 ),
-                FloatingActionButton(onPressed: () {}),
+                FloatingActionButton(
+                  child: Container(
+                    height: 50,
+                    child: Image(
+                      image: AssetImage('icons/facebook.png'),
+                      color: Colors.white,
+                    ),
+                  ),
+                  onPressed: () {},
+                ),
               ],
             ),
           ],
