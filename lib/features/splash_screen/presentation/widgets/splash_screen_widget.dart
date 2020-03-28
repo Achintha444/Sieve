@@ -29,7 +29,9 @@ class _SplashScreenWidgetState extends State<SplashScreenWidget> {
                 child: Image(
                   key: Key('logo_image'),
                   image: AssetImage('icons/logo.png'),
+                  height: 150,
                 ),
+              
               ),
               Padding(
                 padding: EdgeInsets.only(

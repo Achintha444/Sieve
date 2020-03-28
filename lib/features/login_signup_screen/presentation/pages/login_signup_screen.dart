@@ -2,12 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../injection_container.dart';
-import '../../../login_signup_screen/presentation/pages/login_signup_screen.dart';
-import '../bloc/splash_screen_bloc.dart';
-import '../widgets/internet_error_widget.dart';
-import '../widgets/splash_screen_widget.dart';
+import '../bloc/login_signup_screen_bloc.dart';
+import '../widgets/login_signup_screen_widget.dart';
 
-class SplashScreen extends StatelessWidget {
+class LoginSignupScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -15,9 +13,9 @@ class SplashScreen extends StatelessWidget {
     );
   }
 
-  BlocProvider<SplashScreenBloc> _buildBody(BuildContext context) {
+  BlocProvider<LoginSignupScreenBloc> _buildBody(BuildContext context) {
     return BlocProvider(
-      builder: (context) => sl<SplashScreenBloc>(),
+      builder: (context) => sl<LoginSignupScreenBloc>(),
       child: Container(
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
@@ -32,16 +30,12 @@ class SplashScreen extends StatelessWidget {
           ),
         ),
         child: Center(
-          child: BlocBuilder<SplashScreenBloc, SplashScreenState>(
+          child: BlocBuilder<LoginSignupScreenBloc, LoginSignupScreenState>(
             builder: (context, state) {
-              if ((state is Initial) || (state is Loading)) {
-                return SplashScreenWidget();
-              } else if (state is InternetError) {
-                return InternetErrorWidget();
-              } else if (state is Loaded) {
-                return LoginSignupScreen();
+              if(state is Initial){
+                return LoginSignupScreenWidget();
               }
-            },
+            }
           ),
         ),
       ),
