@@ -23,16 +23,19 @@ class _LoginSignupScreenWidgetState extends State<LoginSignupScreenWidget> {
       width: MediaQuery.of(context).size.width,
       child: Center(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-
-
-             TweenAnimationBuilder(
-               
-                          child: Image(
-                key: Key('logo_image'),
-                image: AssetImage('icons/logo.png'),
-                height: this._sizeImage.toDouble(),
-              ),
+            TweenAnimationBuilder(
+              tween: Tween<double>(begin: 150, end: 100),
+              duration: Duration(seconds: 1),
+              builder: (BuildContext context, double size, Widget child) {
+                return Image(
+                  key: Key('logo_image'),
+                  image: AssetImage('icons/logo.png'),
+                  height: size,
+                );
+              },
             ),
           ],
         ),
