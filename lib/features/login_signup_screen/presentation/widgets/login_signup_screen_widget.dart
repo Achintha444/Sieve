@@ -37,7 +37,166 @@ class _LoginSignupScreenWidgetState extends State<LoginSignupScreenWidget> {
                 );
               },
             ),
-
+            Padding(
+              padding: EdgeInsets.only(
+                top: 40,
+                bottom: 40,
+              ),
+            ),
+            Row(
+              children: <Widget>[
+                Padding(
+                  padding: EdgeInsets.only(
+                    left: 10,
+                    right: 10,
+                  ),
+                ),
+                Expanded(
+                  child: Container(
+                    height: 45,
+                    child: RaisedButton(
+                      child: Text(
+                        'LOGIN',
+                        style: TextStyle(
+                          fontSize: 20,
+                          letterSpacing: 2,
+                        ),
+                      ),
+                      textColor: Theme.of(context).accentColor,
+                      elevation: 5,
+                      color: Colors.white,
+                      onPressed: () {},
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(
+                    left: 10,
+                    right: 10,
+                  ),
+                ),
+              ],
+            ),
+            Padding(
+              padding: EdgeInsets.only(
+                top: 10,
+                bottom: 10,
+              ),
+            ),
+            Row(
+              children: <Widget>[
+                Padding(
+                  padding: EdgeInsets.only(
+                    left: 10,
+                    right: 10,
+                  ),
+                ),
+                Expanded(
+                  child: Container(
+                    height: 45,
+                    child: RaisedButton(
+                      child: Text(
+                        'SIGNUP',
+                        style: TextStyle(
+                          fontSize: 20,
+                          letterSpacing: 2,
+                        ),
+                      ),
+                      textColor: Theme.of(context).accentColor,
+                      color: Colors.white,
+                      elevation: 5,
+                      shape: Theme.of(context).buttonTheme.shape,
+                      onPressed: () {},
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(
+                    left: 10,
+                    right: 10,
+                  ),
+                ),
+              ],
+            ),
+            Padding(
+              padding: EdgeInsets.only(
+                top: 20,
+                bottom: 20,
+              ),
+            ),
+            Row(
+              children: <Widget>[
+                Padding(
+                  padding: EdgeInsets.only(
+                    right: 10,
+                    left: 10,
+                  ),
+                ),
+                Expanded(
+                  child: Divider(
+                    color: Colors.white,
+                    thickness: 1,
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(
+                    right: 10,
+                    left: 10,
+                  ),
+                ),
+                Text(
+                  'Login With'.toUpperCase(),
+                  style: TextStyle(
+                    color: Colors.white,
+                    letterSpacing: 1,
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(
+                    right: 10,
+                    left: 10,
+                  ),
+                ),
+                Expanded(
+                  child: Divider(
+                    color: Colors.white,
+                    thickness: 1,
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(
+                    right: 10,
+                    left: 10,
+                  ),
+                ),
+              ],
+            ),
+            Padding(
+              padding: EdgeInsets.only(
+                top: 10,
+                bottom: 10,
+              ),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                FloatingActionButton(
+                  child: Image(
+                    image: AssetImage('icons/google.png'),
+                    color: Colors.white,
+                  ),
+                  onPressed: () {},
+                ),
+                Padding(
+                  padding: EdgeInsets.only(
+                    left: 60,
+                    right: 30,
+                  ),
+                ),
+                FloatingActionButton(onPressed: () {}),
+              ],
+            ),
           ],
         ),
       ),

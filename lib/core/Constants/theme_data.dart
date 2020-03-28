@@ -8,6 +8,11 @@ var themeData = ThemeData(
   scaffoldBackgroundColor: Colors.white,
   backgroundColor: Colors.white,
   fontFamily: 'Questrial',
+  buttonTheme: ButtonThemeData(
+    shape: RoundedRectangleBorder(
+      borderRadius: new BorderRadius.circular(4),
+    ),
+  ),
 );
 
 var mainTextStyle = TextStyle(
