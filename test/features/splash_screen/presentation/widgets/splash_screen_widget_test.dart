@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:sieve_data_privacy_app/features/splash_screen/presentation/bloc/splash_screen_bloc.dart';
-import 'package:sieve_data_privacy_app/features/splash_screen/presentation/widgets/internet_error_widget.dart';
+import 'package:sieve_data_privacy_app/features/splash_screen/presentation/widgets/splash_screen_widget.dart';
 
 class MockSplashScreenBloc extends Mock implements SplashScreenBloc {}
 
@@ -14,8 +14,7 @@ void main() {
     mockSplashScreenBloc = new MockSplashScreenBloc();
   });
 
-
-    Widget buildTestableWidget(Widget widget) {
+  Widget buildTestableWidget(Widget widget) {
     return MediaQuery(
       data: MediaQueryData(),
       child: MaterialApp(
@@ -27,26 +26,20 @@ void main() {
     );
   }
 
-  testWidgets('InternetErrorWidget', (WidgetTester tester) async {
+  final Key imageKey = Key('logo_image');
+  final Key circularProgressIndicatorKey = Key('circular_progress_indicator');
+
+  testWidgets('SplashScreenWidget has the correct content', (WidgetTester tester) async {
     //* Create the widget by telling the tester to build it.
-    await tester.pumpWidget(buildTestableWidget(InternetErrorWidget()));
+    await tester.pumpWidget(buildTestableWidget(SplashScreenWidget()));
 
-    //* InternetErrorWidget has the correct content
-    final textOneFinder = find.text('NO INTERNET'.toUpperCase());
-    final textTwoFinder = find.text('connection'.toUpperCase());
-    final textThreeFinder = 
-        find.text('Connect to internet and try again'.toUpperCase());
-    final buttonFinder = find.byIcon(Icons.replay);
-
-    expect(textOneFinder, findsOneWidget);
-    expect(textTwoFinder, findsOneWidget);
-    expect(textThreeFinder, findsOneWidget);
-    expect(buttonFinder, findsOneWidget);
-    
     //* should dispatch NavigateToLoginScreenEvent when button tapped
-    await tester.tap(buttonFinder);
-    await tester.pump();
     verify(mockSplashScreenBloc.dispatch(NavigateToLoginScreenEvent()));
-  });
 
+    final imageFinder = find.byKey(imageKey);
+    final circularIndicator = find.byKey(circularProgressIndicatorKey);
+
+    expect(imageFinder, findsOneWidget);
+    expect(circularIndicator, findsOneWidget);
+  });
 }

@@ -17,9 +17,7 @@ class _SplashScreenWidgetState extends State<SplashScreenWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Hero(
-      tag: 1,
-      child: Container(
+    return Container(
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
         child: Center(
@@ -29,6 +27,7 @@ class _SplashScreenWidgetState extends State<SplashScreenWidget> {
             children: <Widget>[
               Center(
                 child: Image(
+                  key: Key('logo_image'),
                   image: AssetImage('icons/logo.png'),
                 ),
               ),
@@ -39,13 +38,14 @@ class _SplashScreenWidgetState extends State<SplashScreenWidget> {
                 ),
               ),
               CircularProgressIndicator(
+                key: Key('circular_progress_indicator'),
                 backgroundColor: Colors.white,
               ),
             ],
           ),
         ),
-      ),
-    );
+      );
+
   }
 
   void _dispatchEvent(BuildContext context) {
