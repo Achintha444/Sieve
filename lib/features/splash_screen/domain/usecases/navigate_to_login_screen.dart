@@ -1,9 +1,9 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../core/Entities/empty_entity.dart';
 import '../../../../core/Usecase/use_case.dart';
 import '../../../../core/error/Faliure.dart';
-import '../entities/empty_entity.dart';
 import '../repos/splash_screen_repo.dart';
 
 class NavigateToLoginScreen implements UseCase<EmptyEntity,NoParams>{

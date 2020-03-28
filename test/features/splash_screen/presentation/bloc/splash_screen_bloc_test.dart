@@ -1,8 +1,8 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
+import 'package:sieve_data_privacy_app/core/Entities/empty_entity.dart';
 import 'package:sieve_data_privacy_app/core/error/Faliure.dart';
-import 'package:sieve_data_privacy_app/features/splash_screen/domain/entities/empty_entity.dart';
 import 'package:sieve_data_privacy_app/features/splash_screen/domain/usecases/navigate_to_login_screen.dart';
 import 'package:sieve_data_privacy_app/features/splash_screen/presentation/bloc/splash_screen_bloc.dart';
 

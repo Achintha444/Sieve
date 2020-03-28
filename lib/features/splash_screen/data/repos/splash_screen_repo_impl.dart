@@ -1,9 +1,9 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../core/Entities/empty_entity.dart';
 import '../../../../core/Platform/network_info.dart';
 import '../../../../core/error/Faliure.dart';
-import '../../domain/entities/empty_entity.dart';
 import '../../domain/repos/splash_screen_repo.dart';
 
 class SplashScreenRepoImpl implements SplashScreenRepo {
