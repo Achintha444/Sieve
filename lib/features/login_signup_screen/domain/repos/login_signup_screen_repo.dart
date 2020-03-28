@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
-import 'package:sieve_data_privacy_app/core/Entities/empty_entity.dart';
-import 'package:sieve_data_privacy_app/core/Error/Faliure.dart';
+
+import '../../../../core/Entities/empty_entity.dart';
+import '../../../../core/error/Faliure.dart';
 
 abstract class LoginSignuScreenRepo {
   Future<Either<Faliure,EmptyEntity>> getLoginScreen();

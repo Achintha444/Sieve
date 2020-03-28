@@ -15,3 +15,5 @@ class CountryNotFoundFaliure extends Faliure {}
 class InvalidInputFaliure extends Faliure {}
 
 class InternetConnectionFaliure extends Faliure {}
+
+class ScreenRenderFaliure extends Faliure{}
