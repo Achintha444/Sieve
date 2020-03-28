@@ -6,4 +6,6 @@ class CountryNotFoundException implements Exception{}
 
 class InvalidInputException implements Exception{}
 
-class InternetConnectionFaliure implements Exception{}
+class InternetConnectionException implements Exception{}
+
+class ScreenRenderException implements Exception{}
