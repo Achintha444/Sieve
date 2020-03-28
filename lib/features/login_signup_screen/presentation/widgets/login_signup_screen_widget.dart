@@ -27,8 +27,8 @@ class _LoginSignupScreenWidgetState extends State<LoginSignupScreenWidget> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             TweenAnimationBuilder(
-              tween: Tween<double>(begin: 150, end: 100),
-              duration: Duration(seconds: 1),
+              tween: Tween<double>(begin: 200, end: 130),
+              duration: Duration(milliseconds: 750),
               builder: (BuildContext context, double size, Widget child) {
                 return Image(
                   key: Key('logo_image'),
@@ -37,6 +37,7 @@ class _LoginSignupScreenWidgetState extends State<LoginSignupScreenWidget> {
                 );
               },
             ),
+
           ],
         ),
       ),

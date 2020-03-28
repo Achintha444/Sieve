@@ -18,36 +18,35 @@ class _SplashScreenWidgetState extends State<SplashScreenWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-        height: MediaQuery.of(context).size.height,
-        width: MediaQuery.of(context).size.width,
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              Center(
-                child: Image(
-                  key: Key('logo_image'),
-                  image: AssetImage('icons/logo.png'),
-                  height: 150,
-                ),
-              
+      height: MediaQuery.of(context).size.height,
+      width: MediaQuery.of(context).size.width,
+      child: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            Center(
+              child: Image(
+                key: Key('logo_image'),
+                image: AssetImage('icons/logo.png'),
+                height: 200,
               ),
-              Padding(
-                padding: EdgeInsets.only(
-                  top: 30,
-                  bottom: 30,
-                ),
+            ),
+            Padding(
+              padding: EdgeInsets.only(
+                top: 30,
+                bottom: 30,
               ),
-              CircularProgressIndicator(
-                key: Key('circular_progress_indicator'),
-                backgroundColor: Colors.white,
-              ),
-            ],
-          ),
+            ),
+            CircularProgressIndicator(
+              key: Key('circular_progress_indicator'),
+              backgroundColor: Color.fromARGB(0, 0, 0, 0),
+              valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+            ),
+          ],
         ),
-      );
-
+      ),
+    );
   }
 
   void _dispatchEvent(BuildContext context) {
