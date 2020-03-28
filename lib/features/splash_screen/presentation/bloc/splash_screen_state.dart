@@ -1,7 +1,9 @@
 part of 'splash_screen_bloc.dart';
 
 @immutable
-abstract class SplashScreenState {}
+abstract class SplashScreenState extends Equatable {
+  SplashScreenState([List props = const <dynamic>[]]) : super(props);
+}
 
 class Initial extends SplashScreenState {}
 

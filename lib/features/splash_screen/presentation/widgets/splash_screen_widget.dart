@@ -17,29 +17,32 @@ class _SplashScreenWidgetState extends State<SplashScreenWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: MediaQuery.of(context).size.height,
-      width: MediaQuery.of(context).size.width,
-      child: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            Center(
-              child: Image(
-                image: AssetImage('icons/logo.png'),
+    return Hero(
+      tag: 1,
+      child: Container(
+        height: MediaQuery.of(context).size.height,
+        width: MediaQuery.of(context).size.width,
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              Center(
+                child: Image(
+                  image: AssetImage('icons/logo.png'),
+                ),
               ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(
-                top: 30,
-                bottom: 30,
+              Padding(
+                padding: EdgeInsets.only(
+                  top: 30,
+                  bottom: 30,
+                ),
               ),
-            ),
-            CircularProgressIndicator(
-              backgroundColor: Colors.white,
-            ),
-          ],
+              CircularProgressIndicator(
+                backgroundColor: Colors.white,
+              ),
+            ],
+          ),
         ),
       ),
     );

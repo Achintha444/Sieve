@@ -13,7 +13,7 @@ void main() {
     mockNetworkInfo = MockNetworkInfo();
     screenRepoImpl = SplashScreenRepoImpl(networkInfo: mockNetworkInfo);
   });
-
+  
   test(
     'should check if the device is online',
     () async {

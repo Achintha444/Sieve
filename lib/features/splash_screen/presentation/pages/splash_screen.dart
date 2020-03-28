@@ -31,17 +31,23 @@ class SplashScreen extends StatelessWidget {
           ),
         ),
         child: Center(
-          child: BlocBuilder<SplashScreenBloc,SplashScreenState>(
-            builder: (context,state){
-              if((state is Initial) || (state is Loading)){
+          child: BlocBuilder<SplashScreenBloc, SplashScreenState>(
+            builder: (context, state) {
+              if ((state is Initial) || (state is Loading)) {
                 return SplashScreenWidget();
-              }
-              else if(state is InternetError){
+              } else if (state is InternetError) {
                 return InternetErrorWidget();
-              } else if(state is Loaded){
+              } else if (state is Loaded) {
                 return Scaffold(
-                  body: Center(
-                    child: Text('TEST LOGIN PAGE'),
+                  backgroundColor: Theme.of(context).primaryColor,
+                  body: Hero(
+                    tag: 1,
+                    child: Center(
+                      child: Image(
+                        image: AssetImage('icons/logo.png'),
+                        height: 80,
+                      ),
+                    ),
                   ),
                 );
               }

@@ -1,7 +1,8 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:meta/meta.dart';
+import 'package:equatable/equatable.dart';
+import 'package:flutter/material.dart';
 
 import '../../../../core/Usecase/use_case.dart';
 import '../../domain/usecases/navigate_to_login_screen.dart';
