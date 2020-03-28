@@ -29,16 +29,17 @@ void main() {
   final Key imageKey = Key('logo_image');
   final Key circularProgressIndicatorKey = Key('circular_progress_indicator');
 
-  testWidgets('SplashScreenWidget has the correct content', (WidgetTester tester) async {
+  testWidgets('SplashScreenWidget has the correct content',
+      (WidgetTester tester) async {
     //* Create the widget by telling the tester to build it.
     await tester.pumpWidget(buildTestableWidget(SplashScreenWidget()));
 
-    //* should dispatch NavigateToLoginScreenEvent when button tapped
+    //* should dispatch NavigateToLoginScreenEvent when widget is created initState()
     verify(mockSplashScreenBloc.dispatch(NavigateToLoginScreenEvent()));
 
+    //* SplashScreenWidget has the correct content
     final imageFinder = find.byKey(imageKey);
     final circularIndicator = find.byKey(circularProgressIndicatorKey);
-
     expect(imageFinder, findsOneWidget);
     expect(circularIndicator, findsOneWidget);
   });
