@@ -61,7 +61,7 @@ Future<void> init() async {
 
   //* repo
   sl.registerLazySingleton<LoginSignuScreenRepo>(
-    () => LoginSignupScreenRepoImpl(),
+    () => LoginSignupScreenRepoImpl(networkInfo: sl()),
   );
 
   //! Core

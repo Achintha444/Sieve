@@ -7,13 +7,11 @@ class LoginSignupScreenWidget extends StatefulWidget {
 }
 
 class _LoginSignupScreenWidgetState extends State<LoginSignupScreenWidget> {
-  int _sizeImage = 150;
 
   @override
   void initState() {
     super.initState();
     Future.delayed(Duration(seconds: 2));
-    this._sizeImage = 50;
   }
 
   @override
