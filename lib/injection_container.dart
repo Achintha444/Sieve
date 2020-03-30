@@ -44,7 +44,10 @@ Future<void> init() async {
 
   //* Bloc
   sl.registerFactory(
-    () => LoginSignupScreenBloc(),
+    () => LoginSignupScreenBloc(
+      getFacebookLogin: sl(),
+      getGoogleLogin: sl(),
+    ),
   );
 
   //* usecases
