@@ -183,6 +183,7 @@ class _LoginSignupScreenWidgetState extends State<LoginSignupScreenWidget> {
                 FloatingActionButton(
                   child: Container(
                     height: 30,
+                    key: Key('google_login'),
                     child: Image(
                       image: AssetImage('icons/google.png'),
                       color: Colors.white,
@@ -200,6 +201,7 @@ class _LoginSignupScreenWidgetState extends State<LoginSignupScreenWidget> {
                 ),
                 FloatingActionButton(
                   child: Container(
+                     key: Key('fb_login'),
                     height: 50,
                     child: Image(
                       image: AssetImage('icons/facebook.png'),
