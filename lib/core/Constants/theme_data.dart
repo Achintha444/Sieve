@@ -8,6 +8,19 @@ var themeData = ThemeData(
   scaffoldBackgroundColor: Colors.white,
   backgroundColor: Colors.white,
   fontFamily: 'Questrial',
+  snackBarTheme: SnackBarThemeData(
+    backgroundColor: Colors.white,
+    elevation: 1,
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.only(
+        topLeft: Radius.circular(20),
+        topRight: Radius.circular(20),
+      ),
+    ),
+    contentTextStyle: TextStyle(
+      color: Color(0xff265699),
+    ),
+  ),
   buttonTheme: ButtonThemeData(
     shape: RoundedRectangleBorder(
       borderRadius: new BorderRadius.circular(4),

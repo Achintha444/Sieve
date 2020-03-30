@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:sieve_data_privacy_app/features/login_signup_screen/presentation/bloc/login_signup_screen_bloc.dart';
 
 class LoginSignupScreenWidget extends StatefulWidget {
   @override
@@ -7,11 +9,10 @@ class LoginSignupScreenWidget extends StatefulWidget {
 }
 
 class _LoginSignupScreenWidgetState extends State<LoginSignupScreenWidget> {
-
   @override
   void initState() {
     super.initState();
-    Future.delayed(Duration(seconds: 2));
+    //Scaffold.of(context).showSnackBar(SnackBar(content: Text('Connecting')));
   }
 
   @override
@@ -187,7 +188,9 @@ class _LoginSignupScreenWidgetState extends State<LoginSignupScreenWidget> {
                       color: Colors.white,
                     ),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    _googleLoinFunction();
+                  },
                 ),
                 Padding(
                   padding: EdgeInsets.only(
@@ -203,13 +206,27 @@ class _LoginSignupScreenWidgetState extends State<LoginSignupScreenWidget> {
                       color: Colors.white,
                     ),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    _facebookLoginFunction();
+                  },
                 ),
               ],
             ),
           ],
         ),
       ),
+    );
+  }
+
+  void _facebookLoginFunction() {
+    BlocProvider.of<LoginSignupScreenBloc>(context).dispatch(
+      GetFacebookLoginEvent(),
+    );
+  }
+
+  _googleLoinFunction() {
+    BlocProvider.of<LoginSignupScreenBloc>(context).dispatch(
+      GetGoogleLoginEvent(),
     );
   }
 }

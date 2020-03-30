@@ -30,15 +30,70 @@ class LoginSignupScreen extends StatelessWidget {
           ),
         ),
         child: Center(
-          child: BlocBuilder<LoginSignupScreenBloc, LoginSignupScreenState>(
-            builder: (context, state) {
-              if(state is Initial){
-                return LoginSignupScreenWidget();
-              }
-            }
-          ),
+          child: _BlocListener(),
         ),
       ),
+    );
+  }
+}
+
+class _BlocListener extends StatelessWidget {
+  const _BlocListener({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocListener(
+      bloc: BlocProvider.of<LoginSignupScreenBloc>(context),
+      listener: (context, state) {
+        if (state is Loading) {
+          Scaffold.of(context).showSnackBar(
+            SnackBar(
+              content: Text(
+                'Connecting'.toUpperCase(),
+                style: TextStyle(
+                  fontSize: 17,
+                  letterSpacing: 2,
+                ),
+                textAlign: TextAlign.center,
+              ),
+              duration: Duration(seconds: 4),
+            ),
+          );
+        } else if (state is InternetError) {
+          Scaffold.of(context).showSnackBar(
+            SnackBar(
+              content: Text(
+                'Internet Connection Failed'.toUpperCase(),
+              ),
+              duration: Duration(seconds: 10),
+              action: SnackBarAction(
+                label: 'Close',
+                onPressed: () {
+                  Scaffold.of(context).hideCurrentSnackBar();
+                },
+              ),
+            ),
+          );
+        } else if (state is Loaded) {
+          Scaffold.of(context).showSnackBar(
+            SnackBar(
+              content: Text(
+                'Loaded'.toUpperCase(),
+              ),
+              duration: Duration(seconds: 10),
+              action: SnackBarAction(
+                label: 'Close',
+                onPressed: () {
+                  Scaffold.of(context).hideCurrentSnackBar();
+                },
+              ),
+            ),
+          );
+        }
+      },
+      child: LoginSignupScreenWidget(),
     );
   }
 }
