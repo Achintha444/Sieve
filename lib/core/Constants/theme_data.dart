@@ -36,3 +36,14 @@ var mainTextStyle = TextStyle(
 var accentTextStyle = TextStyle(
   color: Colors.white,
 );
+
+var grdientData = BoxDecoration(
+  gradient: LinearGradient(
+    begin: Alignment.topCenter,
+    end: Alignment.bottomCenter,
+    colors: [
+      Color(0xff265699),
+      Color(0xff1BA0F2),
+    ],
+  ),
+);

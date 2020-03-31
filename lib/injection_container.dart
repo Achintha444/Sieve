@@ -2,6 +2,14 @@ import 'package:data_connection_checker/data_connection_checker.dart';
 import 'package:get_it/get_it.dart';
 
 import 'core/Platform/network_info.dart';
+import 'features/login_screen/data/repos/login_screen_repo_impl.dart';
+import 'features/login_screen/domain/repos/login_screen_repo.dart';
+import 'features/login_screen/domain/usecases/get_facebook_login.dart'
+    as fbLoginScreen;
+import 'features/login_screen/domain/usecases/get_google_login.dart'
+    as gLoginScreen;
+import 'features/login_screen/domain/usecases/get_login.dart';
+import 'features/login_screen/presentation/bloc/login_screen_bloc.dart';
 import 'features/login_signup_screen/data/repos/login_signup_screen_repo_impl.dart';
 import 'features/login_signup_screen/domain/repos/login_signup_screen_repo.dart';
 import 'features/login_signup_screen/domain/usecases/get_facebook_login.dart';
@@ -47,6 +55,41 @@ Future<void> init() async {
     () => LoginSignupScreenBloc(
       getFacebookLogin: sl(),
       getGoogleLogin: sl(),
+    ),
+  );
+
+  //* usecases
+  sl.registerLazySingleton(
+    () => fbLoginScreen.GetFacebookLogin(
+      loginScreenRepo: sl(),
+    ),
+  );
+  sl.registerLazySingleton(
+    () => gLoginScreen.GetGoogleLogin(
+      loginRepo: sl(),
+    ),
+  );
+  sl.registerLazySingleton(
+    () => GetLogin(
+      repo: sl(),
+    ),
+  );
+
+  //* repo
+  sl.registerLazySingleton<LoginScreenRepo>(
+    () => LoginScreenRepoImpl(networkInfo: sl(), loginSignuScreenRepo: sl()),
+  );
+
+  //! Features - login_screen
+
+  // TODO: Need to update bloc when fully implemented
+
+  //* Bloc
+  sl.registerFactory(
+    () => LoginScreenBloc(
+      getFacebookLogin: sl(),
+      getGoogleLogin: sl(),
+      getLogin: sl(),
     ),
   );
 

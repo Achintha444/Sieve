@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import './core/Constants/theme_data.dart' as td;
+import 'features/login_screen/presentation/pages/login_screen.dart';
 import 'features/splash_screen/presentation/pages/splash_screen.dart';
 import 'injection_container.dart';
 
@@ -17,6 +18,9 @@ class MyApp extends StatelessWidget {
       title: 'Sieve',
       theme: td.themeData,
       home: SplashScreen(),
+      routes: {
+        '/loginScreen': (context) => new LoginScreen(),
+      },
     );
   }
 }

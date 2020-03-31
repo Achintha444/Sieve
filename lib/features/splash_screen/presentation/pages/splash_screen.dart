@@ -6,6 +6,7 @@ import '../../../login_signup_screen/presentation/pages/login_signup_screen.dart
 import '../bloc/splash_screen_bloc.dart';
 import '../widgets/internet_error_widget.dart';
 import '../widgets/splash_screen_widget.dart';
+import '../../../../core/Constants/theme_data.dart' as td;
 
 class SplashScreen extends StatelessWidget {
   @override
@@ -21,16 +22,7 @@ class SplashScreen extends StatelessWidget {
       child: Container(
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [
-              Theme.of(context).accentColor,
-              Theme.of(context).primaryColor,
-            ],
-          ),
-        ),
+        decoration: td.grdientData,
         child: Center(
           child: BlocBuilder<SplashScreenBloc, SplashScreenState>(
             builder: (context, state) {

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:sieve_data_privacy_app/features/login_screen/presentation/pages/login_screen.dart';
 import 'package:sieve_data_privacy_app/features/login_signup_screen/presentation/bloc/login_signup_screen_bloc.dart';
 
 class LoginSignupScreenWidget extends StatelessWidget {
@@ -53,7 +55,7 @@ class LoginSignupScreenWidget extends StatelessWidget {
                       elevation: 5,
                       color: Colors.white,
                       onPressed: () {
-                        _loginFunction();
+                        _loginFunction(context);
                       },
                     ),
                   ),
@@ -173,6 +175,7 @@ class LoginSignupScreenWidget extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
                 FloatingActionButton(
+                  heroTag: 'google',
                   child: Container(
                     height: 30,
                     key: Key('google_login'),
@@ -192,6 +195,7 @@ class LoginSignupScreenWidget extends StatelessWidget {
                   ),
                 ),
                 FloatingActionButton(
+                  heroTag: 'facebook',
                   child: Container(
                     key: Key('fb_login'),
                     height: 50,
@@ -212,12 +216,12 @@ class LoginSignupScreenWidget extends StatelessWidget {
     );
   }
 
-  void _signupFunction() {
+  void _signupFunction() {}
 
-  }
+//CupertinoPageRoute
 
-  void _loginFunction() {
-
+  void _loginFunction(BuildContext context) {
+    Navigator.pushNamed(context, '/loginScreen');
   }
 
   void _facebookLoginFunction(BuildContext context) {

@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../injection_container.dart';
 import '../bloc/login_signup_screen_bloc.dart';
 import '../widgets/login_signup_screen_widget.dart';
+import '../../../../core/Constants/theme_data.dart' as td;
 
 class LoginSignupScreen extends StatelessWidget {
   @override
@@ -19,16 +20,7 @@ class LoginSignupScreen extends StatelessWidget {
       child: Container(
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [
-              Theme.of(context).accentColor,
-              Theme.of(context).primaryColor,
-            ],
-          ),
-        ),
+        decoration: td.grdientData,
         child: Center(
           child: _BlocListener(),
         ),
