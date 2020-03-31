@@ -42,8 +42,8 @@ var grdientData = BoxDecoration(
     begin: Alignment.topCenter,
     end: Alignment.bottomCenter,
     colors: [
-      Color(0xff265699),
       Color(0xff1BA0F2),
+      Color(0xff265699),
     ],
   ),
 );

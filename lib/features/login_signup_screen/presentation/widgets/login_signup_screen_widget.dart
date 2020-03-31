@@ -1,8 +1,8 @@
-import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:sieve_data_privacy_app/features/login_screen/presentation/pages/login_screen.dart';
-import 'package:sieve_data_privacy_app/features/login_signup_screen/presentation/bloc/login_signup_screen_bloc.dart';
+
+import '../bloc/login_signup_screen_bloc.dart';
 
 class LoginSignupScreenWidget extends StatelessWidget {
   @override
@@ -170,6 +170,7 @@ class LoginSignupScreenWidget extends StatelessWidget {
                 bottom: 10,
               ),
             ),
+            
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
