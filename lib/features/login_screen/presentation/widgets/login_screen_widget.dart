@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:sieve_data_privacy_app/features/login_signup_screen/presentation/bloc/login_signup_screen_bloc.dart';
 
-class LoginSignupScreenWidget extends StatelessWidget {
+import '../bloc/login_screen_bloc.dart';
+
+class LoginScreenWidget extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -52,9 +54,7 @@ class LoginSignupScreenWidget extends StatelessWidget {
                       textColor: Theme.of(context).accentColor,
                       elevation: 5,
                       color: Colors.white,
-                      onPressed: () {
-                        _loginFunction();
-                      },
+                      onPressed: () {},
                     ),
                   ),
                 ),
@@ -95,9 +95,7 @@ class LoginSignupScreenWidget extends StatelessWidget {
                       color: Colors.white,
                       elevation: 5,
                       shape: Theme.of(context).buttonTheme.shape,
-                      onPressed: () {
-                        _signupFunction();
-                      },
+                      onPressed: () {},
                     ),
                   ),
                 ),
@@ -212,22 +210,14 @@ class LoginSignupScreenWidget extends StatelessWidget {
     );
   }
 
-  void _signupFunction() {
-
-  }
-
-  void _loginFunction() {
-
-  }
-
   void _facebookLoginFunction(BuildContext context) {
-    BlocProvider.of<LoginSignupScreenBloc>(context).dispatch(
-      GetFacebookLoginEvent(),
+    BlocProvider.of<LoginScreenBloc>(context).dispatch(
+      GetFacebookLoginEvent()
     );
   }
 
   void _googleLoinFunction(BuildContext context) {
-    BlocProvider.of<LoginSignupScreenBloc>(context).dispatch(
+    BlocProvider.of<LoginScreenBloc>(context).dispatch(
       GetGoogleLoginEvent(),
     );
   }
