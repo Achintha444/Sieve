@@ -102,7 +102,7 @@ class LoginSignupScreenWidget extends StatelessWidget {
                       elevation: 5,
                       shape: Theme.of(context).buttonTheme.shape,
                       onPressed: () {
-                        _signupFunction();
+                        _signupFunction(context);
                       },
                     ),
                   ),
@@ -222,7 +222,9 @@ class LoginSignupScreenWidget extends StatelessWidget {
     );
   }
 
-  void _signupFunction() {}
+  void _signupFunction(BuildContext context) {
+    Navigator.pushNamed(context, '/signupScreen');
+  }
 
 //CupertinoPageRoute
 

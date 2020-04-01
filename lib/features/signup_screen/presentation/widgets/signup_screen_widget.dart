@@ -1,19 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../bloc/login_screen_bloc.dart';
+import '../bloc/signup_screen_bloc.dart';
 import '../../../../core/util/input_converter.dart';
 
-class LoginScreenWidget extends StatefulWidget {
+class SignupScreenWidget extends StatefulWidget {
   @override
-  _LoginScreenWidgetState createState() => _LoginScreenWidgetState();
+  _SignupScreenWidgetState createState() => _SignupScreenWidgetState();
 }
 
-class _LoginScreenWidgetState extends State<LoginScreenWidget> {
+class _SignupScreenWidgetState extends State<SignupScreenWidget> {
   final InputConverter _inputConverter = new InputConverter();
   final _formKey = GlobalKey<FormState>();
   String _email;
   String _password;
+  String _rePassword;
 
   
   @override
@@ -27,14 +28,14 @@ class _LoginScreenWidgetState extends State<LoginScreenWidget> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             TweenAnimationBuilder(
-              tween: Tween<double>(begin: 90, end: 60),
-              key: Key('login'),
+              tween: Tween<double>(begin: 80, end: 60),
+              key: Key('Sign up'),
               duration: Duration(milliseconds: 900),
               builder: (BuildContext context, double size, Widget child) {
                 return Text(
-                  'LOGIN'.toUpperCase(),
+                  'Signup'.toUpperCase(),
                   style: TextStyle(
-                      fontSize: size, letterSpacing: 13, color: Colors.white),
+                      fontSize: size, letterSpacing: 10, color: Colors.white),
                 );
               },
             ),
@@ -45,11 +46,12 @@ class _LoginScreenWidgetState extends State<LoginScreenWidget> {
               ),
             ),
             //* TextFormFields
-            //email
+            
             Form(
               key: _formKey,
               child: Column(
                 children: <Widget>[
+                  //email
                   Padding(
                     padding: const EdgeInsets.only(
                       left: 20.0,
@@ -69,15 +71,16 @@ class _LoginScreenWidgetState extends State<LoginScreenWidget> {
                         this._email = value;
                       },
                       decoration:
-                          _loginScreenInputDecoration('Email', Icons.email),
+                          _signupScreenInputDecoration('Email', Icons.email),
                     ),
                   ),
+                  //password
                   Padding(
                     padding: const EdgeInsets.only(
                       left: 20.0,
                       right: 20,
                       top: 20,
-                      bottom: 50,
+                      bottom: 20,
                     ),
                     child: TextFormField(
                       keyboardType: TextInputType.visiblePassword,
@@ -94,7 +97,32 @@ class _LoginScreenWidgetState extends State<LoginScreenWidget> {
                         this._password = value;
                       },
                       decoration:
-                          _loginScreenInputDecoration('Password', Icons.lock),
+                          _signupScreenInputDecoration('Password', Icons.lock),
+                    ),
+                  ),
+                  //rePassword
+                  Padding(
+                    padding: const EdgeInsets.only(
+                      left: 20.0,
+                      right: 20,
+                      bottom: 50,
+                    ),
+                    child: TextFormField(
+                      keyboardType: TextInputType.visiblePassword,
+                      obscureText: true,
+                      style: TextStyle(
+                        color: Colors.white,
+                        letterSpacing: 1,
+                        fontSize: 20,
+                      ),
+                      validator: (value) {
+                        return _passwordValidator(value);
+                      },
+                      onChanged: (value) {
+                        this._rePassword = value;
+                      },
+                      decoration:
+                          _signupScreenInputDecoration('Re Enter Password', Icons.lock),
                     ),
                   ),
                   Row(
@@ -107,11 +135,11 @@ class _LoginScreenWidgetState extends State<LoginScreenWidget> {
                       ),
                       Expanded(
                         child: Container(
-                          key: Key('login_button'),
+                          key: Key('Signup_button'),
                           height: 45,
                           child: RaisedButton(
                             child: Text(
-                              'LOGIN',
+                              'SIGNUP',
                               style: TextStyle(
                                 fontSize: 20,
                                 letterSpacing: 2,
@@ -121,7 +149,7 @@ class _LoginScreenWidgetState extends State<LoginScreenWidget> {
                             elevation: 5,
                             color: Theme.of(context).accentColor,
                             onPressed: () {
-                              _loginFunction(context);
+                              _signupFunction(context);
                             },
                           ),
                         ),
@@ -137,127 +165,21 @@ class _LoginScreenWidgetState extends State<LoginScreenWidget> {
                 ],
               ),
             ),
-            //password
-
-            //* Login Button
 
             Padding(
               padding: EdgeInsets.only(
-                top: 20,
-                bottom: 20,
+                top: 30,
+                bottom: 30,
               ),
             ),
 
-            //* Dividers and Text
-            Row(
-              children: <Widget>[
-                Padding(
-                  padding: EdgeInsets.only(
-                    right: 10,
-                    left: 10,
-                  ),
-                ),
-                Expanded(
-                  child: Divider(
-                    color: Colors.white,
-                    thickness: 1,
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(
-                    right: 10,
-                    left: 10,
-                  ),
-                ),
-                Text(
-                  'Login With'.toUpperCase(),
-                  style: TextStyle(
-                    color: Colors.white,
-                    letterSpacing: 1,
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(
-                    right: 10,
-                    left: 10,
-                  ),
-                ),
-                Expanded(
-                  child: Divider(
-                    color: Colors.white,
-                    thickness: 1,
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(
-                    right: 10,
-                    left: 10,
-                  ),
-                ),
-              ],
-            ),
-            Padding(
-              padding: EdgeInsets.only(
-                top: 10,
-                bottom: 10,
-              ),
-            ),
-
-            //* Google and FB Login
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget>[
-                FloatingActionButton(
-                  heroTag: Key('google_loginscreen'),
-                  child: Container(
-                    height: 30,
-                    key: Key('google_loginscreen'),
-                    child: Image(
-                      image: AssetImage('icons/google.png'),
-                      color: Colors.white,
-                    ),
-                  ),
-                  onPressed: () {
-                    _googleLoinFunction(context);
-                  },
-                ),
-                Padding(
-                  padding: EdgeInsets.only(
-                    left: 60,
-                    right: 30,
-                  ),
-                ),
-                FloatingActionButton(
-                  heroTag: Key('fb_loginscreen'),
-                  child: Container(
-                    key: Key('fb_loginscreen'),
-                    height: 50,
-                    child: Image(
-                      image: AssetImage('icons/facebook.png'),
-                      color: Colors.white,
-                    ),
-                  ),
-                  onPressed: () {
-                    _facebookLoginFunction(context);
-                  },
-                ),
-              ],
-            ),
-            Padding(
-              padding: EdgeInsets.only(
-                top: 20,
-                bottom: 20,
-              ),
-            ),
-
-            //* Signup Navigation
+            //* Login Navigation
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
                 Text(
-                  'DO NOT HAVE AN ACCOUNT '.toUpperCase(),
+                  'Already HAVE AN ACCOUNT '.toUpperCase(),
                   style: TextStyle(
                     letterSpacing: 0.75,
                     color: Colors.white,
@@ -265,14 +187,14 @@ class _LoginScreenWidgetState extends State<LoginScreenWidget> {
                 ),
                 GestureDetector(
                   child: Text(
-                    'SIGN UP'.toUpperCase(),
+                    'LOGIN'.toUpperCase(),
                     style: TextStyle(
                       letterSpacing: 0.75,
                       color: Theme.of(context).accentColor,
                     ),
                   ),
                   onTap: () {
-                    _signupFunction(context);
+                    _loginFunction(context);
                   },
                 ),
                 Text(
@@ -296,8 +218,13 @@ class _LoginScreenWidgetState extends State<LoginScreenWidget> {
     } else {
       if (!(_inputConverter.checkPassword(password))) {
         return 'Invalid Password!';
+      } else{
+        if (this._password != this._rePassword){
+           return 'Passwords do not Match!';
+        }
+        return null;
       }
-      return null;
+      
     }
   }
 
@@ -312,11 +239,11 @@ class _LoginScreenWidgetState extends State<LoginScreenWidget> {
     }
   }
 
-  void _loginFunction(BuildContext context) {
+  void _signupFunction(BuildContext context) {
     if (_formKey.currentState.validate()) {
       // If the form is valid, display a Snackbar.
-      BlocProvider.of<LoginScreenBloc>(context).dispatch(
-        GetLoginEvent(
+      BlocProvider.of<SignupScreenBloc>(context).dispatch(
+        GetSignupEvent(
           email: _email,
           password: _password,
         ),
@@ -324,7 +251,7 @@ class _LoginScreenWidgetState extends State<LoginScreenWidget> {
     }
   }
 
-  InputDecoration _loginScreenInputDecoration(String labelText, IconData icon) {
+  InputDecoration _signupScreenInputDecoration(String labelText, IconData icon) {
     return InputDecoration(
       labelText: labelText,
       prefixIcon: Icon(
@@ -358,19 +285,8 @@ class _LoginScreenWidgetState extends State<LoginScreenWidget> {
     );
   }
 
-  void _signupFunction(BuildContext context) {
-    Navigator.pushNamed(context, '/signupScreen');
+  void _loginFunction(BuildContext context) {
+    Navigator.pushNamed(context, '/loginScreen');
   }
 
-  void _facebookLoginFunction(BuildContext context) {
-    BlocProvider.of<LoginScreenBloc>(context).dispatch(
-      GetFacebookLoginEvent(),
-    );
-  }
-
-  void _googleLoinFunction(BuildContext context) {
-    BlocProvider.of<LoginScreenBloc>(context).dispatch(
-      GetGoogleLoginEvent(),
-    );
-  }
 }
