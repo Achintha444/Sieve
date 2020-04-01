@@ -1,12 +1,13 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:sieve_data_privacy_app/core/Entities/empty_entity.dart';
-import 'package:sieve_data_privacy_app/core/Usecase/use_case.dart';
-import 'package:sieve_data_privacy_app/core/error/Faliure.dart';
-import 'package:sieve_data_privacy_app/features/signup_screen/domain/repos/signup_repo.dart';
+
+import '../../../../core/Entities/empty_entity.dart';
+import '../../../../core/Usecase/use_case.dart';
+import '../../../../core/error/Faliure.dart';
+import '../repos/signup_screen_repo.dart';
 
 class GetSignup extends UseCase<EmptyEntity, List<String>> {
-  final SignupRepo signupRepo;
+  final SignupScreenRepo signupRepo;
 
   GetSignup({@required this.signupRepo});
 
