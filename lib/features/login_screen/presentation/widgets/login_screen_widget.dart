@@ -28,6 +28,7 @@ class _LoginScreenWidgetState extends State<LoginScreenWidget> {
           children: <Widget>[
             TweenAnimationBuilder(
               tween: Tween<double>(begin: 90, end: 60),
+              key: Key('login'),
               duration: Duration(milliseconds: 900),
               builder: (BuildContext context, double size, Widget child) {
                 return Text(
@@ -106,6 +107,7 @@ class _LoginScreenWidgetState extends State<LoginScreenWidget> {
                       ),
                       Expanded(
                         child: Container(
+                          key: Key('login_button'),
                           height: 45,
                           child: RaisedButton(
                             child: Text(
