@@ -26,6 +26,8 @@ class LoginSignupScreenWidget extends StatelessWidget {
                 );
               },
             ),
+            
+            //* Login button
             Padding(
               padding: EdgeInsets.only(
                 top: 40,
@@ -74,6 +76,8 @@ class LoginSignupScreenWidget extends StatelessWidget {
                 bottom: 10,
               ),
             ),
+            
+            // * Signup button
             Row(
               children: <Widget>[
                 Padding(
@@ -171,6 +175,7 @@ class LoginSignupScreenWidget extends StatelessWidget {
               ),
             ),
             
+            //* Google and FB Login
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,

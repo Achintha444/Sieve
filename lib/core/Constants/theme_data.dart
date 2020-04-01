@@ -47,3 +47,19 @@ var grdientData = BoxDecoration(
     ],
   ),
 );
+
+var inputDeco = InputDecorationTheme(
+  alignLabelWithHint: true,
+  filled: true,
+  fillColor: Colors.white,
+  focusedBorder: OutlineInputBorder(
+    borderSide: BorderSide(
+      color: Color(0xff1BA0F2),
+    ),
+    borderRadius: BorderRadius.circular(2.0),
+  ),
+  enabledBorder: UnderlineInputBorder(
+    borderSide: BorderSide(color: Colors.white),
+    borderRadius: BorderRadius.circular(4.0),
+  ),
+);
