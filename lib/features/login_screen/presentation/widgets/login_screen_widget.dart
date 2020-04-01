@@ -2,8 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../bloc/login_screen_bloc.dart';
+import '../../../../core/util/input_converter.dart';
 
-class LoginScreenWidget extends StatelessWidget {
+class LoginScreenWidget extends StatefulWidget {
+  @override
+  _LoginScreenWidgetState createState() => _LoginScreenWidgetState();
+}
+
+class _LoginScreenWidgetState extends State<LoginScreenWidget> {
+  final InputConverter _inputConverter = new InputConverter();
+  final _formKey = GlobalKey<FormState>();
+  String _email;
+  String _password;
+
+  
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -31,79 +43,102 @@ class LoginScreenWidget extends StatelessWidget {
                 bottom: 30,
               ),
             ),
-            //* TextFields
+            //* TextFormFields
             //email
-            Padding(
-              padding: const EdgeInsets.only(
-                left: 20.0,
-                right: 20,
-              ),
-              child: TextField(
-                autofocus: true,
-                keyboardType: TextInputType.emailAddress,
-                style: TextStyle(
-                  color: Colors.white,
-                  letterSpacing: 1,
-                ),
-                decoration: _loginScreenInputDecoration('Email', Icons.email),
+            Form(
+              key: _formKey,
+              child: Column(
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.only(
+                      left: 20.0,
+                      right: 20,
+                    ),
+                    child: TextFormField(
+                      keyboardType: TextInputType.emailAddress,
+                      style: TextStyle(
+                        color: Colors.white,
+                        letterSpacing: 1,
+                        fontSize: 20,
+                      ),
+                      validator: (value) {
+                        return _emailValidator(value);
+                      },
+                      onChanged: (value) {
+                        this._email = value;
+                      },
+                      decoration:
+                          _loginScreenInputDecoration('Email', Icons.email),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(
+                      left: 20.0,
+                      right: 20,
+                      top: 20,
+                      bottom: 50,
+                    ),
+                    child: TextFormField(
+                      keyboardType: TextInputType.visiblePassword,
+                      obscureText: true,
+                      style: TextStyle(
+                        color: Colors.white,
+                        letterSpacing: 1,
+                        fontSize: 20,
+                      ),
+                      validator: (value) {
+                        return _passwordValidator(value);
+                      },
+                      onChanged: (value) {
+                        this._password = value;
+                      },
+                      decoration:
+                          _loginScreenInputDecoration('Password', Icons.lock),
+                    ),
+                  ),
+                  Row(
+                    children: <Widget>[
+                      Padding(
+                        padding: EdgeInsets.only(
+                          left: 10,
+                          right: 10,
+                        ),
+                      ),
+                      Expanded(
+                        child: Container(
+                          height: 45,
+                          child: RaisedButton(
+                            child: Text(
+                              'LOGIN',
+                              style: TextStyle(
+                                fontSize: 20,
+                                letterSpacing: 2,
+                              ),
+                            ),
+                            textColor: Colors.white,
+                            elevation: 5,
+                            color: Theme.of(context).accentColor,
+                            onPressed: () {
+                              _loginFunction(context);
+                            },
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(
+                          left: 10,
+                          right: 10,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
               ),
             ),
             //password
-            Padding(
-              padding: const EdgeInsets.only(
-                left: 20.0,
-                right: 20,
-                top: 20,
-                bottom: 50,
-              ),
-              child: TextField(
-                keyboardType: TextInputType.visiblePassword,
-                obscureText: true,
-                style: TextStyle(
-                  color: Colors.white,
-                  letterSpacing: 1,
-                ),
-                decoration: _loginScreenInputDecoration('Password', Icons.lock),
-              ),
-            ),
 
             //* Login Button
-            Row(
-              children: <Widget>[
-                Padding(
-                  padding: EdgeInsets.only(
-                    left: 10,
-                    right: 10,
-                  ),
-                ),
-                Expanded(
-                  child: Container(
-                    height: 45,
-                    child: RaisedButton(
-                      child: Text(
-                        'LOGIN',
-                        style: TextStyle(
-                          fontSize: 20,
-                          letterSpacing: 2,
-                        ),
-                      ),
-                      textColor: Colors.white,
-                      elevation: 5,
-                      color: Theme.of(context).accentColor,
-                      onPressed: () {
-                        _loginFunction(context);
-                      },
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(
-                    left: 10,
-                    right: 10,
-                  ),
-                ),
-              ],
-            ),
+
             Padding(
               padding: EdgeInsets.only(
                 top: 20,
@@ -253,10 +288,38 @@ class LoginScreenWidget extends StatelessWidget {
     );
   }
 
+  String _passwordValidator(String password) {
+    if (password.isEmpty) {
+      return 'Password Cannot be Empty!';
+    } else {
+      if (!(_inputConverter.checkPassword(password))) {
+        return 'Invalid Password!';
+      }
+      return null;
+    }
+  }
+
+  String _emailValidator(String email) {
+    if (email.isEmpty) {
+      return 'Email Cannot be Empty!';
+    } else {
+      if (!(_inputConverter.checkEmail(email))) {
+        return 'Invalid Email!';
+      }
+      return null;
+    }
+  }
+
   void _loginFunction(BuildContext context) {
-    BlocProvider.of<LoginScreenBloc>(context).dispatch(
-      GetFacebookLoginEvent(),
-    );
+    if (_formKey.currentState.validate()) {
+      // If the form is valid, display a Snackbar.
+      BlocProvider.of<LoginScreenBloc>(context).dispatch(
+        GetLoginEvent(
+          email: _email,
+          password: _password,
+        ),
+      );
+    }
   }
 
   InputDecoration _loginScreenInputDecoration(String labelText, IconData icon) {
@@ -279,6 +342,16 @@ class LoginScreenWidget extends StatelessWidget {
       labelStyle: TextStyle(
         color: Colors.white,
         letterSpacing: 2,
+        fontSize: 13,
+      ),
+      // errorBorder: OutlineInputBorder(
+      //   borderRadius: BorderRadius.circular(4.0),
+      // ),
+      focusedErrorBorder: OutlineInputBorder(
+        borderSide: BorderSide(
+          color: Theme.of(context).errorColor,
+        ),
+        borderRadius: BorderRadius.circular(4.0),
       ),
     );
   }
