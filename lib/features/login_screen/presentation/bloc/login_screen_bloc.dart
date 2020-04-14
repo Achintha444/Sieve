@@ -36,6 +36,8 @@ class LoginScreenBloc extends Bloc<LoginScreenEvent, LoginScreenState> {
           yield InternetError();
         },
         (user) async* {
+          print (user.getEmail);
+          print (user.getPassword);
           yield Loaded();
         },
       );

@@ -1,10 +1,9 @@
 import 'package:data_connection_checker/data_connection_checker.dart';
 import 'package:get_it/get_it.dart';
-import 'package:sieve_data_privacy_app/features/signup_screen/data/repos/signup_screen_repo_impl.dart';
-import 'package:sieve_data_privacy_app/features/signup_screen/domain/repos/signup_screen_repo.dart';
-import 'package:sieve_data_privacy_app/features/signup_screen/domain/usecases/get_signup.dart';
+import 'package:http/http.dart' as http;
 
 import 'core/Platform/network_info.dart';
+import 'features/login_screen/data/datasources/login_screen_remote_datasource.dart';
 import 'features/login_screen/data/repos/login_screen_repo_impl.dart';
 import 'features/login_screen/domain/repos/login_screen_repo.dart';
 import 'features/login_screen/domain/usecases/get_facebook_login.dart'
@@ -18,6 +17,9 @@ import 'features/login_signup_screen/domain/repos/login_signup_screen_repo.dart'
 import 'features/login_signup_screen/domain/usecases/get_facebook_login.dart';
 import 'features/login_signup_screen/domain/usecases/get_google_login.dart';
 import 'features/login_signup_screen/presentation/bloc/login_signup_screen_bloc.dart';
+import 'features/signup_screen/data/repos/signup_screen_repo_impl.dart';
+import 'features/signup_screen/domain/repos/signup_screen_repo.dart';
+import 'features/signup_screen/domain/usecases/get_signup.dart';
 import 'features/signup_screen/presentation/bloc/signup_screen_bloc.dart';
 import 'features/splash_screen/data/repos/splash_screen_repo_impl.dart';
 import 'features/splash_screen/domain/repos/splash_screen_repo.dart';
@@ -81,8 +83,15 @@ Future<void> init() async {
 
   //* repo
   sl.registerLazySingleton<LoginScreenRepo>(
-    () => LoginScreenRepoImpl(networkInfo: sl(), loginSignuScreenRepo: sl()),
+    () => LoginScreenRepoImpl(
+        networkInfo: sl(),
+        loginSignuScreenRepo: sl(),
+        loginScreenRemoteDataSource: sl()),
   );
+
+  //* datasource
+  sl.registerLazySingleton<LoginScreenRemoteDataSource>(() =>LoginScreenRemoteDataSourceImpl(httpClient:  sl()));
+
 
   //! Features - login_screen
 
@@ -128,10 +137,9 @@ Future<void> init() async {
   //* usecases
   sl.registerLazySingleton(
     () => GetSignup(
-      signupRepo:  sl(),
+      signupRepo: sl(),
     ),
   );
-
 
   //* repo
   sl.registerLazySingleton<SignupScreenRepo>(
@@ -143,4 +151,5 @@ Future<void> init() async {
 
   //! External Libraries
   sl.registerLazySingleton(() => DataConnectionChecker());
+  sl.registerLazySingleton(()=> http.Client());
 }
