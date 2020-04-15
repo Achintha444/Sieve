@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
+import 'package:sieve_data_privacy_app/core/error/Faliure.dart';
 import 'package:sieve_data_privacy_app/core/Usecase/use_case.dart';
 import '../../domain/usecases/get_facebook_login.dart';
 import '../../domain/usecases/get_google_login.dart';
@@ -33,11 +34,19 @@ class LoginScreenBloc extends Bloc<LoginScreenEvent, LoginScreenState> {
       final response = await this.getLogin([event.email, event.password]);
       yield* response.fold(
         (failure) async* {
-          yield InternetError();
+          if (failure.runtimeType == InvalidInputFaliure) {
+            print('1');
+            yield InvalidInputError();
+          } else if (failure.runtimeType == ServerFaliure) {
+            yield ServerError();
+          } else if (failure.runtimeType == InternetConnectionFaliure) {
+            yield InternetError();
+          }
+          print(failure.runtimeType);
         },
         (user) async* {
-          print (user.getEmail);
-          print (user.getPassword);
+          print(user.getEmail);
+          print(user.getPassword);
           yield Loaded();
         },
       );

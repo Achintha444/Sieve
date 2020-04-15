@@ -26,10 +26,10 @@ class InputConverter {
 
   bool checkPassword(String password) {
     //* can check password 1 - Uppercase, 1- Lowercase, 1 - number , 1- Specialase
-    // String _pattern =
-    //     r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$';
-    // return (RegExp(_pattern).hasMatch(password));
-    return true;
+    String _pattern =
+        r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$';
+    return (RegExp(_pattern).hasMatch(password));
+    //return true;
   }
 
   bool checkPasswordSimilar(String passwordOne, String passwordTwo){

@@ -8,6 +8,10 @@ class Initial extends LoginScreenState {}
 
 class Loading extends LoginScreenState{}
 
+class ServerError extends LoginScreenState{}
+
+class InvalidInputError extends LoginScreenState{}
+
 class InternetError extends LoginScreenState{}
 
 class Loaded extends LoginScreenState{}

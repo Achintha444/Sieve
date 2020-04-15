@@ -38,6 +38,8 @@ class LoginScreenRepoImpl implements LoginScreenRepo {
         return Right(finalLoginUser);
       } on ServerException {
         return (Left(ServerFaliure()));
+      } on InvalidInputException{
+        return (Left(InvalidInputFaliure()));
       }
     } else {
       return Left(InternetConnectionFaliure());
