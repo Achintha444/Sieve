@@ -33,7 +33,6 @@ class SignupScreenRemoteDataSourceImpl implements SignupScreenRemoteDataSource {
         throw InvalidInputException();
       }
     } else {
-      print (json.decode(response.body));
       return EmptyEntity();
     }
   }
