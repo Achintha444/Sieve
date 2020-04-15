@@ -3,6 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:sieve_data_privacy_app/core/Entities/empty_entity.dart';
 import 'package:sieve_data_privacy_app/core/error/Faliure.dart';
+import 'package:sieve_data_privacy_app/features/login_screen/domain/entities/login_user.dart';
 import 'package:sieve_data_privacy_app/features/login_screen/domain/usecases/get_facebook_login.dart';
 import 'package:sieve_data_privacy_app/features/login_screen/domain/usecases/get_google_login.dart';
 import 'package:sieve_data_privacy_app/features/login_screen/domain/usecases/get_login.dart';
@@ -121,7 +122,8 @@ void main() {
   group('GetLogin', () {
 
     final String email = 'test@gmail.com';
-    final String password = 'testPassword';
+    final String password = 'Test@123';
+    final LoginUser loginUser = new LoginUser(email: email, password: password);
 
     test(
       'should return [InternetError] when InternetConnectionFaliure is returned',
@@ -142,11 +144,47 @@ void main() {
     );
 
     test(
+      'should return [InvalidInputError] when InternetConnectionFaliure is returned',
+      () async {
+        //arrange
+        when(mockGetLogin(any))
+            .thenAnswer((_) async => Left(InvalidInputFaliure()));
+        //act
+        loginScreenBloc.dispatch(GetLoginEvent(email: email,password: password));
+        //assert
+        final expected = [
+          Initial(),
+          Loading(),
+          InvalidInputError(),
+        ];
+        expectLater(loginScreenBloc.state, emitsInOrder(expected));
+      },
+    );
+
+    test(
+      'should return [ServerError] when InternetConnectionFaliure is returned',
+      () async {
+        //arrange
+        when(mockGetLogin(any))
+            .thenAnswer((_) async => Left(ServerFaliure()));
+        //act
+        loginScreenBloc.dispatch(GetLoginEvent(email: email,password: password));
+        //assert
+        final expected = [
+          Initial(),
+          Loading(),
+          ServerError(),
+        ];
+        expectLater(loginScreenBloc.state, emitsInOrder(expected));
+      },
+    );
+
+    test(
       'should return [Loaded] when EmptyEntity is returned',
       () async {
         //arrange
         when(mockGetLogin(any))
-            .thenAnswer((_) async => Right(EmptyEntity()));
+            .thenAnswer((_) async => Right(loginUser));
         //act
         loginScreenBloc.dispatch(GetLoginEvent(email: email,password: password));
         //assert
