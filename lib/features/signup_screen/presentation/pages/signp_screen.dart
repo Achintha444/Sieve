@@ -44,13 +44,30 @@ class _BlocListener extends StatelessWidget {
         if (state is Loading) {
           Scaffold.of(context).showSnackBar(
             SnackBar(
-              content: Text(
-                'Connecting'.toUpperCase(),
-                style: TextStyle(
-                  fontSize: 17,
-                  letterSpacing: 2,
-                ),
-                textAlign: TextAlign.center,
+              content: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  CircularProgressIndicator(
+                    backgroundColor: Color.fromARGB(0, 0, 0, 0),
+                    valueColor: AlwaysStoppedAnimation<Color>(
+                        Theme.of(context).primaryColor),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(
+                      left: 5,
+                      right: 5,
+                    ),
+                  ),
+                  Text(
+                    'Connecting'.toUpperCase(),
+                    style: TextStyle(
+                      fontSize: 17,
+                      letterSpacing: 2,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                ],
               ),
               duration: Duration(seconds: 4),
             ),
@@ -70,13 +87,31 @@ class _BlocListener extends StatelessWidget {
               ),
             ),
           );
-        } else if (state is Loaded) {
+        } else if (state is InvalidInputError) {
+          Scaffold.of(context).showSnackBar(
+            SnackBar(
+              backgroundColor: Theme.of(context).errorColor,
+              content: Text(
+                'Email or Password is Incorrect'.toUpperCase(),
+                style: TextStyle(color: Colors.white),
+              ),
+              duration: Duration(seconds: 20),
+              action: SnackBarAction(
+                label: 'Close',
+                onPressed: () {
+                  Scaffold.of(context).hideCurrentSnackBar();
+                },
+                textColor: Colors.white,
+              ),
+            ),
+          );
+        } else if (state is ServerError) {
           Scaffold.of(context).showSnackBar(
             SnackBar(
               content: Text(
-                'Loaded'.toUpperCase(),
+                'Server Connection Error.\nTry Again!'.toUpperCase(),
               ),
-              duration: Duration(seconds: 10),
+              duration: Duration(seconds: 20),
               action: SnackBarAction(
                 label: 'Close',
                 onPressed: () {
@@ -85,6 +120,22 @@ class _BlocListener extends StatelessWidget {
               ),
             ),
           );
+        } else if (state is Loaded) {
+          Scaffold.of(context).showSnackBar(
+            SnackBar(
+              content: Text(
+                'Signup Successful!'.toUpperCase(),
+              ),
+              duration: Duration(seconds: 4),
+              action: SnackBarAction(
+                label: 'Close',
+                onPressed: () {
+                  Scaffold.of(context).hideCurrentSnackBar();
+                },
+              ),
+            ),
+          );
+          Navigator.pushNamed(context, '/loginScreen');
         }
       },
       child: SignupScreenWidget(),

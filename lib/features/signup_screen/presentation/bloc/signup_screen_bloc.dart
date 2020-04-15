@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
+import 'package:sieve_data_privacy_app/core/error/Faliure.dart';
 
 import '../../domain/usecases/get_signup.dart';
 
@@ -26,7 +27,13 @@ class SignupScreenBloc extends Bloc<SignupScreenEvent, SignupScreenState> {
       final response = await this.getSignup([event.email, event.password]);
       yield* response.fold(
         (failure) async* {
-          yield InternetError();
+          if (failure.runtimeType == InvalidInputFaliure) {
+            yield InvalidInputError();
+          } else if (failure.runtimeType == ServerFaliure) {
+            yield ServerError();
+          } else if (failure.runtimeType == InternetConnectionFaliure) {
+            yield InternetError();
+          }
         },
         (user) async* {
           yield Loaded();

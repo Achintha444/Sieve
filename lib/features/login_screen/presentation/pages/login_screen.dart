@@ -109,7 +109,7 @@ class _BlocListener extends StatelessWidget {
           Scaffold.of(context).showSnackBar(
             SnackBar(
               content: Text(
-                'Server Connection Error.\nTryAgain!'.toUpperCase(),
+                'Server Connection Error.\nTry Again!'.toUpperCase(),
               ),
               duration: Duration(seconds: 20),
               action: SnackBarAction(

@@ -35,14 +35,12 @@ class LoginScreenBloc extends Bloc<LoginScreenEvent, LoginScreenState> {
       yield* response.fold(
         (failure) async* {
           if (failure.runtimeType == InvalidInputFaliure) {
-            print('1');
             yield InvalidInputError();
           } else if (failure.runtimeType == ServerFaliure) {
             yield ServerError();
           } else if (failure.runtimeType == InternetConnectionFaliure) {
             yield InternetError();
           }
-          print(failure.runtimeType);
         },
         (user) async* {
           print(user.getEmail);

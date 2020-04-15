@@ -8,6 +8,10 @@ class Initial extends SignupScreenState {}
 
 class Loading extends SignupScreenState{}
 
+class ServerError extends SignupScreenState{}
+
+class InvalidInputError extends SignupScreenState{}
+
 class InternetError extends SignupScreenState{}
 
 class Loaded extends SignupScreenState{}

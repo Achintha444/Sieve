@@ -17,6 +17,7 @@ import 'features/login_signup_screen/domain/repos/login_signup_screen_repo.dart'
 import 'features/login_signup_screen/domain/usecases/get_facebook_login.dart';
 import 'features/login_signup_screen/domain/usecases/get_google_login.dart';
 import 'features/login_signup_screen/presentation/bloc/login_signup_screen_bloc.dart';
+import 'features/signup_screen/data/datasources/signup_screen_remote_datasource.dart';
 import 'features/signup_screen/data/repos/signup_screen_repo_impl.dart';
 import 'features/signup_screen/domain/repos/signup_screen_repo.dart';
 import 'features/signup_screen/domain/usecases/get_signup.dart';
@@ -82,16 +83,9 @@ Future<void> init() async {
   );
 
   //* repo
-  sl.registerLazySingleton<LoginScreenRepo>(
-    () => LoginScreenRepoImpl(
-        networkInfo: sl(),
-        loginSignuScreenRepo: sl(),
-        loginScreenRemoteDataSource: sl()),
+  sl.registerLazySingleton<LoginSignuScreenRepo>(
+    () => LoginSignupScreenRepoImpl(networkInfo: sl()),
   );
-
-  //* datasource
-  sl.registerLazySingleton<LoginScreenRemoteDataSource>(() =>LoginScreenRemoteDataSourceImpl(httpClient:  sl()));
-
 
   //! Features - login_screen
 
@@ -119,13 +113,18 @@ Future<void> init() async {
   );
 
   //* repo
-  sl.registerLazySingleton<LoginSignuScreenRepo>(
-    () => LoginSignupScreenRepoImpl(networkInfo: sl()),
+  sl.registerLazySingleton<LoginScreenRepo>(
+    () => LoginScreenRepoImpl(
+        networkInfo: sl(),
+        loginSignuScreenRepo: sl(),
+        loginScreenRemoteDataSource: sl()),
   );
 
-  //! Features - signup_screen
+  //* datasource
+  sl.registerLazySingleton<LoginScreenRemoteDataSource>(
+      () => LoginScreenRemoteDataSourceImpl(httpClient: sl()));
 
-  // TODO: Need to update bloc when fully implemented
+  //! Features - signup_screen
 
   //* Bloc
   sl.registerFactory(
@@ -143,13 +142,18 @@ Future<void> init() async {
 
   //* repo
   sl.registerLazySingleton<SignupScreenRepo>(
-    () => SignupScreenRepoImpl(networkInfo: sl()),
+    () => SignupScreenRepoImpl(
+        networkInfo: sl(), signupScreenRemoteDataSource: sl()),
   );
+
+  //* datasource
+  sl.registerLazySingleton<SignupScreenRemoteDataSource>(
+      () => SignupScreenRemoteDataSourceImpl(httpClient: sl()));
 
   //! Core
   sl.registerLazySingleton<NetworkInfo>(() => NetworkInfoImpl(sl()));
 
   //! External Libraries
   sl.registerLazySingleton(() => DataConnectionChecker());
-  sl.registerLazySingleton(()=> http.Client());
+  sl.registerLazySingleton(() => http.Client());
 }
