@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
+import 'package:sieve_data_privacy_app/core/Error/exceptions.dart';
 import 'package:sieve_data_privacy_app/core/Platform/network_info.dart';
 
 import '../../../../core/Entities/empty_entity.dart';
@@ -17,7 +18,13 @@ class SignupScreenRepoImpl extends SignupScreenRepo {
     if (await networkInfo.isConnected) {
       print("email is " + email);
       print("password is " + password);
-      return Right(EmptyEntity());
+      try{
+        return Right(EmptyEntity());
+      }on ServerException{
+        return Left(ServerFaliure());
+      }on InvalidInputException{
+        return Left(InvalidInputFaliure());
+      }
     } else {
       return Left(InternetConnectionFaliure());
     }
