@@ -147,6 +147,7 @@ void main() {
         },
       );
 
+
       test(
         'should return InvalidInputFaliure when sent the incorrect data',
         () async {
@@ -172,6 +173,7 @@ void main() {
           expect(resilt, Left(ServerFaliure()));
         },
       );
+    
     });
     test(
       'should return InternetConnectionFaliure when there is no internet',

@@ -40,18 +40,45 @@ void main() {
     },
   );
 
-  // TODO : Should change the following test when implemented properly
-
   test(
-    'should return ScreenFaliure() when something went wron',
+    'should return InternetConnectionFaliure() when something went wron',
     () async {
       //arrange
       when(mockSignupScreenRepo.getSignup(_email, _password))
-          .thenAnswer((_) async => Left(ScreenRenderFaliure()));
+          .thenAnswer((_) async => Left(InternetConnectionFaliure()));
       //act
       final result = await getSignup(_signupDetails);
       //assert
-      expect(result, Left(ScreenRenderFaliure()));
+      expect(result, Left(InternetConnectionFaliure()));
+      verify(mockSignupScreenRepo.getSignup(_email, _password));
+      verifyNoMoreInteractions(mockSignupScreenRepo);
+    },
+  );
+
+  test(
+    'should return InvalidInputFaliure() when something went wron',
+    () async {
+      //arrange
+      when(mockSignupScreenRepo.getSignup(_email, _password))
+          .thenAnswer((_) async => Left(InvalidInputFaliure()));
+      //act
+      final result = await getSignup(_signupDetails);
+      //assert
+      expect(result, Left(InvalidInputFaliure()));
+      verify(mockSignupScreenRepo.getSignup(_email, _password));
+      verifyNoMoreInteractions(mockSignupScreenRepo);
+    },
+  );
+  test(
+    'should return ServerFaliure() when something went wron',
+    () async {
+      //arrange
+      when(mockSignupScreenRepo.getSignup(_email, _password))
+          .thenAnswer((_) async => Left(ServerFaliure()));
+      //act
+      final result = await getSignup(_signupDetails);
+      //assert
+      expect(result, Left(ServerFaliure()));
       verify(mockSignupScreenRepo.getSignup(_email, _password));
       verifyNoMoreInteractions(mockSignupScreenRepo);
     },
