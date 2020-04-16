@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:sieve_data_privacy_app/core/Constants/app_bar_design.dart';
+import 'package:sieve_data_privacy_app/core/Constants/drawer_design.dart';
 import 'package:sieve_data_privacy_app/features/login_screen/domain/entities/login_user.dart';
 
 class Temp extends StatelessWidget {
@@ -11,9 +13,8 @@ class Temp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Temp'),
-      ),
+      appBar:AppBarDesign(title: 'TEST'),
+      drawer: DrawerDesign(email: user.email),
       body: Container(
         child: Column(
           children: <Widget>[
