@@ -1,21 +1,10 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-class LoginSignupScreenWidget extends StatefulWidget {
-  @override
-  _LoginSignupScreenWidgetState createState() =>
-      _LoginSignupScreenWidgetState();
-}
+import '../bloc/login_signup_screen_bloc.dart';
 
-class _LoginSignupScreenWidgetState extends State<LoginSignupScreenWidget> {
-  int _sizeImage = 150;
-
-  @override
-  void initState() {
-    super.initState();
-    Future.delayed(Duration(seconds: 2));
-    this._sizeImage = 50;
-  }
-
+class LoginSignupScreenWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -37,6 +26,8 @@ class _LoginSignupScreenWidgetState extends State<LoginSignupScreenWidget> {
                 );
               },
             ),
+            
+            //* Login button
             Padding(
               padding: EdgeInsets.only(
                 top: 40,
@@ -65,7 +56,9 @@ class _LoginSignupScreenWidgetState extends State<LoginSignupScreenWidget> {
                       textColor: Theme.of(context).accentColor,
                       elevation: 5,
                       color: Colors.white,
-                      onPressed: () {},
+                      onPressed: () {
+                        _loginFunction(context);
+                      },
                     ),
                   ),
                 ),
@@ -83,6 +76,8 @@ class _LoginSignupScreenWidgetState extends State<LoginSignupScreenWidget> {
                 bottom: 10,
               ),
             ),
+            
+            // * Signup button
             Row(
               children: <Widget>[
                 Padding(
@@ -106,7 +101,9 @@ class _LoginSignupScreenWidgetState extends State<LoginSignupScreenWidget> {
                       color: Colors.white,
                       elevation: 5,
                       shape: Theme.of(context).buttonTheme.shape,
-                      onPressed: () {},
+                      onPressed: () {
+                        _signupFunction(context);
+                      },
                     ),
                   ),
                 ),
@@ -177,19 +174,25 @@ class _LoginSignupScreenWidgetState extends State<LoginSignupScreenWidget> {
                 bottom: 10,
               ),
             ),
+            
+            //* Google and FB Login
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
                 FloatingActionButton(
+                  heroTag: 'google',
                   child: Container(
                     height: 30,
+                    key: Key('google_login'),
                     child: Image(
                       image: AssetImage('icons/google.png'),
                       color: Colors.white,
                     ),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    _googleLoinFunction(context);
+                  },
                 ),
                 Padding(
                   padding: EdgeInsets.only(
@@ -198,20 +201,46 @@ class _LoginSignupScreenWidgetState extends State<LoginSignupScreenWidget> {
                   ),
                 ),
                 FloatingActionButton(
+                  heroTag: 'facebook',
                   child: Container(
+                    key: Key('fb_login'),
                     height: 50,
                     child: Image(
                       image: AssetImage('icons/facebook.png'),
                       color: Colors.white,
                     ),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    _facebookLoginFunction(context);
+                  },
                 ),
               ],
             ),
           ],
         ),
       ),
+    );
+  }
+
+  void _signupFunction(BuildContext context) {
+    Navigator.pushNamed(context, '/signupScreen');
+  }
+
+//CupertinoPageRoute
+
+  void _loginFunction(BuildContext context) {
+    Navigator.pushNamed(context, '/loginScreen');
+  }
+
+  void _facebookLoginFunction(BuildContext context) {
+    BlocProvider.of<LoginSignupScreenBloc>(context).dispatch(
+      GetFacebookLoginEvent(),
+    );
+  }
+
+  void _googleLoinFunction(BuildContext context) {
+    BlocProvider.of<LoginSignupScreenBloc>(context).dispatch(
+      GetGoogleLoginEvent(),
     );
   }
 }

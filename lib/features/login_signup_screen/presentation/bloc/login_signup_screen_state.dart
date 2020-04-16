@@ -5,3 +5,9 @@ abstract class LoginSignupScreenState extends Equatable {
 }
 
 class Initial extends LoginSignupScreenState {}
+
+class Loading extends LoginSignupScreenState{}
+
+class InternetError extends LoginSignupScreenState{}
+
+class Loaded extends LoginSignupScreenState{}
