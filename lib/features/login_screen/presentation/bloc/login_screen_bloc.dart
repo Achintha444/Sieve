@@ -5,6 +5,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:sieve_data_privacy_app/core/error/Faliure.dart';
 import 'package:sieve_data_privacy_app/core/Usecase/use_case.dart';
+import 'package:sieve_data_privacy_app/features/login_screen/domain/entities/login_user.dart';
 import '../../domain/usecases/get_facebook_login.dart';
 import '../../domain/usecases/get_google_login.dart';
 import '../../domain/usecases/get_login.dart';
@@ -45,7 +46,7 @@ class LoginScreenBloc extends Bloc<LoginScreenEvent, LoginScreenState> {
         (user) async* {
           print(user.getEmail);
           print(user.getPassword);
-          yield Loaded();
+          yield Loaded(loginUser: user);
         },
       );
     } else if (event is GetGoogleLoginEvent) {
@@ -56,7 +57,7 @@ class LoginScreenBloc extends Bloc<LoginScreenEvent, LoginScreenState> {
           yield InternetError();
         },
         (user) async* {
-          yield Loaded();
+          yield InternetError(); //* Loaded need to come here
         },
       );
     } else if (event is GetFacebookLoginEvent) {
@@ -67,7 +68,7 @@ class LoginScreenBloc extends Bloc<LoginScreenEvent, LoginScreenState> {
           yield InternetError();
         },
         (user) async* {
-          yield Loaded();
+          yield InternetError(); //* Loaded need to come here
         },
       );
     }
