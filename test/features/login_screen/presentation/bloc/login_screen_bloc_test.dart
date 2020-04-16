@@ -74,7 +74,7 @@ void main() {
         final expected = [
           Initial(),
           Loading(),
-          Loaded(),
+          InternetError(),
         ];
         expectLater(loginScreenBloc.state, emitsInOrder(expected));
       },
@@ -112,7 +112,7 @@ void main() {
         final expected = [
           Initial(),
           Loading(),
-          Loaded(),
+          InternetError(),
         ];
         expectLater(loginScreenBloc.state, emitsInOrder(expected));
       },
@@ -191,7 +191,7 @@ void main() {
         final expected = [
           Initial(),
           Loading(),
-          Loaded(),
+          Loaded(loginUser: loginUser),
         ];
         expectLater(loginScreenBloc.state, emitsInOrder(expected));
       },
