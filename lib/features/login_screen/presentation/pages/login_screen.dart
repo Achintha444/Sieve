@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:sieve_data_privacy_app/features/bottom_nav/presentation/pages/bottom_nav.dart';
 
 import '../../../../injection_container.dart';
 import '../bloc/login_screen_bloc.dart';
@@ -105,7 +106,7 @@ class _BlocListener extends StatelessWidget {
               ),
             ),
           );
-        }else if (state is ServerError) {
+        } else if (state is ServerError) {
           Scaffold.of(context).showSnackBar(
             SnackBar(
               content: Text(
@@ -120,18 +121,12 @@ class _BlocListener extends StatelessWidget {
               ),
             ),
           );
-        }  else if (state is Loaded) {
-          Scaffold.of(context).showSnackBar(
-            SnackBar(
-              content: Text(
-                'Loaded'.toUpperCase(),
-              ),
-              duration: Duration(seconds: 10),
-              action: SnackBarAction(
-                label: 'Close',
-                onPressed: () {
-                  Scaffold.of(context).hideCurrentSnackBar();
-                },
+        } else if (state is Loaded) {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => BottomNav(
+                user: state.loginUser,
               ),
             ),
           );

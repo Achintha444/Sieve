@@ -3,6 +3,14 @@ import 'package:get_it/get_it.dart';
 import 'package:http/http.dart' as http;
 
 import 'core/Platform/network_info.dart';
+import 'features/bottom_nav/data/repos/bottom_nav_repo_impl.dart';
+import 'features/bottom_nav/domain/repos/bottom_nav_repo.dart';
+import 'features/bottom_nav/domain/usecases/navigate_to_category.dart';
+import 'features/bottom_nav/domain/usecases/navigate_to_dashbaord.dart';
+import 'features/bottom_nav/domain/usecases/navigate_to_news_feed.dart';
+import 'features/bottom_nav/domain/usecases/navigate_to_privacy_laws.dart';
+import 'features/bottom_nav/domain/usecases/navigate_to_privacy_tips.dart';
+import 'features/bottom_nav/presentation/bloc/bottom_nav_bloc.dart';
 import 'features/login_screen/data/datasources/login_screen_remote_datasource.dart';
 import 'features/login_screen/data/repos/login_screen_repo_impl.dart';
 import 'features/login_screen/domain/repos/login_screen_repo.dart';
@@ -149,6 +157,58 @@ Future<void> init() async {
   //* datasource
   sl.registerLazySingleton<SignupScreenRemoteDataSource>(
       () => SignupScreenRemoteDataSourceImpl(httpClient: sl()));
+
+  //! Features - bottom_nav
+
+  //* Bloc
+  sl.registerFactory(
+    () => BottomNavBloc(
+      navigateToNewsFeed:  sl(),
+      navigateToCategory: sl(),
+      navigateToDashboard: sl(),
+      navigateToPrivacyLaws: sl(),
+      navigateToPrivacyTips: sl(),
+    ),
+  );
+
+  //* usecases
+  sl.registerLazySingleton(
+    () => NavigateToNewsFeed(
+      bottomNavRepo: sl(),
+    ),
+  );
+
+  sl.registerLazySingleton(
+    () => NavigateToCategory(
+      bottomNavRepo: sl(),
+    ),
+  );
+
+  sl.registerLazySingleton(
+    () => NavigateToDashboard(
+      bottomNavRepo: sl(),
+    ),
+  );
+
+  sl.registerLazySingleton(
+    () => NavigateToPrivacyTips(
+      bottomNavRepo: sl(),
+    ),
+  );
+
+  sl.registerLazySingleton(
+    () => NavigateToPrivacyLaws(
+      bottomNavRepo: sl(),
+    ),
+  );
+
+  //* repo
+  sl.registerLazySingleton<BottomNavRepo>(
+    () => BottomNavRepoImpl(
+        networkInfo: sl()),
+  );
+
+  //* datasource
 
   //! Core
   sl.registerLazySingleton<NetworkInfo>(() => NetworkInfoImpl(sl()));

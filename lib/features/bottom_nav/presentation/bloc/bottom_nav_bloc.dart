@@ -3,13 +3,13 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
-import 'package:sieve_data_privacy_app/features/bottom_nav/domain/usecases/navigate_to_category.dart';
-import 'package:sieve_data_privacy_app/features/bottom_nav/domain/usecases/navigate_to_dashbaord.dart';
-import 'package:sieve_data_privacy_app/features/bottom_nav/domain/usecases/navigate_to_news_feed.dart';
-import 'package:sieve_data_privacy_app/features/bottom_nav/domain/usecases/navigate_to_privacy_laws.dart';
-import 'package:sieve_data_privacy_app/features/bottom_nav/domain/usecases/navigate_to_privacy_tips.dart';
 
 import '../../../login_screen/domain/entities/login_user.dart';
+import '../../domain/usecases/navigate_to_category.dart';
+import '../../domain/usecases/navigate_to_dashbaord.dart';
+import '../../domain/usecases/navigate_to_news_feed.dart';
+import '../../domain/usecases/navigate_to_privacy_laws.dart';
+import '../../domain/usecases/navigate_to_privacy_tips.dart';
 
 part 'bottom_nav_event.dart';
 part 'bottom_nav_state.dart';
@@ -39,21 +39,21 @@ class BottomNavBloc extends Bloc<BottomNavEvent, BottomNavState> {
       yield Loading();
       final response = await this.navigateToNewsFeed(event.user);
       yield response.fold(
-        (faliure) => InternetError(),
+        (faliure) => InternetError(event: event),
         (user) => NewsFeedState(user: user),
       );
     } else if (event is CategoryEvent) {
       yield Loading();
       final response = await this.navigateToCategory(event.user);
       yield response.fold(
-        (faliure) => InternetError(),
+        (faliure) => InternetError(event: event),
         (user) => CategoryState(user: user),
       );
     } else if (event is DashboardEvent) {
       yield Loading();
       final response = await this.navigateToDashboard(event.user);
       yield response.fold(
-        (faliure) => InternetError(),
+        (faliure) => InternetError(event: event),
         (user) => DashboardState(user: user),
       );
     }
@@ -61,7 +61,7 @@ class BottomNavBloc extends Bloc<BottomNavEvent, BottomNavState> {
       yield Loading();
       final response = await this.navigateToPrivacyTips(event.user);
       yield response.fold(
-        (faliure) => InternetError(),
+        (faliure) => InternetError(event: event),
         (user) => PrivacyTipsState(user: user),
       );
     }
@@ -69,7 +69,7 @@ class BottomNavBloc extends Bloc<BottomNavEvent, BottomNavState> {
       yield Loading();
       final response = await this.navigateToPrivacyLaws(event.user);
       yield response.fold(
-        (faliure) => InternetError(),
+        (faliure) => InternetError(event: event),
         (user) => PrivacyLawsState(user: user),
       );
     }

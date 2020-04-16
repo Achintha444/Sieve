@@ -31,7 +31,7 @@ class BottomNavRepoImpl implements BottomNavRepo {
 
   @override
   Future<Either<Faliure, LoginUser>> navigateToNewsFeed(LoginUser user) async {
-    return null;
+    return await _navigate(user);
   }
 
   @override

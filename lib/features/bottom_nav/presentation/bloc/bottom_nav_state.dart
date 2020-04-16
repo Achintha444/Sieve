@@ -38,4 +38,8 @@ class PrivacyLawsState extends BottomNavState{
   PrivacyLawsState({@required this.user}): super([user]);
 }
 
-class InternetError extends BottomNavState{}
+class InternetError extends BottomNavState{
+  final BottomNavEvent event;
+
+  InternetError({@required this.event}): super([event]);
+}
