@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:sieve_data_privacy_app/features/bottom_nav/presentation/widgets/temp.dart';
 
 import '../../../../injection_container.dart';
 import '../../../login_screen/domain/entities/login_user.dart';
+import '../../../privacy_tips/presentation/pages/privacy_tips.dart';
 import '../bloc/bottom_nav_bloc.dart';
 import '../widgets/bottom_nav_widget.dart';
 import '../widgets/initial_state_widget.dart';
 import '../widgets/internet_error_widget.dart';
 import '../widgets/loading_widget.dart';
+import '../widgets/temp.dart';
 
 class BottomNav extends StatelessWidget {
 
@@ -59,7 +60,7 @@ class _BlocListner extends StatelessWidget {
         } else if (state is DashboardState) {
           return Temp(user: user,);
         } else if (state is PrivacyTipsState) {
-          return Temp(user: user,);
+          return PrivacyTips(user: user,);
         } else if (state is PrivacyLawsState) {
           return Temp(user: user,);
         }
