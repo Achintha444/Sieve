@@ -43,6 +43,7 @@ class LoginScreenRepoImpl implements LoginScreenRepo {
         final finalLoginUser =
             await loginScreenRemoteDataSource.getLoginUser(email, password);
         await this.loginScreenLocalDataSource.cacheLoginUser(finalLoginUser);
+        await Future.delayed(Duration(seconds: 2));
         return Right(finalLoginUser);
       } on ServerException {
         return (Left(ServerFaliure()));

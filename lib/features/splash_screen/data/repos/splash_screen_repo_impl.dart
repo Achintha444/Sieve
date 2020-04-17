@@ -13,7 +13,8 @@ class SplashScreenRepoImpl implements SplashScreenRepo {
   final NetworkInfo networkInfo;
   final SplashScreenLocalDataSource splashScreenLocalDataSource;
 
-  SplashScreenRepoImpl({@required this.networkInfo,@required this.splashScreenLocalDataSource}) ;
+  SplashScreenRepoImpl(
+      {@required this.networkInfo, @required this.splashScreenLocalDataSource});
   @override
   Future<Either<Faliure, EmptyEntity>> navigateToLoginScreen() async {
     if (await networkInfo.isConnected) {
@@ -25,11 +26,13 @@ class SplashScreenRepoImpl implements SplashScreenRepo {
 
   @override
   Future<Either<Faliure, LoginUser>> autoLogin() async {
+    await Future.delayed(Duration(seconds: 4));
     if (await networkInfo.isConnected) {
-      try{
+      try {
         final lgoinUser = await this.splashScreenLocalDataSource.autoLogin();
+        await Future.delayed(Duration(seconds: 1));
         return Right(lgoinUser);
-      } on CacheException{
+      } on CacheException {
         return Left(CacheFaliure());
       }
     } else {
