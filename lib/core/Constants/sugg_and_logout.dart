@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:sieve_data_privacy_app/features/login_signup_screen/presentation/pages/login_signup_screen.dart';
+import 'package:sieve_data_privacy_app/features/login_screen/domain/entities/login_user.dart';
+import '../../features/login_signup_screen/presentation/pages/login_signup_screen.dart';
+import '../../features/suggestion/presentation/pages/suggestion.dart';
 
 import '../../features/login_screen/data/datasources/login_screen_local_datasource.dart';
 import '../../injection_container.dart';
@@ -7,6 +9,7 @@ import '../../injection_container.dart';
 class SuggAndLogout extends StatelessWidget {
   final String title;
   final IconData icon;
+  final LoginUser user;
 
   final LoginScreenLocalDataSource _loginScreenLocalDataSource =
       sl<LoginScreenLocalDataSource>();
@@ -15,6 +18,7 @@ class SuggAndLogout extends StatelessWidget {
     Key key,
     @required this.title,
     @required this.icon,
+    @required this.user,
   }) : super(key: key);
 
   @override
@@ -53,7 +57,9 @@ class SuggAndLogout extends StatelessWidget {
   }
 
   void _suggestionOnTap(BuildContext context) {
-    print('bbbb');
+     Navigator.pop(context);
+    Navigator.push(context, MaterialPageRoute(builder: (context)=> Suggestion(user:user)));
+   
   }
 
   _logoutOnTap(BuildContext context) async {

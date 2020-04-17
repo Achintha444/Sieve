@@ -43,6 +43,11 @@ import 'features/splash_screen/domain/repos/splash_screen_repo.dart';
 import 'features/splash_screen/domain/usecases/auto_login.dart';
 import 'features/splash_screen/domain/usecases/navigate_to_login_screen.dart';
 import 'features/splash_screen/presentation/bloc/splash_screen_bloc.dart';
+import 'features/suggestion/data/datasources/suggestion_remote_datasource.dart';
+import 'features/suggestion/data/repos/suggestion_repo_impl.dart';
+import 'features/suggestion/domain/repos/suggestion_repo.dart';
+import 'features/suggestion/domain/usecases/send_suggestion.dart';
+import 'features/suggestion/presentation/bloc/suggestion_bloc.dart';
 
 final sl = GetIt.instance;
 Future<void> init() async {
@@ -78,10 +83,8 @@ Future<void> init() async {
   );
 
   //* datascources
-   sl.registerLazySingleton<SplashScreenLocalDataSource>(
+  sl.registerLazySingleton<SplashScreenLocalDataSource>(
       () => SplashScreenLocalDataSourceImpl(sharedPreferences: sl()));
-
-  
 
   //! Features - login_signup_screen
 
@@ -92,6 +95,36 @@ Future<void> init() async {
     () => LoginSignupScreenBloc(
       getFacebookLogin: sl(),
       getGoogleLogin: sl(),
+    ),
+  );
+
+  //* usecases
+  sl.registerLazySingleton(
+    () => GetGoogleLogin(
+      loginSignuScreenRepo: sl(),
+    ),
+  );
+  sl.registerLazySingleton(
+    () => GetFacebookLogin(
+      loginSignuScreenRepo: sl(),
+    ),
+  );
+
+  //* repo
+  sl.registerLazySingleton<LoginSignuScreenRepo>(
+    () => LoginSignupScreenRepoImpl(networkInfo: sl()),
+  );
+
+  //! Features - login_screen
+
+  // TODO: Need to update bloc when fully implemented
+
+  //* Bloc
+  sl.registerFactory(
+    () => LoginScreenBloc(
+      getFacebookLogin: sl(),
+      getGoogleLogin: sl(),
+      getLogin: sl(),
     ),
   );
 
@@ -109,37 +142,6 @@ Future<void> init() async {
   sl.registerLazySingleton(
     () => GetLogin(
       repo: sl(),
-    ),
-  );
-
-  //* repo
-  sl.registerLazySingleton<LoginSignuScreenRepo>(
-    () => LoginSignupScreenRepoImpl(networkInfo: sl()),
-  );
-
-
-  //! Features - login_screen
-
-  // TODO: Need to update bloc when fully implemented
-
-  //* Bloc
-  sl.registerFactory(
-    () => LoginScreenBloc(
-      getFacebookLogin: sl(),
-      getGoogleLogin: sl(),
-      getLogin: sl(),
-    ),
-  );
-
-  //* usecases
-  sl.registerLazySingleton(
-    () => GetGoogleLogin(
-      loginSignuScreenRepo: sl(),
-    ),
-  );
-  sl.registerLazySingleton(
-    () => GetFacebookLogin(
-      loginSignuScreenRepo: sl(),
     ),
   );
 
@@ -204,25 +206,21 @@ Future<void> init() async {
       bottomNavRepo: sl(),
     ),
   );
-
   sl.registerLazySingleton(
     () => NavigateToCategory(
       bottomNavRepo: sl(),
     ),
   );
-
   sl.registerLazySingleton(
     () => NavigateToDashboard(
       bottomNavRepo: sl(),
     ),
   );
-
   sl.registerLazySingleton(
     () => NavigateToPrivacyTips(
       bottomNavRepo: sl(),
     ),
   );
-
   sl.registerLazySingleton(
     () => NavigateToPrivacyLaws(
       bottomNavRepo: sl(),
@@ -262,12 +260,41 @@ Future<void> init() async {
   sl.registerLazySingleton<PrivacyTipsRemoteDatasource>(
       () => PrivacyTipsRemoteDatasourceImpl(httpClient: sl()));
 
+  //! Features - suggestions
+
+  //* Bloc
+  sl.registerFactory(
+    () => SuggestionBloc(
+      sendSuggestion:  sl(),
+    ),
+  );
+
+  //* usecases
+  sl.registerLazySingleton(
+    () => SendSuggestion(
+      suggestionRepo:  sl(),
+    ),
+  );
+
+  //* repo
+  sl.registerLazySingleton<SuggestionRepo>(
+    () => SuggestionRepoImpl(
+        networkInfo: sl(), suggestionRemoteDataSource:  sl()),
+  );
+
+  //* datasource
+  sl.registerLazySingleton<SuggestionRemoteDataSource>(
+      () => SuggestionRemoteDataSourceImpl(httpClient:sl()));
+
+
+
+
   //! Core
   sl.registerLazySingleton<NetworkInfo>(() => NetworkInfoImpl(sl()));
 
   //! External Libraries
   final sharedPreferences = await SharedPreferences.getInstance();
-  sl.registerLazySingleton<SharedPreferences>(()  => sharedPreferences);
+  sl.registerLazySingleton<SharedPreferences>(() => sharedPreferences);
   sl.registerLazySingleton(() => DataConnectionChecker());
-  sl.registerLazySingleton(() => http.Client());
+  sl.registerFactory(() => http.Client());
 }

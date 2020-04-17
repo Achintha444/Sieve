@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:sieve_data_privacy_app/features/login_screen/domain/entities/login_user.dart';
 
 import 'sugg_and_logout.dart';
 
 class DrawerDesign extends StatelessWidget {
-  final String email;
+  final LoginUser user;
 
-  
-
-  DrawerDesign({Key key, @required this.email}) : super(key: key);
+  DrawerDesign({Key key, @required this.user}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -74,7 +73,7 @@ class DrawerDesign extends StatelessWidget {
                   Alignment.centerLeft, Alignment.center, 0.2),
               key: Key('user_email'),
               child: Text(
-                email,
+                user.email,
                 style: TextStyle(
                     color: Theme.of(context).primaryColor,
                     fontSize: 24,
@@ -95,6 +94,7 @@ class DrawerDesign extends StatelessWidget {
             SuggAndLogout(
               title: 'suggestions',
               icon: Icons.flag,
+              user: user,
             ),
             Padding(
               padding: EdgeInsets.only(
@@ -106,6 +106,7 @@ class DrawerDesign extends StatelessWidget {
             SuggAndLogout(
               title: 'logout',
               icon: Icons.do_not_disturb_on,
+              user:user,
             ),
           ],
         ),

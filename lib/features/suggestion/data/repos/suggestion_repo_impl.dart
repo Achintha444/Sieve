@@ -28,7 +28,7 @@ class SuggestionRepoImpl implements SuggestionRepo{
         return (Left(ServerFaliure()));
       } on InvalidInputException {
         return (Left(InvalidInputFaliure()));
-      }
+      } 
     } else {
       return Left(InternetConnectionFaliure());
     }

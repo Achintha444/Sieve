@@ -1,9 +1,10 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
-import 'package:sieve_data_privacy_app/core/Entities/empty_entity.dart';
-import 'package:sieve_data_privacy_app/core/error/Faliure.dart';
-import 'package:sieve_data_privacy_app/core/Usecase/use_case.dart';
-import 'package:sieve_data_privacy_app/features/suggestion/domain/repos/suggestion_repo.dart';
+
+import '../../../../core/Entities/empty_entity.dart';
+import '../../../../core/Usecase/use_case.dart';
+import '../../../../core/error/Faliure.dart';
+import '../repos/suggestion_repo.dart';
 
 class SendSuggestion implements UseCase<EmptyEntity, List<dynamic>> {
   final SuggestionRepo suggestionRepo;

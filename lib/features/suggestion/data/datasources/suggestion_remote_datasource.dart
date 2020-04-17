@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 import '../../../../core/Constants/key.dart';
@@ -17,10 +18,12 @@ abstract class SuggestionRemoteDataSource {
 class SuggestionRemoteDataSourceImpl implements SuggestionRemoteDataSource {
   final http.Client httpClient;
 
-  SuggestionRemoteDataSourceImpl(this.httpClient);
+  SuggestionRemoteDataSourceImpl({@required this.httpClient});
 
   @override
   Future<EmptyEntity> insertSuggestion(LoginUser user, String suggestion) async {
+    print(user.getId); 
+    print(suggestion);
     final response = await httpClient.post(API_URL + "/suggestion/insert",
         body: {'userId': user.getId, 'suggestion': suggestion});
         print('suggestion snt');
