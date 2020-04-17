@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:sieve_data_privacy_app/features/login_screen/presentation/pages/login_screen.dart';
+import '../../features/login_screen/data/datasources/login_screen_local_datasource.dart';
+import '../../injection_container.dart';
 
 class DrawerDesign extends StatelessWidget {
   final String email;
 
-  const DrawerDesign({Key key, @required this.email}) : super(key: key);
+  LoginScreenLocalDataSource _loginScreenLocalDataSource =
+      sl<LoginScreenLocalDataSource>();
+
+  DrawerDesign({Key key, @required this.email}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -92,7 +98,9 @@ class DrawerDesign extends StatelessWidget {
               context,
               'suggestions',
               Icons.flag,
-              (){this._suggestionOnTap(context);},
+              () {
+                this._suggestionOnTap(context);
+              },
             ),
             Padding(
               padding: EdgeInsets.only(
@@ -105,7 +113,9 @@ class DrawerDesign extends StatelessWidget {
               context,
               'logout',
               Icons.do_not_disturb_on,
-              (){this._logoutOnTap(context);},
+              () {
+                this._logoutOnTap(context);
+              },
             ),
           ],
         ),
@@ -146,8 +156,13 @@ class DrawerDesign extends StatelessWidget {
     return null;
   }
 
-  void _logoutOnTap(BuildContext context) {
-    return null;
+  _logoutOnTap(BuildContext context) async {
+    await this._loginScreenLocalDataSource.removeCacheLoginUser();
+    return Navigator.pushNamedAndRemoveUntil(
+      context,
+      '/loginScreen',
+      (Route<dynamic> route) => false,
+    );
   }
 
   void _closeDrawer(BuildContext context) {

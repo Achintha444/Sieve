@@ -135,7 +135,11 @@ class _BlocListener extends StatelessWidget {
               ),
             ),
           );
-          Navigator.pushNamed(context, '/loginScreen');
+          return Navigator.pushNamedAndRemoveUntil(
+            context,
+            '/loginScreen',
+            (Route<dynamic> route) => false,
+          );
         }
       },
       child: SignupScreenWidget(),

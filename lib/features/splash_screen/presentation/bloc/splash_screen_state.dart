@@ -11,5 +11,11 @@ class Loading extends SplashScreenState {}
 
 class Loaded extends SplashScreenState {}
 
+class LoadedUser extends SplashScreenState {
+  final LoginUser loginUser;
+
+  LoadedUser({@required this.loginUser}): super([loginUser]);
+}
+
 class InternetError extends SplashScreenState {}
 

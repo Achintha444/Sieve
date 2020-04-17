@@ -3,9 +3,10 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
-import 'package:sieve_data_privacy_app/core/error/Faliure.dart';
-import 'package:sieve_data_privacy_app/core/Usecase/use_case.dart';
-import 'package:sieve_data_privacy_app/features/login_screen/domain/entities/login_user.dart';
+
+import '../../../../core/Usecase/use_case.dart';
+import '../../../../core/error/Faliure.dart';
+import '../../domain/entities/login_user.dart';
 import '../../domain/usecases/get_facebook_login.dart';
 import '../../domain/usecases/get_google_login.dart';
 import '../../domain/usecases/get_login.dart';
