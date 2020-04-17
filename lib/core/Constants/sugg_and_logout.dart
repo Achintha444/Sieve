@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sieve_data_privacy_app/features/login_signup_screen/presentation/pages/login_signup_screen.dart';
 
 import '../../features/login_screen/data/datasources/login_screen_local_datasource.dart';
 import '../../injection_container.dart';
@@ -57,9 +58,9 @@ class SuggAndLogout extends StatelessWidget {
 
   _logoutOnTap(BuildContext context) async {
     await this._loginScreenLocalDataSource.removeCacheLoginUser();
-    return Navigator.pushNamedAndRemoveUntil(
+    return Navigator.pushAndRemoveUntil(
       context,
-      '/loginScreen',
+      MaterialPageRoute(builder: (context)=> LoginSignupScreen()),
       (Route<dynamic> route) => false,
     );
 
