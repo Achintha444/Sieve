@@ -32,7 +32,6 @@ class PrivacyLawsRemoteDatasourceImpl implements PrivacyLawsRemoteDatasource{
       //   throw InvalidInputException();
       // }
     } else {
-      print (json.decode(response.body));
       return LawsModel.fromJsonList(json.decode(response.body));
     }
   }

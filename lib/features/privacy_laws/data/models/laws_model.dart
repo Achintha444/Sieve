@@ -17,7 +17,6 @@ class LawsModel extends Laws {
   static List<LawsModel> fromJsonList(Map<String, dynamic> json){
     List<LawsModel> _laws = new List<LawsModel>();
     int _len = json['laws'].length;
-    print (json);
     for (var i=0; i<_len; i++){
       _laws.add(LawsModel.fromJson(json['laws'][i]));
     }
