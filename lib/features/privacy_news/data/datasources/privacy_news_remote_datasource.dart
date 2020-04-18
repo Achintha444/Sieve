@@ -5,23 +5,23 @@ import 'package:http/http.dart' as http;
 
 import '../../../../core/Constants/key.dart';
 import '../../../../core/error/exceptions.dart';
-import '../models/tips_model.dart';
+import '../models/news_model.dart';
 
-abstract class PrivacyTipsRemoteDatasource {
+abstract class PrivacyNewsRemoteDatasource {
   /// Calls the api/user/login endpoint
   ///
   /// Throws a [ServerException] for all error codes.
-  Future<List<TipsModel>> loadPrivacyTips();
+  Future<List<NewsModel>> loadPrivacyNews();
 }
 
-class PrivacyTipsRemoteDatasourceImpl implements PrivacyTipsRemoteDatasource{
+class PrivacyNewsRemoteDatasourceImpl implements PrivacyNewsRemoteDatasource{
   
   final http.Client httpClient;
 
-  PrivacyTipsRemoteDatasourceImpl({@required this.httpClient});
+  PrivacyNewsRemoteDatasourceImpl({@required this.httpClient});
 
   @override
-  Future<List<TipsModel>> loadPrivacyTips() async{
+  Future<List<NewsModel>> loadPrivacyNews() async{
     final response = await httpClient.post(API_URL + "/privacy_tips/view_all");
     if (response.statusCode != 200) {
       throw ServerException();
@@ -32,7 +32,7 @@ class PrivacyTipsRemoteDatasourceImpl implements PrivacyTipsRemoteDatasource{
       //   throw InvalidInputException();
       // }
     } else {
-      return TipsModel.fromJsonList(json.decode(response.body));
+      return NewsModel.fromJsonList(json.decode(response.body));
     }
   }
   
