@@ -27,6 +27,11 @@ import 'features/login_signup_screen/domain/repos/login_signup_screen_repo.dart'
 import 'features/login_signup_screen/domain/usecases/get_facebook_login.dart';
 import 'features/login_signup_screen/domain/usecases/get_google_login.dart';
 import 'features/login_signup_screen/presentation/bloc/login_signup_screen_bloc.dart';
+import 'features/privacy_laws/data/datasources/privacy_laws_remote_datasource.dart';
+import 'features/privacy_laws/data/repos/privacy_laws_repo_impl.dart';
+import 'features/privacy_laws/domain/repos/privacy_laws_repo.dart';
+import 'features/privacy_laws/domain/usecases/load_privacy_laws.dart';
+import 'features/privacy_laws/presentation/bloc/privacy_laws_bloc.dart';
 import 'features/privacy_tips/data/datasources/privacy_tips_remote_datasource.dart';
 import 'features/privacy_tips/data/repos/privacy_tips_repo_impl.dart';
 import 'features/privacy_tips/domain/repos/privacy_tips_repo.dart';
@@ -259,6 +264,33 @@ Future<void> init() async {
   //* datasource
   sl.registerLazySingleton<PrivacyTipsRemoteDatasource>(
       () => PrivacyTipsRemoteDatasourceImpl(httpClient: sl()));
+
+ //! Features - privacy_laws
+
+  //* Bloc
+  sl.registerFactory(
+    () => PrivacyLawsBloc(
+      loadPrivacyLaws:  sl(),
+    ),
+  );
+
+  //* usecases
+  sl.registerLazySingleton(
+    () => LoadPrivacyLaws(
+      privacyLawsRepo:  sl(),
+    ),
+  );
+
+  //* repo
+  sl.registerLazySingleton<PrivacyLawsRepo>(
+    () => PrivacyLawsRepoImpl(
+        networkInfo: sl(), privacyLawsRemoteDatasource:  sl()),
+  );
+
+  //* datasource
+  sl.registerLazySingleton<PrivacyLawsRemoteDatasource>(
+      () => PrivacyLawsRemoteDatasourceImpl(httpClient: sl()));
+
 
   //! Features - suggestions
 

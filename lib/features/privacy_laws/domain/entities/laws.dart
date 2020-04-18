@@ -1,12 +1,12 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 
-class News extends Equatable {
+class Laws extends Equatable {
   final String law;
   final String fullLink;
   final String desc;
 
-  News({@required this.law, @required this.fullLink, @required this.desc})
+  Laws({@required this.law, @required this.fullLink, @required this.desc})
       : super([law, fullLink, desc]);
 
   String get getLaw {

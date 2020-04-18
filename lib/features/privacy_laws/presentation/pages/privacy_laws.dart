@@ -5,20 +5,20 @@ import 'package:sieve_data_privacy_app/core/Constants/refresh_floating_button.da
 import '../../../../injection_container.dart';
 import '../../../bottom_nav/presentation/widgets/loading_widget.dart';
 import '../../../login_screen/domain/entities/login_user.dart';
-import '../bloc/privacy_tips_bloc.dart';
-import '../widgets/initial_state_widget.dart';
-import '../widgets/internet_error_widget.dart';
-import '../widgets/privacy_tips_widget.dart';
+import '../../../privacy_laws/presentation/widgets/initial_state_widget.dart';
+import '../../../privacy_laws/presentation/widgets/internet_error_widget.dart';
+import '../bloc/privacy_laws_bloc.dart';
+import '../widgets/privacy_laws_widget.dart';
 
-class PrivacyTips extends StatelessWidget {
+class PrivacyLaws extends StatelessWidget {
   final LoginUser user;
 
-  const PrivacyTips({Key key, @required this.user}) : super(key: key);
+  const PrivacyLaws({Key key, @required this.user}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<PrivacyTipsBloc>(
-      builder: (context) => sl<PrivacyTipsBloc>(),
+    return BlocProvider<PrivacyLawsBloc>(
+      builder: (context) => sl<PrivacyLawsBloc>(),
       child: Scaffold(
         body: Container(
           height: MediaQuery.of(context).size.height,
@@ -27,15 +27,17 @@ class PrivacyTips extends StatelessWidget {
             user: user,
           ),
         ),
-        floatingActionButton: RefreshFloatingButton(onTap: this._dispatchEvent),
+        floatingActionButton: RefreshFloatingButton(
+          onTap: this._dispatchEvent,
+        ),
       ),
     );
   }
 
   void _dispatchEvent(BuildContext context) {
     print('assaas');
-    BlocProvider.of<PrivacyTipsBloc>(context)
-        .dispatch(LoadPrivacyTipsEvent(user: user));
+    BlocProvider.of<PrivacyLawsBloc>(context)
+        .dispatch(LoadPrivacyLawsEvent(user: user));
   }
 }
 
@@ -49,8 +51,8 @@ class _BlocListner extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<PrivacyTipsBloc, PrivacyTipsState>(
-      bloc: BlocProvider.of<PrivacyTipsBloc>(context),
+    return BlocBuilder<PrivacyLawsBloc, PrivacyLawsState>(
+      bloc: BlocProvider.of<PrivacyLawsBloc>(context),
       builder: (context, state) {
         if (state is Initial) {
           return InitialStateWidget(
@@ -61,9 +63,9 @@ class _BlocListner extends StatelessWidget {
         } else if (state is InternetError) {
           return InternetErrorWidget(user: user);
         } else if (state is Loaded) {
-          return PrivacyTipsWidget(
+          return PrivacyLawsWidget(
             user: user,
-            tips: state.tips,
+            laws: state.laws,
           );
         }
       },

@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../injection_container.dart';
 import '../../../login_screen/domain/entities/login_user.dart';
+import '../../../privacy_laws/presentation/pages/privacy_laws.dart';
 import '../../../privacy_tips/presentation/pages/privacy_tips.dart';
 import '../bloc/bottom_nav_bloc.dart';
 import '../widgets/bottom_nav_widget.dart';
@@ -62,7 +63,7 @@ class _BlocListner extends StatelessWidget {
         } else if (state is PrivacyTipsState) {
           return PrivacyTips(user: user,);
         } else if (state is PrivacyLawsState) {
-          return Temp(user: user,);
+          return PrivacyLaws(user: user,);
         }
       },
     );
