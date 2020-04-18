@@ -14,8 +14,7 @@ void main() {
     mockSplashScreenBloc = new MockSplashScreenBloc();
   });
 
-
-    Widget buildTestableWidget(Widget widget) {
+  Widget buildTestableWidget(Widget widget) {
     return MediaQuery(
       data: MediaQueryData(),
       child: MaterialApp(
@@ -34,7 +33,7 @@ void main() {
     //* InternetErrorWidget has the correct content
     final textOneFinder = find.text('NO INTERNET'.toUpperCase());
     final textTwoFinder = find.text('connection'.toUpperCase());
-    final textThreeFinder = 
+    final textThreeFinder =
         find.text('Connect to internet and try again'.toUpperCase());
     final buttonFinder = find.byIcon(Icons.replay);
 
@@ -42,11 +41,10 @@ void main() {
     expect(textTwoFinder, findsOneWidget);
     expect(textThreeFinder, findsOneWidget);
     expect(buttonFinder, findsOneWidget);
-    
+
     //* should dispatch NavigateToLoginScreenEvent when button tapped
     await tester.tap(buttonFinder);
     await tester.pump();
     verify(mockSplashScreenBloc.dispatch(NavigateToLoginScreenEvent()));
   });
-
 }
