@@ -121,9 +121,10 @@ void main() {
 
   group('GetLogin', () {
 
+    final String id = '1';
     final String email = 'test@gmail.com';
     final String password = 'Test@123';
-    final LoginUser loginUser = new LoginUser(email: email, password: password);
+    final LoginUser loginUser = new LoginUser(id:id,email: email, password: password);
 
     test(
       'should return [InternetError] when InternetConnectionFaliure is returned',
