@@ -34,18 +34,6 @@ void main() {
 
   group('getPassword', () {
     test(
-      'should return the email',
-      () async {
-        //act
-        final response = tLoginUser.getEmail;
-        //assert
-        expect(response, email);
-      },
-    );
-  });
-
-  group('getPassword', () {
-    test(
       'should return the password',
       () async {
         //act
