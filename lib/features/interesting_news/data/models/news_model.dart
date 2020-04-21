@@ -17,7 +17,7 @@ class NewsModel extends News {
     List<NewsModel> _news = new List<NewsModel>();
     int _len = json['news'].length;
     for (var i=0; i<_len; i++){
-      _news.add(NewsModel.fromJson(json['title'][i]));
+      _news.add(NewsModel.fromJson(json['news'][i]));
     }
     return _news;
   }
