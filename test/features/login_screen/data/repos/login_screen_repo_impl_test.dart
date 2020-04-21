@@ -5,6 +5,7 @@ import 'package:sieve_data_privacy_app/core/Entities/empty_entity.dart';
 import 'package:sieve_data_privacy_app/core/Error/exceptions.dart';
 import 'package:sieve_data_privacy_app/core/error/Faliure.dart';
 import 'package:sieve_data_privacy_app/core/Platform/network_info.dart';
+import 'package:sieve_data_privacy_app/features/login_screen/data/datasources/login_screen_local_datasource.dart';
 import 'package:sieve_data_privacy_app/features/login_screen/data/datasources/login_screen_remote_datasource.dart';
 import 'package:sieve_data_privacy_app/features/login_screen/data/models/login_user_model.dart';
 import 'package:sieve_data_privacy_app/features/login_screen/data/repos/login_screen_repo_impl.dart';
@@ -18,19 +19,25 @@ class MockNetworkInfo extends Mock implements NetworkInfo {}
 class MockLoginScreenRemoteDataSource extends Mock
     implements LoginScreenRemoteDataSource {}
 
+class MockLoginScreenLocalDataSource extends Mock
+    implements LoginScreenLocalDataSource {}
+
 // TODO: need to write the test after the google login and facebook login completed.
 
 void main() {
   MockLoginSignupScreenRepo mockLoginSignupScreenRepo;
   MockNetworkInfo mockNetworkInfo;
   MockLoginScreenRemoteDataSource mockLoginScreenRemoteDataSource;
+  MockLoginScreenLocalDataSource mockLoginScreenLocalDataSource;
   LoginScreenRepoImpl loginScreenRepoImpl;
 
   setUp(() {
     mockLoginSignupScreenRepo = new MockLoginSignupScreenRepo();
     mockNetworkInfo = new MockNetworkInfo();
     mockLoginScreenRemoteDataSource = new MockLoginScreenRemoteDataSource();
+    mockLoginScreenLocalDataSource = new MockLoginScreenLocalDataSource();
     loginScreenRepoImpl = new LoginScreenRepoImpl(
+        loginScreenLocalDataSource: mockLoginScreenLocalDataSource,
         loginScreenRemoteDataSource: mockLoginScreenRemoteDataSource,
         loginSignuScreenRepo: mockLoginSignupScreenRepo,
         networkInfo: mockNetworkInfo);
@@ -115,19 +122,20 @@ void main() {
   });
 
   group('getLogin', () {
-    final String email = 'test@gmail.com';
-    final String password = 'test_password';
+    final String id = '1';
+    final String email = 'test1@gmail.com';
+    final String password = 'Test@123';
     final LoginUserModel tLoginUserModel =
-        new LoginUserModel(email: email, password: password);
+        new LoginUserModel(id: id, email: email, password: password);
     final LoginUser tLoginUser = tLoginUserModel;
 
     test(
       'should check if the device is online',
       () async {
         //arrange
-        when(mockNetworkInfo.isConnected).thenAnswer((_) async => true);
+        when(mockNetworkInfo.isConnected).thenAnswer((_) async => false);
         //act
-        loginScreenRepoImpl.getLogin(email, password);
+        await loginScreenRepoImpl.getLogin(email, password);
         //assert
         verify(mockNetworkInfo.isConnected);
       },
@@ -142,12 +150,11 @@ void main() {
               .thenAnswer((_) async => tLoginUserModel);
           //act
           final resilt = await loginScreenRepoImpl.getLogin(email, password);
+          await untilCalled(mockLoginScreenLocalDataSource.cacheLoginUser(tLoginUserModel));
           //assert
           expect(resilt, Right(tLoginUser));
         },
       );
-
-
       test(
         'should return InvalidInputFaliure when sent the incorrect data',
         () async {
@@ -173,7 +180,6 @@ void main() {
           expect(resilt, Left(ServerFaliure()));
         },
       );
-    
     });
     test(
       'should return InternetConnectionFaliure when there is no internet',

@@ -30,7 +30,7 @@ class SplashScreenRepoImpl implements SplashScreenRepo {
     if (await networkInfo.isConnected) {
       try {
         final lgoinUser = await this.splashScreenLocalDataSource.autoLogin();
-        await Future.delayed(Duration(seconds: 1));
+        await Future.delayed(Duration(seconds: 2));
         return Right(lgoinUser);
       } on CacheException {
         return Left(CacheFaliure());
