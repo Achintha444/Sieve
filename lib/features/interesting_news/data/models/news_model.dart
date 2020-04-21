@@ -5,12 +5,13 @@ import '../../domain/entities/news.dart';
 class NewsModel extends News {
   final String title;
   final String desc;
+  final String fullLink;
 
-  NewsModel({@required this.title, @required this.desc})
-      : super(title:title,desc:desc);
+  NewsModel({@required this.title, @required this.desc,@required this.fullLink})
+      : super(title:title,desc:desc, fullLink: fullLink);
 
   factory NewsModel.fromJson(Map<String, dynamic> json) {
-    return NewsModel(title: json['title'], desc: (json['description']));
+    return NewsModel(title: json['title'], desc: (json['description']),fullLink: json['full_link']);
   }
 
   static List<NewsModel> fromJsonList(Map<String, dynamic> json){
@@ -26,6 +27,7 @@ class NewsModel extends News {
     return {
       'title': super.getTitle,
       'desc': super.getDesc,
+      'full_link': super.getFullLink,
     };
   }
 }
