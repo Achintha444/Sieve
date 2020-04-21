@@ -22,8 +22,6 @@ class SuggestionRemoteDataSourceImpl implements SuggestionRemoteDataSource {
 
   @override
   Future<EmptyEntity> insertSuggestion(LoginUser user, String suggestion) async {
-    print(user.getId); 
-    print(suggestion);
     final response = await httpClient.post(API_URL + "/suggestion/insert",
         body: {'userId': user.getId, 'suggestion': suggestion});
         print('suggestion snt');
