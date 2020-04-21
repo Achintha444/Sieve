@@ -22,6 +22,7 @@ class SignupScreenRepoImpl extends SignupScreenRepo {
       print("password is " + password);
       try{
         final finalSignupUser = await signupScreenRemoteDataSource.getSignupUser(email, password);
+        await Future.delayed(Duration(seconds: 2));
         return Right(finalSignupUser);
       }on ServerException{
         return Left(ServerFaliure());

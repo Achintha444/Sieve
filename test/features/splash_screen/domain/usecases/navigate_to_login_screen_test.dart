@@ -41,7 +41,7 @@ void main() {
     },
   );
 
-    test(
+  test(
     'should return InternetConnectionFaliure() when there is no internet',
     () async {
       //arrange

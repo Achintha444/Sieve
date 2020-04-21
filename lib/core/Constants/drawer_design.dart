@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:sieve_data_privacy_app/features/login_screen/domain/entities/login_user.dart';
+
+import 'sugg_and_logout.dart';
 
 class DrawerDesign extends StatelessWidget {
-  final String email;
+  final LoginUser user;
 
-  const DrawerDesign({Key key, @required this.email}) : super(key: key);
+  DrawerDesign({Key key, @required this.user}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -70,7 +73,7 @@ class DrawerDesign extends StatelessWidget {
                   Alignment.centerLeft, Alignment.center, 0.2),
               key: Key('user_email'),
               child: Text(
-                email,
+                user.email,
                 style: TextStyle(
                     color: Theme.of(context).primaryColor,
                     fontSize: 24,
@@ -88,11 +91,10 @@ class DrawerDesign extends StatelessWidget {
               ),
             ),
             //* Suggestion
-            _suggAndLogout(
-              context,
-              'suggestions',
-              Icons.flag,
-              (){this._suggestionOnTap(context);},
+            SuggAndLogout(
+              title: 'suggestions',
+              icon: Icons.flag,
+              user: user,
             ),
             Padding(
               padding: EdgeInsets.only(
@@ -101,11 +103,10 @@ class DrawerDesign extends StatelessWidget {
               ),
             ),
             //* Logout
-            _suggAndLogout(
-              context,
-              'logout',
-              Icons.do_not_disturb_on,
-              (){this._logoutOnTap(context);},
+            SuggAndLogout(
+              title: 'logout',
+              icon: Icons.do_not_disturb_on,
+              user:user,
             ),
           ],
         ),
@@ -113,42 +114,7 @@ class DrawerDesign extends StatelessWidget {
     );
   }
 
-  GestureDetector _suggAndLogout(
-      BuildContext context, String title, IconData icon, Function onTap) {
-    return GestureDetector(
-      onTap: onTap(),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: <Widget>[
-          Icon(
-            icon,
-            color: Theme.of(context).primaryColor,
-            size: 45,
-          ),
-          Padding(
-            padding: EdgeInsets.only(left: 5, right: 5),
-          ),
-          Text(
-            title.toUpperCase(),
-            style: TextStyle(
-              fontSize: 23,
-              letterSpacing: 1.5,
-              color: Theme.of(context).primaryColor,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
 
-  void _suggestionOnTap(BuildContext context) {
-    return null;
-  }
-
-  void _logoutOnTap(BuildContext context) {
-    return null;
-  }
 
   void _closeDrawer(BuildContext context) {
     Navigator.pop(context);

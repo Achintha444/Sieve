@@ -10,7 +10,7 @@ import '../models/tips_model.dart';
 abstract class PrivacyTipsRemoteDatasource {
   /// Calls the api/user/login endpoint
   ///
-  /// Throws a [ServerException,InvalidInputException] for all error codes.
+  /// Throws a [ServerException] for all error codes.
   Future<List<TipsModel>> loadPrivacyTips();
 }
 

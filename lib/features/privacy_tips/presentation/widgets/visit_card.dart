@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:link_previewer/link_previewer.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class VistCard extends StatelessWidget {
   final List<String> links;
@@ -37,61 +38,78 @@ class VistCard extends StatelessWidget {
                 ),
               ),
               //_linkPreveiew(links,context),
-              LinkPreviewer(
-                link: links[0],
-                titleFontSize: 10,
-                borderColor: Theme.of(context).accentColor,
-                defaultPlaceholderColor:
-                    Theme.of(context).accentColor.withOpacity(0.5),
-                borderRadius: 4,
-                bodyMaxLines: 2,
-                bodyTextOverflow: TextOverflow.ellipsis,
-                bodyFontSize: 6,
-              ),
-              Padding(
-                padding: EdgeInsets.only(
-                  top: 4,
-                  bottom: 4,
+              Column(
+                children: List.generate(
+                  this.links.length,
+                  (index) {
+                    return Column(
+                      children: <Widget>[
+                        GestureDetector(
+                          onTap: () => this._launchInWebViewWithDomStorage(
+                              links[index], context),
+                          child: AbsorbPointer(
+                            absorbing: true,
+                            child: LinkPreviewer(
+                              link: links[index],
+                              titleFontSize: 10,
+                              borderColor: Theme.of(context).accentColor,
+                              defaultPlaceholderColor: Theme.of(context)
+                                  .accentColor
+                                  .withOpacity(0.5),
+                              borderRadius: 4,
+                              bodyMaxLines: 2,
+                              bodyTextOverflow: TextOverflow.ellipsis,
+                              bodyFontSize: 6,
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(
+                            top: 4,
+                            bottom: 4,
+                          ),
+                        )
+                      ],
+                    );
+                  },
                 ),
-              ),
-              LinkPreviewer(
-                link: links[1],
-                titleFontSize: 10,
-                borderColor: Theme.of(context).accentColor,
-                placeholder: Container(
-                  color: Theme.of(context).accentColor,
-                ),
-                borderRadius: 4,
-                bodyMaxLines: 2,
-                defaultPlaceholderColor:
-                    Theme.of(context).accentColor.withOpacity(0.5),
-                bodyTextOverflow: TextOverflow.ellipsis,
-                bodyFontSize: 6,
-              ),
-              Padding(
-                padding: EdgeInsets.only(
-                  top: 4,
-                  bottom: 4,
-                ),
-              ),
-              LinkPreviewer(
-                link: links[2],
-                titleFontSize: 10,
-                borderColor: Theme.of(context).accentColor,
-                placeholder: Container(
-                  color: Theme.of(context).accentColor,
-                ),
-                borderRadius: 4,
-                bodyMaxLines: 2,
-                defaultPlaceholderColor:
-                    Theme.of(context).accentColor.withOpacity(0.5),
-                bodyTextOverflow: TextOverflow.ellipsis,
-                bodyFontSize: 6,
-              ),
+              )
             ],
           ),
         ),
       ),
     );
+  }
+
+  Future<void> _launchInWebViewWithDomStorage(
+      String url, BuildContext context) async {
+    if (await canLaunch(url)) {
+      await launch(
+        url,
+        forceSafariVC: true,
+        forceWebView: true,
+        enableDomStorage: true,
+        universalLinksOnly: true,
+        enableJavaScript: true,
+      );
+    } else {
+      Scaffold.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+            'Something went wrong\nTry again'.toUpperCase(),
+            style: TextStyle(color: Colors.white),
+          ),
+          backgroundColor: Theme.of(context).primaryColor,
+          duration: Duration(seconds: 6),
+          action: SnackBarAction(
+            label: 'Close',
+            textColor: Colors.white,
+            onPressed: () {
+              Scaffold.of(context).hideCurrentSnackBar();
+            },
+          ),
+        ),
+      );
+    }
   }
 }

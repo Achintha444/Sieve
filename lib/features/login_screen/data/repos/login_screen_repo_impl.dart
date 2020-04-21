@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
+import 'package:sieve_data_privacy_app/features/login_screen/data/datasources/login_screen_local_datasource.dart';
 
 import '../../../../core/Entities/empty_entity.dart';
 import '../../../../core/Error/exceptions.dart';
@@ -13,10 +14,14 @@ import '../datasources/login_screen_remote_datasource.dart';
 class LoginScreenRepoImpl implements LoginScreenRepo {
   final LoginSignuScreenRepo loginSignuScreenRepo;
   final LoginScreenRemoteDataSource loginScreenRemoteDataSource;
+  final LoginScreenLocalDataSource loginScreenLocalDataSource;
   final NetworkInfo networkInfo;
 
   LoginScreenRepoImpl(
-      {@required this.loginSignuScreenRepo, @required this.networkInfo,@required this.loginScreenRemoteDataSource});
+      {@required this.loginSignuScreenRepo,
+      @required this.networkInfo,
+      @required this.loginScreenRemoteDataSource,
+      @required this.loginScreenLocalDataSource});
 
   @override
   Future<Either<Faliure, EmptyEntity>> getFacebookLogin() async {
@@ -29,16 +34,21 @@ class LoginScreenRepoImpl implements LoginScreenRepo {
   }
 
   @override
-  Future<Either<Faliure, LoginUser>> getLogin(String email, String password) async {
+  Future<Either<Faliure, LoginUser>> getLogin(
+      String email, String password) async {
     if (await networkInfo.isConnected) {
-      print ("email is "+email);
-      print ("password is "+password);
+      print("email is " + email);
+      print("password is " + password);
       try {
-        final finalLoginUser = await loginScreenRemoteDataSource.getLoginUser(email, password);
+        final finalLoginUser =
+            await loginScreenRemoteDataSource.getLoginUser(email, password);
+        print (finalLoginUser.getEmail);
+        await this.loginScreenLocalDataSource.cacheLoginUser(finalLoginUser);
+        await Future.delayed(Duration(seconds: 2));
         return Right(finalLoginUser);
       } on ServerException {
         return (Left(ServerFaliure()));
-      } on InvalidInputException{
+      } on InvalidInputException {
         return (Left(InvalidInputFaliure()));
       }
     } else {

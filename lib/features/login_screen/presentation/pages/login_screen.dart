@@ -122,13 +122,14 @@ class _BlocListener extends StatelessWidget {
             ),
           );
         } else if (state is Loaded) {
-          Navigator.push(
+          Navigator.pushAndRemoveUntil(
             context,
             MaterialPageRoute(
               builder: (context) => BottomNav(
                 user: state.loginUser,
               ),
             ),
+            (Route<dynamic> route) => false,
           );
         }
       },

@@ -14,12 +14,13 @@ class Temp extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar:AppBarDesign(title: 'TEST'),
-      drawer: DrawerDesign(email: user.email),
+      drawer: DrawerDesign(user: user),
       body: Container(
         child: Column(
           children: <Widget>[
             Text(user.email),
             Text(user.password),
+            Text(user.getId),
           ],
         ),
       ),

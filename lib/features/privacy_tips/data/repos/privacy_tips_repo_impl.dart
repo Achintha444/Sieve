@@ -21,6 +21,7 @@ class PrivacyTipsRepoImpl implements PrivacyTipsRepo{
      if (await networkInfo.isConnected) {
       try {
         final finalTips = await privacyTipsRemoteDatasource.loadPrivacyTips();
+        await Future.delayed(Duration(seconds: 4));
         return Right(finalTips);
       } on ServerException {
         return (Left(ServerFaliure()));

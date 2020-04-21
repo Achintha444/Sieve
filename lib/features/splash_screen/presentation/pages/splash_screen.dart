@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:sieve_data_privacy_app/features/bottom_nav/presentation/pages/bottom_nav.dart';
 
 import '../../../../injection_container.dart';
 import '../../../login_signup_screen/presentation/pages/login_signup_screen.dart';
@@ -32,6 +33,8 @@ class SplashScreen extends StatelessWidget {
                 return InternetErrorWidget();
               } else if (state is Loaded) {
                 return LoginSignupScreen();
+              } else if(state is LoadedUser){
+                return BottomNav(user: state.loginUser);
               }
             },
           ),

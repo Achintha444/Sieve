@@ -21,10 +21,11 @@ void main() {
   //* loginDetails[0] == username
   //* loginDetails[1] == password
 
+  final String _id = '1';
   final String _email = 'test@gmail.com';
   final String _password = 'Test@123';
   final List<String> _loginDetails = [_email, _password];
-  final LoginUser loginUser = new LoginUser(email: _email, password: _password);
+  final LoginUser loginUser = new LoginUser(id: _id, email: _email, password: _password);
 
   test(
     'should return LoginUser() when opertaes correctly',

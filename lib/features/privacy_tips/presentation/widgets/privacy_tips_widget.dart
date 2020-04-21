@@ -18,10 +18,11 @@ class PrivacyTipsWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: DrawerDesign(
-        email: user.email,
+        user: user,
       ),
       appBar: AppBarDesign(
         title: 'Privacy Tips',
+        
       ),
       body: SingleChildScrollView(
         child: Column(
