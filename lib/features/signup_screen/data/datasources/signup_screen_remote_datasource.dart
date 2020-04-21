@@ -2,11 +2,10 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:sieve_data_privacy_app/core/Entities/empty_entity.dart';
 
 import '../../../../core/Constants/key.dart';
+import '../../../../core/Entities/empty_entity.dart';
 import '../../../../core/Error/exceptions.dart';
-import '../models/signup_user_model.dart';
 
 abstract class SignupScreenRemoteDataSource {
   /// Calls the api/user/Signup endpoint

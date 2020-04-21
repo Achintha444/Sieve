@@ -2,7 +2,6 @@ import 'package:data_connection_checker/data_connection_checker.dart';
 import 'package:get_it/get_it.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:sieve_data_privacy_app/features/interesting_news/domain/usecases/load_intersting_news.dart';
 
 import 'core/Platform/network_info.dart';
 import 'features/bottom_nav/data/repos/bottom_nav_repo_impl.dart';
@@ -13,6 +12,10 @@ import 'features/bottom_nav/domain/usecases/navigate_to_news_feed.dart';
 import 'features/bottom_nav/domain/usecases/navigate_to_privacy_laws.dart';
 import 'features/bottom_nav/domain/usecases/navigate_to_privacy_tips.dart';
 import 'features/bottom_nav/presentation/bloc/bottom_nav_bloc.dart';
+import'features/interesting_news/data/datasources/interesting_news_remote_datasource.dart';
+import'features/interesting_news/data/repos/interestig_news_repo_impl.dart';
+import'features/interesting_news/domain/repos/interesting_news_repo.dart';
+import 'features/interesting_news/domain/usecases/load_intersting_news.dart';
 import 'features/interesting_news/presentation/bloc/interesting_news_bloc.dart';
 import 'features/login_screen/data/datasources/login_screen_local_datasource.dart';
 import 'features/login_screen/data/datasources/login_screen_remote_datasource.dart';
@@ -34,18 +37,11 @@ import 'features/privacy_laws/data/repos/privacy_laws_repo_impl.dart';
 import 'features/privacy_laws/domain/repos/privacy_laws_repo.dart';
 import 'features/privacy_laws/domain/usecases/load_privacy_laws.dart';
 import 'features/privacy_laws/presentation/bloc/privacy_laws_bloc.dart';
-
 import 'features/privacy_tips/data/datasources/privacy_tips_remote_datasource.dart';
 import 'features/privacy_tips/data/repos/privacy_tips_repo_impl.dart';
 import 'features/privacy_tips/domain/repos/privacy_tips_repo.dart';
 import 'features/privacy_tips/domain/usecases/load_privacy_tips.dart';
 import 'features/privacy_tips/presentation/bloc/privacy_tips_bloc.dart';
-
-import'features/interesting_news/data/datasources/interesting_news_remote_datasource.dart';
-import'features/interesting_news/data/repos/interestig_news_repo_impl.dart';
-import'features/interesting_news/domain/repos/interesting_news_repo.dart';
-import 'features/interesting_news/domain/usecases/load_intersting_news.dart';
-import 'features/interesting_news/presentation/bloc/interesting_news_bloc.dart';
 import 'features/signup_screen/data/datasources/signup_screen_remote_datasource.dart';
 import 'features/signup_screen/data/repos/signup_screen_repo_impl.dart';
 import 'features/signup_screen/domain/repos/signup_screen_repo.dart';
