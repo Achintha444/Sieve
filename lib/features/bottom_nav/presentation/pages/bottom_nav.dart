@@ -64,6 +64,8 @@ class _BlocListner extends StatelessWidget {
           return PrivacyTips(user: user,);
         } else if (state is PrivacyLawsState) {
           return PrivacyLaws(user: user,);
+        } else{
+          return Container();
         }
       },
     );

@@ -3,10 +3,9 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
-import 'package:sieve_data_privacy_app/features/interesting_news/domain/entities/news.dart';
-import 'package:sieve_data_privacy_app/features/privacy_tips/domain/entities/tips.dart';
 
 import '../../../login_screen/domain/entities/login_user.dart';
+import '../../domain/entities/news.dart';
 import '../../domain/usecases/load_intersting_news.dart';
 
 part 'interesting_news_event.dart';

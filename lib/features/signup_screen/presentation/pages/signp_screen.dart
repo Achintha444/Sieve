@@ -140,7 +140,7 @@ class _BlocListener extends StatelessWidget {
             '/loginScreen',
             (Route<dynamic> route) => false,
           );
-        }
+        } 
       },
       child: SignupScreenWidget(),
     );

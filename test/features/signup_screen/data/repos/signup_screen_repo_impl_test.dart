@@ -13,8 +13,6 @@ class MockNetworkInfo extends Mock implements NetworkInfo {}
 class MockSignupScreenRemoteDataSource extends Mock
     implements SignupScreenRemoteDataSource {}
 
-// TODO: need to write the test after the google Signup and facebook Signup completed.
-
 void main() {
   MockNetworkInfo mockNetworkInfo;
   SignupScreenRepoImpl signupScreenRepoImpl;
