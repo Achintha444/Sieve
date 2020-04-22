@@ -8,7 +8,7 @@ import '../../../../fixtures/fixture_reader.dart';
 
 void main() {
   final tLoginUserModel =
-      LoginUserModel(id: '1', email: 'test@gmail.com', password: 'Test"123');
+      LoginUserModel(id: '1', email: 'Test123@gmail.com', password: 'Test@123');
 
   test(
     'should be a subclass of Numbertriva entity',
@@ -26,8 +26,9 @@ void main() {
         final Map<String, dynamic> jsonMap =
             json.decode(fixtureReader('login_user_fixture.json'));
         //act
-
+        final result = LoginUserModel.fromJson(jsonMap);
         //assert
+        expect(result, tLoginUserModel);
       },
     );
   });
@@ -41,8 +42,8 @@ void main() {
         //assert
         final expectedMap = {
           'id': '1',
-          'email': 'test@gmail.com',
-          'password': 'Test"123',
+          'email': 'Test123@gmail.com',
+          'password': 'Test@123',
         };
         expect(result, expectedMap);
       },

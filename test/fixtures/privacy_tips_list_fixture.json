@@ -1,0 +1,12 @@
+{
+    "tips":[
+        {
+            "tip":"test tip1",
+            "description":"test desc1"
+        },
+        {
+            "tip":"test tip2",
+            "description":"test desc2"
+        }
+    ]
+}

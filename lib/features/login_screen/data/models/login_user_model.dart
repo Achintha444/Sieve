@@ -10,7 +10,7 @@ class LoginUserModel extends LoginUser {
       : super(id: id,email: email, password: password);
 
   factory LoginUserModel.fromJson(Map<String, dynamic> json) {
-    return LoginUserModel(id:json['id'] ,email: json['email'], password: (json['password']));
+    return LoginUserModel(id:json['id'] ,email: json['email'], password: json['password']);
   }
 
   Map<String, dynamic> toJson() {
