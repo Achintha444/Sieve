@@ -73,4 +73,6 @@ void main() {
     await tester.pump();
     verify(mockBottomNavBloc.dispatch(LawsEvent(user: loginUser)));
   });
+
+
 }
