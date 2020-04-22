@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
-import 'package:sieve_data_privacy_app/features/bottom_nav/presentation/bloc/bottom_nav_bloc.dart';
 import 'package:sieve_data_privacy_app/features/privacy_tips/presentation/bloc/privacy_tips_bloc.dart';
 import 'package:sieve_data_privacy_app/features/privacy_tips/presentation/widgets/internet_error_widget.dart';
 import 'package:sieve_data_privacy_app/features/login_screen/domain/entities/login_user.dart';

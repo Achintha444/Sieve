@@ -36,9 +36,6 @@ void main() {
   });
 
   group('removeCacheLoginUser()', () {
-    final tLoginUserModel =
-        LoginUserModel(id: '1', email: 'test@gmail.com', password: 'Test@123');
-
     test(
       'should call SharedPreferences to remove the data',
       () async {

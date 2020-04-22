@@ -33,8 +33,10 @@ class SplashScreen extends StatelessWidget {
                 return InternetErrorWidget();
               } else if (state is Loaded) {
                 return LoginSignupScreen();
-              } else if(state is LoadedUser){
+              } else if (state is LoadedUser) {
                 return BottomNav(user: state.loginUser);
+              } else {
+                return Container();
               }
             },
           ),

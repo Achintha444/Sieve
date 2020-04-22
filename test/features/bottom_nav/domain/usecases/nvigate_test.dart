@@ -2,7 +2,6 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:sieve_data_privacy_app/core/error/Faliure.dart';
-import 'package:sieve_data_privacy_app/core/Usecase/use_case.dart';
 import 'package:sieve_data_privacy_app/features/bottom_nav/domain/repos/bottom_nav_repo.dart';
 import 'package:sieve_data_privacy_app/features/bottom_nav/domain/usecases/navigate_to_category.dart';
 import 'package:sieve_data_privacy_app/features/bottom_nav/domain/usecases/navigate_to_dashbaord.dart';

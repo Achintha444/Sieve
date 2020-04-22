@@ -65,6 +65,8 @@ class _BlocListner extends StatelessWidget {
             user: user,
             tips: state.tips,
           );
+        } else{
+          return Container();
         }
       },
     );
