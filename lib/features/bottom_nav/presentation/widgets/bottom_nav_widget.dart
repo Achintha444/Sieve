@@ -8,7 +8,7 @@ class BottomNavWidget extends StatefulWidget {
 
   final LoginUser user;
 
-  const BottomNavWidget({Key key, this.user}) : super(key: key);
+  const BottomNavWidget({Key key, @required this.user}) : super(key: key);
 
   static BottomNavigationBarItem _navBarItem(String title, IconData icon) =>
       BottomNavigationBarItem(
@@ -17,6 +17,7 @@ class BottomNavWidget extends StatefulWidget {
           child: Text(
             title.toUpperCase(),
             textAlign: TextAlign.center,
+            key: Key(title),
           ),
         ),
         icon: Icon(icon),
@@ -46,6 +47,7 @@ class _BottomNavWidgetState extends State<BottomNavWidget> {
       width: MediaQuery.of(context).size.width,
       color: Theme.of(context).primaryColor,
       child: BottomNavigationBar(
+        key: Key('bottomNav'),
         onTap: (index) => _tapLogic(index, context),
         currentIndex: _currentIndex,
         items: this._items,

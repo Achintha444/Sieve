@@ -2,7 +2,6 @@ import 'package:data_connection_checker/data_connection_checker.dart';
 import 'package:get_it/get_it.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:sieve_data_privacy_app/features/interesting_news/domain/usecases/load_intersting_news.dart';
 
 import 'core/Platform/network_info.dart';
 import 'features/bottom_nav/data/repos/bottom_nav_repo_impl.dart';
@@ -13,6 +12,10 @@ import 'features/bottom_nav/domain/usecases/navigate_to_news_feed.dart';
 import 'features/bottom_nav/domain/usecases/navigate_to_privacy_laws.dart';
 import 'features/bottom_nav/domain/usecases/navigate_to_privacy_tips.dart';
 import 'features/bottom_nav/presentation/bloc/bottom_nav_bloc.dart';
+import 'features/interesting_news/data/datasources/interesting_news_remote_datasource.dart';
+import 'features/interesting_news/data/repos/interestig_news_repo_impl.dart';
+import 'features/interesting_news/domain/repos/interesting_news_repo.dart';
+import 'features/interesting_news/domain/usecases/load_intersting_news.dart';
 import 'features/interesting_news/presentation/bloc/interesting_news_bloc.dart';
 import 'features/login_screen/data/datasources/login_screen_local_datasource.dart';
 import 'features/login_screen/data/datasources/login_screen_remote_datasource.dart';
@@ -34,18 +37,11 @@ import 'features/privacy_laws/data/repos/privacy_laws_repo_impl.dart';
 import 'features/privacy_laws/domain/repos/privacy_laws_repo.dart';
 import 'features/privacy_laws/domain/usecases/load_privacy_laws.dart';
 import 'features/privacy_laws/presentation/bloc/privacy_laws_bloc.dart';
-
 import 'features/privacy_tips/data/datasources/privacy_tips_remote_datasource.dart';
 import 'features/privacy_tips/data/repos/privacy_tips_repo_impl.dart';
 import 'features/privacy_tips/domain/repos/privacy_tips_repo.dart';
 import 'features/privacy_tips/domain/usecases/load_privacy_tips.dart';
 import 'features/privacy_tips/presentation/bloc/privacy_tips_bloc.dart';
-
-import'features/interesting_news/data/datasources/interesting_news_remote_datasource.dart';
-import'features/interesting_news/data/repos/interestig_news_repo_impl.dart';
-import'features/interesting_news/domain/repos/interesting_news_repo.dart';
-import 'features/interesting_news/domain/usecases/load_intersting_news.dart';
-import 'features/interesting_news/presentation/bloc/interesting_news_bloc.dart';
 import 'features/signup_screen/data/datasources/signup_screen_remote_datasource.dart';
 import 'features/signup_screen/data/repos/signup_screen_repo_impl.dart';
 import 'features/signup_screen/domain/repos/signup_screen_repo.dart';
@@ -276,86 +272,81 @@ Future<void> init() async {
 
   //! Features - Interesting_news
 
-
   //* Bloc
   sl.registerFactory(
-        () => InterestingNewsBloc(
+    () => InterestingNewsBloc(
       loadInterestingNews: sl(),
     ),
   );
 
   //* usecases
   sl.registerLazySingleton(
-        () => LoadInterestingNews(
+    () => LoadInterestingNews(
       interestingNewsRepo: sl(),
     ),
   );
 
   //* repo
   sl.registerLazySingleton<InterestingNewsRepo>(
-        () => InterestingNewsRepoImpl(
+    () => InterestingNewsRepoImpl(
         networkInfo: sl(), interestingNewsRemoteDatasource: sl()),
   );
 
   //* datasource
   sl.registerLazySingleton<InterestingNewsRemoteDatasource>(
-          () => InterestingNewsRemoteDatasourceImpl(httpClient: sl()));
+      () => InterestingNewsRemoteDatasourceImpl(httpClient: sl()));
 
- //! Features - privacy_laws
+  //! Features - privacy_laws
 
   //* Bloc
   sl.registerFactory(
     () => PrivacyLawsBloc(
-      loadPrivacyLaws:  sl(),
+      loadPrivacyLaws: sl(),
     ),
   );
 
   //* usecases
   sl.registerLazySingleton(
     () => LoadPrivacyLaws(
-      privacyLawsRepo:  sl(),
+      privacyLawsRepo: sl(),
     ),
   );
 
   //* repo
   sl.registerLazySingleton<PrivacyLawsRepo>(
     () => PrivacyLawsRepoImpl(
-        networkInfo: sl(), privacyLawsRemoteDatasource:  sl()),
+        networkInfo: sl(), privacyLawsRemoteDatasource: sl()),
   );
 
   //* datasource
   sl.registerLazySingleton<PrivacyLawsRemoteDatasource>(
       () => PrivacyLawsRemoteDatasourceImpl(httpClient: sl()));
 
-
   //! Features - suggestions
 
   //* Bloc
   sl.registerFactory(
     () => SuggestionBloc(
-      sendSuggestion:  sl(),
+      sendSuggestion: sl(),
     ),
   );
 
   //* usecases
   sl.registerLazySingleton(
     () => SendSuggestion(
-      suggestionRepo:  sl(),
+      suggestionRepo: sl(),
     ),
   );
 
   //* repo
   sl.registerLazySingleton<SuggestionRepo>(
-    () => SuggestionRepoImpl(
-        networkInfo: sl(), suggestionRemoteDataSource:  sl()),
+    () =>
+        SuggestionRepoImpl(networkInfo: sl(), suggestionRemoteDataSource: sl()),
   );
 
   //* datasource
   sl.registerLazySingleton<SuggestionRemoteDataSource>(
-      () => SuggestionRemoteDataSourceImpl(httpClient:sl()));
-
-
-
+      () => SuggestionRemoteDataSourceImpl(httpClient: sl()));
 
   //! Core
   sl.registerLazySingleton<NetworkInfo>(() => NetworkInfoImpl(sl()));
