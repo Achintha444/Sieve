@@ -32,7 +32,11 @@ class InputConverter {
     //return true;
   }
 
-  bool checkPasswordSimilar(String passwordOne, String passwordTwo){
-    return (passwordOne==passwordTwo);
+  bool checkPasswordSimilar(String passwordOne, String passwordTwo) {
+    return (passwordOne == passwordTwo);
+  }
+
+  String getUsername(String email) {
+    return email.substring(0, email.indexOf('@'));
   }
 }

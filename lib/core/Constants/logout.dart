@@ -6,7 +6,7 @@ import '../../features/suggestion/presentation/pages/suggestion.dart';
 import '../../features/login_screen/data/datasources/login_screen_local_datasource.dart';
 import '../../injection_container.dart';
 
-class SuggAndLogout extends StatelessWidget {
+class Logout extends StatelessWidget {
   final String title;
   final IconData icon;
   final LoginUser user;
@@ -14,7 +14,7 @@ class SuggAndLogout extends StatelessWidget {
   final LoginScreenLocalDataSource _loginScreenLocalDataSource =
       sl<LoginScreenLocalDataSource>();
 
-  SuggAndLogout({
+  Logout({
     Key key,
     @required this.title,
     @required this.icon,
@@ -25,7 +25,7 @@ class SuggAndLogout extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        _suggestionOnTap(context);
+        _logoutOnTap(context);
       },
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -33,8 +33,8 @@ class SuggAndLogout extends StatelessWidget {
         children: <Widget>[
           Icon(
             icon,
-            color: Theme.of(context).primaryColor,
-            size: 48,
+            color: Theme.of(context).primaryColor.withOpacity(0.75),
+            size: 25,
           ),
           Padding(
             padding: EdgeInsets.only(left: 5, right: 5),
@@ -42,9 +42,9 @@ class SuggAndLogout extends StatelessWidget {
           Text(
             title.toUpperCase(),
             style: TextStyle(
-              fontSize: 25,
+              fontSize: 15,
               letterSpacing: 1.5,
-              color: Theme.of(context).primaryColor,
+              color: Theme.of(context).primaryColor.withOpacity(0.75),
             ),
           ),
         ],
@@ -52,10 +52,12 @@ class SuggAndLogout extends StatelessWidget {
     );
   }
 
-  void _suggestionOnTap(BuildContext context) {
-    Navigator.pop(context);
-    Navigator.push(context,
-        MaterialPageRoute(builder: (context) => Suggestion(user: user)));
+  _logoutOnTap(BuildContext context) async {
+    await this._loginScreenLocalDataSource.removeCacheLoginUser();
+    return Navigator.pushAndRemoveUntil(
+      context,
+      MaterialPageRoute(builder: (context) => LoginSignupScreen()),
+      (Route<dynamic> route) => false,
+    );
   }
-
 }
