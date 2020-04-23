@@ -11,6 +11,7 @@ class DrawerDesign extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
+      key: Key('drawer'),
       elevation: 0,
       child: Center(
         child: Column(
