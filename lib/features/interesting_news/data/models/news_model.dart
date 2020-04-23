@@ -11,12 +11,13 @@ class NewsModel extends News {
       : super(title:title,desc:desc, fullLink: fullLink);
 
   factory NewsModel.fromJson(Map<String, dynamic> json) {
-    return NewsModel(title: json['title'], desc: (json['description']),fullLink: json['full_link']);
+    return NewsModel(title: json['news'], desc: (json['description']),fullLink: json['full_link']);
   }
 
   static List<NewsModel> fromJsonList(Map<String, dynamic> json){
     List<NewsModel> _news = new List<NewsModel>();
     int _len = json['news'].length;
+    print(json);
     for (var i=0; i<_len; i++){
       _news.add(NewsModel.fromJson(json['news'][i]));
     }
