@@ -83,6 +83,7 @@ class NewsCard extends StatelessWidget {
         url,
         forceSafariVC: true,
         forceWebView: true,
+        enableJavaScript: true,
         enableDomStorage: true,
       );
     } else {

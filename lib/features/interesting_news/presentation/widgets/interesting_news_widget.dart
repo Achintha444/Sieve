@@ -62,29 +62,6 @@ class InterestingNewsWidget extends StatelessWidget {
               ),
             ),
             //* More Information
-            Padding(
-              padding: const EdgeInsets.only(top: 5.0, left: 15),
-              child: Align(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  'For More Information',
-                  textAlign: TextAlign.left,
-                  style: TextStyle(
-                    fontSize: 18,
-                    color: Theme.of(context).primaryColor,
-                    letterSpacing: 1.3,
-                  ),
-                ),
-              ),
-            ),
-
-            VistCard(
-              links: [
-                'https://www.infosecurity-magazine.com/data-protection/',
-                'https://www.bbc.com/news/topics/cwz4lvzgq9gt/data-protection',
-                'https://www.youtube.com/watch?v=boTln6ZOJXA'
-              ],
-            ),
           ],
         ),
       ),

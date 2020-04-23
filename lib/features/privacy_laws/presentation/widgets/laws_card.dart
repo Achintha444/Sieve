@@ -83,6 +83,7 @@ class LawsCard extends StatelessWidget {
         url,
         forceSafariVC: true,
         forceWebView: true,
+        enableJavaScript: true,
         enableDomStorage: true,
       );
     } else {
