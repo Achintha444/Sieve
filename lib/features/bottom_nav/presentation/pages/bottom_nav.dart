@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:sieve_data_privacy_app/features/interesting_news/presentation/pages/interesting_news.dart';
 
 import '../../../../injection_container.dart';
 import '../../../login_screen/domain/entities/login_user.dart';
@@ -55,7 +56,7 @@ class _BlocListner extends StatelessWidget {
         } else if (state is InternetError) {
           return InternetErrorWidget(user: user,event: state.event,);
         } else if (state is NewsFeedState) {
-          return Temp(user: user,);
+          return InterestingNews(user: user,);
         } else if (state is CategoryState) {
           return Temp(user: user,);
         } else if (state is DashboardState) {
