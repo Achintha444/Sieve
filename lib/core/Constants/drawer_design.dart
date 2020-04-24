@@ -51,38 +51,42 @@ class DrawerDesign extends StatelessWidget {
                   TweenAnimationBuilder(
                     tween: Tween<double>(begin: 0, end: 105),
                     key: Key('login'),
-                    duration: Duration(milliseconds: 380),
-                    curve: Curves.easeInOut,
+                    duration: Duration(milliseconds: 700),
+                    curve: Curves.easeInQuint,
                     builder: (BuildContext context, double size, Widget child) {
-                      return Align(
-                        alignment: Alignment.center,
-                        child: Padding(
-                          padding: const EdgeInsets.only(
-                            left: 8,
-                            right: 8,
-                          ),
-                          child: Container(
-                            width: size,
-                            height: size,
-                            decoration: new BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: new BorderRadius.all(
-                                  new Radius.circular(60.0)),
-                              border: new Border.all(
-                                color: Colors.white,
-                                width: 6.0,
-                              ),
+                      return Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: <Widget>[
+                          Padding(
+                            padding: const EdgeInsets.only(
+                              left: 8,
+                              right: 8,
                             ),
-                            key: Key('user_image'),
-                            child: ClipOval(
-                              child: FadeInImage.assetNetwork(
-                                placeholder: 'icons/user_placeholder.png',
-                                image: 'https://i.imgur.com/BoN9kdC.png',
-                                fit: BoxFit.fill,
+                            child:  Container(
+                                width: size,
+                                height: size,
+                                decoration: new BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: new BorderRadius.all(
+                                      new Radius.circular(60.0)),
+                                  border: new Border.all(
+                                    color: Colors.white,
+                                    width: 6.0,
+                                  ),
+                                ),
+                                key: Key('user_image'),
+                                child: ClipOval(
+                                  child: FadeInImage.assetNetwork(
+                                    placeholder: 'icons/user_placeholder.png',
+                                    image: 'https://i.imgur.com/BoN9kdC.png',
+                                    fit: BoxFit.fill,
+                                  ),
+                                ),
                               ),
-                            ),
+                            
                           ),
-                        ),
+                        ],
                       );
                     },
                   ),
