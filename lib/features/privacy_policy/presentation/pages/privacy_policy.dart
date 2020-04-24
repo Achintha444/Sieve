@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:sieve_data_privacy_app/features/bottom_nav/presentation/widgets/loading_widget.dart';
-import 'package:sieve_data_privacy_app/features/privacy_policy/presentation/widgets/initial_state_widget.dart';
-import 'package:sieve_data_privacy_app/features/privacy_policy/presentation/widgets/internet_error_widget.dart';
-import 'package:sieve_data_privacy_app/features/privacy_policy/presentation/widgets/privacy_policy_widget.dart';
+import '../widgets/privacy_policy_widget.dart';
 
 import '../../../../core/Constants/refresh_floating_button.dart';
 import '../../../../injection_container.dart';
+import '../../../bottom_nav/presentation/widgets/loading_widget.dart';
 import '../../../login_screen/domain/entities/login_user.dart';
 import '../bloc/privacy_policy_bloc.dart';
+import '../widgets/initial_state_widget.dart';
+import '../widgets/internet_error_widget.dart';
 
 class PrivacyPolicy extends StatelessWidget {
   final LoginUser user;
@@ -62,6 +62,7 @@ class _BlocListner extends StatelessWidget {
           return PrivacyPolicyWidget(
             user: user,
             privacyPolicy: state.privacyPolicy,
+            appId: appId,
           );
         } else {
           return Container();

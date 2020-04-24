@@ -1,244 +1,118 @@
 import 'package:flutter/material.dart';
-import 'package:sieve_data_privacy_app/features/login_screen/domain/entities/login_user.dart';
-import 'package:sieve_data_privacy_app/features/privacy_policy/domain/entities/privacy_policy.dart';
 
-class PrivacyPolicyWidget extends StatefulWidget {
+import '../../../login_screen/domain/entities/login_user.dart';
+import '../../domain/entities/privacy_policy.dart';
+import 'privacy_policy_card.dart';
 
+class PrivacyPolicyWidget extends StatelessWidget {
   final LoginUser user;
+  //TODO : HERE it should passes the App() object, for now it uses a Strnig.
+  final String appId;
   final PrivacyPolicy privacyPolicy;
 
-  PrivacyPolicyWidget({Key key, @required this.user, @required this.privacyPolicy}) : super(key: key);
-
-  @override
-  _PrivacyPolicyWidgetState createState() => _PrivacyPolicyWidgetState();
-}
-
-class _PrivacyPolicyWidgetState extends State<PrivacyPolicyWidget> {
-  //List<Item> _data = generateItems(8);
-  List<bool> _expanded = [false, false, false, false, false];
-  final testData = ["Example1", "Example2", "Example3", "Example100"];
+  const PrivacyPolicyWidget(
+      {Key key,
+      @required this.user,
+      @required this.appId,
+      @required this.privacyPolicy})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final _markDownData =
-        testData.map((x) => "- $x\n").reduce((x, y) => "$x$y");
-
-    return SingleChildScrollView(
-      child: Container(
-        child: _buildPanel(_markDownData),
-      ),
-    );
-  }
-
-  Widget _buildPanel(String markDownData) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: ExpansionPanelList(
-        expansionCallback: (int index, bool isExpanded) {
-          setState(() {
-            _expanded[index] = !isExpanded;
-          });
-        },
-        children: [
-          ExpansionPanel(
-            headerBuilder: (BuildContext context, bool isExpanded) {
-              return Container(
-                //decoration: BoxDecoration(color: Theme.of(context).accentColor),
-                child: ListTile(
-                  title: Text(
-                    'Data Type Collected',
-                    style: TextStyle(
-                        fontSize: 17,
-                        letterSpacing: 1,
-                        color: Theme.of(context).primaryColor),
-                  ),
-                ),
-              );
-            },
-            canTapOnHeader: true,
-            body: ListView(
-              shrinkWrap: true,
-              physics: NeverScrollableScrollPhysics(),
-              children: <Widget>[
-                ListTile(
-                  leading: Icon(
-                    Icons.bookmark,
-                    size: 20,
-                  ),
-                  title: Text(
-                    'Uber retains user profile, transaction, and other personal data for as long as a user maintains their Uber account',
-                  ),
-                ),
-                ListTile(
-                    leading: Icon(
-                      Icons.bookmark,
-                      size: 20,
-                    ),
-                    title: Text(
-                        'Uber retains user profile, transaction, and other personal data for as long as a user maintains their Uber account')),
-                ListTile(
-                    leading: Icon(
-                      Icons.bookmark,
-                      size: 20,
-                    ),
-                    title: Text(
-                        'Uber retains user profile, transaction, and other personal data for as long as a user maintains their Uber account')),
-                ListTile(
-                    leading: Icon(
-                      Icons.bookmark,
-                      size: 20,
-                    ),
-                    title: Text('Ip Address')),
-                ListTile(
-                    leading: Icon(
-                      Icons.bookmark,
-                      size: 20,
-                    ),
-                    title: Text('Ip Address')),
-                ListTile(
-                    leading: Icon(
-                      Icons.bookmark,
-                      size: 20,
-                    ),
-                    title: Text('Ip Address')),
-              ],
-            ),
-            isExpanded: _expanded[0],
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          'GOOGLE'.toUpperCase(),
+          style: TextStyle(
+            color: Theme.of(context).primaryColor,
+            fontSize: 25,
+            letterSpacing: 2,
           ),
-          
-          ExpansionPanel(
-            headerBuilder: (BuildContext context, bool isExpanded) {
-              return Container(
-                //decoration: BoxDecoration(color: Theme.of(context).accentColor),
-                child: ListTile(
-                  title: Text(
-                    'Data Usage Policy',
-                    style: TextStyle(
-                        fontSize: 17,
-                        letterSpacing: 1,
-                        color: Theme.of(context).primaryColor),
-                  ),
-                ),
-              );
-            },
-            canTapOnHeader: true,
-            body: ListView(
-              shrinkWrap: true,
-              physics: NeverScrollableScrollPhysics(),
-              children: <Widget>[
-                ListTile(
-                  title: Text('Ip Address'),
-                ),
-                ListTile(
-                  title: Text('Ip Address'),
-                ),
-                ListTile(
-                  title: Text('Ip Address'),
-                ),
-              ],
+        ),
+        backgroundColor: Colors.white,
+        elevation: 0,
+        iconTheme: IconThemeData(color: Theme.of(context).primaryColor),
+        //* user_image
+        actions: <Widget>[
+          ClipRRect(
+            borderRadius: BorderRadius.circular(50.0),
+            child: FadeInImage.assetNetwork(
+              placeholder: 'icons/user_placeholder.png',
+              image: 'https://i.imgur.com/BoN9kdC.png',
+              fit: BoxFit.fill,
+              width: 50,
+              height: 50,
             ),
-            isExpanded: _expanded[1],
-          ),
-          ExpansionPanel(
-            headerBuilder: (BuildContext context, bool isExpanded) {
-              return Container(
-                //decoration: BoxDecoration(color: Theme.of(context).accentColor),
-                child: ListTile(
-                  title: Text(
-                    'Data Removal Policy',
-                    style: TextStyle(
-                        fontSize: 17,
-                        letterSpacing: 1,
-                        color: Theme.of(context).primaryColor),
-                  ),
-                ),
-              );
-            },
-            canTapOnHeader: true,
-            body: ListView(
-              shrinkWrap: true,
-              physics: NeverScrollableScrollPhysics(),
-              children: <Widget>[
-                ListTile(
-                  title: Text('Ip Address'),
-                ),
-                ListTile(
-                  title: Text('Ip Address'),
-                ),
-                ListTile(
-                  title: Text('Ip Address'),
-                ),
-              ],
-            ),
-            isExpanded: _expanded[1],
-          ),
-          ExpansionPanel(
-            headerBuilder: (BuildContext context, bool isExpanded) {
-              return Container(
-                //decoration: BoxDecoration(color: Theme.of(context).accentColor),
-                child: ListTile(
-                  title: Text(
-                    'Privacy Officer Contact',
-                    style: TextStyle(
-                        fontSize: 17,
-                        letterSpacing: 1,
-                        color: Theme.of(context).primaryColor),
-                  ),
-                ),
-              );
-            },
-            canTapOnHeader: true,
-            body: ListView(
-              shrinkWrap: true,
-              physics: NeverScrollableScrollPhysics(),
-              children: <Widget>[
-                ListTile(
-                  title: Text('Ip Address'),
-                ),
-                ListTile(
-                  title: Text('Ip Address'),
-                ),
-                ListTile(
-                  title: Text('Ip Address'),
-                ),
-              ],
-            ),
-            isExpanded: _expanded[1],
-          ),
-          ExpansionPanel(
-            headerBuilder: (BuildContext context, bool isExpanded) {
-              return Container(
-                //decoration: BoxDecoration(color: Theme.of(context).accentColor),
-                child: ListTile(
-                  title: Text(
-                    'Link to the Policy',
-                    style: TextStyle(
-                        fontSize: 17,
-                        letterSpacing: 1,
-                        color: Theme.of(context).primaryColor),
-                  ),
-                ),
-              );
-            },
-            canTapOnHeader: true,
-            body: ListView(
-              shrinkWrap: true,
-              physics: NeverScrollableScrollPhysics(),
-              children: <Widget>[
-                ListTile(
-                  title: Text('Ip Address'),
-                ),
-                ListTile(
-                  title: Text('Ip Address'),
-                ),
-                ListTile(
-                  title: Text('Ip Address'),
-                ),
-              ],
-            ),
-            isExpanded: _expanded[1],
           ),
         ],
+        bottom: PreferredSize(
+          preferredSize: MediaQuery.of(context).size / 4,
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              children: <Widget>[
+                Container(
+                  padding: EdgeInsets.all(8),
+                  height: MediaQuery.of(context).size.height / 5.5,
+                  child: Row(
+                    children: <Widget>[
+                      Container(
+                        padding: EdgeInsets.all(8),
+                        child: Image(
+                          image: AssetImage('icons/g.png'),
+                          height: 80,
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(
+                          left: 5,
+                          right: 5,
+                        ),
+                      ),
+                      Expanded(
+                        child: Text(
+                          'One Of the Biggest Social Media Platform',
+                          style: TextStyle(
+                            color: Theme.of(context).primaryColor,
+                            fontSize: 17.5,
+                            letterSpacing: 1.5,
+                            //fontWeight: FontWeight.w600,
+                            wordSpacing: 1,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(
+                    top: 5,
+                    bottom: 5,
+                  ),
+                ),
+                Align(
+                  alignment: Alignment.topLeft,
+                  child: Text(
+                    'Simplifed Privacy Policy'.toUpperCase(),
+                    style: TextStyle(
+                      color: Theme.of(context).primaryColor,
+                      letterSpacing: 1.3,
+                      fontSize: 20,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+      body: SingleChildScrollView(
+        child: Container(
+          child: PrivacyPolicyCard(
+            user: user,
+            privacyPolicy: privacyPolicy,
+          ),
+        ),
       ),
     );
   }

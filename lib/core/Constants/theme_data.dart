@@ -37,6 +37,7 @@ var themeData = ThemeData(
       borderRadius: new BorderRadius.circular(4),
     ),
   ),
+  toggleableActiveColor: Color(0xff265699),
 );
 
 var mainTextStyle = TextStyle(

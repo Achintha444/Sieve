@@ -48,47 +48,51 @@ class DrawerDesign extends StatelessWidget {
                   ),
 
                   //* Image
-                  TweenAnimationBuilder(
-                    tween: Tween<double>(begin: 0, end: 105),
-                    key: Key('login'),
-                    duration: Duration(milliseconds: 700),
-                    curve: Curves.easeInQuint,
-                    builder: (BuildContext context, double size, Widget child) {
-                      return Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: <Widget>[
-                          Padding(
-                            padding: const EdgeInsets.only(
-                              left: 8,
-                              right: 8,
-                            ),
-                            child:  Container(
-                                width: size,
-                                height: size,
-                                decoration: new BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: new BorderRadius.all(
-                                      new Radius.circular(60.0)),
-                                  border: new Border.all(
-                                    color: Colors.white,
-                                    width: 6.0,
-                                  ),
-                                ),
-                                key: Key('user_image'),
-                                child: ClipOval(
-                                  child: FadeInImage.assetNetwork(
-                                    placeholder: 'icons/user_placeholder.png',
-                                    image: 'https://i.imgur.com/BoN9kdC.png',
-                                    fit: BoxFit.fill,
-                                  ),
-                                ),
+                  Container(
+                    height: 110,
+                    width: 150,
+                    child: TweenAnimationBuilder(
+                      tween: Tween<double>(begin: 0, end: 105),
+                      key: Key('login'),
+                      duration: Duration(milliseconds: 400),
+                      curve: Curves.easeInQuint,
+                      builder: (BuildContext context, double size, Widget child) {
+                        return Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: <Widget>[
+                            Padding(
+                              padding: const EdgeInsets.only(
+                                left: 8,
+                                right: 8,
                               ),
-                            
-                          ),
-                        ],
-                      );
-                    },
+                              child:  Container(
+                                  width: size,
+                                  height: size,
+                                  decoration: new BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: new BorderRadius.all(
+                                        new Radius.circular(60.0)),
+                                    border: new Border.all(
+                                      color: Colors.white,
+                                      width: 6.0,
+                                    ),
+                                  ),
+                                  key: Key('user_image'),
+                                  child: ClipOval(
+                                    child: FadeInImage.assetNetwork(
+                                      placeholder: 'icons/user_placeholder.png',
+                                      image: 'https://i.imgur.com/BoN9kdC.png',
+                                      fit: BoxFit.fill,
+                                    ),
+                                  ),
+                                ),
+                              
+                            ),
+                          ],
+                        );
+                      },
+                    ),
                   ),
 
                   Padding(

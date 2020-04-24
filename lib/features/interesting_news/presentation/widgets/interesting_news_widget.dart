@@ -37,7 +37,7 @@ class InterestingNewsWidget extends StatelessWidget {
                   'Interesting News About Data Privacy',
                   textAlign: TextAlign.left,
                   style: TextStyle(
-                    fontSize: 16,
+                    fontSize: 18,
                     color: Theme.of(context).primaryColor,
                     letterSpacing: 1.3,
                   ),

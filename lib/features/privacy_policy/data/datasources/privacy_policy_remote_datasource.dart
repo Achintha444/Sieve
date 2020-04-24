@@ -22,7 +22,8 @@ class PrivacyPolicyRemoteDatasourceImpl implements PrivacyPolicyRemoteDatasource
 
   @override
   Future<PrivacyPolicyModel> loadPrivacyPolicy(String id) async{
-    final response = await httpClient.post(API_URL + "/privacy_policy/view_all",body: {'id':id});
+    print(id);
+    final response = await httpClient.post(API_URL + "/privacy_policy/view_all",body: {'id': id});
     if (response.statusCode != 200) {
       throw ServerException();
       // final error = json.decode(response.body);
