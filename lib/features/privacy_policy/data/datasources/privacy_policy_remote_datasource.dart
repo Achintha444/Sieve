@@ -11,7 +11,7 @@ abstract class PrivacyPolicyRemoteDatasource {
   /// Calls the api/user/login endpoint
   ///
   /// Throws a [ServerException] for all error codes.
-  Future<PrivacyPolicyModel> loadPrivacyPolicy();
+  Future<PrivacyPolicyModel> loadPrivacyPolicy(String id);
 }
 
 class PrivacyPolicyRemoteDatasourceImpl implements PrivacyPolicyRemoteDatasource{
@@ -21,8 +21,8 @@ class PrivacyPolicyRemoteDatasourceImpl implements PrivacyPolicyRemoteDatasource
   PrivacyPolicyRemoteDatasourceImpl({@required this.httpClient});
 
   @override
-  Future<PrivacyPolicyModel> loadPrivacyPolicy() async{
-    final response = await httpClient.post(API_URL + "/privacy_policy/view_all");
+  Future<PrivacyPolicyModel> loadPrivacyPolicy(String id) async{
+    final response = await httpClient.post(API_URL + "/privacy_policy/view_all",body: {'id':id});
     if (response.statusCode != 200) {
       throw ServerException();
       // final error = json.decode(response.body);

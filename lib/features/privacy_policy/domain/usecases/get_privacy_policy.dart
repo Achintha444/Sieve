@@ -11,8 +11,8 @@ class GetPriacyPolicy implements UseCase<PrivacyPolicy, List<dynamic>> {
 
   GetPriacyPolicy({@required this.privacyPolicyRepo});
 
-  // params[0] = LoginUser user,
-  // params[1] = String id
+  // params[1] = LoginUser user,
+  // params[0] = String id
 
   @override
   Future<Either<Faliure, PrivacyPolicy>> call(List params) async{
