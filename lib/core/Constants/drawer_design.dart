@@ -51,7 +51,7 @@ class DrawerDesign extends StatelessWidget {
                   TweenAnimationBuilder(
                     tween: Tween<double>(begin: 0, end: 105),
                     key: Key('login'),
-                    duration: Duration(milliseconds: 400),
+                    duration: Duration(milliseconds: 380),
                     curve: Curves.easeInOut,
                     builder: (BuildContext context, double size, Widget child) {
                       return Align(
