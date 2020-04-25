@@ -38,6 +38,10 @@ var themeData = ThemeData(
     ),
   ),
   toggleableActiveColor: Color(0xff265699),
+  floatingActionButtonTheme: FloatingActionButtonThemeData(
+    focusElevation: 1,
+    
+  )
 );
 
 var mainTextStyle = TextStyle(
