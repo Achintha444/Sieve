@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
+
+import '../../../login_screen/domain/entities/login_user.dart';
+import 'email_send_widget.dart';
 
 class PanelPrivacyOfficer extends StatelessWidget {
+  final LoginUser user;
   final String contactLink;
   final String email;
   final String fiLine;
@@ -10,6 +15,7 @@ class PanelPrivacyOfficer extends StatelessWidget {
 
   const PanelPrivacyOfficer(
       {Key key,
+      @required this.user,
       @required this.contactLink,
       @required this.email,
       @required this.fiLine,
@@ -41,15 +47,20 @@ class PanelPrivacyOfficer extends StatelessWidget {
                   //* email
                   Builder(
                     builder: (context) {
-                      if (email == null) {
+                      if (email != null) {
                         return ListTile(
-                          title: Text(
-                            'Click here to send an email to Google about it',
-                            style: TextStyle(
-                              fontSize: 15,
-                              color: Theme.of(context).accentColor,
-                              fontWeight: FontWeight.w600,
-                              letterSpacing: 1,
+                          title: GestureDetector(
+                            onTap: () {
+                              this._sendEmail(context);
+                            },
+                            child: Text(
+                              'Click here to send an email to Google about it',
+                              style: TextStyle(
+                                fontSize: 15,
+                                color: Theme.of(context).accentColor,
+                                fontWeight: FontWeight.w600,
+                                letterSpacing: 1,
+                              ),
                             ),
                           ),
                         );
@@ -66,13 +77,19 @@ class PanelPrivacyOfficer extends StatelessWidget {
                     builder: (context) {
                       if (contactLink != null && contactLink.isNotEmpty) {
                         return ListTile(
-                          title: Text(
-                            "Click here to send a message through Google's website",
-                            style: TextStyle(
-                              fontSize: 15,
-                              color: Theme.of(context).accentColor,
-                              fontWeight: FontWeight.w600,
-                              letterSpacing: 1,
+                          title: GestureDetector(
+                            onTap: () {
+                              this._launchInWebViewWithDomStorage(
+                                  contactLink, context);
+                            },
+                            child: Text(
+                              "Click here to send a message through Google's website",
+                              style: TextStyle(
+                                fontSize: 15,
+                                color: Theme.of(context).accentColor,
+                                fontWeight: FontWeight.w600,
+                                letterSpacing: 1,
+                              ),
                             ),
                           ),
                         );
@@ -94,11 +111,10 @@ class PanelPrivacyOfficer extends StatelessWidget {
                               title: Text(
                                 'Contact through snail mail',
                                 style: TextStyle(
-                                  fontSize: 15,
-                                  color: Theme.of(context).accentColor,
-                                  letterSpacing: 1,
-                                  fontWeight: FontWeight.w600
-                                ),
+                                    fontSize: 15,
+                                    color: Theme.of(context).accentColor,
+                                    letterSpacing: 1,
+                                    fontWeight: FontWeight.w600),
                               ),
                             ),
                             Align(
@@ -170,8 +186,9 @@ class PanelPrivacyOfficer extends StatelessWidget {
                                       }
                                     },
                                   ),
-                                  Padding(padding: EdgeInsets.only(top:18,bottom: 18)),
-                                  
+                                  Padding(
+                                      padding:
+                                          EdgeInsets.only(top: 18, bottom: 18)),
                                 ],
                               ),
                             ),
@@ -184,6 +201,13 @@ class PanelPrivacyOfficer extends StatelessWidget {
                         );
                       }
                     },
+                  ),
+                  //* End Padding
+                  Padding(
+                    padding: EdgeInsets.only(
+                      top: 18,
+                      bottom: 18,
+                    ),
                   ),
                 ],
               );
@@ -216,5 +240,44 @@ class PanelPrivacyOfficer extends StatelessWidget {
         ),
       ],
     );
+  }
+
+  void _sendEmail(BuildContext context) {
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) => EmailSendWidget(user: user, email: email)));
+  }
+
+  Future<void> _launchInWebViewWithDomStorage(
+      String url, BuildContext context) async {
+    if (await canLaunch(url)) {
+      await launch(
+        url,
+        forceSafariVC: true,
+        forceWebView: true,
+        enableDomStorage: true,
+        universalLinksOnly: true,
+        enableJavaScript: true,
+      );
+    } else {
+      Scaffold.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+            'Something went wrong\nTry again'.toUpperCase(),
+            style: TextStyle(color: Colors.white),
+          ),
+          backgroundColor: Theme.of(context).primaryColor,
+          duration: Duration(seconds: 6),
+          action: SnackBarAction(
+            label: 'Close',
+            textColor: Colors.white,
+            onPressed: () {
+              Scaffold.of(context).hideCurrentSnackBar();
+            },
+          ),
+        ),
+      );
+    }
   }
 }
