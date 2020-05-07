@@ -244,9 +244,11 @@ class PanelPrivacyOfficer extends StatelessWidget {
 
   void _sendEmail(BuildContext context) {
     Navigator.push(
-        context,
-        MaterialPageRoute(
-            builder: (context) => EmailSendWidget(user: user, email: email)));
+      context,
+      MaterialPageRoute(
+        builder: (context) => EmailSendWidget(user: user, email: email),
+      ),
+    );
   }
 
   Future<void> _launchInWebViewWithDomStorage(

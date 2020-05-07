@@ -87,7 +87,6 @@ class InternetErrorWidget extends StatelessWidget {
   }
 
   void _dispatchEvent(BuildContext context) {
-    print ('assaas');
     BlocProvider.of<PrivacyPolicyBloc>(context).dispatch(
       LoadPrivacyPolicyEvent(user: user, appId: appId)
     );
