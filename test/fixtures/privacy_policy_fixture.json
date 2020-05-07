@@ -1,0 +1,50 @@
+{
+    "types": [
+        {
+            "app_id": 2,
+            "data_type_name": "name"
+        },
+        {
+            "app_id": 2,
+            "data_type_name": "email"
+        },
+        {
+            "app_id": 2,
+            "data_type_name": "gender"
+        }
+    ],
+    "usages": [
+        {
+            "app_id": 2,
+            "policy": "Location related information to provide,personalise and improve their product,including ads,for you and the others",
+            "date_modified": "2020-04-19T18:30:11.000Z",
+            "id": 2
+        },
+        {
+            "app_id": 2,
+            "policy": "Network and connection information(people,pages,account,hashtags etc) may use to help others and you to find people you may know",
+            "date_modified": "2020-04-23T18:30:00.000Z",
+            "id": 9
+        }
+    ],
+    "removals": [
+        {
+            "app_id": 2,
+            "policy": "Data store until your account is deleted.",
+            "date_modified": "2020-04-19T18:35:06.000Z",
+            "id": 2
+        },
+        {
+            "app_id": 2,
+            "policy": "But when  the account is deleted all posted information given by others about you is not deleted since it a part of your account.So they are not deleted ",
+            "date_modified": "2020-04-23T18:30:00.000Z",
+            "id": 4
+        }
+    ],
+    "contact_link": "https://www.facebook.com/help/contact/861937627253138",
+    "email": "achinthaisuru444@gmail.com",
+    "first_line": "Facebook,inc.ATTN:",
+    "second_line": "Privacy operation 1601",
+    "third_line": "Willow Road Menlo Park",
+    "fourth_line": "CA 94028,USA"
+}
