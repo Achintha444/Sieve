@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sieve_data_privacy_app/features/login_screen/domain/entities/login_user.dart';
+import 'package:sieve_data_privacy_app/features/privacy_laws/presentation/bloc/privacy_laws_bloc.dart';
 
 import '../bloc/bottom_nav_bloc.dart';
 
@@ -42,7 +43,7 @@ class _InitialStateWidgetState extends State<InitialStateWidget> {
 
   void _dispatchEvent(BuildContext context) {
     BlocProvider.of<BottomNavBloc>(context).dispatch(
-      NewsFeedEvent(user: widget.user),
+      CategoryEvent(user: widget.user),
     );
   }
 }
