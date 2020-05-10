@@ -15,7 +15,7 @@ class Suggestion extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBarDesign(title: 'Suggestions'),
+      appBar: AppBarDesign(title: 'Suggestions',imageUrl: user.getImageUrl,),
       body: SingleChildScrollView(
         child: _buildBody(context),
       ),

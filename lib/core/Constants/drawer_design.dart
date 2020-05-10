@@ -82,7 +82,7 @@ class DrawerDesign extends StatelessWidget {
                                   child: ClipOval(
                                     child: FadeInImage.assetNetwork(
                                       placeholder: 'icons/user_placeholder.png',
-                                      image: 'https://i.imgur.com/BoN9kdC.png',
+                                      image: _imageUrl(),
                                       fit: BoxFit.fill,
                                     ),
                                   ),
@@ -156,6 +156,14 @@ class DrawerDesign extends StatelessWidget {
         ),
       ),
     );
+  }
+
+    String _imageUrl() {
+    if (user.getImageUrl == null) {
+      return 'https://i.imgur.com/BoN9kdC.png';
+    } else {
+      return user.getImageUrl;
+    }
   }
 
   void _closeDrawer(BuildContext context) {

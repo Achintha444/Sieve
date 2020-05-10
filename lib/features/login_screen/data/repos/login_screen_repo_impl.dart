@@ -1,6 +1,8 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:sieve_data_privacy_app/features/login_screen/data/datasources/login_screen_local_datasource.dart';
+import 'package:sieve_data_privacy_app/features/login_signup_screen/domain/entities/user.dart';
 
 import '../../../../core/Entities/empty_entity.dart';
 import '../../../../core/Error/exceptions.dart';
@@ -29,8 +31,8 @@ class LoginScreenRepoImpl implements LoginScreenRepo {
   }
 
   @override
-  Future<Either<Faliure, EmptyEntity>> getGoogleLogin() async {
-    return await this.loginSignuScreenRepo.getGoogleLogin();
+  Future<Either<Faliure, LoginUser>> getGoogleLogin(GoogleSignInAccount account) async {
+    return await this.loginSignuScreenRepo.getGoogleLogin(account);
   }
 
   @override

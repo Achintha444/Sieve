@@ -3,7 +3,9 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:sieve_data_privacy_app/core/Usecase/use_case.dart';
+import 'package:sieve_data_privacy_app/features/login_screen/domain/entities/login_user.dart';
 import '../../domain/usecases/get_facebook_login.dart';
 import '../../domain/usecases/get_google_login.dart';
 
@@ -40,12 +42,13 @@ class LoginSignupScreenBloc
     }
     if (event is GetGoogleLoginEvent) {
       yield Loading();
-      final response = await getGoogleLogin(NoParams());
+      print(event.account);
+      final response = await getGoogleLogin(event.account);
 
       yield* response.fold((faliure) async* {
         yield InternetError();
       }, (user) async* {
-        yield Loaded();
+        yield Loaded(loginUser: user);
       });
     }
   }

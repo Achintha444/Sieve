@@ -22,7 +22,7 @@ class InterestingNewsWidget extends StatelessWidget {
       ),
       appBar: AppBarDesign(
         title: 'NewsFeed',
-
+        imageUrl: user.getImageUrl,
 
       ),
       body: SingleChildScrollView(

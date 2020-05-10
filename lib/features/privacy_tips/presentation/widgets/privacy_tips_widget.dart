@@ -22,6 +22,7 @@ class PrivacyTipsWidget extends StatelessWidget {
       ),
       appBar: AppBarDesign(
         title: 'Privacy Tips',
+        imageUrl: user.getImageUrl,
         
       ),
       body: SingleChildScrollView(

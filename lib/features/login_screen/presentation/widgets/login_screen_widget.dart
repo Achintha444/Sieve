@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:sieve_data_privacy_app/features/login_screen/presentation/widgets/google_siginin_widget.dart';
 
 import '../bloc/login_screen_bloc.dart';
 import '../../../../core/util/input_converter.dart';
@@ -209,20 +210,7 @@ class _LoginScreenWidgetState extends State<LoginScreenWidget> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
-                FloatingActionButton(
-                  heroTag: Key('google_loginscreen'),
-                  child: Container(
-                    height: 30,
-                    key: Key('google_loginscreen'),
-                    child: Image(
-                      image: AssetImage('icons/google.png'),
-                      color: Colors.white,
-                    ),
-                  ),
-                  onPressed: () {
-                    _googleLoinFunction(context);
-                  },
-                ),
+                GoogleSigninWidget(),
                 Padding(
                   padding: EdgeInsets.only(
                     left: 60,
@@ -366,12 +354,6 @@ class _LoginScreenWidgetState extends State<LoginScreenWidget> {
   void _facebookLoginFunction(BuildContext context) {
     BlocProvider.of<LoginScreenBloc>(context).dispatch(
       GetFacebookLoginEvent(),
-    );
-  }
-
-  void _googleLoinFunction(BuildContext context) {
-    BlocProvider.of<LoginScreenBloc>(context).dispatch(
-      GetGoogleLoginEvent(),
     );
   }
 }

@@ -14,4 +14,9 @@ class GetLoginEvent extends LoginScreenEvent {
 
 class GetFacebookLoginEvent extends LoginScreenEvent {}
 
-class GetGoogleLoginEvent extends LoginScreenEvent {}
+class GetGoogleLoginEvent extends LoginScreenEvent {
+  final GoogleSignInAccount account;
+
+  GetGoogleLoginEvent({@required this.account})
+      : super([account]);
+}

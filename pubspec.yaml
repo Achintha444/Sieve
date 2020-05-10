@@ -41,7 +41,7 @@ dependencies:
   google_sign_in: ^4.4.4
 
   #flutter_facebook_login
-  flutter_facebook_login: ^3.0.0
+
 
   cupertino_icons: ^0.1.2
 

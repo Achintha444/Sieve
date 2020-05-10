@@ -2,6 +2,7 @@ import 'package:data_connection_checker/data_connection_checker.dart';
 import 'package:get_it/get_it.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:sieve_data_privacy_app/features/login_signup_screen/data/datasources/login_signup_screen_remote_datasource.dart';
 
 import 'core/Platform/network_info.dart';
 import 'features/bottom_nav/data/repos/bottom_nav_repo_impl.dart';
@@ -127,8 +128,15 @@ Future<void> init() async {
 
   //* repo
   sl.registerLazySingleton<LoginSignuScreenRepo>(
-    () => LoginSignupScreenRepoImpl(networkInfo: sl()),
+    () => LoginSignupScreenRepoImpl(
+      networkInfo: sl(),
+      loginSignupScreenRemoteDataSource: sl(),
+    ),
   );
+
+  //* datascources
+  sl.registerLazySingleton<LoginSignupScreenRemoteDataSource>(
+      () => LoginSignupScreenRemoteDataSourceImpl(httpClient: sl()));
 
   //! Features - login_screen
 

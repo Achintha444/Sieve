@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:sieve_data_privacy_app/features/login_signup_screen/presentation/widgets/google_siginin_widget.dart';
 
 import '../bloc/login_signup_screen_bloc.dart';
 
@@ -180,20 +181,7 @@ class LoginSignupScreenWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
-                FloatingActionButton(
-                  heroTag: 'google',
-                  child: Container(
-                    height: 30,
-                    key: Key('google_login'),
-                    child: Image(
-                      image: AssetImage('icons/google.png'),
-                      color: Colors.white,
-                    ),
-                  ),
-                  onPressed: () {
-                    _googleLoinFunction(context);
-                  },
-                ),
+                GoogleSigninWidget(),
                 Padding(
                   padding: EdgeInsets.only(
                     left: 60,
@@ -238,9 +226,6 @@ class LoginSignupScreenWidget extends StatelessWidget {
     );
   }
 
-  void _googleLoinFunction(BuildContext context) {
-    BlocProvider.of<LoginSignupScreenBloc>(context).dispatch(
-      GetGoogleLoginEvent(),
-    );
-  }
+
 }
+

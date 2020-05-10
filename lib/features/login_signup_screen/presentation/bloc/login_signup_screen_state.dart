@@ -10,4 +10,8 @@ class Loading extends LoginSignupScreenState{}
 
 class InternetError extends LoginSignupScreenState{}
 
-class Loaded extends LoginSignupScreenState{}
+class Loaded extends LoginSignupScreenState{
+  final LoginUser loginUser;
+
+  Loaded({@required this.loginUser}): super([loginUser]);
+}
