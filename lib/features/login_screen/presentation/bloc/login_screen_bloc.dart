@@ -70,7 +70,7 @@ class LoginScreenBloc extends Bloc<LoginScreenEvent, LoginScreenState> {
           yield InternetError();
         },
         (user) async* {
-          yield InternetError(); //* Loaded need to come here
+          yield Loaded(loginUser: user); //* Loaded need to come here
         },
       );
     }

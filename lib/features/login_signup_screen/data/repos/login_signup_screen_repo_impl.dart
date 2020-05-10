@@ -19,9 +19,20 @@ class LoginSignupScreenRepoImpl implements LoginSignuScreenRepo {
   LoginSignupScreenRepoImpl({@required this.networkInfo,@required this.loginSignupScreenRemoteDataSource,@required this.loginScreenLocalDataSource});
 
   @override
-  Future<Either<Faliure, EmptyEntity>> getFacebookLogin() async {
+  Future<Either<Faliure, LoginUser>> getFacebookLogin() async {
     if (await networkInfo.isConnected) {
-      return Right(EmptyEntity());
+      try{
+        final user = await loginSignupScreenRemoteDataSource.getFacebookLogin();
+        print (user);
+        print ('aaaa');
+        await this.loginScreenLocalDataSource.cacheFacebook();
+        await this.loginScreenLocalDataSource.cacheLoginUser(user);
+        return Right(user);
+      }on ServerException{
+        // await this.loginScreenLocalDataSource.removeCacheLoginType();
+        // await this.loginScreenLocalDataSource.removeCacheLoginUser();
+        return Left(ServerFaliure());
+      }
     } else {
       return Left(InternetConnectionFaliure());
     }

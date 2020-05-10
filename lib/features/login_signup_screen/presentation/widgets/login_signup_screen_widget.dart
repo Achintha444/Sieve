@@ -1,9 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:sieve_data_privacy_app/features/login_signup_screen/presentation/widgets/google_siginin_widget.dart';
 
-import '../bloc/login_signup_screen_bloc.dart';
+import 'google_siginin_widget.dart';
+import 'facebook_signup_screen_widget.dart';
 
 class LoginSignupScreenWidget extends StatelessWidget {
   @override
@@ -188,20 +187,7 @@ class LoginSignupScreenWidget extends StatelessWidget {
                     right: 30,
                   ),
                 ),
-                FloatingActionButton(
-                  heroTag: 'facebook',
-                  child: Container(
-                    key: Key('fb_login'),
-                    height: 50,
-                    child: Image(
-                      image: AssetImage('icons/facebook.png'),
-                      color: Colors.white,
-                    ),
-                  ),
-                  onPressed: () {
-                    _facebookLoginFunction(context);
-                  },
-                ),
+                FacebookSigninWidget(),
               ],
             ),
           ],
@@ -220,12 +206,10 @@ class LoginSignupScreenWidget extends StatelessWidget {
     Navigator.pushNamed(context, '/loginScreen');
   }
 
-  void _facebookLoginFunction(BuildContext context) {
-    BlocProvider.of<LoginSignupScreenBloc>(context).dispatch(
-      GetFacebookLoginEvent(),
-    );
-  }
+
 
 
 }
+
+
 

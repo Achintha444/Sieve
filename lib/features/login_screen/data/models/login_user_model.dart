@@ -16,11 +16,7 @@ class LoginUserModel extends LoginUser {
     return LoginUserModel(id:json['id'] ,email: json['email'], password: json['password'],uid: null,imageUrl: null);
   }
 
-  factory LoginUserModel.fromJsonGoogle(Map<String, dynamic> json) {
-    return LoginUserModel(id:json['id'] ,email: json['email'], uid: json['uid'],imageUrl: json['imageUrl'],password: null);
-  }
-
-  factory LoginUserModel.fromJsonFacebook(Map<String, dynamic> json) {
+  factory LoginUserModel.fromJsonGF(Map<String, dynamic> json) {
     return LoginUserModel(id:json['id'] ,email: json['email'], uid: json['uid'],imageUrl: json['imageUrl'],password: null);
   }
 

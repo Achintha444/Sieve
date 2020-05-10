@@ -61,6 +61,9 @@ class Logout extends StatelessWidget {
       if (this._loginScreenLocalDataSource.getLoggedinType() == 'Google') {
         await this._loginScreenLocalDataSource.removeCacheLoginType();
         await this._loginSignupScreenRemoteDataSource.googleLogout();
+      } else if(this._loginScreenLocalDataSource.getLoggedinType()=='Facebook'){
+        await this._loginScreenLocalDataSource.removeCacheLoginType();
+        await this._loginSignupScreenRemoteDataSource.facebookLogout();
       }
       return Navigator.pushAndRemoveUntil(
         context,

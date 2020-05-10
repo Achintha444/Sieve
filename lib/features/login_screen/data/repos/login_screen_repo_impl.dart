@@ -24,7 +24,7 @@ class LoginScreenRepoImpl implements LoginScreenRepo {
       @required this.loginScreenLocalDataSource});
 
   @override
-  Future<Either<Faliure, EmptyEntity>> getFacebookLogin() async {
+  Future<Either<Faliure, LoginUser>> getFacebookLogin() async {
     return await this.loginSignuScreenRepo.getFacebookLogin();
   }
 

@@ -29,7 +29,6 @@ class LoginSignupScreenBloc
   Stream<LoginSignupScreenState> mapEventToState(
     LoginSignupScreenEvent event,
   ) async* {
-    // TODO: implement mapEventToState
     if (event is GetFacebookLoginEvent) {
       yield Loading();
       final response = await getFacebookLogin(NoParams());
@@ -37,7 +36,7 @@ class LoginSignupScreenBloc
       yield* response.fold((faliure) async* {
         yield InternetError();
       }, (user) async* {
-        yield Loaded();
+        yield Loaded(loginUser: user);
       });
     }
     if (event is GetGoogleLoginEvent) {

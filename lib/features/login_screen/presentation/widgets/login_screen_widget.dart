@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:sieve_data_privacy_app/features/login_screen/presentation/widgets/google_siginin_widget.dart';
+import 'google_siginin_widget.dart';
+import 'facebook_signup_screen_widget.dart';
 
 import '../bloc/login_screen_bloc.dart';
 import '../../../../core/util/input_converter.dart';
@@ -217,20 +218,7 @@ class _LoginScreenWidgetState extends State<LoginScreenWidget> {
                     right: 30,
                   ),
                 ),
-                FloatingActionButton(
-                  heroTag: Key('fb_loginscreen'),
-                  child: Container(
-                    key: Key('fb_loginscreen'),
-                    height: 50,
-                    child: Image(
-                      image: AssetImage('icons/facebook.png'),
-                      color: Colors.white,
-                    ),
-                  ),
-                  onPressed: () {
-                    _facebookLoginFunction(context);
-                  },
-                ),
+                FacebookSigninWidget(),
               ],
             ),
             Padding(
