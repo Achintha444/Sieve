@@ -42,8 +42,8 @@ class LoginSignupScreenBloc
     }
     if (event is GetGoogleLoginEvent) {
       yield Loading();
-      print(event.account);
-      final response = await getGoogleLogin(event.account);
+      final response = await getGoogleLogin(NoParams());
+      print (response);
 
       yield* response.fold((faliure) async* {
         yield InternetError();

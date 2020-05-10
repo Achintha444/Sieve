@@ -53,13 +53,13 @@ class LoginScreenBloc extends Bloc<LoginScreenEvent, LoginScreenState> {
       );
     } else if (event is GetGoogleLoginEvent) {
       yield Loading();
-      final response = await this.getGoogleLogin(event.account);
+      final response = await this.getGoogleLogin(NoParams());
       yield* response.fold(
         (failure) async* {
           yield InternetError();
         },
         (user) async* {
-          yield InternetError(); //* Loaded need to come here
+          yield Loaded(loginUser: user); //* Loaded need to come here
         },
       );
     } else if (event is GetFacebookLoginEvent) {

@@ -7,9 +7,4 @@ abstract class LoginSignupScreenEvent extends Equatable {
 
 class GetFacebookLoginEvent extends LoginSignupScreenEvent{}
 
-class GetGoogleLoginEvent extends LoginSignupScreenEvent{
-  final GoogleSignInAccount account;
-
-  GetGoogleLoginEvent({@required this.account})
-      : super([account]);
-}
+class GetGoogleLoginEvent extends LoginSignupScreenEvent{}

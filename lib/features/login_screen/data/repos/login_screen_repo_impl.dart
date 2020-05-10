@@ -31,8 +31,8 @@ class LoginScreenRepoImpl implements LoginScreenRepo {
   }
 
   @override
-  Future<Either<Faliure, LoginUser>> getGoogleLogin(GoogleSignInAccount account) async {
-    return await this.loginSignuScreenRepo.getGoogleLogin(account);
+  Future<Either<Faliure, LoginUser>> getGoogleLogin() async {
+    return await this.loginSignuScreenRepo.getGoogleLogin();
   }
 
   @override

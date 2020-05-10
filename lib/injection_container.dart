@@ -131,6 +131,7 @@ Future<void> init() async {
     () => LoginSignupScreenRepoImpl(
       networkInfo: sl(),
       loginSignupScreenRemoteDataSource: sl(),
+      loginScreenLocalDataSource: sl(),
     ),
   );
 
