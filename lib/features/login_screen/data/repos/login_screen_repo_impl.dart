@@ -1,8 +1,5 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
-import 'package:google_sign_in/google_sign_in.dart';
-import 'package:sieve_data_privacy_app/features/login_screen/data/datasources/login_screen_local_datasource.dart';
-import 'package:sieve_data_privacy_app/features/login_signup_screen/domain/entities/user.dart';
 
 import '../../../../core/Entities/empty_entity.dart';
 import '../../../../core/Error/exceptions.dart';
@@ -11,6 +8,7 @@ import '../../../../core/error/Faliure.dart';
 import '../../../login_signup_screen/domain/repos/login_signup_screen_repo.dart';
 import '../../domain/entities/login_user.dart';
 import '../../domain/repos/login_screen_repo.dart';
+import '../datasources/login_screen_local_datasource.dart';
 import '../datasources/login_screen_remote_datasource.dart';
 
 class LoginScreenRepoImpl implements LoginScreenRepo {
