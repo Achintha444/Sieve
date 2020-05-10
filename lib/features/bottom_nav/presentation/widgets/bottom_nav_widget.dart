@@ -5,7 +5,6 @@ import 'package:sieve_data_privacy_app/features/login_screen/domain/entities/log
 import '../bloc/bottom_nav_bloc.dart';
 
 class BottomNavWidget extends StatefulWidget {
-
   final LoginUser user;
 
   const BottomNavWidget({Key key, @required this.user}) : super(key: key);
@@ -30,9 +29,9 @@ class BottomNavWidget extends StatefulWidget {
 
 class _BottomNavWidgetState extends State<BottomNavWidget> {
   final List<BottomNavigationBarItem> _items = [
-    BottomNavWidget._navBarItem('News Feed', Icons.library_books),
     BottomNavWidget._navBarItem('Category', Icons.category),
     BottomNavWidget._navBarItem('Dashboard', Icons.dashboard),
+    BottomNavWidget._navBarItem('News Feed', Icons.library_books),
     BottomNavWidget._navBarItem('Privacy Tips', Icons.fingerprint),
     BottomNavWidget._navBarItem('Privacy Laws', Icons.language),
   ];
@@ -55,42 +54,43 @@ class _BottomNavWidgetState extends State<BottomNavWidget> {
         fixedColor: Colors.white,
         unselectedIconTheme: IconThemeData(
           color: Colors.white,
-          size: 28,
+          size: 25,
         ),
         selectedIconTheme: IconThemeData(
           color: Colors.white,
-          size: 30,
+          size: 28,
         ),
         elevation: 0,
         showUnselectedLabels: false,
-        selectedLabelStyle: TextStyle(
-          color: Colors.white,
-          fontSize: 12
-        ),
-      
+        selectedLabelStyle: TextStyle(color: Colors.white, fontSize: 12),
       ),
     );
   }
 
   _tapLogic(int index, BuildContext context) {
     if (index == 0) {
-      BlocProvider.of<BottomNavBloc>(context).dispatch(NewsFeedEvent(user: widget.user));
+      BlocProvider.of<BottomNavBloc>(context)
+          .dispatch(CategoryEvent(user: widget.user));
       this._setIndex(0);
     }
     if (index == 1) {
-      BlocProvider.of<BottomNavBloc>(context).dispatch(CategoryEvent(user: widget.user));
+      BlocProvider.of<BottomNavBloc>(context)
+          .dispatch(DashboardEvent(user: widget.user));
       this._setIndex(1);
     }
     if (index == 2) {
-      BlocProvider.of<BottomNavBloc>(context).dispatch(DashboardEvent(user: widget.user));
+      BlocProvider.of<BottomNavBloc>(context)
+          .dispatch(NewsFeedEvent(user: widget.user));
       this._setIndex(2);
     }
     if (index == 3) {
-      BlocProvider.of<BottomNavBloc>(context).dispatch(TipsEvent(user: widget.user));
+      BlocProvider.of<BottomNavBloc>(context)
+          .dispatch(TipsEvent(user: widget.user));
       this._setIndex(3);
     }
     if (index == 4) {
-      BlocProvider.of<BottomNavBloc>(context).dispatch(LawsEvent(user: widget.user));
+      BlocProvider.of<BottomNavBloc>(context)
+          .dispatch(LawsEvent(user: widget.user));
       this._setIndex(4);
     }
   }

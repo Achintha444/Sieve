@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:sieve_data_privacy_app/features/login_screen/domain/entities/login_user.dart';
-import 'package:sieve_data_privacy_app/features/privacy_laws/presentation/bloc/privacy_laws_bloc.dart';
+import 'package:sieve_data_privacy_app/features/privacy_policy/presentation/bloc/privacy_policy_bloc.dart';
 
-import '../bloc/bottom_nav_bloc.dart';
+import '../../../login_screen/domain/entities/login_user.dart';
 
 class InitialStateWidget extends StatefulWidget {
 
   final LoginUser user;
+  final String appId;
 
-  const InitialStateWidget({Key key, @required this.user}) : super(key: key);
+  const InitialStateWidget({Key key, @required this.user, @required this.appId}) : super(key: key);
 
   @override
   _InitialStateWidgetState createState() => _InitialStateWidgetState();
@@ -42,8 +42,8 @@ class _InitialStateWidgetState extends State<InitialStateWidget> {
   }
 
   void _dispatchEvent(BuildContext context) {
-    BlocProvider.of<BottomNavBloc>(context).dispatch(
-      CategoryEvent(user: widget.user),
+    BlocProvider.of<PrivacyPolicyBloc>(context).dispatch(
+      LoadPrivacyPolicyEvent(user: widget.user, appId: widget.appId),
     );
   }
 }
