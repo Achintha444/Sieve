@@ -22,8 +22,10 @@ void main() {
   final String _id = '1';
   final String _email = 'test@gmail.com';
   final String _password = 'Test@123';
+  final String _imageUrl = 'www.google.com';
+  final String _uid = '123';
   final LoginUser loginUser =
-      new LoginUser(id: _id, email: _email, password: _password);
+      new LoginUser(id: _id, email: _email, password: _password,imageUrl: _imageUrl,uid: _uid);
   final List<Tips> tips = new List<Tips>();
 
   test(

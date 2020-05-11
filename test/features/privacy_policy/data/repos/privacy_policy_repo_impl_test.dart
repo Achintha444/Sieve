@@ -4,7 +4,6 @@ import 'package:mockito/mockito.dart';
 import 'package:sieve_data_privacy_app/core/error/Faliure.dart';
 import 'package:sieve_data_privacy_app/core/error/Exceptions.dart';
 import 'package:sieve_data_privacy_app/core/Platform/network_info.dart';
-import 'package:sieve_data_privacy_app/features/login_screen/data/models/login_user_model.dart';
 import 'package:sieve_data_privacy_app/features/login_screen/domain/entities/login_user.dart';
 import 'package:sieve_data_privacy_app/features/privacy_policy/data/datasources/privacy_policy_remote_datasource.dart';
 import 'package:sieve_data_privacy_app/features/privacy_policy/data/models/privacy_policy_model.dart';
@@ -41,8 +40,14 @@ void main() {
     final String id = '1';
     final String email = 'test1@gmail.com';
     final String password = 'Test@123';
-    final LoginUserModel tLoginUserModel =
-        new LoginUserModel(id: id, email: email, password: password);
+    final String _imageUrl = 'www.google.com';
+    final String _uid = '123';
+    final LoginUser tLoginUserModel = new LoginUser(
+        id: id,
+        email: email,
+        password: password,
+        imageUrl: _imageUrl,
+        uid: _uid);
     final LoginUser tLoginUser = tLoginUserModel;
 
     final tPrivacyPolicyModel = PrivacyPolicyModel(
@@ -114,7 +119,6 @@ void main() {
         //act
         final response =
             await privacyPolicyRepoImpl.getPrivacyPolicy(id, tLoginUser);
-        ;
         //assert
         verify(mockNetworkInfo.isConnected);
         expect(response, Left(InternetConnectionFaliure()));

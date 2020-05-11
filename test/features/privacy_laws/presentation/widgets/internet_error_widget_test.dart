@@ -14,10 +14,12 @@ void main() {
   final String email = 'test@gmail.com';
   final String password = 'Test@123';
   final String id = '1';
+  final String _imageUrl = 'www.google.com';
+  final String _uid = '123';
   LoginUser loginUser;
   PrivacyLawsEvent event;
   setUp(() {
-    loginUser = new LoginUser(id: id, email: email, password: password);
+    loginUser = new LoginUser(id: id, email: email, password: password,imageUrl: _imageUrl,uid: _uid);
     mockPrivacyLawsBloc = new MockPrivacyLawsBloc();
     event = new LoadPrivacyLawsEvent(user: loginUser);
   });

@@ -18,7 +18,7 @@ void main() {
   NavigateToCategory navigateToCategory;
   NavigateToDashboard navigateToDashboard;
   NavigateToPrivacyTips navigateToPrivacyTips;
-  NavigateToPrivacyLaws navigateToPrivacyLaws;
+  //NavigateToPrivacyLaws navigateToPrivacyLaws;
 
   setUp(() {
     mockBottomNavRepo = new MockBottomNavRepo();
@@ -30,16 +30,21 @@ void main() {
         new NavigateToDashboard(bottomNavRepo: mockBottomNavRepo);
     navigateToPrivacyTips =
         new NavigateToPrivacyTips(bottomNavRepo: mockBottomNavRepo);
-    navigateToPrivacyLaws =
+    //navigateToPrivacyLaws =
         new NavigateToPrivacyLaws(bottomNavRepo: mockBottomNavRepo);
   });
 
   final String email = 'test@gmail.com';
   final String password = 'Test@123';
   final String id = '1';
-
-  final LoginUser loginUser =
-      new LoginUser(id: id, email: email, password: password);
+  final String _imageUrl = 'www.google.com';
+  final String _uid = '123';
+  final LoginUser loginUser = new LoginUser(
+      id: id,
+      email: email,
+      password: password,
+      imageUrl: _imageUrl,
+      uid: _uid);
 
   group('NavigateToNewsFeed', () {
     test(

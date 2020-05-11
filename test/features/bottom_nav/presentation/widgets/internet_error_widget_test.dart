@@ -14,10 +14,17 @@ void main() {
   final String email = 'test@gmail.com';
   final String password = 'Test@123';
   final String id = '1';
+  final String _imageUrl = 'www.google.com';
+  final String _uid = '123';
   LoginUser loginUser;
   BottomNavEvent event;
   setUp(() {
-    loginUser = new LoginUser(id: id, email: email, password: password);
+    loginUser = new LoginUser(
+        id: id,
+        email: email,
+        password: password,
+        imageUrl: _imageUrl,
+        uid: _uid);
     mockBottomNavBloc = new MockBottomNavBloc();
     event = new NewsFeedEvent(user: loginUser);
   });
@@ -45,15 +52,15 @@ void main() {
 
     final noInternetText = find.text('NO INTERNET'.toUpperCase());
     final connectionText = find.text('connection'.toUpperCase());
-    final otherText = find.text('Connect to internet and try again'.toUpperCase());
+    final otherText =
+        find.text('Connect to internet and try again'.toUpperCase());
     final floatingActionButton = find.byIcon(Icons.replay);
 
     expect(noInternetText, findsOneWidget);
     expect(connectionText, findsOneWidget);
     expect(otherText, findsOneWidget);
     expect(floatingActionButton, findsOneWidget);
-    
-    
+
     // Dispatch correct Event
     await tester.tap(floatingActionButton);
     await tester.pump();
