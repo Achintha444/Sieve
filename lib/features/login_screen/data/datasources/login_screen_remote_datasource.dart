@@ -23,7 +23,6 @@ class LoginScreenRemoteDataSourceImpl implements LoginScreenRemoteDataSource {
   Future<LoginUserModel> getLoginUser(String email, String password) async {
     final response = await httpClient.post(API_URL + "/user/login",
         body: {'email': email, 'password': password});
-        print('aaaaaa');
     if (response.statusCode != 200) {
       final error = json.decode(response.body);
       if(error['serverError']==true){

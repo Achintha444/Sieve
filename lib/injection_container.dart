@@ -42,6 +42,11 @@ import 'features/privacy_laws/data/repos/privacy_laws_repo_impl.dart';
 import 'features/privacy_laws/domain/repos/privacy_laws_repo.dart';
 import 'features/privacy_laws/domain/usecases/load_privacy_laws.dart';
 import 'features/privacy_laws/presentation/bloc/privacy_laws_bloc.dart';
+import 'features/privacy_policy/data/datasources/privacy_policy_remote_datasource.dart';
+import 'features/privacy_policy/data/repos/privacy_policy_repo_impl.dart';
+import 'features/privacy_policy/domain/repos/privacy_policy_repo.dart';
+import 'features/privacy_policy/domain/usecases/get_privacy_policy.dart';
+import 'features/privacy_policy/presentation/bloc/privacy_policy_bloc.dart';
 import 'features/privacy_tips/data/datasources/privacy_tips_remote_datasource.dart';
 import 'features/privacy_tips/data/repos/privacy_tips_repo_impl.dart';
 import 'features/privacy_tips/domain/repos/privacy_tips_repo.dart';
@@ -380,6 +385,32 @@ Future<void> init() async {
   //* datasource
   sl.registerLazySingleton<SuggestionRemoteDataSource>(
       () => SuggestionRemoteDataSourceImpl(httpClient: sl()));
+
+  //! Features - privacy_policy
+
+  //* Bloc
+  sl.registerFactory(
+    () => PrivacyPolicyBloc(
+      getPriacyPolicy: sl(),
+    ),
+  );
+
+  //* usecases
+  sl.registerLazySingleton(
+    () => GetPriacyPolicy(
+      privacyPolicyRepo: sl(),
+    ),
+  );
+
+  //* repo
+  sl.registerLazySingleton<PrivacyPolicyRepo>(
+    () => PrivacyPolicyRepoImpl(
+        networkInfo: sl(), privacyPolicyRemoteDatasource: sl()),
+  );
+
+  //* datasource
+  sl.registerLazySingleton<PrivacyPolicyRemoteDatasource>(
+      () => PrivacyPolicyRemoteDatasourceImpl(httpClient: sl()));
 
   //! Core
   sl.registerLazySingleton<NetworkInfo>(() => NetworkInfoImpl(sl()));

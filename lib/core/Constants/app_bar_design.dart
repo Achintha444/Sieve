@@ -13,6 +13,7 @@ class AppBarDesign extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      key: Key('appBar'),
       title: Text(
         this.title.toUpperCase(),
         style: TextStyle(
