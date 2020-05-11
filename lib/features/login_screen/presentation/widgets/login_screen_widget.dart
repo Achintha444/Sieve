@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'google_siginin_widget.dart';
-import 'facebook_signup_screen_widget.dart';
 
-import '../bloc/login_screen_bloc.dart';
 import '../../../../core/util/input_converter.dart';
+import '../bloc/login_screen_bloc.dart';
+import 'facebook_signup_screen_widget.dart';
+import 'google_siginin_widget.dart';
 
 class LoginScreenWidget extends StatefulWidget {
   @override
@@ -339,9 +339,4 @@ class _LoginScreenWidgetState extends State<LoginScreenWidget> {
     Navigator.pushNamed(context, '/signupScreen');
   }
 
-  void _facebookLoginFunction(BuildContext context) {
-    BlocProvider.of<LoginScreenBloc>(context).dispatch(
-      GetFacebookLoginEvent(),
-    );
-  }
 }

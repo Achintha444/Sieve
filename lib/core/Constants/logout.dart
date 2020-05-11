@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:google_sign_in/google_sign_in.dart';
-import 'package:sieve_data_privacy_app/features/login_signup_screen/data/datasources/login_signup_screen_remote_datasource.dart';
 
 import '../../features/login_screen/data/datasources/login_screen_local_datasource.dart';
 import '../../features/login_screen/domain/entities/login_user.dart';
+import '../../features/login_signup_screen/data/datasources/login_signup_screen_remote_datasource.dart';
 import '../../features/login_signup_screen/presentation/pages/login_signup_screen.dart';
 import '../../injection_container.dart';
 

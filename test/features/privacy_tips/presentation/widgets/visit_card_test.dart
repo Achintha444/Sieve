@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:sieve_data_privacy_app/features/privacy_tips/presentation/widgets/tips_card.dart';
 import 'package:sieve_data_privacy_app/features/privacy_tips/presentation/widgets/visit_card.dart';
 
 void main() {

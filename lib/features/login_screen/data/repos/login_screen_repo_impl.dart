@@ -1,7 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../core/Entities/empty_entity.dart';
 import '../../../../core/Error/exceptions.dart';
 import '../../../../core/Platform/network_info.dart';
 import '../../../../core/error/Faliure.dart';

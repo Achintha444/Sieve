@@ -67,6 +67,6 @@ class LoginScreenLocalDataSourceImpl implements LoginScreenLocalDataSource {
 
   @override
   String getLoggedinType() {
-    return sharedPreferences.getString(LOGIN_TYPE);;
+    return sharedPreferences.getString(LOGIN_TYPE);
   }
 }

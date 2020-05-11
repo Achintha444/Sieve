@@ -3,9 +3,9 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:google_sign_in/google_sign_in.dart';
-import 'package:sieve_data_privacy_app/core/Usecase/use_case.dart';
-import 'package:sieve_data_privacy_app/features/login_screen/domain/entities/login_user.dart';
+
+import '../../../../core/Usecase/use_case.dart';
+import '../../../login_screen/domain/entities/login_user.dart';
 import '../../domain/usecases/get_facebook_login.dart';
 import '../../domain/usecases/get_google_login.dart';
 

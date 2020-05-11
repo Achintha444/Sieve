@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:google_sign_in/google_sign_in.dart';
-import 'package:sieve_data_privacy_app/features/login_screen/domain/entities/login_user.dart';
+
+import '../../domain/entities/login_user.dart';
 
 class LoginUserModel extends LoginUser {
   final String id;

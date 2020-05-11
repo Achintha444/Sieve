@@ -5,7 +5,6 @@ import '../../../../core/Constants/drawer_design.dart';
 import '../../../login_screen/domain/entities/login_user.dart';
 import '../../domain/entities/news.dart';
 import 'news_card.dart';
-import 'visit_card.dart';
 
 class InterestingNewsWidget extends StatelessWidget {
   final LoginUser user;
