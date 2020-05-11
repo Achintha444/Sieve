@@ -9,6 +9,7 @@ import '../../domain/entities/dapp.dart';
 import '../../domain/repos/dashboard_repo.dart';
 import '../datasources/dashboard_remote_datasource.dart';
 
+
 class DashboardRepoImpl implements DashboardRepo{
 
   final NetworkInfo networkInfo;

@@ -11,6 +11,7 @@ class DappModel extends Dapp {
   DappModel({@required this.appName, @required this.iconImage, @required this.categoryName,@required this.dCount})
       : super(appName:appName, iconImage:iconImage, categoryName:categoryName, dCount:dCount);
 
+
   factory DappModel.fromJson(Map<String, dynamic> json) {
     return DappModel(appName: json['app_name'], iconImage: json['icon_image'], categoryName: (json['category_name']),dCount:(json['d_count']));
   }

@@ -31,8 +31,10 @@ class DashboardRemoteDatasourceImpl implements DashboardRemoteDatasource{
       // }else{
       //   throw InvalidInputException();
       // }
-    } else {
+    }
+    else {
       return DappModel.fromJsonList(json.decode(response.body));
+
     }
   }
 
