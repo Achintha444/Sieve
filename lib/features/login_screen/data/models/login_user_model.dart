@@ -25,6 +25,8 @@ class LoginUserModel extends LoginUser {
       'id': super.getId,
       'email': super.getEmail,
       'password': super.getPassword,
+      'uid':super.getUid,
+      'imageUrl':super.getImageUrl
     };
   }
 }
