@@ -24,7 +24,7 @@ void main() {
   });
 
   test(
-    'should return EmptyEnity() when opertaes correctly',
+    'should return LoginUser when opertaes correctly',
     () async {
       //arrange
       when(mockLoginSignupScreenRepo.getGoogleLogin())
@@ -69,6 +69,7 @@ void main() {
       verifyNoMoreInteractions(mockLoginSignupScreenRepo);
     },
   );
+
 
 
 }

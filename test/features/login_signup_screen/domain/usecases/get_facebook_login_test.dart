@@ -24,7 +24,7 @@ void main() {
   });
 
   test(
-    'should return EmptyEnity() when opertaes correctly',
+    'should return LoginUser when opertaes correctly',
     () async {
       //arrange
       when(mockLoginSignupScreenRepo.getFacebookLogin()).thenAnswer((_) async =>
@@ -55,7 +55,7 @@ void main() {
     },
   );
 
-    test(
+  test(
     'should return InternetConnectionFaliure() when something went wron',
     () async {
       //arrange

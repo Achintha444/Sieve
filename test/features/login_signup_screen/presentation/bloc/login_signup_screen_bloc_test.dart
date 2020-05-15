@@ -1,7 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
-import 'package:sieve_data_privacy_app/core/Entities/empty_entity.dart';
 import 'package:sieve_data_privacy_app/core/error/Faliure.dart';
 import 'package:sieve_data_privacy_app/features/login_screen/data/models/login_user_model.dart';
 import 'package:sieve_data_privacy_app/features/login_signup_screen/domain/usecases/get_facebook_login.dart';
@@ -119,7 +118,6 @@ void main() {
       },
     );
   });
-
 
 }
 

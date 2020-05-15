@@ -104,8 +104,6 @@ Future<void> init() async {
 
   //! Features - login_signup_screen
 
-  // TODO: Need to update bloc when fully implemented
-
   //* Bloc
   sl.registerFactory(
     () => LoginSignupScreenBloc(
@@ -140,8 +138,6 @@ Future<void> init() async {
       () => LoginSignupScreenRemoteDataSourceImpl(httpClient: sl()));
 
   //! Features - login_screen
-
-  // TODO: Need to update bloc when fully implemented
 
   //* Bloc
   sl.registerFactory(

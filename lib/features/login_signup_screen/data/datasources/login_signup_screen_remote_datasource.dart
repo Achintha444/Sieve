@@ -81,7 +81,7 @@ class LoginSignupScreenRemoteDataSourceImpl
 
   @override
   Future<void> facebookLogout() {
-    facebookLogin.logOut();
+    return facebookLogin.logOut();
   }
 
   @override
@@ -91,7 +91,7 @@ class LoginSignupScreenRemoteDataSourceImpl
       case FacebookLoginStatus.loggedIn:
         final token = _result.accessToken.token;
         final graphResponse = await http.get(
-            'https://graph.facebook.com/v2.12/me?fields=name,picture,email&access_token=${token}');
+            'https://graph.facebook.com/v2.12/me?fields=name,picture,email&access_token=$token');
         final user = jsonDecode(graphResponse.body);
         print(user);
         try {

@@ -1,7 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
-import 'package:sieve_data_privacy_app/core/Entities/empty_entity.dart';
 import 'package:sieve_data_privacy_app/core/Error/exceptions.dart';
 import 'package:sieve_data_privacy_app/core/error/Faliure.dart';
 import 'package:sieve_data_privacy_app/core/Platform/network_info.dart';
@@ -9,7 +8,6 @@ import 'package:sieve_data_privacy_app/features/login_screen/data/datasources/lo
 import 'package:sieve_data_privacy_app/features/login_screen/data/datasources/login_screen_remote_datasource.dart';
 import 'package:sieve_data_privacy_app/features/login_screen/data/models/login_user_model.dart';
 import 'package:sieve_data_privacy_app/features/login_screen/data/repos/login_screen_repo_impl.dart';
-import 'package:sieve_data_privacy_app/features/login_screen/domain/entities/login_user.dart';
 import 'package:sieve_data_privacy_app/features/login_signup_screen/domain/repos/login_signup_screen_repo.dart';
 
 class MockLoginSignupScreenRepo extends Mock implements LoginSignuScreenRepo {}
@@ -21,8 +19,6 @@ class MockLoginScreenRemoteDataSource extends Mock
 
 class MockLoginScreenLocalDataSource extends Mock
     implements LoginScreenLocalDataSource {}
-
-// TODO: need to write the test after the google login and facebook login completed.
 
 void main() {
   MockLoginSignupScreenRepo mockLoginSignupScreenRepo;
@@ -43,6 +39,14 @@ void main() {
         networkInfo: mockNetworkInfo);
   });
 
+  final String id = '1';
+  final String email = 'test1@gmail.com';
+  final String password = 'Test@123';
+  final String imageUrl = 'www.google.com';
+  final String uid = '1';
+  final LoginUserModel tLoginUserModel = new LoginUserModel(
+      id: id, email: email, password: password, imageUrl: imageUrl, uid: uid);
+
   void groupTestOnline(Function body) {
     group('device is online', () {
       setUp(() {
@@ -59,13 +63,13 @@ void main() {
       () async {
         //arrange
         when(mockLoginSignupScreenRepo.getFacebookLogin())
-            .thenAnswer((_) async => Right(EmptyEntity()));
+            .thenAnswer((_) async => Right(tLoginUserModel));
         //act
         final response = await loginScreenRepoImpl.getFacebookLogin();
 
         //assert
         verify(mockLoginSignupScreenRepo.getFacebookLogin());
-        expect(response, Right(EmptyEntity()));
+        expect(response, Right(tLoginUserModel));
         verifyNoMoreInteractions(mockLoginSignupScreenRepo);
       },
     );
@@ -93,13 +97,13 @@ void main() {
       () async {
         //arrange
         when(mockLoginSignupScreenRepo.getGoogleLogin())
-            .thenAnswer((_) async => Right(EmptyEntity()));
+            .thenAnswer((_) async => Right(tLoginUserModel));
         //act
         final response = await loginScreenRepoImpl.getGoogleLogin();
 
         //assert
         verify(mockLoginSignupScreenRepo.getGoogleLogin());
-        expect(response, Right(EmptyEntity()));
+        expect(response, Right(tLoginUserModel));
         verifyNoMoreInteractions(mockLoginSignupScreenRepo);
       },
     );
@@ -122,13 +126,6 @@ void main() {
   });
 
   group('getLogin', () {
-    final String id = '1';
-    final String email = 'test1@gmail.com';
-    final String password = 'Test@123';
-    final LoginUserModel tLoginUserModel =
-        new LoginUserModel(id: id, email: email, password: password);
-    final LoginUser tLoginUser = tLoginUserModel;
-
     test(
       'should check if the device is online',
       () async {
@@ -150,9 +147,10 @@ void main() {
               .thenAnswer((_) async => tLoginUserModel);
           //act
           final resilt = await loginScreenRepoImpl.getLogin(email, password);
-          await untilCalled(mockLoginScreenLocalDataSource.cacheLoginUser(tLoginUserModel));
+          await untilCalled(
+              mockLoginScreenLocalDataSource.cacheLoginUser(tLoginUserModel));
           //assert
-          expect(resilt, Right(tLoginUser));
+          expect(resilt, Right(tLoginUserModel));
         },
       );
       test(

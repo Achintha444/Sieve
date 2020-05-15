@@ -25,7 +25,7 @@ void main() {
   final String _email = 'test@gmail.com';
   final String _password = 'Test@123';
   final List<String> _loginDetails = [_email, _password];
-  final LoginUser loginUser = new LoginUser(id: _id, email: _email, password: _password);
+  final LoginUser loginUser = new LoginUser(id: _id, email: _email, password: _password,uid: null,imageUrl: null);
 
   test(
     'should return LoginUser() when opertaes correctly',
