@@ -3,6 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:sieve_data_privacy_app/core/Entities/empty_entity.dart';
 import 'package:sieve_data_privacy_app/core/error/Faliure.dart';
+import 'package:sieve_data_privacy_app/features/login_screen/data/models/login_user_model.dart';
 import 'package:sieve_data_privacy_app/features/login_signup_screen/domain/usecases/get_facebook_login.dart';
 import 'package:sieve_data_privacy_app/features/login_signup_screen/domain/usecases/get_google_login.dart';
 import 'package:sieve_data_privacy_app/features/login_signup_screen/presentation/bloc/login_signup_screen_bloc.dart';
@@ -25,7 +26,13 @@ void main() {
     );
   });
 
-  // TODO: Complete the test aafter full implementaion
+  final String id = '1';
+  final String email = 'test1@gmail.com';
+  final String password = 'Test@123';
+  final String imageUrl = 'www.google.com';
+  final String uid = '1';
+  final LoginUserModel tLoginUserModel = new LoginUserModel(
+      id: id, email: email, password: password, imageUrl: imageUrl, uid: uid);
 
   test(
     'initalState()',
@@ -61,14 +68,14 @@ void main() {
       () async {
         //arrange
         when(mockGetFacebookLogin(any))
-            .thenAnswer((_) async => Right(EmptyEntity()));
+            .thenAnswer((_) async => Right(tLoginUserModel));
         //act
         loginSignupScreenBloc.dispatch(GetFacebookLoginEvent());
         //assert
         final expected = [
           Initial(),
           Loading(),
-          Loaded(),
+          Loaded(loginUser: tLoginUserModel),
         ];
         expectLater(loginSignupScreenBloc.state, emitsInOrder(expected));
       },
@@ -99,14 +106,14 @@ void main() {
       () async {
         //arrange
         when(mockGetGoogleLogin(any))
-            .thenAnswer((_) async => Right(EmptyEntity()));
+            .thenAnswer((_) async => Right(tLoginUserModel));
         //act
         loginSignupScreenBloc.dispatch(GetGoogleLoginEvent());
         //assert
         final expected = [
           Initial(),
           Loading(),
-          Loaded(),
+          Loaded(loginUser: tLoginUserModel),
         ];
         expectLater(loginSignupScreenBloc.state, emitsInOrder(expected));
       },
