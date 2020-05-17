@@ -18,6 +18,7 @@ class SuggAndLogout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
+      key: Key('gestureDetector_sugg_and_logout'),
       onTap: () {
         _suggestionOnTap(context);
       },

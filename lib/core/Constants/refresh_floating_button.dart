@@ -29,6 +29,7 @@ class _RefreshFloatingButtonState extends State<RefreshFloatingButton> {
               height: size*2,
               width: size*2,
               child: FloatingActionButton(
+                key:Key('refresh'),
                 onPressed: () => this.widget.onTap(context),
                 backgroundColor: Theme.of(context).primaryColor,
                 elevation: 4,

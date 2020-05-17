@@ -26,6 +26,7 @@ class Logout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
+      key: Key('gestureDetector'),
       onTap: () {
         _logoutOnTap(context);
       },
