@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+
+
 
 class DappCard extends StatelessWidget {
   final String aName;
@@ -13,66 +15,72 @@ class DappCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return Container(
-      height: MediaQuery.of(context).size.height / 2.3,
-      width: MediaQuery.of(context).size.width,
-      alignment: Alignment.center,
+
+      height: MediaQuery.of(context).size.height / 5,
+      //width: 100000,
+      alignment: Alignment.centerLeft,
       child: Card(
         borderOnForeground: true,
         child: Padding(
           padding: const EdgeInsets.all(10.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               //* Dapp
+
+              Image.network(
+                iconImage,
+                width: 50,
+                height: 50,
+              ),
               Text(
                 aName,
-                textAlign: TextAlign.left,
+                textAlign: TextAlign.justify,
                 style: TextStyle(
                   color: Theme.of(context).primaryColor,
-                  fontSize: 25,
+                  fontSize: 20,
                   fontWeight: FontWeight.w500,
                   letterSpacing: 1,
                 ),
-              ),
 
-              Padding(
-                padding: EdgeInsets.only(
-                  top: 7,
-                  bottom: 7,
-                ),
-              ),
-
-              //* law description
-              Text(
-                cName,
-                textAlign: TextAlign.justify,
-                style: TextStyle(
-                  color: Colors.black,
-
-                ),
               ),
               Padding(
                 padding: EdgeInsets.only(
-                  top: 7,
-                  bottom: 7,
+                  top: 1,
+                  bottom: 1,
                 ),
               ),
 
-              GestureDetector(
-                onTap: () async=>await this._launchInWebViewWithDomStorage(iconImage, context),
-                child: Text(
-                  'view the full description',
-                  textAlign: TextAlign.left,
+              //* category Name
+                Text(
+                  cName,
+                  textAlign: TextAlign.justify,
                   style: TextStyle(
-                    color: Theme.of(context).accentColor,
-                    fontSize: 15,
-                    fontWeight: FontWeight.w600,
-                    letterSpacing: 1,
+                    fontSize: 12,
+                    color: Colors.black,
                   ),
                 ),
-              ),
+                Padding(
+                  padding: EdgeInsets.only(
+                    top: 1,
+                    bottom: 1,
+                  ),
+                ),
+
+
+              Row(
+                //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  //crossAxisAlignment: CrossAxisAlignment.end,
+                 children:   _check_dashboard(dCount),
+                crossAxisAlignment: CrossAxisAlignment.end,
+                mainAxisAlignment: MainAxisAlignment.end,
+
+              )
+
             ],
           ),
         ),
@@ -80,32 +88,52 @@ class DappCard extends StatelessWidget {
     );
   }
 
-  Future<void> _launchInWebViewWithDomStorage(String url,BuildContext context) async {
-    if (await canLaunch(url)) {
-      await launch(
-        url,
-        forceSafariVC: true,
-        forceWebView: true,
-        enableDomStorage: true,
-      );
-    } else {
-      Scaffold.of(context).showSnackBar(
-        SnackBar(
-          content: Text(
-            'Something went wrong\nTry again'.toUpperCase(),
-            style: TextStyle(color: Colors.white),
-          ),
-          backgroundColor: Theme.of(context).primaryColor,
-          duration: Duration(seconds: 6),
-          action: SnackBarAction(
-            label: 'Close',
-            textColor: Colors.white,
-            onPressed: () {
-              Scaffold.of(context).hideCurrentSnackBar();
-            },
-          ),
-        ),
-      );
-    }
-  }
+ // ignore: non_constant_identifier_names
+ List _check_dashboard(int dCount) {
+
+      int num=0;
+      Color colour;
+       if(dCount>=25){
+         num=5;
+         colour=Colors.red;
+       }
+       else if(dCount>=20 && dCount<=24){
+         num=4;
+         colour=Colors.red;
+       }
+       else if(dCount>=15 && dCount<=19){
+         num=3;
+         colour=Colors.yellow;
+       }
+       else if(dCount>=10 && dCount<=14){
+         num=2;
+         colour=Colors.yellow;
+
+       }
+       else if(dCount>=5 && dCount<=9){
+         num=1;
+         colour=Colors.blue;
+       }
+
+       else if(dCount>=0 && dCount<=4){
+         num=0;
+         //colour="yellow";
+       }
+
+     List app = <Icon>[];
+     for (int j = 0; j <= num; j++) {
+
+       Icon t = Icon(
+         MdiIcons.fire,
+         color: colour,
+         size: 30.0,
+       );
+       app.add(t);
+       t=null;
+
+     }
+     return app;
+   }
+
+
 }

@@ -28,6 +28,7 @@ class DashboardWidget extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         child: Column(
+
           children: <Widget>[
             //* Dashboard
             Padding(
@@ -47,20 +48,17 @@ class DashboardWidget extends StatelessWidget {
                     letterSpacing: 1.3,
                   ),
                 ),
+
+
               ),
             ),
             //! TIPS CARD
 
             Column(
+
               children: List.generate(
                 this.dapp.length,
                     (index) {
-                  print(
-                      this.dapp.length);
-                  print(
-                      this.dapp[index].getAppName);
-                  print(
-                      index);
                   return DappCard(
                       aName: this.dapp[index].getAppName,
                       cName: this.dapp[index].getCategoryName,
@@ -73,21 +71,10 @@ class DashboardWidget extends StatelessWidget {
             //* More Information
             Padding(
               padding: const EdgeInsets.only(
-                  top: 5.0, left: 15),
+                  top: 7.0, left: 15),
               child: Align(
                 alignment: Alignment.centerLeft,
-                child: Text(
-                  'For More Information',
-                  textAlign: TextAlign.left,
-                  style: TextStyle(
-                    fontSize: 18,
-                    color: Theme
-                        .of(
-                        context)
-                        .primaryColor,
-                    letterSpacing: 1.3,
-                  ),
-                ),
+
               ),
             ),
 
