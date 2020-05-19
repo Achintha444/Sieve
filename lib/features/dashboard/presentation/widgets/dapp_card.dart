@@ -18,11 +18,19 @@ class DappCard extends StatelessWidget {
 
     return Container(
 
+
+
       height: MediaQuery.of(context).size.height/7,
 
       alignment: Alignment.center,
       child: Card(
+
         borderOnForeground: false,
+          color: Colors.white,
+        shape: RoundedRectangleBorder(
+
+          borderRadius: BorderRadius.circular(195.0),
+        ),
 
 
         child: Padding(
@@ -36,8 +44,8 @@ class DappCard extends StatelessWidget {
 
               Image.network(
                 iconImage,
-                width: 45,
-                height: 45,
+                width: 40,
+                height: 40,
                 alignment: Alignment.topRight,
               ),
 
@@ -45,12 +53,12 @@ class DappCard extends StatelessWidget {
                 padding: EdgeInsets.only(
                   top: 15,
                   bottom: 1,
-                  right: 15,
+                  right: 105,
                   left: 5,
                 ),
 
               ),
-
+//
 //              Text(
 //                aName,
 //                textAlign: TextAlign.justify,
@@ -71,27 +79,28 @@ class DappCard extends StatelessWidget {
 //              ),
 
               //* category Name
-              Text(
-                  cName,
-                  textAlign: TextAlign.right,
-                  style: TextStyle(
-                    fontSize: 14,
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold,
-                    letterSpacing: 1,
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(
-                    top: 5,
-                    bottom: 0,
-                    right: 30,
-                  ),
-                ),
+//              Text(
+//                  cName,
+//                  textAlign: TextAlign.right,
+//                  style: TextStyle(
+//                    fontSize: 10,
+//                    color: Colors.black,
+//                    fontWeight: FontWeight.w500,
+//                    letterSpacing: 1,
+//                  ),
+//                ),
+//                Padding(
+//                  padding: EdgeInsets.only(
+//                    top: 15,
+//                    bottom: 0,
+//                    right: 30,
+//                  ),
+//                ),
 
               Row(
                 //mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   //crossAxisAlignment: CrossAxisAlignment.end,
+
                 children:   _check_dashboard(dCount),
                 crossAxisAlignment: CrossAxisAlignment.end,
                 mainAxisAlignment: MainAxisAlignment.end,
@@ -105,6 +114,14 @@ class DappCard extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+
+
+  BoxDecoration myBoxDecoration() {
+    return BoxDecoration(
+      border: Border.all(),
+      color: Colors.white
     );
   }
 

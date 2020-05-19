@@ -5,7 +5,7 @@ import '../../../../core/Constants/drawer_design.dart';
 import '../../../login_screen/domain/entities/login_user.dart';
 import '../../domain/entities/dapp.dart';
 import 'dapp_card.dart';
-//import 'visit_card.dart';
+
 
 class DashboardWidget extends StatelessWidget {
   final LoginUser user;
@@ -33,11 +33,12 @@ class DashboardWidget extends StatelessWidget {
             //* Dashboard
             Padding(
               padding: const EdgeInsets.only(
-                  top: 5.0, left: 15),
+                  top: 3.0, left: 15),
               child: Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
-                  'Dashboard',
+
+                  "DATA PRIVACY INTRUSEIVENESS",
                   textAlign: TextAlign.left,
                   style: TextStyle(
                     fontSize: 16,
@@ -45,14 +46,16 @@ class DashboardWidget extends StatelessWidget {
                         .of(
                         context)
                         .primaryColor,
-                    letterSpacing: 1.3,
+                    letterSpacing: 1,
+                    fontWeight: FontWeight.w200
                   ),
                 ),
 
 
+
               ),
             ),
-            //! TIPS CARD
+
 
             Column(
 
@@ -71,7 +74,7 @@ class DashboardWidget extends StatelessWidget {
             //* More Information
             Padding(
               padding: const EdgeInsets.only(
-                  top: 7.0, left: 15),
+                  top: 1.0, left: 20),
               child: Align(
                 alignment: Alignment.centerLeft,
 
