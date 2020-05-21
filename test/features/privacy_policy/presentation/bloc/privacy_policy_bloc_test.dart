@@ -53,8 +53,14 @@ void main() {
     final String id = '1';
     final String email = 'test@gmail.com';
     final String password = 'Test@123';
-    final LoginUser loginUser =
-        new LoginUser(id: id, email: email, password: password);
+    final String _imageUrl = 'www.google.com';
+    final String _uid = '123';
+    final LoginUser loginUser = new LoginUser(
+        id: id,
+        email: email,
+        password: password,
+        imageUrl: _imageUrl,
+        uid: _uid);
     test(
       'should return [InternetError] when InternetConnectionFaliure is returned',
       () async {
@@ -78,15 +84,16 @@ void main() {
       'should return [Loaded] when EmptyEntity is returned',
       () async {
         //arrange
-        when(mockGetPrivacyPolcy(any)).thenAnswer((_) async => Right(tPrivacyPolicy));
+        when(mockGetPrivacyPolcy(any))
+            .thenAnswer((_) async => Right(tPrivacyPolicy));
         //act
         privacyPolicyBloc
-            .dispatch(LoadPrivacyPolicyEvent(appId: '1',user: loginUser));
+            .dispatch(LoadPrivacyPolicyEvent(appId: '1', user: loginUser));
         //assert
         final expected = [
           Initial(),
           Loading(),
-          Loaded(privacyPolicy: tPrivacyPolicy,user: loginUser),
+          Loaded(privacyPolicy: tPrivacyPolicy, user: loginUser),
         ];
         expectLater(privacyPolicyBloc.state, emitsInOrder(expected));
       },

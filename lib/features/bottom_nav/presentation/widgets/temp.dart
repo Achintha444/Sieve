@@ -12,13 +12,13 @@ class Temp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBarDesign(title: 'TEST'),
+      appBar: AppBarDesign(title: 'TEST',imageUrl: user.getImageUrl,),
       drawer: DrawerDesign(user: user),
       body: Container(
         child: Column(
           children: <Widget>[
             Text(user.email),
-            Text(user.password),
+            //Text(user.password),
             Text(user.getId),
             RaisedButton(
               child: Text('Uber'),

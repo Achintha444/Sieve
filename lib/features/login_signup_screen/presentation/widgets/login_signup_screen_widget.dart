@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../bloc/login_signup_screen_bloc.dart';
+import 'google_siginin_widget.dart';
+import 'facebook_signup_screen_widget.dart';
 
 class LoginSignupScreenWidget extends StatelessWidget {
   @override
@@ -180,40 +180,14 @@ class LoginSignupScreenWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
-                FloatingActionButton(
-                  heroTag: 'google',
-                  child: Container(
-                    height: 30,
-                    key: Key('google_login'),
-                    child: Image(
-                      image: AssetImage('icons/google.png'),
-                      color: Colors.white,
-                    ),
-                  ),
-                  onPressed: () {
-                    _googleLoinFunction(context);
-                  },
-                ),
+                GoogleSigninWidget(),
                 Padding(
                   padding: EdgeInsets.only(
                     left: 60,
                     right: 30,
                   ),
                 ),
-                FloatingActionButton(
-                  heroTag: 'facebook',
-                  child: Container(
-                    key: Key('fb_login'),
-                    height: 50,
-                    child: Image(
-                      image: AssetImage('icons/facebook.png'),
-                      color: Colors.white,
-                    ),
-                  ),
-                  onPressed: () {
-                    _facebookLoginFunction(context);
-                  },
-                ),
+                FacebookSigninWidget(),
               ],
             ),
           ],
@@ -232,15 +206,10 @@ class LoginSignupScreenWidget extends StatelessWidget {
     Navigator.pushNamed(context, '/loginScreen');
   }
 
-  void _facebookLoginFunction(BuildContext context) {
-    BlocProvider.of<LoginSignupScreenBloc>(context).dispatch(
-      GetFacebookLoginEvent(),
-    );
-  }
 
-  void _googleLoinFunction(BuildContext context) {
-    BlocProvider.of<LoginSignupScreenBloc>(context).dispatch(
-      GetGoogleLoginEvent(),
-    );
-  }
+
+
 }
+
+
+

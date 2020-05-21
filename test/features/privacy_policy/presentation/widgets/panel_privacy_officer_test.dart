@@ -13,7 +13,7 @@ void main() {
 
   testWidgets('PanelPrivacyOfficer', (WidgetTester tester) async {
     final LoginUser user =
-        new LoginUser(id: '1', email: 'temp@gmail.com', password: 'Temp@123');
+        new LoginUser(id: '1', email: 'temp@gmail.com', password: 'Temp@123',uid: '123',imageUrl: 'www.google.com');
     final String contactLink = 'www.google.com';
     final String email = 'temp@gmail.com';
     final String fiLine = 'fi line';

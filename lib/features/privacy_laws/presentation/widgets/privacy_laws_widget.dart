@@ -21,6 +21,7 @@ class PrivacyLawsWidget extends StatelessWidget {
       ),
       appBar: AppBarDesign(
         title: 'Privacy Laws',
+        imageUrl: user.getImageUrl,
         
       ),
       body: SingleChildScrollView(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:sieve_data_privacy_app/features/categories/presentation/pages/app_categories.dart';
 import 'package:sieve_data_privacy_app/features/interesting_news/presentation/pages/interesting_news.dart';
 
 import '../../../../injection_container.dart';
@@ -58,7 +59,7 @@ class _BlocListner extends StatelessWidget {
         } else if (state is NewsFeedState) {
           return InterestingNews(user: user,);
         } else if (state is CategoryState) {
-          return Temp(user: user,);
+          return AppCategories(user: user,);
         } else if (state is DashboardState) {
           return Temp(user: user,);
         } else if (state is PrivacyTipsState) {

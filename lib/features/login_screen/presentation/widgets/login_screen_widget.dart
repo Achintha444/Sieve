@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../bloc/login_screen_bloc.dart';
 import '../../../../core/util/input_converter.dart';
+import '../bloc/login_screen_bloc.dart';
+import 'facebook_signup_screen_widget.dart';
+import 'google_siginin_widget.dart';
 
 class LoginScreenWidget extends StatefulWidget {
   @override
@@ -209,40 +211,14 @@ class _LoginScreenWidgetState extends State<LoginScreenWidget> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
-                FloatingActionButton(
-                  heroTag: Key('google_loginscreen'),
-                  child: Container(
-                    height: 30,
-                    key: Key('google_loginscreen'),
-                    child: Image(
-                      image: AssetImage('icons/google.png'),
-                      color: Colors.white,
-                    ),
-                  ),
-                  onPressed: () {
-                    _googleLoinFunction(context);
-                  },
-                ),
+                GoogleSigninWidget(),
                 Padding(
                   padding: EdgeInsets.only(
                     left: 60,
                     right: 30,
                   ),
                 ),
-                FloatingActionButton(
-                  heroTag: Key('fb_loginscreen'),
-                  child: Container(
-                    key: Key('fb_loginscreen'),
-                    height: 50,
-                    child: Image(
-                      image: AssetImage('icons/facebook.png'),
-                      color: Colors.white,
-                    ),
-                  ),
-                  onPressed: () {
-                    _facebookLoginFunction(context);
-                  },
-                ),
+                FacebookSigninWidget(),
               ],
             ),
             Padding(
@@ -363,15 +339,4 @@ class _LoginScreenWidgetState extends State<LoginScreenWidget> {
     Navigator.pushNamed(context, '/signupScreen');
   }
 
-  void _facebookLoginFunction(BuildContext context) {
-    BlocProvider.of<LoginScreenBloc>(context).dispatch(
-      GetFacebookLoginEvent(),
-    );
-  }
-
-  void _googleLoinFunction(BuildContext context) {
-    BlocProvider.of<LoginScreenBloc>(context).dispatch(
-      GetGoogleLoginEvent(),
-    );
-  }
 }

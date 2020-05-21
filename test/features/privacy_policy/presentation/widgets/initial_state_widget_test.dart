@@ -14,9 +14,11 @@ void main() {
   final String email = 'test@gmail.com';
   final String password = 'Test@123';
   final String id = '1';
+  final String imageUrl = 'www.google.com';
+  final String uid = '123'; 
   LoginUser loginUser;
   setUp(() {
-    loginUser = new LoginUser(id: id, email: email, password: password);
+    loginUser =  new LoginUser(id: id, email: email, password: password,imageUrl: imageUrl,uid: uid);
     mockPrivacyPolicyBloc = new MockPrivacyPolicyBloc();
   });
 

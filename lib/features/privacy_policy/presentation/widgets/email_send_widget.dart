@@ -14,7 +14,7 @@ class EmailSendWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBarDesign(title: 'Send Email'),
+      appBar: AppBarDesign(title: 'Send Email',imageUrl: user.getImageUrl,),
       body: SingleChildScrollView(
         child: Container(
           child: Center(

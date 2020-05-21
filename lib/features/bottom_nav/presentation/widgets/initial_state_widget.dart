@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:sieve_data_privacy_app/features/login_screen/domain/entities/login_user.dart';
-import 'package:sieve_data_privacy_app/features/privacy_laws/presentation/bloc/privacy_laws_bloc.dart';
 
+import '../../../login_screen/domain/entities/login_user.dart';
 import '../bloc/bottom_nav_bloc.dart';
 
 class InitialStateWidget extends StatefulWidget {

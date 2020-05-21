@@ -70,6 +70,7 @@ class _BlocListener extends StatelessWidget {
                   ),
                 ],
               ),
+              
               duration: Duration(seconds: 4),
             ),
           );
