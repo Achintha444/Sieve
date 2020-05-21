@@ -2,7 +2,7 @@ import 'package:data_connection_checker/data_connection_checker.dart';
 import 'package:get_it/get_it.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:sieve_data_privacy_app/features/login_signup_screen/data/datasources/login_signup_screen_remote_datasource.dart';
+import 'features/login_signup_screen/data/datasources/login_signup_screen_remote_datasource.dart';
 
 import 'core/Platform/network_info.dart';
 import 'features/bottom_nav/data/repos/bottom_nav_repo_impl.dart';
@@ -64,6 +64,11 @@ import 'features/suggestion/data/repos/suggestion_repo_impl.dart';
 import 'features/suggestion/domain/repos/suggestion_repo.dart';
 import 'features/suggestion/domain/usecases/send_suggestion.dart';
 import 'features/suggestion/presentation/bloc/suggestion_bloc.dart';
+import 'features/categories/data/datasources/categories_remote_datasource.dart';
+import 'features/categories/data/repos/categories_repo_impl.dart';
+import 'features/categories/domain/repos/categories_repo.dart';
+import 'features/categories/domain/usecases/load_categories.dart';
+import 'features/categories/presentation/bloc/categories_bloc.dart';
 
 final sl = GetIt.instance;
 Future<void> init() async {
@@ -357,6 +362,34 @@ Future<void> init() async {
   //* datasource
   sl.registerLazySingleton<SuggestionRemoteDataSource>(
       () => SuggestionRemoteDataSourceImpl(httpClient: sl()));
+
+
+  //! Features - Categories
+
+  //* Bloc
+  sl.registerFactory(
+        () => CategoriesBloc(
+      loadCategories: sl(),
+    ),
+  );
+
+  //* usecases
+  sl.registerLazySingleton(
+        () => LoadCategories(
+      categoriesRepo: sl(),
+    ),
+  );
+
+  //* repo
+  sl.registerLazySingleton<CategoriesRepo>(
+        () => CategoriesRepoImpl(
+        networkInfo: sl(), categoriesRemoteDatasource: sl()),
+  );
+
+  //* datasource
+  sl.registerLazySingleton<CategoriesRemoteDatasource>(
+          () => CategoriesRemoteDatasourceImpl(httpClient: sl()));
+
 
   //! Features - privacy_policy
 

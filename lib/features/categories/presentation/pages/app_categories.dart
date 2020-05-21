@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sieve_data_privacy_app/core/Constants/refresh_floating_button.dart';
-import 'package:sieve_data_privacy_app/features/categories/presentation/bloc/categories_bloc.dart';
-import 'package:sieve_data_privacy_app/features/categories/presentation/widgets/categories_widget.dart';
 
 import '../../../../injection_container.dart';
 import '../../../bottom_nav/presentation/widgets/loading_widget.dart';
