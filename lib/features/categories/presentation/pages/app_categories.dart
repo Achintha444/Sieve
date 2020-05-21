@@ -33,7 +33,6 @@ class AppCategories extends StatelessWidget {
   }
 
   void _dispatchEvent(BuildContext context) {
-    print('assaas');
     BlocProvider.of<CategoriesBloc>(context)
         .dispatch(LoadCategoriesEvent(user: user));
   }
