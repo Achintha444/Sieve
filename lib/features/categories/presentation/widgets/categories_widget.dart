@@ -24,7 +24,6 @@ class CategoriesWidget extends StatelessWidget {
       appBar: AppBarDesign(
         title: 'Categories',
         imageUrl: user.getImageUrl,
-
       ),
       body: Stack(
         children: <Widget>[
@@ -47,7 +46,7 @@ class CategoriesWidget extends StatelessWidget {
                       borderRadius: BorderRadius.circular(4),
                       image: DecorationImage(
                         image: AssetImage(
-                          'icons/cover_1.png',
+                          'icons/fb.png',
                         ),
                         fit: BoxFit.cover,
                         colorFilter: ColorFilter.mode(
@@ -157,7 +156,7 @@ class CategoriesWidget extends StatelessWidget {
                       borderRadius: BorderRadius.circular(4),
                       image: DecorationImage(
                         image: AssetImage(
-                          'icons/cover_2.png',
+                          'icons/fb.png',
                         ),
                         fit: BoxFit.cover,
                         colorFilter: ColorFilter.mode(
