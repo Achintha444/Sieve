@@ -19,7 +19,6 @@ class DappCard extends StatelessWidget {
     return Container(
 
 
-
       height: MediaQuery.of(context).size.height/7,
 
       alignment: Alignment.center,
@@ -44,39 +43,42 @@ class DappCard extends StatelessWidget {
 
               Image.network(
                 iconImage,
-                width: 40,
-                height: 40,
+                width: 35,
+                height: 35,
                 alignment: Alignment.topRight,
+
               ),
 
               Padding(
                 padding: EdgeInsets.only(
                   top: 15,
                   bottom: 1,
-                  right: 105,
-                  left: 5,
+
+                  left: 45,
                 ),
 
               ),
 //
-//              Text(
-//                aName,
-//                textAlign: TextAlign.justify,
-//                style: TextStyle(
-//                  color: Theme.of(context).primaryColor,
-//                  fontSize: 13,
-//                  fontWeight: FontWeight.bold,
-//                  letterSpacing: 1,
-//
-//                ),
-//
-//              ),
-//              Padding(
-//                padding: EdgeInsets.only(
-//                  top: 1,
-//                  bottom: 1,
-//                ),
-//              ),
+              Text(
+                aName,
+                textAlign: TextAlign.right,
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                  letterSpacing: 1,
+
+                ),
+
+              ),
+              Padding(
+                padding: EdgeInsets.only(
+                  top: 1,
+                  bottom: 1,
+                  right: 9,
+
+                ),
+              ),
 
               //* category Name
 //              Text(
@@ -128,6 +130,7 @@ class DappCard extends StatelessWidget {
  // ignore: non_constant_identifier_names
  List _check_dashboard(int dCount) {
 
+      String cat="";
       int num=0;
       Color colour;
        if(dCount>=25){
@@ -172,6 +175,8 @@ class DappCard extends StatelessWidget {
      }
      return app;
    }
+
+
 
 
 }

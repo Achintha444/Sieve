@@ -17,6 +17,7 @@ class DashboardWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       drawer: DrawerDesign(
         user: user,
@@ -37,37 +38,29 @@ class DashboardWidget extends StatelessWidget {
               child: Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
-
-                  "DATA PRIVACY INTRUSEIVENESS",
-                  textAlign: TextAlign.left,
+                  "DATA PRIVACY INTRUSEIVENESS"
+                      "\n",
+                  textAlign: TextAlign.start,
                   style: TextStyle(
-                    fontSize: 16,
-                    color: Theme
-                        .of(
-                        context)
-                        .primaryColor,
+                    fontSize: 18,
+                    color: Theme.of(context).primaryColor,
                     letterSpacing: 1,
-                    fontWeight: FontWeight.w200
+                    fontWeight: FontWeight.w500
+
                   ),
                 ),
 
 
-
               ),
+
             ),
 
 
             Column(
-
               children: List.generate(
                 this.dapp.length,
                     (index) {
-                  return DappCard(
-                      aName: this.dapp[index].getAppName,
-                      cName: this.dapp[index].getCategoryName,
-                      iconImage: this.dapp[index].getIconImage,
-                      dCount: this.dapp[index].getDCount
-                  );
+                  return Column(children: _check_cat(index));
                 },
               ),
             ),
@@ -81,10 +74,43 @@ class DashboardWidget extends StatelessWidget {
               ),
             ),
 
-
           ],
         ),
       ),
     );
+  }
+
+
+  List<Widget> _check_cat(int index){
+    if ((index==0) || (dapp[index].categoryName!=dapp[index-1].categoryName)) {
+      Text cat=Text(
+        dapp[index].categoryName+" category",
+        textAlign: TextAlign.end,
+        style: TextStyle(
+          fontSize: 17,
+          color: Color(0xff265699),
+          fontWeight: FontWeight.bold,
+          letterSpacing: 1,
+
+        ),
+      );
+      DappCard dcard=DappCard(
+          aName: this.dapp[index].getAppName,
+          cName: this.dapp[index].getCategoryName,
+          iconImage: this.dapp[index].getIconImage,
+          dCount: this.dapp[index].getDCount
+      );
+      return [cat,dcard];
+    }
+ else{
+      DappCard dcard= DappCard(
+          aName: this.dapp[index].getAppName,
+          cName: this.dapp[index].getCategoryName,
+          iconImage: this.dapp[index].getIconImage,
+          dCount: this.dapp[index].getDCount
+      );
+      return [dcard];
+      
+    }
   }
 }
