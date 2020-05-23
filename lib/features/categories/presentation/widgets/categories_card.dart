@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
+import '../../../../core/Constants/theme_data.dart';
 
 class CategoriesCard extends StatelessWidget {
   final String title;
@@ -12,65 +13,50 @@ class CategoriesCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: MediaQuery.of(context).size.height / 2.3,
-      width: MediaQuery.of(context).size.width,
+      height: MediaQuery.of(context).size.height / 4.3,
+      width: MediaQuery.of(context).size.height / 4.3,
       alignment: Alignment.center,
       child: Card(
+        elevation: 4,
         borderOnForeground: true,
-        child: Padding(
-          padding: const EdgeInsets.all(10.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              //* Law
-              Text(
-                title,
-                textAlign: TextAlign.left,
-                style: TextStyle(
-                  color: Theme.of(context).primaryColor,
-                  fontSize: 25,
-                  fontWeight: FontWeight.w500,
-                  letterSpacing: 1,
-                ),
-              ),
-
-              Padding(
-                padding: EdgeInsets.only(
-                  top: 7,
-                  bottom: 7,
-                ),
-              ),
-
-              //* law description
-              Text(
-                desc,
-                textAlign: TextAlign.justify,
-                style: TextStyle(
-                  color: Colors.black,
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.only(
-                  top: 7,
-                  bottom: 7,
-                ),
-              ),
-
-              GestureDetector(
-                onTap: () async=>await this._launchInWebViewWithDomStorage(link, context),
-                child: Text(
-                  'view the full description',
-                  textAlign: TextAlign.left,
+        margin: EdgeInsets.all(5),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(
+            Radius.circular(10),
+          ),
+        ),
+        child: Container(
+          alignment: Alignment.center,
+          decoration: categoryGradientData,
+          child: Center(
+            child: Column(
+              mainAxisAlignment:
+              MainAxisAlignment.center,
+              crossAxisAlignment:
+              CrossAxisAlignment.center,
+              children: <Widget>[
+                Text(
+                  'SOCIAL MEDIA'.toUpperCase(),
                   style: TextStyle(
-                    color: Theme.of(context).accentColor,
+                    color: Colors.white,
+                    letterSpacing: 1.5,
                     fontSize: 15,
-                    fontWeight: FontWeight.w600,
-                    letterSpacing: 1,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+                Padding(
+                  padding: EdgeInsets.only(
+                    bottom: 12,
                   ),
                 ),
-              ),
-            ],
+                Icon(
+                  Icons.people,
+                  color: Colors.white,
+                  size: 100,
+                ),
+              ],
+            ),
           ),
         ),
       ),
