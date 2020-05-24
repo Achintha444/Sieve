@@ -63,33 +63,5 @@ class CategoriesCard extends StatelessWidget {
     );
   }
 
-  Future<void> _launchInWebViewWithDomStorage(String url,BuildContext context) async {
-    if (await canLaunch(url)) {
-      await launch(
-        url,
-        forceSafariVC: true,
-        forceWebView: true,
-        enableJavaScript: true,
-        enableDomStorage: true,
-      );
-    } else {
-      Scaffold.of(context).showSnackBar(
-        SnackBar(
-          content: Text(
-            'Something went wrong\nTry again'.toUpperCase(),
-            style: TextStyle(color: Colors.white),
-          ),
-          backgroundColor: Theme.of(context).primaryColor,
-          duration: Duration(seconds: 6),
-          action: SnackBarAction(
-            label: 'Close',
-            textColor: Colors.white,
-            onPressed: () {
-              Scaffold.of(context).hideCurrentSnackBar();
-            },
-          ),
-        ),
-      );
-    }
-  }
+
 }
