@@ -13,6 +13,11 @@ import 'features/bottom_nav/domain/usecases/navigate_to_news_feed.dart';
 import 'features/bottom_nav/domain/usecases/navigate_to_privacy_laws.dart';
 import 'features/bottom_nav/domain/usecases/navigate_to_privacy_tips.dart';
 import 'features/bottom_nav/presentation/bloc/bottom_nav_bloc.dart';
+import 'features/dashboard/data/datasources/dashboard_remote_datasource.dart';
+import 'features/dashboard/data/repos/dashboard_repo_impl.dart';
+import 'features/dashboard/domain/repos/dashboard_repo.dart';
+import 'features/dashboard/domain/usecases/load_dashboard.dart';
+import 'features/dashboard/presentation/bloc/dashboard_bloc.dart';
 import 'features/interesting_news/data/datasources/interesting_news_remote_datasource.dart';
 import 'features/interesting_news/data/repos/interestig_news_repo_impl.dart';
 import 'features/interesting_news/domain/repos/interesting_news_repo.dart';
@@ -305,6 +310,34 @@ Future<void> init() async {
   //* datasource
   sl.registerLazySingleton<InterestingNewsRemoteDatasource>(
       () => InterestingNewsRemoteDatasourceImpl(httpClient: sl()));
+
+
+  //! Feature - Dashboard
+
+  //* Bloc
+  sl.registerFactory(
+    () => DashboardBloc(
+      loadDashboard:  sl(),
+    ),
+  );
+
+  //* usecases
+  sl.registerLazySingleton(
+    () => LoadDashboard(
+      dashboardRepo:  sl(),
+    ),
+  );
+
+  //* repo
+  sl.registerLazySingleton<DashboardRepo>(
+    () => DashboardRepoImpl(
+        networkInfo: sl(), dashboardRemoteDatasource:  sl()),
+  );
+
+  //* datasource
+  sl.registerLazySingleton<DashboardRemoteDatasource>(
+      () => DashboardRemoteDatasourceImpl(httpClient: sl()));
+
 
   //! Features - privacy_laws
 
