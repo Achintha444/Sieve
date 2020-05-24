@@ -24,6 +24,7 @@ class DashboardWidget extends StatelessWidget {
       ),
       appBar: AppBarDesign(
         title: 'Dashboard',
+        imageUrl: user.imageUrl,
 
 
       ),
