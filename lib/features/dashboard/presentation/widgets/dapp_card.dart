@@ -45,20 +45,23 @@ class DappCard extends StatelessWidget {
                 padding: EdgeInsets.only(
                   top: 15,
                   bottom: 1,
-                  left: 20,
+                  left: 22,
                 ),
               ),
 //
               Align(
                 alignment: Alignment(0,-0.45),
-                child: Text(
-                  aName,
-                  textAlign: TextAlign.right,
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 16,
-                    fontWeight: FontWeight.w600,
-                    letterSpacing: 1,
+                child: Container(
+                  width: MediaQuery.of(context).size.width/3.8,
+                  child: Text(
+                    aName,
+                    textAlign: TextAlign.left,
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 16,
+                      fontWeight: FontWeight.w600,
+                      letterSpacing: 1,
+                    ),
                   ),
                 ),
               ),
@@ -138,6 +141,15 @@ class DappCard extends StatelessWidget {
       Icon t = Icon(
         MdiIcons.fire,
         color: colour,
+        size: 30.0,
+      );
+      app.add(t);
+      t = null;
+    }
+    for (int j = 0; j < (5-num); j++) {
+      Icon t = Icon(
+        MdiIcons.fire,
+        color: Color(0xffDCDCDC),
         size: 30.0,
       );
       app.add(t);
