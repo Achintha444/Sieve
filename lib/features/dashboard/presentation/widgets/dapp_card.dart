@@ -134,7 +134,7 @@ class DappCard extends StatelessWidget {
     }
 
     List app = <Icon>[];
-    for (int j = 0; j <= num; j++) {
+    for (int j = 0; j < num; j++) {
       Icon t = Icon(
         MdiIcons.fire,
         color: colour,
