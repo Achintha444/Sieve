@@ -11,12 +11,19 @@ class MockInterestingNewsBloc extends Mock implements InterestingNewsBloc {}
 void main() {
   MockInterestingNewsBloc mockInterestingNewsBloc;
 
-  final String email = 'test@gmail.com';
-  final String password = 'Test@123';
   final String id = '1';
+  final String email = 'test1@gmail.com';
+  final String password = 'Test@123';
+  final String _imageUrl = 'www.google.com';
+  final String _uid = '123';
   LoginUser loginUser;
   setUp(() {
-    loginUser = new LoginUser(id: id, email: email, password: password);
+    loginUser = new LoginUser(
+        id: id,
+        email: email,
+        password: password,
+        imageUrl: _imageUrl,
+        uid: _uid);
     mockInterestingNewsBloc = new MockInterestingNewsBloc();
   });
 
@@ -34,17 +41,20 @@ void main() {
     );
   }
 
-  testWidgets('InternetErrorWidget - InterestingNews', (WidgetTester tester) async {
+  testWidgets('Initial Error Widget - InterestingNews',
+      (WidgetTester tester) async {
     //* Create the widget by telling the tester to build it.
     await tester.pumpWidget(buildTestableWidget(InitialStateWidget(
       user: loginUser,
     )));
 
-    final circularProgressIndicatorFinder = find.byKey(Key('circularProgressIndicator'));
+    final circularProgressIndicatorFinder =
+        find.byKey(Key('circularProgressIndicator'));
 
     expect(circularProgressIndicatorFinder, findsOneWidget);
 
     // Dispatch correct Event
-    verify(mockInterestingNewsBloc.dispatch(LoadInterestingNewsEvent(user: loginUser)));
+    verify(mockInterestingNewsBloc
+        .dispatch(LoadInterestingNewsEvent(user: loginUser)));
   });
 }

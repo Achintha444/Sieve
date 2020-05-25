@@ -19,11 +19,14 @@ void main() {
     new LoadDashboard(dashboardRepo: mockDashboardRepo);
   });
 
-  final String _id = '1';
-  final String _email = 'test@gmail.com';
-  final String _password = 'Test@123';
-  final LoginUser loginUser =
-  new LoginUser(id: _id, email: _email, password: _password);
+  final String id = '1';
+  final String email = 'test1@gmail.com';
+  final String password = 'Test@123';
+  final String _imageUrl = 'www.google.com';
+  final String _uid = '123';
+  final LoginUser loginUser = new LoginUser(
+      id: id, email: email, password: password, imageUrl: _imageUrl, uid: _uid);
+
   final List<Dapp> tips = new List<Dapp>();
 
   test(

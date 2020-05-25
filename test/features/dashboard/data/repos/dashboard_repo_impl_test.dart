@@ -33,8 +33,10 @@ void main() {
   final String id = '1';
   final String email = 'test1@gmail.com';
   final String password = 'Test@123';
-  final LoginUser loginUser =
-  new LoginUser(id: id, email: email, password: password);
+  final String _imageUrl = 'www.google.com';
+  final String _uid = '123';
+  final LoginUser loginUser = new LoginUser(
+      id: id, email: email, password: password, imageUrl: _imageUrl, uid: _uid);
 
 
   final List<DappModel> dappModels = new List<DappModel>();

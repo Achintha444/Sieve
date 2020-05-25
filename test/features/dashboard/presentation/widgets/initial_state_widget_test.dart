@@ -11,12 +11,19 @@ class MockDashboardBloc extends Mock implements DashboardBloc {}
 void main() {
   MockDashboardBloc mockDashboardBloc;
 
-  final String email = 'test@gmail.com';
-  final String password = 'Test@123';
   final String id = '1';
+  final String email = 'test1@gmail.com';
+  final String password = 'Test@123';
+  final String _imageUrl = 'www.google.com';
+  final String _uid = '123';
   LoginUser loginUser;
   setUp(() {
-    loginUser = new LoginUser(id: id, email: email, password: password);
+    loginUser = new LoginUser(
+        id: id,
+        email: email,
+        password: password,
+        imageUrl: _imageUrl,
+        uid: _uid);
     mockDashboardBloc = new MockDashboardBloc();
   });
 
@@ -34,7 +41,7 @@ void main() {
     );
   }
 
-  testWidgets('InternetErrorWidget - Dashboard', (WidgetTester tester) async {
+  testWidgets('Initial State Widget - Dashboard', (WidgetTester tester) async {
     //* Create the widget by telling the tester to build it.
     await tester.pumpWidget(buildTestableWidget(InitialStateWidget(
       user: loginUser,

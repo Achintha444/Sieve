@@ -15,21 +15,22 @@ void main() {
 
   setUp(() {
     mockLoadDashboard = new MockLoadDashboard();
-    dashboardBloc =
-    new DashboardBloc(loadDashboard: mockLoadDashboard);
+    dashboardBloc = new DashboardBloc(loadDashboard: mockLoadDashboard);
   });
 
   final String id = '1';
-  final String email = 'test@gmail.com';
+  final String email = 'test1@gmail.com';
   final String password = 'Test@123';
-  final LoginUser user =
-  new LoginUser(id: id, email: email, password: password);
-  final List<Dapp> dapp = new List<Dapp>();
+  final String _imageUrl = 'www.google.com';
+  final String _uid = '123';
+  final LoginUser user = new LoginUser(
+      id: id, email: email, password: password, imageUrl: _imageUrl, uid: _uid);
 
+  final List<Dapp> dapp = new List<Dapp>();
 
   test(
     'initialState()',
-        () async {
+    () async {
       //act
       final result = dashboardBloc.initialState;
       //assert
@@ -39,7 +40,7 @@ void main() {
 
   test(
     'should return [Loaded] when the dapp returned',
-        () async {
+    () async {
       //arrange
       when(mockLoadDashboard(any)).thenAnswer((_) async => Right(dapp));
       //act
@@ -56,7 +57,7 @@ void main() {
 
   test(
     'should return [InterntetError] when the tips returned',
-        () async {
+    () async {
       //arrange
       when(mockLoadDashboard(any))
           .thenAnswer((_) async => Left(InternetConnectionFaliure()));

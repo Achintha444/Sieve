@@ -11,13 +11,20 @@ class MockInterestingNewsBloc extends Mock implements InterestingNewsBloc {}
 void main() {
   MockInterestingNewsBloc mockInterestingNewsBloc;
 
-  final String email = 'test@gmail.com';
-  final String password = 'Test@123';
   final String id = '1';
+  final String email = 'test1@gmail.com';
+  final String password = 'Test@123';
+  final String _imageUrl = 'www.google.com';
+  final String _uid = '123';
   LoginUser loginUser;
   InterestingNewsEvent event;
   setUp(() {
-    loginUser = new LoginUser(id: id, email: email, password: password);
+    loginUser = new LoginUser(
+        id: id,
+        email: email,
+        password: password,
+        imageUrl: _imageUrl,
+        uid: _uid);
     mockInterestingNewsBloc = new MockInterestingNewsBloc();
     event = new LoadInterestingNewsEvent(user: loginUser);
   });

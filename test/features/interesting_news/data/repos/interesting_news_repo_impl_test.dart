@@ -22,22 +22,23 @@ void main() {
 
   setUp(() {
     mockNetworkInfo = new MockNetworkInfo();
-    mockInterestingNewsRemoteDataSource = new MockInterestingNewsRemoteDataSource();
+    mockInterestingNewsRemoteDataSource =
+        new MockInterestingNewsRemoteDataSource();
     interestingNewsRepoImpl = new InterestingNewsRepoImpl(
         networkInfo: mockNetworkInfo,
         interestingNewsRemoteDatasource: mockInterestingNewsRemoteDataSource);
   });
 
-
   final String id = '1';
   final String email = 'test1@gmail.com';
   final String password = 'Test@123';
-  final LoginUser loginUser =
-  new LoginUser(id: id, email: email, password: password);
+  final String _imageUrl = 'www.google.com';
+  final String _uid = '123';
+  final LoginUser loginUser = new LoginUser(
+      id: id, email: email, password: password, imageUrl: _imageUrl, uid: _uid);
 
   final List<NewsModel> newsModels = new List<NewsModel>();
   final List<News> news = newsModels;
-
 
   void groupTestOnline(Function body) {
     group('device is online', () {
@@ -52,7 +53,7 @@ void main() {
   group('loadInterestingNews', () {
     test(
       'should check if the device is online',
-          () async {
+      () async {
         //arrange
         when(mockNetworkInfo.isConnected).thenAnswer((_) async => false);
         //act
@@ -65,12 +66,13 @@ void main() {
     groupTestOnline(() {
       test(
         'should return List<Laws> successfull',
-            () async {
+        () async {
           //arrange
           when(mockInterestingNewsRemoteDataSource.loadInterestingNews())
               .thenAnswer((_) async => newsModels);
           //act
-          final result = await interestingNewsRepoImpl.loadInterestingNews(loginUser);
+          final result =
+              await interestingNewsRepoImpl.loadInterestingNews(loginUser);
           //assert
           expect(result, Right(news));
         },
@@ -78,12 +80,13 @@ void main() {
 
       test(
         'should return ServerFaliure unsuccessfull',
-            () async {
+        () async {
           //arrange
           when(mockInterestingNewsRemoteDataSource.loadInterestingNews())
               .thenThrow(ServerException());
           //act
-          final result = await interestingNewsRepoImpl.loadInterestingNews(loginUser);
+          final result =
+              await interestingNewsRepoImpl.loadInterestingNews(loginUser);
           //assert
           expect(result, Left(ServerFaliure()));
         },
@@ -92,15 +95,15 @@ void main() {
 
     test(
       'should return InternetConnectionFaliure when no internet',
-          () async {
+      () async {
         //arrange
         when(mockNetworkInfo.isConnected).thenAnswer((_) async => false);
         //act
-        final result = await interestingNewsRepoImpl.loadInterestingNews(loginUser);
+        final result =
+            await interestingNewsRepoImpl.loadInterestingNews(loginUser);
         //assert
         expect(result, Left(InternetConnectionFaliure()));
       },
     );
   });
 }
-

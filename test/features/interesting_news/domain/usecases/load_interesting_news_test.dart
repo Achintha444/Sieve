@@ -16,20 +16,21 @@ void main() {
   setUp(() {
     mockInterestingNewsRepo = new MockInterestingNewsRepo();
     loadInterestingNews =
-    new LoadInterestingNews(interestingNewsRepo: mockInterestingNewsRepo);
+        new LoadInterestingNews(interestingNewsRepo: mockInterestingNewsRepo);
   });
 
-  final String _id = '1';
-  final String _email = 'test@gmail.com';
-  final String _password = 'Test@123';
-  final LoginUser loginUser =
-  new LoginUser(id: _id, email: _email, password: _password);
+  final String id = '1';
+  final String email = 'test1@gmail.com';
+  final String password = 'Test@123';
+  final String _imageUrl = 'www.google.com';
+  final String _uid = '123';
+  final LoginUser loginUser = new LoginUser(
+      id: id, email: email, password: password, imageUrl: _imageUrl, uid: _uid);
   final List<News> news = new List<News>();
-
 
   test(
     'should return List<News> when successful',
-        () async {
+    () async {
       //arrange
       when(mockInterestingNewsRepo.loadInterestingNews(loginUser))
           .thenAnswer((_) async => Right(news));
@@ -44,9 +45,9 @@ void main() {
 
   test(
     'should return ServerFaliure when unsuccessful',
-        () async {
+    () async {
       //arrange
-          when(mockInterestingNewsRepo.loadInterestingNews(loginUser))
+      when(mockInterestingNewsRepo.loadInterestingNews(loginUser))
           .thenAnswer((_) async => Left(ServerFaliure()));
       //act
       final results = await loadInterestingNews(loginUser);
@@ -59,7 +60,7 @@ void main() {
 
   test(
     'should return InternetConnectionFaliure when unsuccessful',
-        () async {
+    () async {
       //arrange
       when(mockInterestingNewsRepo.loadInterestingNews(loginUser))
           .thenAnswer((_) async => Left(InternetConnectionFaliure()));
@@ -72,6 +73,3 @@ void main() {
     },
   );
 }
-
-
-

@@ -11,13 +11,20 @@ class MockDashboardBloc extends Mock implements DashboardBloc {}
 void main() {
   MockDashboardBloc mockDashboardBloc;
 
-  final String email = 'test@gmail.com';
-  final String password = 'Test@123';
   final String id = '1';
+  final String email = 'test1@gmail.com';
+  final String password = 'Test@123';
+  final String _imageUrl = 'www.google.com';
+  final String _uid = '123';
   LoginUser loginUser;
   DashboardEvent event;
   setUp(() {
-    loginUser = new LoginUser(id: id, email: email, password: password);
+    loginUser = new LoginUser(
+        id: id,
+        email: email,
+        password: password,
+        imageUrl: _imageUrl,
+        uid: _uid);
     mockDashboardBloc = new MockDashboardBloc();
     event = new LoadDashboardEvent(user: loginUser);
   });
