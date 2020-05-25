@@ -9,9 +9,9 @@ import 'categories_card.dart';
 
 class CategoriesWidget extends StatelessWidget {
   final LoginUser user;
-  final List<Categories> news;
+  final List<Categories> categories;
 
-  const CategoriesWidget({Key key, @required this.user, @required this.news})
+  const CategoriesWidget({Key key, @required this.user, @required this.categories})
       : super(key: key);
 
   @override
@@ -35,16 +35,13 @@ class CategoriesWidget extends StatelessWidget {
               //! SELECT A CATEGORY --*
               Column(
                 children: List.generate(
-                  this.news.length,
+                  this.categories.length,
                       (index) {
-                    print (this.news.length);
-                    print (this.news[index].getTitle);
-                    print(index);
                     return AppCard(
                       user: this.user,
-                      title: this.news[index].getTitle,
-                      desc: this.news[index].getDesc,
-                      link: this.news[index].getFullLink,
+                      title: this.categories[index].getID,
+                      desc: this.categories[index].getName,
+                      link: this.categories[index].getIcon,
                     );
                   },
                 ),
@@ -80,15 +77,12 @@ class CategoriesWidget extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: List.generate(
-                            this.news.length,
+                            this.categories.length,
                                 (index) {
-                              print (this.news.length);
-                              print (this.news[index].getTitle);
-                              print(index);
                               return CategoriesCard(
-                                title: this.news[index].getTitle,
-                                desc: this.news[index].getDesc,
-                                link: this.news[index].getFullLink,
+                                id: this.categories[index].getID,
+                                name: this.categories[index].getName,
+                                icon: this.categories[index].getIcon,
                               );
                             },
                           ),

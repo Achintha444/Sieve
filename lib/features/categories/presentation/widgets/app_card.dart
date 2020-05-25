@@ -6,7 +6,7 @@ import '../../../login_screen/domain/entities/login_user.dart';
 
 class AppCard extends StatelessWidget {
   final LoginUser user;
-  final String title;
+  final int title;
   final String desc;
   final String link;
   const AppCard(

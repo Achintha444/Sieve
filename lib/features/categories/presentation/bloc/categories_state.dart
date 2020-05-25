@@ -16,7 +16,7 @@ class InternetError extends CategoriesState{
 
 class Loaded extends CategoriesState{
   final LoginUser user;
-  final List<Categories> news;
+  final List<Categories> categories;
 
-  Loaded({@required this.user,@required this.news}): super([user,news]);
+  Loaded({@required this.user,@required this.categories}): super([user,categories]);
 }

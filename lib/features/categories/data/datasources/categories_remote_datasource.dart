@@ -22,7 +22,7 @@ class CategoriesRemoteDatasourceImpl
   @override
   Future<List<CategoriesModel>> loadCategories() async {
     final response =
-        await httpClient.post(API_URL + "/interesting_news/view_all");
+        await httpClient.post(API_URL + "/categories/view_all");
     if (response.statusCode != 200) {
       throw ServerException();
       // final error = json.decode(response.body);

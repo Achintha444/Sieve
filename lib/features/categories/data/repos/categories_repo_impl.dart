@@ -21,9 +21,9 @@ class CategoriesRepoImpl implements CategoriesRepo{
   Future<Either<Faliure, List<Categories>>> loadCategories(LoginUser user) async {
     if (await networkInfo.isConnected) {
       try {
-        final finalNews = await categoriesRemoteDatasource.loadCategories();
+        final finalCategories = await categoriesRemoteDatasource.loadCategories();
         await Future.delayed(Duration(seconds: 3));
-        return Right(finalNews);
+        return Right(finalCategories);
       } on ServerException {
         return (Left(ServerFaliure()));
       }

@@ -3,32 +3,31 @@ import 'package:flutter/material.dart';
 import '../../domain/entities/categories.dart';
 
 class CategoriesModel extends Categories {
-  final String title;
-  final String desc;
-  final String fullLink;
+  final int id;
+  final String name;
+  final String icon;
 
-  CategoriesModel({@required this.title, @required this.desc,@required this.fullLink})
-      : super(title:title,desc:desc, fullLink: fullLink);
+  CategoriesModel({@required this.id, @required this.name, @required this.icon})
+      : super(id:id, name:name, icon:icon);
 
   factory CategoriesModel.fromJson(Map<String, dynamic> json) {
-    return CategoriesModel(title: json['news'], desc: (json['description']),fullLink: json['full_link']);
+    return CategoriesModel(id: json['category_id'], name: (json['category_name']), icon: json['icon_link']);
   }
 
   static List<CategoriesModel> fromJsonList(Map<String, dynamic> json){
-    List<CategoriesModel> _news = new List<CategoriesModel>();
-    int _len = json['news'].length;
-    print(json);
+    List<CategoriesModel> _categories = new List<CategoriesModel>();
+    int _len = json['categories'].length;
     for (var i=0; i<_len; i++){
-      _news.add(CategoriesModel.fromJson(json['news'][i]));
+      _categories.add(CategoriesModel.fromJson(json['categories'][i]));
     }
-    return _news;
+    return _categories;
   }
 
   Map<String, dynamic> toJson() {
     return {
-      'title': super.getTitle,
-      'desc': super.getDesc,
-      'full_link': super.getFullLink,
+      'category_id': super.getID,
+      'category_name': super.getName,
+      'icon_link': super.getIcon,
     };
   }
 }

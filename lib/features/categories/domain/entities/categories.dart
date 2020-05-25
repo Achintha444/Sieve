@@ -2,21 +2,21 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 
 class Categories extends Equatable{
-  final String title;
-  final String desc;
-  final String fullLink;
+  final int id;
+  final String name;
+  final String icon;
 
-  Categories({@required this.title, @required this.desc,@required this.fullLink}): super([title, desc,fullLink]);
+  Categories({@required this.id, @required this.name, @required this.icon}): super([id, name, icon]);
 
-  String get getTitle {
-    return this.title;
+  int get getID {
+    return this.id;
   }
 
-  String get getDesc{
-    return this.desc;
+  String get getName{
+    return this.name;
   }
 
-  String get getFullLink {
-    return this.fullLink;
+  String get getIcon {
+    return this.icon;
   }
 }

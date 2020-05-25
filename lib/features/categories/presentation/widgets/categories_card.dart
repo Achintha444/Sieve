@@ -3,11 +3,11 @@ import 'package:url_launcher/url_launcher.dart';
 import '../../../../core/Constants/theme_data.dart';
 
 class CategoriesCard extends StatelessWidget {
-  final String title;
-  final String desc;
-  final String link;
+  final int id;
+  final String name;
+  final String icon;
   const CategoriesCard(
-      {Key key, @required this.title, @required this.desc, @required this.link})
+      {Key key, @required this.id, @required this.name, @required this.icon})
       : super(key: key);
 
   @override
@@ -36,7 +36,7 @@ class CategoriesCard extends StatelessWidget {
               CrossAxisAlignment.center,
               children: <Widget>[
                 Text(
-                  'SOCIAL MEDIA'.toUpperCase(),
+                  name.toUpperCase(),
                   style: TextStyle(
                     color: Colors.white,
                     letterSpacing: 1.5,
@@ -51,7 +51,7 @@ class CategoriesCard extends StatelessWidget {
                   ),
                 ),
                 Icon(
-                  Icons.people,
+                  IconData(int.parse('0x' + icon), fontFamily: 'MaterialIcons'),
                   color: Colors.white,
                   size: 100,
                 ),

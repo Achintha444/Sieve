@@ -62,7 +62,7 @@ class _BlocListner extends StatelessWidget {
         } else if (state is Loaded) {
           return CategoriesWidget(
             user: user,
-            news: state.news,
+            categories: state.categories,
           );
         } else{
           return Container();

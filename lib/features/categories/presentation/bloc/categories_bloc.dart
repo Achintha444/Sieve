@@ -30,7 +30,7 @@ class CategoriesBloc extends Bloc<CategoriesEvent, CategoriesState> {
       final response = await this.loadCategories(event.user);
       yield response.fold(
             (faliure) => InternetError(user: event.user),
-            (news) => Loaded(user: event.user,news:news),
+            (categories) => Loaded(user: event.user, categories: categories),
       );
     }
   }
