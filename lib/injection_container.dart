@@ -69,6 +69,11 @@ import 'features/categories/data/repos/categories_repo_impl.dart';
 import 'features/categories/domain/repos/categories_repo.dart';
 import 'features/categories/domain/usecases/load_categories.dart';
 import 'features/categories/presentation/bloc/categories_bloc.dart';
+import 'features/categories/data/datasources/apps_remote_datasource.dart';
+import 'features/categories/data/repos/apps_repo_impl.dart';
+import 'features/categories/domain/repos/apps_repo.dart';
+import 'features/categories/domain/usecases/load_apps.dart';
+import 'features/categories/presentation/bloc/apps_bloc.dart';
 
 final sl = GetIt.instance;
 Future<void> init() async {
@@ -389,6 +394,32 @@ Future<void> init() async {
   //* datasource
   sl.registerLazySingleton<CategoriesRemoteDatasource>(
           () => CategoriesRemoteDatasourceImpl(httpClient: sl()));
+
+  //! Features - Categories - Apps
+
+  //* Bloc
+  sl.registerFactory(
+        () => AppsBloc(
+      loadApps: sl(),
+    ),
+  );
+
+  //* usecases
+  sl.registerLazySingleton(
+        () => LoadApps(
+      appsRepo: sl(),
+    ),
+  );
+
+  //* repo
+  sl.registerLazySingleton<AppsRepo>(
+        () => AppsRepoImpl(
+        networkInfo: sl(), appsRemoteDatasource: sl()),
+  );
+
+  //* datasource
+  sl.registerLazySingleton<AppsRemoteDatasource>(
+          () => AppsRemoteDatasourceImpl(httpClient: sl()));
 
 
   //! Features - privacy_policy

@@ -4,7 +4,7 @@ import '../../../../core/Constants/app_bar_design.dart';
 import '../../../../core/Constants/drawer_design.dart';
 import '../../../login_screen/domain/entities/login_user.dart';
 import '../../domain/entities/categories.dart';
-import 'app_card.dart';
+import 'apps_widget.dart';
 import 'categories_card.dart';
 
 class CategoriesWidget extends StatelessWidget {
@@ -32,20 +32,10 @@ class CategoriesWidget extends StatelessWidget {
             shrinkWrap: true,
             physics: AlwaysScrollableScrollPhysics(),
             children: <Widget>[
-              //! SELECT A CATEGORY --*
-              Column(
-                children: List.generate(
-                  this.categories.length,
-                      (index) {
-                    return AppCard(
-                      user: this.user,
-                      id: this.categories[index].getID,
-                      name: this.categories[index].getName,
-                      icon: this.categories[index].getIcon,
-                    );
-                  },
-                ),
-              ),
+              AppsWidget(
+                user: this.user,
+                categoryId: this.categories[2].getID
+              )
             ],
           ),
           Positioned(
@@ -92,7 +82,7 @@ class CategoriesWidget extends StatelessWidget {
                   ),
                   //! --*
                   Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.only(top: 16.0, left: 8.0, right: 8.0, bottom: 8.0),
                     child: Align(
                       alignment: Alignment.centerLeft,
                       child: Text(

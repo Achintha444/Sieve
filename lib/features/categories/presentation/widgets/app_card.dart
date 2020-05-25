@@ -8,9 +8,11 @@ class AppCard extends StatelessWidget {
   final LoginUser user;
   final int id;
   final String name;
+  final String desc;
   final String icon;
+  final String bg;
   const AppCard(
-      {Key key, @required this.user, @required this.id, @required this.name, @required this.icon})
+      {Key key, @required this.user, @required this.id, @required this.name, @required this.desc, @required this.icon, @required this.bg})
       : super(key: key);
 
   @override
@@ -23,9 +25,7 @@ class AppCard extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(4),
         image: DecorationImage(
-          image: AssetImage(
-            'icons/fb.png',
-          ),
+          image: NetworkImage(bg),
           fit: BoxFit.cover,
           colorFilter: ColorFilter.mode(
             Theme.of(context).primaryColor.withOpacity(0.5),
@@ -42,9 +42,7 @@ class AppCard extends StatelessWidget {
                 Align(
                   alignment: Alignment.topLeft,
                   child: Image(
-                    image: AssetImage(
-                      'icons/g.png',
-                    ),
+                    image: NetworkImage(icon),
                     height: 70,
                   ),
                 ),
@@ -61,7 +59,7 @@ class AppCard extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => PrivacyPolicy(user: user, appId: '1'),
+                        builder: (context) => PrivacyPolicy(user: user, appId: id.toString()),
                       ),
                     );
                   },
@@ -78,7 +76,7 @@ class AppCard extends StatelessWidget {
             Align(
               alignment: Alignment.topRight,
               child: Text(
-                'GOOGLE'.toUpperCase(),
+                name.toUpperCase(),
                 textAlign: TextAlign.justify,
                 style: TextStyle(
                   color: Colors.white,
@@ -104,7 +102,7 @@ class AppCard extends StatelessWidget {
             Align(
               alignment: Alignment.topRight,
               child: Text(
-                'One of the Biggest Social Media Platform',
+                desc,
                 textAlign: TextAlign.justify,
                 style: TextStyle(
                   color: Colors.white,

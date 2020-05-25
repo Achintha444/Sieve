@@ -32,7 +32,6 @@ class CategoriesRemoteDatasourceImpl
       //   throw InvalidInputException();
       // }
     } else {
-      print(json.decode(response.body));
       return CategoriesModel.fromJsonList(json.decode(response.body));
     }
   }

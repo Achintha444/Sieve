@@ -21,7 +21,7 @@ class AppsRemoteDatasourceImpl
 
   @override
   Future<List<AppsModel>> loadApps(int categoryId) async {
-    final response = await httpClient.post(API_URL + "/apps/view_all", body: {'category_id': categoryId});
+    final response = await httpClient.post(API_URL + "/apps/view_all", body: {'category_id': categoryId.toString()});
     if (response.statusCode != 200) {
       throw ServerException();
       // final error = json.decode(response.body);
@@ -31,7 +31,6 @@ class AppsRemoteDatasourceImpl
       //   throw InvalidInputException();
       // }
     } else {
-      print(json.decode(response.body));
       return AppsModel.fromJsonList(json.decode(response.body));
     }
   }
