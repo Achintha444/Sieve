@@ -39,9 +39,9 @@ class CategoriesWidget extends StatelessWidget {
                       (index) {
                     return AppCard(
                       user: this.user,
-                      title: this.categories[index].getID,
-                      desc: this.categories[index].getName,
-                      link: this.categories[index].getIcon,
+                      id: this.categories[index].getID,
+                      name: this.categories[index].getName,
+                      icon: this.categories[index].getIcon,
                     );
                   },
                 ),

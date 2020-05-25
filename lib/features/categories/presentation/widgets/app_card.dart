@@ -6,11 +6,11 @@ import '../../../login_screen/domain/entities/login_user.dart';
 
 class AppCard extends StatelessWidget {
   final LoginUser user;
-  final int title;
-  final String desc;
-  final String link;
+  final int id;
+  final String name;
+  final String icon;
   const AppCard(
-      {Key key, @required this.user, @required this.title, @required this.desc, @required this.link})
+      {Key key, @required this.user, @required this.id, @required this.name, @required this.icon})
       : super(key: key);
 
   @override
