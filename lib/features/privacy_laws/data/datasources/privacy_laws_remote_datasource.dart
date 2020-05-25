@@ -14,27 +14,30 @@ abstract class PrivacyLawsRemoteDatasource {
   Future<List<LawsModel>> loadPrivacyLaws();
 }
 
-class PrivacyLawsRemoteDatasourceImpl implements PrivacyLawsRemoteDatasource{
-  
+class PrivacyLawsRemoteDatasourceImpl implements PrivacyLawsRemoteDatasource {
   final http.Client httpClient;
 
   PrivacyLawsRemoteDatasourceImpl({@required this.httpClient});
 
   @override
-  Future<List<LawsModel>> loadPrivacyLaws() async{
-    final response = await httpClient.post(API_URL + "/privacy_laws/view_all");
-    if (response.statusCode != 200) {
+  Future<List<LawsModel>> loadPrivacyLaws() async {
+    try {
+      final response =
+          await httpClient.post(API_URL + "/privacy_laws/view_all");
+      if (response.statusCode != 200) {
+        throw ServerException();
+        // final error = json.decode(response.body);
+        // if(error['serverError']==true){
+        //   throw ServerException();
+        // }else{
+        //   throw InvalidInputException();
+        // }
+      } else {
+        return LawsModel.fromJsonList(json.decode(response.body));
+      }
+    } catch (e) {
+      print(e);
       throw ServerException();
-      // final error = json.decode(response.body);
-      // if(error['serverError']==true){
-      //   throw ServerException();
-      // }else{
-      //   throw InvalidInputException();
-      // }
-    } else {
-      return LawsModel.fromJsonList(json.decode(response.body));
     }
   }
-  
-  
 }

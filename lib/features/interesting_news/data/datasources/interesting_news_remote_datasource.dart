@@ -21,19 +21,24 @@ class InterestingNewsRemoteDatasourceImpl
 
   @override
   Future<List<NewsModel>> loadInterestingNews() async {
-    final response =
-        await httpClient.post(API_URL + "/interesting_news/view_all");
-    if (response.statusCode != 200) {
+    try {
+      final response =
+          await httpClient.post(API_URL + "/interesting_news/view_all");
+      if (response.statusCode != 200) {
+        throw ServerException();
+        // final error = json.decode(response.body);
+        // if(error['serverError']==true){
+        //   throw ServerException();
+        // }else{
+        //   throw InvalidInputException();
+        // }
+      } else {
+        print(json.decode(response.body));
+        return NewsModel.fromJsonList(json.decode(response.body));
+      }
+    } catch (e) {
+      print(e);
       throw ServerException();
-      // final error = json.decode(response.body);
-      // if(error['serverError']==true){
-      //   throw ServerException();
-      // }else{
-      //   throw InvalidInputException();
-      // }
-    } else {
-      print(json.decode(response.body));
-      return NewsModel.fromJsonList(json.decode(response.body));
     }
   }
 }

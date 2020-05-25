@@ -21,19 +21,25 @@ class SuggestionRemoteDataSourceImpl implements SuggestionRemoteDataSource {
   SuggestionRemoteDataSourceImpl({@required this.httpClient});
 
   @override
-  Future<EmptyEntity> insertSuggestion(LoginUser user, String suggestion) async {
-    final response = await httpClient.post(API_URL + "/suggestion/insert",
-        body: {'userId': user.getId, 'suggestion': suggestion});
-        print('suggestion snt');
-    if (response.statusCode != 200) {
-      final error = json.decode(response.body);
-      if(error['serverError']==true){
-        throw ServerException();
-      }else{
-        throw InvalidInputException();
+  Future<EmptyEntity> insertSuggestion(
+      LoginUser user, String suggestion) async {
+    try {
+      final response = await httpClient.post(API_URL + "/suggestion/insert",
+          body: {'userId': user.getId, 'suggestion': suggestion});
+      print('suggestion snt');
+      if (response.statusCode != 200) {
+        final error = json.decode(response.body);
+        if (error['serverError'] == true) {
+          throw ServerException();
+        } else {
+          throw InvalidInputException();
+        }
+      } else {
+        return EmptyEntity();
       }
-    } else {
-      return EmptyEntity();
+    } catch (e) {
+      print(e);
+      throw ServerException();
     }
   }
 }
