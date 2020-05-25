@@ -18,7 +18,7 @@ class DappCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: MediaQuery.of(context).size.height / 7,
+      height: MediaQuery.of(context).size.height / 5.5,
       alignment: Alignment.center,
       child: Card(
         borderOnForeground: false,
@@ -33,32 +33,27 @@ class DappCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               //* Dapp
-
               Image.network(
                 iconImage,
-                width: 35,
-                height: 35,
+                width: 60,
+                height: 60,
                 alignment: Alignment.center,
               ),
-
               Padding(
                 padding: EdgeInsets.only(
-                  top: 15,
-                  bottom: 1,
                   left: 22,
                 ),
               ),
-//
               Align(
-                alignment: Alignment(0,-0.45),
+                alignment: Alignment(0, -0.45),
                 child: Container(
-                  width: MediaQuery.of(context).size.width/3.8,
+                  width: MediaQuery.of(context).size.width / 3.8,
                   child: Text(
                     aName,
                     textAlign: TextAlign.left,
                     style: TextStyle(
                       color: Colors.black,
-                      fontSize: 16,
+                      fontSize: 18,
                       fontWeight: FontWeight.w600,
                       letterSpacing: 1,
                     ),
@@ -146,7 +141,7 @@ class DappCard extends StatelessWidget {
       app.add(t);
       t = null;
     }
-    for (int j = 0; j < (5-num); j++) {
+    for (int j = 0; j < (5 - num); j++) {
       Icon t = Icon(
         MdiIcons.fire,
         color: Color(0xffDCDCDC),

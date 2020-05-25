@@ -28,7 +28,7 @@ class DashboardWidget extends StatelessWidget {
           children: <Widget>[
             //* Dashboard
             Padding(
-              padding: const EdgeInsets.only(top: 3.0, left: 15,bottom: 3),
+              padding: const EdgeInsets.only(top: 3.0, left: 15, bottom: 3),
               child: Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
@@ -36,10 +36,11 @@ class DashboardWidget extends StatelessWidget {
                   "\n",
                   textAlign: TextAlign.start,
                   style: TextStyle(
-                      fontSize: 18,
-                      color: Theme.of(context).primaryColor,
-                      letterSpacing: 1,
-                      fontWeight: FontWeight.w500),
+                    fontSize: 18,
+                    color: Theme.of(context).primaryColor,
+                    letterSpacing: 1,
+                    fontWeight: FontWeight.w500,
+                  ),
                 ),
               ),
             ),
@@ -48,7 +49,8 @@ class DashboardWidget extends StatelessWidget {
               children: List.generate(
                 this.dapp.length,
                 (index) {
-                  return Column(children: _check_cat(index, context));
+                  //return Column(children: _check_cat(index, context));
+                  return _check_cat(index, context);
                 },
               ),
             ),
@@ -65,7 +67,7 @@ class DashboardWidget extends StatelessWidget {
     );
   }
 
-  List<Widget> _check_cat(int index, BuildContext context) {
+  Widget _check_cat(int index, BuildContext context) {
     if ((index == 0) ||
         (dapp[index].categoryName != dapp[index - 1].categoryName)) {
       Padding cat = Padding(
@@ -76,7 +78,7 @@ class DashboardWidget extends StatelessWidget {
             dapp[index].categoryName + " Category",
             //textAlign: TextAlign.end,
             style: TextStyle(
-              fontSize: 17,
+              fontSize: 22,
               color: Theme.of(context).primaryColor,
               fontWeight: FontWeight.bold,
               letterSpacing: 1,
@@ -90,14 +92,51 @@ class DashboardWidget extends StatelessWidget {
           cName: this.dapp[index].getCategoryName,
           iconImage: this.dapp[index].getIconImage,
           dCount: this.dapp[index].getDCount);
-      return [cat, dcard];
+      return Column (children: <Widget>[cat, dcard],) ;
     } else {
       DappCard dcard = DappCard(
           aName: this.dapp[index].getAppName,
           cName: this.dapp[index].getCategoryName,
           iconImage: this.dapp[index].getIconImage,
           dCount: this.dapp[index].getDCount);
-      return [dcard];
+      return dcard;
     }
   }
+
+  // List<Widget> _check_cat(int index, BuildContext context) {
+  //   if ((index == 0) ||
+  //       (dapp[index].categoryName != dapp[index - 1].categoryName)) {
+  //     Padding cat = Padding(
+  //       padding: EdgeInsets.only(left: 15),
+  //       child: Align(
+  //         alignment: Alignment.centerLeft,
+  //         child: Text(
+  //           dapp[index].categoryName + " Category",
+  //           //textAlign: TextAlign.end,
+  //           style: TextStyle(
+  //             fontSize: 22,
+  //             color: Theme.of(context).primaryColor,
+  //             fontWeight: FontWeight.bold,
+  //             letterSpacing: 1,
+  //           ),
+  //         ),
+  //       ),
+  //     );
+
+  //     DappCard dcard = DappCard(
+  //         aName: this.dapp[index].getAppName,
+  //         cName: this.dapp[index].getCategoryName,
+  //         iconImage: this.dapp[index].getIconImage,
+  //         dCount: this.dapp[index].getDCount);
+  //     return [cat, dcard];
+  //   } else {
+  //     DappCard dcard = DappCard(
+  //         aName: this.dapp[index].getAppName,
+  //         cName: this.dapp[index].getCategoryName,
+  //         iconImage: this.dapp[index].getIconImage,
+  //         dCount: this.dapp[index].getDCount);
+  //     return [dcard];
+  //   }
+  // }
+
 }
