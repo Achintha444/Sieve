@@ -13,27 +13,43 @@ import 'app_card.dart';
 import 'apps_initial_state_widget.dart';
 import 'apps_internet_error_widget.dart';
 
-class AppsWidget extends StatelessWidget {
+class AppsWidget extends StatefulWidget {
   final LoginUser user;
   final int categoryId;
 
-  const AppsWidget({Key key, @required this.user, @required this.categoryId}) : super(key: key);
+  const AppsWidget({Key key, @required this.user, @required this.categoryId})
+      : super(key: key);
+
+  @override
+  AppsWidgetState createState() => AppsWidgetState();
+
+}
+
+class AppsWidgetState extends State<AppsWidget> {
+
+  int categoryId;
+
+  @override
+  void initState() {
+    super.initState();
+    this.categoryId = widget.categoryId;
+  }
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider<AppsBloc>(
       builder: (context) => sl<AppsBloc>(),
-     child: _BlocListner(
-        user: user,
-        categoryId: categoryId
+      child: _BlocListner(
+        user: widget.user,
+        categoryId: this.categoryId
       ),
     );
   }
 
-//  void _dispatchEvent(BuildContext context) {
-//    BlocProvider.of<AppsBloc>(context)
-//        .dispatch(LoadAppsEvent(user: user, categoryId: categoryId));
-//  }
+  void _dispatchEvent(BuildContext context) {
+    BlocProvider.of<AppsBloc>(context)
+        .dispatch(LoadAppsEvent(user: widget.user, categoryId: categoryId));
+  }
 }
 
 class _BlocListner extends StatelessWidget {

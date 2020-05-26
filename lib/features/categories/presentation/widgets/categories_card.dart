@@ -1,13 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:sieve_data_privacy_app/features/categories/presentation/widgets/apps_widget.dart';
+import 'package:sieve_data_privacy_app/features/login_screen/domain/entities/login_user.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../../../core/Constants/theme_data.dart';
+import 'categories_widget.dart';
 
 class CategoriesCard extends StatelessWidget {
   final int id;
   final String name;
   final String icon;
-  const CategoriesCard(
-      {Key key, @required this.id, @required this.name, @required this.icon})
+
+  final VoidCallback tapAction;
+
+  CategoriesCard(
+      {Key key, @required this.id, @required this.name, @required this.icon, @required this.tapAction})
       : super(key: key);
 
   @override
@@ -61,7 +67,7 @@ class CategoriesCard extends StatelessWidget {
             ),
           ),
         ),
-        onTap: () => print (id),
+        onTap: tapAction,
       ),
     );
   }

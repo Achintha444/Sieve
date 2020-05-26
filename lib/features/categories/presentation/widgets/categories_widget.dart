@@ -7,7 +7,7 @@ import '../../domain/entities/categories.dart';
 import 'apps_widget.dart';
 import 'categories_card.dart';
 
-class CategoriesWidget extends StatelessWidget {
+class CategoriesWidget extends StatefulWidget {
   final LoginUser user;
   final List<Categories> categories;
 
@@ -15,26 +15,43 @@ class CategoriesWidget extends StatelessWidget {
       : super(key: key);
 
   @override
+  CategoriesWidgetState createState() => CategoriesWidgetState();
+}
+
+class CategoriesWidgetState extends State<CategoriesWidget> {
+  int categoryId;
+  final ValueNotifier<int> _categoryId = ValueNotifier<int>(0);
+//  final Widget goodJob = const Text('Good job!');
+
+  initState() {
+    categoryId = widget.categories[2].getID;
+    _categoryId.value = widget.categories[2].getID;
+  }
+
+  @override
   Widget build(BuildContext context) {
+//    rebuildAllChildren(context);
     return Scaffold(
       drawer: DrawerDesign(
-        user: user,
+        user: widget.user,
       ),
       appBar: AppBarDesign(
         title: 'Categories',
-        imageUrl: user.getImageUrl,
+        imageUrl: widget.user.getImageUrl,
       ),
       body: Stack(
         children: <Widget>[
           ListView(
-            padding:
-            EdgeInsets.only(top: MediaQuery.of(context).size.height / 2.8),
+            padding: EdgeInsets.only(top: MediaQuery.of(context).size.height / 2.8),
             shrinkWrap: true,
             physics: AlwaysScrollableScrollPhysics(),
             children: <Widget>[
-              AppsWidget(
-                user: this.user,
-                categoryId: this.categories[2].getID
+              ValueListenableBuilder(
+                builder: (BuildContext context, int value, Widget child) {
+                  return new AppsWidget(user: widget.user, categoryId: _categoryId.value);
+                },
+                valueListenable: _categoryId,
+//                child: goodJob,
               )
             ],
           ),
@@ -67,12 +84,17 @@ class CategoriesWidget extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: List.generate(
-                            this.categories.length,
+                            widget.categories.length,
                                 (index) {
                               return CategoriesCard(
-                                id: this.categories[index].getID,
-                                name: this.categories[index].getName,
-                                icon: this.categories[index].getIcon,
+                                id: widget.categories[index].getID,
+                                name: widget.categories[index].getName,
+                                icon: widget.categories[index].getIcon,
+                                tapAction: (){
+                                  categoryId = widget.categories[index].getID;
+                                  _categoryId.value = categoryId;
+                                  print (_categoryId.value);
+                                },
                               );
                             },
                           ),
