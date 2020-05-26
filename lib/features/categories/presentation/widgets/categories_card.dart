@@ -16,49 +16,52 @@ class CategoriesCard extends StatelessWidget {
       height: MediaQuery.of(context).size.height / 4.3,
       width: MediaQuery.of(context).size.height / 4.3,
       alignment: Alignment.center,
-      child: Card(
-        elevation: 4,
-        borderOnForeground: true,
-        margin: EdgeInsets.all(5),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(
-            Radius.circular(10),
+      child: GestureDetector(
+        child: Card(
+          elevation: 4,
+          borderOnForeground: true,
+          margin: EdgeInsets.all(5),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(
+              Radius.circular(10),
+            ),
           ),
-        ),
-        child: Container(
-          alignment: Alignment.center,
-          decoration: categoryGradientData,
-          child: Center(
-            child: Column(
-              mainAxisAlignment:
-              MainAxisAlignment.center,
-              crossAxisAlignment:
-              CrossAxisAlignment.center,
-              children: <Widget>[
-                Text(
-                  name.toUpperCase(),
-                  style: TextStyle(
+          child: Container(
+            alignment: Alignment.center,
+            decoration: categoryGradientData,
+            child: Center(
+              child: Column(
+                mainAxisAlignment:
+                MainAxisAlignment.center,
+                crossAxisAlignment:
+                CrossAxisAlignment.center,
+                children: <Widget>[
+                  Text(
+                    name.toUpperCase(),
+                    style: TextStyle(
+                      color: Colors.white,
+                      letterSpacing: 1.5,
+                      fontSize: 15,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(
+                      bottom: 12,
+                    ),
+                  ),
+                  Icon(
+                    IconData(int.parse('0x' + icon), fontFamily: 'MaterialIcons'),
                     color: Colors.white,
-                    letterSpacing: 1.5,
-                    fontSize: 15,
-                    fontWeight: FontWeight.bold,
+                    size: 100,
                   ),
-                  textAlign: TextAlign.center,
-                ),
-                Padding(
-                  padding: EdgeInsets.only(
-                    bottom: 12,
-                  ),
-                ),
-                Icon(
-                  IconData(int.parse('0x' + icon), fontFamily: 'MaterialIcons'),
-                  color: Colors.white,
-                  size: 100,
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),
+        onTap: () => print (id),
       ),
     );
   }
