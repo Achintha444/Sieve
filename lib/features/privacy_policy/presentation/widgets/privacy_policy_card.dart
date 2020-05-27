@@ -31,79 +31,76 @@ class _PrivacyPolicyCardState extends State<PrivacyPolicyCard> {
   }
 
   Widget _buildPanel() {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: ExpansionPanelList(
-        expansionCallback: (int index, bool isExpanded) {
-          setState(() {
-            _expanded[index] = !isExpanded;
-          });
-        },
-        children: [
-          ExpansionPanel(
-            headerBuilder: (BuildContext context, bool isExpanded) {
-              return TitlePanel(title: 'Data Type Collected');
-            },
-            canTapOnHeader: true,
-            body: PanelOne(list: widget.privacyPolicy.getTypes),
-            isExpanded: _expanded[0],
+    return ExpansionPanelList(
+      expansionCallback: (int index, bool isExpanded) {
+        setState(() {
+          _expanded[index] = !isExpanded;
+        });
+      },
+      children: [
+        ExpansionPanel(
+          headerBuilder: (BuildContext context, bool isExpanded) {
+            return TitlePanel(title: 'Data Type Collected');
+          },
+          canTapOnHeader: true,
+          body: PanelOne(list: widget.privacyPolicy.getTypes),
+          isExpanded: _expanded[0],
+        ),
+        ExpansionPanel(
+          headerBuilder: (BuildContext context, bool isExpanded) {
+            return TitlePanel(title: 'Data Usage Policy');
+          },
+          canTapOnHeader: true,
+          body: PanelOne(list: widget.privacyPolicy.getUsages),
+          isExpanded: _expanded[1],
+        ),
+        ExpansionPanel(
+          headerBuilder: (BuildContext context, bool isExpanded) {
+            return TitlePanel(title: 'Data Removal Policy');
+          },
+          canTapOnHeader: true,
+          body: PanelOne(list: widget.privacyPolicy.getRemoval),
+          isExpanded: _expanded[2],
+        ),
+        ExpansionPanel(
+          headerBuilder: (BuildContext context, bool isExpanded) {
+            return TitlePanel(title: 'Privacy Officer Contact');
+          },
+          canTapOnHeader: true,
+          body: PanelPrivacyOfficer(
+            contactLink: widget.privacyPolicy.contactLink,
+            email: widget.privacyPolicy.email,
+            fiLine: widget.privacyPolicy.fiLine,
+            sLine: widget.privacyPolicy.sLine,
+            tLine: widget.privacyPolicy.tLine,
+            foLine: widget.privacyPolicy.foLine,
+            user: widget.user,
           ),
-          ExpansionPanel(
-            headerBuilder: (BuildContext context, bool isExpanded) {
-              return TitlePanel(title: 'Data Usage Policy');
-            },
-            canTapOnHeader: true,
-            body: PanelOne(list: widget.privacyPolicy.getUsages),
-            isExpanded: _expanded[1],
+          isExpanded: _expanded[3],
+        ),
+        ExpansionPanel(
+          headerBuilder: (BuildContext context, bool isExpanded) {
+            return TitlePanel(title: 'Full Privacy Policy');
+          },
+          canTapOnHeader: true,
+          body: ListView(
+            shrinkWrap: true,
+            physics: NeverScrollableScrollPhysics(),
+            children: <Widget>[
+              ListTile(
+                title: Text('Ip Address'),
+              ),
+              ListTile(
+                title: Text('Ip Address'),
+              ),
+              ListTile(
+                title: Text('Ip Address'),
+              ),
+            ],
           ),
-          ExpansionPanel(
-            headerBuilder: (BuildContext context, bool isExpanded) {
-              return TitlePanel(title: 'Data Removal Policy');
-            },
-            canTapOnHeader: true,
-            body: PanelOne(list: widget.privacyPolicy.getRemoval),
-            isExpanded: _expanded[2],
-          ),
-          ExpansionPanel(
-            headerBuilder: (BuildContext context, bool isExpanded) {
-              return TitlePanel(title: 'Privacy Officer Contact');
-            },
-            canTapOnHeader: true,
-            body: PanelPrivacyOfficer(
-              contactLink: widget.privacyPolicy.contactLink,
-              email: widget.privacyPolicy.email,
-              fiLine: widget.privacyPolicy.fiLine,
-              sLine: widget.privacyPolicy.sLine,
-              tLine: widget.privacyPolicy.tLine,
-              foLine: widget.privacyPolicy.foLine,
-              user: widget.user,
-            ),
-            isExpanded: _expanded[3],
-          ),
-          ExpansionPanel(
-            headerBuilder: (BuildContext context, bool isExpanded) {
-              return TitlePanel(title: 'Full Privacy Policy');
-            },
-            canTapOnHeader: true,
-            body: ListView(
-              shrinkWrap: true,
-              physics: NeverScrollableScrollPhysics(),
-              children: <Widget>[
-                ListTile(
-                  title: Text('Ip Address'),
-                ),
-                ListTile(
-                  title: Text('Ip Address'),
-                ),
-                ListTile(
-                  title: Text('Ip Address'),
-                ),
-              ],
-            ),
-            isExpanded: _expanded[4],
-          ),
-        ],
-      ),
+          isExpanded: _expanded[4],
+        ),
+      ],
     );
   }
 }

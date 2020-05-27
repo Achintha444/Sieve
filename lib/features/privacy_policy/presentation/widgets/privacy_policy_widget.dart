@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sieve_data_privacy_app/features/privacy_policy/presentation/widgets/policy_card.dart';
 
 import '../../../login_screen/domain/entities/login_user.dart';
 import '../../domain/entities/privacy_policy.dart';
@@ -123,13 +124,17 @@ class PrivacyPolicyWidget extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         child: Container(
-          padding: EdgeInsets.only(
-            left: 15,
-            right: 15
-          ),
-          child: PrivacyPolicyCard(
-            user: user,
-            privacyPolicy: privacyPolicy,
+          child: Column(
+            children: [
+              PolicyCard(
+                user: user,
+                privacyPolicy: privacyPolicy,
+              ),
+              PolicyCard(
+                user: user,
+                privacyPolicy: privacyPolicy,
+              ),
+            ],
           ),
         ),
       ),
