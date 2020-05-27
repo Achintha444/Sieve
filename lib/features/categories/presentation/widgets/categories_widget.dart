@@ -93,7 +93,6 @@ class CategoriesWidgetState extends State<CategoriesWidget> {
                                 tapAction: (){
                                   categoryId = widget.categories[index].getID;
                                   _categoryId.value = categoryId;
-                                  print (_categoryId.value);
                                 },
                               );
                             },
