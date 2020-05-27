@@ -15,7 +15,6 @@ class PanelOne extends StatelessWidget {
         children: List.generate(
           list.length,
           (index) {
-            print(index);
             return ListTile(
               leading: Icon(
                 Icons.bookmark,

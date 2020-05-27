@@ -47,26 +47,40 @@ class PrivacyPolicyWidget extends StatelessWidget {
         ],
         bottom: PreferredSize(
           preferredSize: MediaQuery.of(context).size / 4,
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              children: <Widget>[
-                Container(
-                  padding: EdgeInsets.all(8),
-                  height: MediaQuery.of(context).size.height / 5.5,
+          child: Column(
+            children: <Widget>[
+              Container(
+                height: MediaQuery.of(context).size.height / 5.5,
+                child: Card (
+                  color: Color(0xffffff).withOpacity(0),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15),
+                    side: BorderSide(
+                      color: Color(0xff1BA0F2),
+                    ),
+                  ),
+                  margin: EdgeInsets.only(
+                    left: 15,
+                    right: 15,
+                    top: 0,
+                    bottom: 15
+                  ),
+                  borderOnForeground: true,
                   child: Row(
                     children: <Widget>[
-                      Container(
-                        padding: EdgeInsets.all(8),
-                        child: Image(
-                          image: AssetImage('icons/g.png'),
-                          height: 80,
+                      Card (
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(15),
+                          side: BorderSide(
+                            color: Color(0xff1BA0F2),
+                          ),
                         ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(
-                          left: 5,
-                          right: 5,
+                        child: Container (
+                          padding: EdgeInsets.all(12),
+                          child: Image(
+                            image: AssetImage('icons/g.png'),
+                            height: 80,
+                          ),
                         ),
                       ),
                       Expanded(
@@ -76,7 +90,6 @@ class PrivacyPolicyWidget extends StatelessWidget {
                             color: Theme.of(context).primaryColor,
                             fontSize: 17.5,
                             letterSpacing: 1.5,
-                            //fontWeight: FontWeight.w600,
                             wordSpacing: 1,
                           ),
                         ),
@@ -84,13 +97,15 @@ class PrivacyPolicyWidget extends StatelessWidget {
                     ],
                   ),
                 ),
-                Padding(
-                  padding: EdgeInsets.only(
-                    top: 5,
-                    bottom: 5,
-                  ),
+              ),
+              Container (
+                padding: EdgeInsets.only(
+                  left: 15,
+                  right: 15,
+                  top: 10,
+                  bottom: 5
                 ),
-                Align(
+                child:Align(
                   alignment: Alignment.topLeft,
                   child: Text(
                     'Simplifed Privacy Policy'.toUpperCase(),
@@ -101,13 +116,17 @@ class PrivacyPolicyWidget extends StatelessWidget {
                     ),
                   ),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),
       body: SingleChildScrollView(
         child: Container(
+          padding: EdgeInsets.only(
+            left: 15,
+            right: 15
+          ),
           child: PrivacyPolicyCard(
             user: user,
             privacyPolicy: privacyPolicy,

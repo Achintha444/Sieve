@@ -34,7 +34,6 @@ class PrivacyPolicy extends StatelessWidget {
   }
 
   void _dispatchEvent(BuildContext context) {
-    print('assaas');
     BlocProvider.of<PrivacyPolicyBloc>(context)
         .dispatch(LoadPrivacyPolicyEvent(user: user, appId: app.getID.toString()));
   }
