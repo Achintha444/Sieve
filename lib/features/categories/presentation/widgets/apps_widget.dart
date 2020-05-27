@@ -65,11 +65,7 @@ class _BlocListner extends StatelessWidget {
                 print (categoryId);
                 return AppCard(
                   user: user,
-                  id: state.apps[index].getID,
-                  name: state.apps[index].getName,
-                  desc: state.apps[index].getDesc,
-                  icon: state.apps[index].getIcon,
-                  bg: state.apps[index].getBG,
+                  app: state.apps[index],
                 );
               },
             ),

@@ -5,5 +5,5 @@ import '../../../login_screen/domain/entities/login_user.dart';
 import '../entities/apps.dart';
 
 abstract class AppsRepo {
-  Future <Either<Faliure,List<Apps>>> loadApps(LoginUser user, int categoryId);
+  Future <Either<Faliure,List<App>>> loadApps(LoginUser user, int categoryId);
 }

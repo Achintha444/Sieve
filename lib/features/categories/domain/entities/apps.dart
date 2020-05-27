@@ -1,14 +1,15 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 
-class Apps extends Equatable{
+class App extends Equatable{
   final int id;
   final String name;
   final String desc;
   final String icon;
   final String bg;
+  final String link;
 
-  Apps({@required this.id, @required this.name, @required this.desc, @required this.icon, @required this.bg}): super([id, name, desc, icon, bg]);
+  App({@required this.id, @required this.name, @required this.desc, @required this.icon, @required this.bg, @required this.link}): super([id, name, desc, icon, bg, link]);
 
   int get getID {
     return this.id;
@@ -28,5 +29,9 @@ class Apps extends Equatable{
 
   String get getBG {
     return this.bg;
+  }
+
+  String get getLink {
+    return this.link;
   }
 }

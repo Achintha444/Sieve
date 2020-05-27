@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../categories/domain/entities/apps.dart';
 import '../widgets/privacy_policy_widget.dart';
 
 import '../../../../core/Constants/refresh_floating_button.dart';
@@ -12,10 +13,9 @@ import '../widgets/internet_error_widget.dart';
 
 class PrivacyPolicy extends StatelessWidget {
   final LoginUser user;
-  //TODO : HERE it should passes the App() object, for now it uses a Strnig.
-  final String appId;
+  final App app;
 
-  const PrivacyPolicy({Key key, @required this.user, @required this.appId})
+  const PrivacyPolicy({Key key, @required this.user, @required this.app})
       : super(key: key);
 
   @override
@@ -26,7 +26,7 @@ class PrivacyPolicy extends StatelessWidget {
         body: Container(
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
-          child: _BlocListner(user: user, appId: appId),
+          child: _BlocListner(user: user, appId: app.getID.toString()),
         ),
         floatingActionButton: RefreshFloatingButton(onTap: this._dispatchEvent),
       ),
@@ -36,7 +36,7 @@ class PrivacyPolicy extends StatelessWidget {
   void _dispatchEvent(BuildContext context) {
     print('assaas');
     BlocProvider.of<PrivacyPolicyBloc>(context)
-        .dispatch(LoadPrivacyPolicyEvent(user: user, appId: appId));
+        .dispatch(LoadPrivacyPolicyEvent(user: user, appId: app.getID.toString()));
   }
 }
 

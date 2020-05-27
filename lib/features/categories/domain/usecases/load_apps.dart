@@ -7,7 +7,7 @@ import '../../../login_screen/domain/entities/login_user.dart';
 import '../entities/apps.dart';
 import '../repos/apps_repo.dart';
 
-class LoadApps implements UseCase<List<Apps>, List<dynamic>>{
+class LoadApps implements UseCase<List<App>, List<dynamic>>{
 
   final AppsRepo appsRepo;
 
@@ -15,7 +15,7 @@ class LoadApps implements UseCase<List<Apps>, List<dynamic>>{
 
 
   @override
-  Future<Either<Faliure, List<Apps>>> call(List params) async {
+  Future<Either<Faliure, List<App>>> call(List params) async {
     return await this.appsRepo.loadApps(params[0], params[1]) ;
   }
 

@@ -18,7 +18,7 @@ class AppsRepoImpl implements AppsRepo{
   AppsRepoImpl({@required this.networkInfo, @required this.appsRemoteDatasource});
 
   @override
-  Future<Either<Faliure, List<Apps>>> loadApps(LoginUser user, int categoryId) async {
+  Future<Either<Faliure, List<App>>> loadApps(LoginUser user, int categoryId) async {
     if (await networkInfo.isConnected) {
       try {
         final finalApps = await appsRemoteDatasource.loadApps(categoryId);

@@ -1,18 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
-import '../../../../core/Constants/theme_data.dart';
+import '../../domain/entities/apps.dart';
 import '../../../privacy_policy/presentation/pages/privacy_policy.dart';
 import '../../../login_screen/domain/entities/login_user.dart';
 
 class AppCard extends StatelessWidget {
   final LoginUser user;
-  final int id;
-  final String name;
-  final String desc;
-  final String icon;
-  final String bg;
+  final App app;
   const AppCard(
-      {Key key, @required this.user, @required this.id, @required this.name, @required this.desc, @required this.icon, @required this.bg})
+      {Key key, @required this.user, @required this.app})
       : super(key: key);
 
   @override
@@ -25,7 +20,7 @@ class AppCard extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(4),
         image: DecorationImage(
-          image: NetworkImage(bg),
+          image: NetworkImage(app.getBG),
           fit: BoxFit.cover,
           colorFilter: ColorFilter.mode(
             Theme.of(context).primaryColor.withOpacity(0.5),
@@ -42,7 +37,7 @@ class AppCard extends StatelessWidget {
                 Align(
                   alignment: Alignment.topLeft,
                   child: Image(
-                    image: NetworkImage(icon),
+                    image: NetworkImage(app.getIcon),
                     height: 70,
                   ),
                 ),
@@ -59,7 +54,7 @@ class AppCard extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => PrivacyPolicy(user: user, appId: id.toString()),
+                        builder: (context) => PrivacyPolicy(user: user, app: app),
                       ),
                     );
                   },
@@ -76,7 +71,7 @@ class AppCard extends StatelessWidget {
             Align(
               alignment: Alignment.topRight,
               child: Text(
-                name.toUpperCase(),
+                app.getName.toUpperCase(),
                 textAlign: TextAlign.justify,
                 style: TextStyle(
                   color: Colors.white,
@@ -102,7 +97,7 @@ class AppCard extends StatelessWidget {
             Align(
               alignment: Alignment.topRight,
               child: Text(
-                desc,
+                app.getDesc,
                 textAlign: TextAlign.justify,
                 style: TextStyle(
                   color: Colors.white,

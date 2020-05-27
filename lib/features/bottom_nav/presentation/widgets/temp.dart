@@ -26,7 +26,7 @@ class Temp extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => PrivacyPolicy(user: user, appId: '1'),
+//                    builder: (context) => PrivacyPolicy(user: user, appId: '1'),
                   ),
                 );
               },
@@ -37,7 +37,7 @@ class Temp extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => PrivacyPolicy(user: user, appId: '2'),
+//                    builder: (context) => PrivacyPolicy(user: user, appId: '2'),
                   ),
                 );
               },
