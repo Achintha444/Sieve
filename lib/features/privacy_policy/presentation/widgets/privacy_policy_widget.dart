@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:sieve_data_privacy_app/features/privacy_policy/presentation/widgets/panel_one.dart';
-import 'package:sieve_data_privacy_app/features/privacy_policy/presentation/widgets/panel_privacy_officer.dart';
-import 'package:sieve_data_privacy_app/features/privacy_policy/presentation/widgets/policy_card.dart';
-
 import '../../../login_screen/domain/entities/login_user.dart';
 import '../../domain/entities/privacy_policy.dart';
 import 'privacy_policy_card.dart';
+import 'panel_one.dart';
+import 'panel_privacy_officer.dart';
 
 class PrivacyPolicyWidget extends StatelessWidget {
   final LoginUser user;
@@ -131,15 +129,27 @@ class PrivacyPolicyWidget extends StatelessWidget {
           ),
           child: Column(
             children: [
-              PolicyCard(
+              PrivacyPolicyCard(
                 user: user,
                 title: "Data Types Collected",
                 subtitle: "Eg: Name, Email",
                 content: PanelOne(list: privacyPolicy.getTypes),
               ),
-              PolicyCard(
+              PrivacyPolicyCard(
                 user: user,
-                title: "Privacy Officer Contacts",
+                title: "Data Usage Policy",
+                subtitle: "Eg: Name, Email",
+                content: PanelOne(list: privacyPolicy.getUsages),
+              ),
+              PrivacyPolicyCard(
+                user: user,
+                title: "Data Removal Policy",
+                subtitle: "Eg: Name, Email",
+                content: PanelOne(list: privacyPolicy.getRemoval),
+              ),
+              PrivacyPolicyCard(
+                user: user,
+                title: "Privacy Officer Contact",
                 subtitle: "Contact Details of Privacy Officer",
                 content: PanelPrivacyOfficer(
                   contactLink: privacyPolicy.contactLink,
@@ -149,6 +159,26 @@ class PrivacyPolicyWidget extends StatelessWidget {
                   tLine: privacyPolicy.tLine,
                   foLine: privacyPolicy.foLine,
                   user: user,
+                ),
+              ),
+              PrivacyPolicyCard(
+                user: user,
+                title: "Full Privacy Policy",
+                subtitle: "Eg: Name, Email",
+                content: ListView(
+                  shrinkWrap: true,
+                  physics: NeverScrollableScrollPhysics(),
+                  children: <Widget>[
+                    ListTile(
+                      title: Text('Ip Address'),
+                    ),
+                    ListTile(
+                      title: Text('Ip Address'),
+                    ),
+                    ListTile(
+                      title: Text('Ip Address'),
+                    ),
+                  ],
                 ),
               ),
             ],
