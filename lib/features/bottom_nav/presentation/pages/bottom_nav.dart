@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import 'package:sieve_data_privacy_app/features/categories/presentation/pages/app_categories.dart';
 import 'package:sieve_data_privacy_app/features/interesting_news/presentation/pages/interesting_news.dart';
 
+
 import '../../../../injection_container.dart';
+import '../../../dashboard/presentation/pages/dsahboard.dart';
+import '../../../interesting_news/presentation/pages/interesting_news.dart';
 import '../../../login_screen/domain/entities/login_user.dart';
 import '../../../privacy_laws/presentation/pages/privacy_laws.dart';
 import '../../../privacy_tips/presentation/pages/privacy_tips.dart';
@@ -61,7 +65,7 @@ class _BlocListner extends StatelessWidget {
         } else if (state is CategoryState) {
           return AppCategories(user: user,);
         } else if (state is DashboardState) {
-          return Temp(user: user,);
+          return Dashboard(user: user,);
         } else if (state is PrivacyTipsState) {
           return PrivacyTips(user: user,);
         } else if (state is PrivacyLawsState) {

@@ -14,27 +14,31 @@ abstract class PrivacyPolicyRemoteDatasource {
   Future<PrivacyPolicyModel> loadPrivacyPolicy(String id);
 }
 
-class PrivacyPolicyRemoteDatasourceImpl implements PrivacyPolicyRemoteDatasource{
-  
+class PrivacyPolicyRemoteDatasourceImpl
+    implements PrivacyPolicyRemoteDatasource {
   final http.Client httpClient;
 
   PrivacyPolicyRemoteDatasourceImpl({@required this.httpClient});
 
   @override
-  Future<PrivacyPolicyModel> loadPrivacyPolicy(String id) async{
-    final response = await httpClient.post(API_URL + "/privacy_policy/view_all",body: {'id': id});
-    if (response.statusCode != 200) {
+  Future<PrivacyPolicyModel> loadPrivacyPolicy(String id) async {
+    try {
+      final response = await httpClient
+          .post(API_URL + "/privacy_policy/view_all", body: {'id': id});
+      if (response.statusCode != 200) {
+        throw ServerException();
+        // final error = json.decode(response.body);
+        // if(error['serverError']==true){
+        //   throw ServerException();
+        // }else{
+        //   throw InvalidInputException();
+        // }
+      } else {
+        return PrivacyPolicyModel.fromJson(json.decode(response.body));
+      }
+    } catch (e) {
+      print(e);
       throw ServerException();
-      // final error = json.decode(response.body);
-      // if(error['serverError']==true){
-      //   throw ServerException();
-      // }else{
-      //   throw InvalidInputException();
-      // }
-    } else {
-      return PrivacyPolicyModel.fromJson(json.decode(response.body));
     }
   }
-  
-  
 }

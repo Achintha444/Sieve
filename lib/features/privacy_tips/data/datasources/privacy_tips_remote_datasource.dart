@@ -14,27 +14,30 @@ abstract class PrivacyTipsRemoteDatasource {
   Future<List<TipsModel>> loadPrivacyTips();
 }
 
-class PrivacyTipsRemoteDatasourceImpl implements PrivacyTipsRemoteDatasource{
-  
+class PrivacyTipsRemoteDatasourceImpl implements PrivacyTipsRemoteDatasource {
   final http.Client httpClient;
 
   PrivacyTipsRemoteDatasourceImpl({@required this.httpClient});
 
   @override
-  Future<List<TipsModel>> loadPrivacyTips() async{
-    final response = await httpClient.post(API_URL + "/privacy_tips/view_all");
-    if (response.statusCode != 200) {
+  Future<List<TipsModel>> loadPrivacyTips() async {
+    try {
+      final response =
+          await httpClient.post(API_URL + "/privacy_tips/view_all");
+      if (response.statusCode != 200) {
+        throw ServerException();
+        // final error = json.decode(response.body);
+        // if(error['serverError']==true){
+        //   throw ServerException();
+        // }else{
+        //   throw InvalidInputException();
+        // }
+      } else {
+        return TipsModel.fromJsonList(json.decode(response.body));
+      }
+    } catch (e) {
+      print(e);
       throw ServerException();
-      // final error = json.decode(response.body);
-      // if(error['serverError']==true){
-      //   throw ServerException();
-      // }else{
-      //   throw InvalidInputException();
-      // }
-    } else {
-      return TipsModel.fromJsonList(json.decode(response.body));
     }
   }
-  
-  
 }

@@ -2,7 +2,11 @@ import 'package:data_connection_checker/data_connection_checker.dart';
 import 'package:get_it/get_it.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
+
 import 'features/login_signup_screen/data/datasources/login_signup_screen_remote_datasource.dart';
+
+import 'package:sieve_data_privacy_app/features/login_signup_screen/data/datasources/login_signup_screen_remote_datasource.dart';
+
 
 import 'core/Platform/network_info.dart';
 import 'features/bottom_nav/data/repos/bottom_nav_repo_impl.dart';
@@ -13,6 +17,11 @@ import 'features/bottom_nav/domain/usecases/navigate_to_news_feed.dart';
 import 'features/bottom_nav/domain/usecases/navigate_to_privacy_laws.dart';
 import 'features/bottom_nav/domain/usecases/navigate_to_privacy_tips.dart';
 import 'features/bottom_nav/presentation/bloc/bottom_nav_bloc.dart';
+import 'features/dashboard/data/datasources/dashboard_remote_datasource.dart';
+import 'features/dashboard/data/repos/dashboard_repo_impl.dart';
+import 'features/dashboard/domain/repos/dashboard_repo.dart';
+import 'features/dashboard/domain/usecases/load_dashboard.dart';
+import 'features/dashboard/presentation/bloc/dashboard_bloc.dart';
 import 'features/interesting_news/data/datasources/interesting_news_remote_datasource.dart';
 import 'features/interesting_news/data/repos/interestig_news_repo_impl.dart';
 import 'features/interesting_news/domain/repos/interesting_news_repo.dart';
@@ -315,6 +324,34 @@ Future<void> init() async {
   //* datasource
   sl.registerLazySingleton<InterestingNewsRemoteDatasource>(
       () => InterestingNewsRemoteDatasourceImpl(httpClient: sl()));
+
+
+  //! Feature - Dashboard
+
+  //* Bloc
+  sl.registerFactory(
+    () => DashboardBloc(
+      loadDashboard:  sl(),
+    ),
+  );
+
+  //* usecases
+  sl.registerLazySingleton(
+    () => LoadDashboard(
+      dashboardRepo:  sl(),
+    ),
+  );
+
+  //* repo
+  sl.registerLazySingleton<DashboardRepo>(
+    () => DashboardRepoImpl(
+        networkInfo: sl(), dashboardRemoteDatasource:  sl()),
+  );
+
+  //* datasource
+  sl.registerLazySingleton<DashboardRemoteDatasource>(
+      () => DashboardRemoteDatasourceImpl(httpClient: sl()));
+
 
   //! Features - privacy_laws
 
