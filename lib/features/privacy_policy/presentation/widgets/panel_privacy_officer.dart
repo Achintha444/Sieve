@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../categories/domain/entities/apps.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../../login_screen/domain/entities/login_user.dart';
@@ -12,6 +13,7 @@ class PanelPrivacyOfficer extends StatelessWidget {
   final String sLine;
   final String tLine;
   final String foLine;
+  final App app;
 
   const PanelPrivacyOfficer(
       {Key key,
@@ -21,7 +23,9 @@ class PanelPrivacyOfficer extends StatelessWidget {
       @required this.fiLine,
       @required this.sLine,
       @required this.tLine,
-      @required this.foLine})
+      @required this.foLine,
+      @required this.app
+      })
       : super(key: key);
 
   @override
@@ -42,7 +46,7 @@ class PanelPrivacyOfficer extends StatelessWidget {
                       bottom: 15
                     ),
                     child: Text(
-                      "Having any problems related to the privacy policy of Google ?",
+                      "Having any problems related to the privacy policy of " + app.getName + " ?",
                       style: TextStyle(
                         fontSize: 18,
                         color: Theme.of(context).primaryColor,
@@ -62,7 +66,7 @@ class PanelPrivacyOfficer extends StatelessWidget {
                               this._sendEmail(context);
                             },
                             child: Text(
-                              'Click here to send an email to Google about it',
+                              "Click here to send an email to " + app.getName + " about it",
                               style: TextStyle(
                                 fontSize: 15,
                                 color: Theme.of(context).accentColor,
@@ -93,7 +97,7 @@ class PanelPrivacyOfficer extends StatelessWidget {
                               this._launchInWebViewWithDomStorage(contactLink, context);
                             },
                             child: Text(
-                              "Click here to send a message through Google's website",
+                              "Click here to send a message through " + app.getName + "'s website",
                               style: TextStyle(
                                 fontSize: 15,
                                 color: Theme.of(context).accentColor,
@@ -227,7 +231,7 @@ class PanelPrivacyOfficer extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
                     Text(
-                      "No Privacy Officer contacts are available for Google!",
+                      "No Privacy Officer contacts are available for " + app.getName + "!",
                       style: TextStyle(
                         fontSize: 22,
                         color: Theme.of(context).errorColor,

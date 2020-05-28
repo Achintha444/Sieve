@@ -152,13 +152,14 @@ class PrivacyPolicyWidget extends StatelessWidget {
                 title: "Privacy Officer Contact",
                 subtitle: "Contact Details of Privacy Officer",
                 content: PanelPrivacyOfficer(
+                  user: user,
                   contactLink: privacyPolicy.contactLink,
                   email: privacyPolicy.email,
                   fiLine: privacyPolicy.fiLine,
                   sLine: privacyPolicy.sLine,
                   tLine: privacyPolicy.tLine,
                   foLine: privacyPolicy.foLine,
-                  user: user,
+                  app: app
                 ),
               ),
               PrivacyPolicyCard(
