@@ -1,17 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sieve_data_privacy_app/features/login_screen/domain/entities/login_user.dart';
-import 'package:sieve_data_privacy_app/features/privacy_policy/domain/entities/privacy_policy.dart';
-import 'package:sieve_data_privacy_app/features/privacy_policy/presentation/widgets/panel_one.dart';
-import 'package:sieve_data_privacy_app/features/privacy_policy/presentation/widgets/panel_privacy_officer.dart';
 
 class PolicyCard extends StatefulWidget {
-
   final LoginUser user;
-  final PrivacyPolicy privacyPolicy;
+  final String title;
+  final String subtitle;
+  final Object content;
 
   PolicyCard(
-      {Key key, @required this.user, @required this.privacyPolicy})
+      {Key key, @required this.user, @required this.title, @required this.content, @required this.subtitle})
       : super(key: key);
 
   expandedChild() {
@@ -29,15 +27,7 @@ class PolicyCard extends StatefulWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            PanelPrivacyOfficer(
-              contactLink: privacyPolicy.contactLink,
-              email: privacyPolicy.email,
-              fiLine: privacyPolicy.fiLine,
-              sLine: privacyPolicy.sLine,
-              tLine: privacyPolicy.tLine,
-              foLine: privacyPolicy.foLine,
-              user: user,
-            ),
+            content
           ],
         ),
       ),
@@ -83,7 +73,7 @@ class _PolicyCardState extends State<PolicyCard> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         Text(
-                          'Data Type Collected',
+                          widget.title,
                           textAlign: TextAlign.left,
                           style: TextStyle(
                             color: Theme.of(context).primaryColor,
@@ -98,7 +88,7 @@ class _PolicyCardState extends State<PolicyCard> {
                           ),
                         ),
                         Text(
-                          'Eg: Name, Email',
+                          widget.subtitle,
                           textAlign: TextAlign.left,
                           style: TextStyle(
                             color: Theme.of(context).primaryColor,

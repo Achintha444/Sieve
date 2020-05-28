@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:sieve_data_privacy_app/features/privacy_policy/presentation/widgets/panel_one.dart';
+import 'package:sieve_data_privacy_app/features/privacy_policy/presentation/widgets/panel_privacy_officer.dart';
 import 'package:sieve_data_privacy_app/features/privacy_policy/presentation/widgets/policy_card.dart';
 
 import '../../../login_screen/domain/entities/login_user.dart';
@@ -131,11 +133,23 @@ class PrivacyPolicyWidget extends StatelessWidget {
             children: [
               PolicyCard(
                 user: user,
-                privacyPolicy: privacyPolicy,
+                title: "Data Types Collected",
+                subtitle: "Eg: Name, Email",
+                content: PanelOne(list: privacyPolicy.getTypes),
               ),
               PolicyCard(
                 user: user,
-                privacyPolicy: privacyPolicy,
+                title: "Privacy Officer Contacts",
+                subtitle: "Contact Details of Privacy Officer",
+                content: PanelPrivacyOfficer(
+                  contactLink: privacyPolicy.contactLink,
+                  email: privacyPolicy.email,
+                  fiLine: privacyPolicy.fiLine,
+                  sLine: privacyPolicy.sLine,
+                  tLine: privacyPolicy.tLine,
+                  foLine: privacyPolicy.foLine,
+                  user: user,
+                ),
               ),
             ],
           ),
