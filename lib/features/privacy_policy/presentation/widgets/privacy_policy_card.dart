@@ -13,6 +13,28 @@ class PrivacyPolicyCard extends StatefulWidget {
       : super(key: key);
 
   expandedChild() {
+    return SingleChildScrollView(
+      physics: NeverScrollableScrollPhysics(),
+      child: Card(
+        borderOnForeground: true,
+        margin: EdgeInsets.only(
+            left: 15,
+            right: 15,
+            top: 5,
+            bottom: 5
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              content
+            ],
+          ),
+        ),
+      )
+    );
     return Card(
       borderOnForeground: true,
       margin: EdgeInsets.only(
@@ -40,8 +62,8 @@ class PrivacyPolicyCard extends StatefulWidget {
 
 class _PrivacyPolicyCardState extends State<PrivacyPolicyCard> {
   bool isExpanded;
-  Widget collapsedChild;
-  Widget expandedChild;
+//  Widget collapsedChild;
+//  Widget expandedChild;
 
   @override
   void initState() {
