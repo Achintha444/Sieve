@@ -124,6 +124,9 @@ class PrivacyPolicyWidget extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         child: Container(
+          padding: EdgeInsets.only(
+            bottom: 10
+          ),
           child: Column(
             children: [
               PolicyCard(

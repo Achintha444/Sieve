@@ -34,13 +34,18 @@ class PanelPrivacyOfficer extends StatelessWidget {
           builder: (context) {
             if (email != null || contactLink != null || fiLine != null) {
               return Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  ListTile(
-                    title: Text(
-                      "Have any problems related to Google's privacy policy ?",
+                  Container(
+                    padding: EdgeInsets.only(
+                      bottom: 15
+                    ),
+                    child: Text(
+                      "Having any problems related to the privacy policy of Google ?",
                       style: TextStyle(
-                        fontSize: 19,
-                        color: Colors.black,
+                        fontSize: 18,
+                        color: Theme.of(context).primaryColor,
                       ),
                     ),
                   ),
@@ -48,8 +53,11 @@ class PanelPrivacyOfficer extends StatelessWidget {
                   Builder(
                     builder: (context) {
                       if (email != null) {
-                        return ListTile(
-                          title: GestureDetector(
+                        return Container(
+                          padding: EdgeInsets.only(
+                            bottom: 15
+                          ),
+                          child: GestureDetector(
                             onTap: () {
                               this._sendEmail(context);
                             },
@@ -76,11 +84,13 @@ class PanelPrivacyOfficer extends StatelessWidget {
                   Builder(
                     builder: (context) {
                       if (contactLink != null && contactLink.isNotEmpty) {
-                        return ListTile(
-                          title: GestureDetector(
+                        return Container(
+                          padding: EdgeInsets.only(
+                            bottom: 15
+                          ),
+                          child: GestureDetector(
                             onTap: () {
-                              this._launchInWebViewWithDomStorage(
-                                  contactLink, context);
+                              this._launchInWebViewWithDomStorage(contactLink, context);
                             },
                             child: Text(
                               "Click here to send a message through Google's website",
@@ -107,8 +117,11 @@ class PanelPrivacyOfficer extends StatelessWidget {
                       if (fiLine != null && contactLink.isNotEmpty) {
                         return Column(
                           children: <Widget>[
-                            ListTile(
-                              title: Text(
+                            Container(
+                              padding: EdgeInsets.only(
+                                bottom: 10
+                              ),
+                              child: Text(
                                 'Contact through snail mail',
                                 style: TextStyle(
                                     fontSize: 15,
@@ -138,8 +151,7 @@ class PanelPrivacyOfficer extends StatelessWidget {
                                         return Text(
                                           sLine,
                                           style: TextStyle(
-                                            color:
-                                                Theme.of(context).accentColor,
+                                            color: Theme.of(context).accentColor,
                                             fontSize: 17,
                                             //fontWeight: FontWeight.w600,
                                             letterSpacing: 1,
@@ -156,8 +168,7 @@ class PanelPrivacyOfficer extends StatelessWidget {
                                         return Text(
                                           tLine,
                                           style: TextStyle(
-                                            color:
-                                                Theme.of(context).accentColor,
+                                            color: Theme.of(context).accentColor,
                                             fontSize: 17,
                                             //fontWeight: FontWeight.w600,
                                             letterSpacing: 1,
@@ -187,8 +198,8 @@ class PanelPrivacyOfficer extends StatelessWidget {
                                     },
                                   ),
                                   Padding(
-                                      padding:
-                                          EdgeInsets.only(top: 18, bottom: 18)),
+                                    padding: EdgeInsets.only(bottom: 15)
+                                  ),
                                 ],
                               ),
                             ),
@@ -202,34 +213,25 @@ class PanelPrivacyOfficer extends StatelessWidget {
                       }
                     },
                   ),
-                  //* End Padding
-                  Padding(
-                    padding: EdgeInsets.only(
-                      top: 18,
-                      bottom: 18,
-                    ),
-                  ),
                 ],
               );
             } else {
               //* no privacy officer contacts available
-              return ListTile(
-                title: Column(
+              return Container(
+                padding: EdgeInsets.only(
+                  top: 10,
+                  bottom: 10
+                ),
+                child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
                     Text(
-                      "NO Privacy Officer contacts are available for Google!",
+                      "No Privacy Officer contacts are available for Google!",
                       style: TextStyle(
                         fontSize: 22,
                         color: Theme.of(context).errorColor,
                         fontWeight: FontWeight.w800,
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(
-                        top: 18,
-                        bottom: 18,
                       ),
                     ),
                   ],
