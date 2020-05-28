@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:sieve_data_privacy_app/features/login_screen/domain/entities/login_user.dart';
 import 'package:sieve_data_privacy_app/features/privacy_policy/domain/entities/privacy_policy.dart';
 import 'package:sieve_data_privacy_app/features/privacy_policy/presentation/widgets/panel_one.dart';
+import 'package:sieve_data_privacy_app/features/privacy_policy/presentation/widgets/panel_privacy_officer.dart';
 
 class PolicyCard extends StatefulWidget {
 
@@ -28,7 +29,15 @@ class PolicyCard extends StatefulWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            PanelOne(list: privacyPolicy.getTypes)
+            PanelPrivacyOfficer(
+              contactLink: privacyPolicy.contactLink,
+              email: privacyPolicy.email,
+              fiLine: privacyPolicy.fiLine,
+              sLine: privacyPolicy.sLine,
+              tLine: privacyPolicy.tLine,
+              foLine: privacyPolicy.foLine,
+              user: user,
+            ),
           ],
         ),
       ),
@@ -92,7 +101,7 @@ class _PolicyCardState extends State<PolicyCard> {
                           'Eg: Name, Email',
                           textAlign: TextAlign.left,
                           style: TextStyle(
-                            color: Colors.black,
+                            color: Theme.of(context).primaryColor,
                             letterSpacing: 2,
                           ),
                         ),

@@ -13,19 +13,34 @@ class PanelOne extends StatelessWidget {
       children: List.generate(
         list.length,
         (index) {
-          return ListTile(
-            leading: Icon(
-              Icons.lens,
-              size: 10,
-              color: Theme.of(context).primaryColor.withOpacity(0.9),
-            ),
-            title: Text(
-              list[index],
-              style: TextStyle(
-                fontSize: 19,
-                color: Colors.black,
+          return Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Container(
+                padding: EdgeInsets.only(
+                  left: 0,
+                  right: 15,
+                  top: 5,
+                  bottom: 10
+                ),
+                child: Icon(
+                  Icons.lens,
+                  size: 10,
+                  color: Theme.of(context).primaryColor.withOpacity(0.9),
+                ),
               ),
-            ),
+              Expanded(
+                child: Text(
+                  list[index],
+                  style: TextStyle(
+                    fontSize: 18,
+                    color: Theme.of(context).primaryColor,
+                  ),
+                  textAlign: TextAlign.justify,
+                ),
+              ),
+            ],
           );
         },
       ),
