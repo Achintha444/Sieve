@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../categories/domain/entities/apps.dart';
 import '../../../login_screen/domain/entities/login_user.dart';
 import '../../domain/entities/privacy_policy.dart';
 import 'privacy_policy_card.dart';
@@ -7,14 +8,13 @@ import 'panel_privacy_officer.dart';
 
 class PrivacyPolicyWidget extends StatelessWidget {
   final LoginUser user;
-  //TODO : HERE it should passes the App() object, for now it uses a Strnig.
-  final String appId;
+  final App app;
   final PrivacyPolicy privacyPolicy;
 
   const PrivacyPolicyWidget(
       {Key key,
       @required this.user,
-      @required this.appId,
+      @required this.app,
       @required this.privacyPolicy})
       : super(key: key);
 
@@ -23,7 +23,7 @@ class PrivacyPolicyWidget extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'GOOGLE'.toUpperCase(),
+          app.getName.toUpperCase(),
           style: TextStyle(
             color: Theme.of(context).primaryColor,
             fontSize: 25,
@@ -79,14 +79,14 @@ class PrivacyPolicyWidget extends StatelessWidget {
                         child: Container (
                           padding: EdgeInsets.all(12),
                           child: Image(
-                            image: AssetImage('icons/g.png'),
+                            image: NetworkImage(app.getIcon),
                             height: 80,
                           ),
                         ),
                       ),
                       Expanded(
                         child: Text(
-                          'One Of the Biggest Social Media Platform',
+                          app.getDesc,
                           style: TextStyle(
                             color: Theme.of(context).primaryColor,
                             fontSize: 17.5,

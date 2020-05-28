@@ -26,7 +26,7 @@ class PrivacyPolicy extends StatelessWidget {
         body: Container(
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
-          child: _BlocListner(user: user, appId: app.getID.toString()),
+          child: _BlocListner(user: user, app: app),
         ),
         floatingActionButton: RefreshFloatingButton(onTap: this._dispatchEvent),
       ),
@@ -41,9 +41,9 @@ class PrivacyPolicy extends StatelessWidget {
 
 class _BlocListner extends StatelessWidget {
   final LoginUser user;
-  final String appId;
+  final App app;
 
-  const _BlocListner({Key key, @required this.user, @required this.appId})
+  const _BlocListner({Key key, @required this.user, @required this.app})
       : super(key: key);
 
   @override
@@ -52,16 +52,16 @@ class _BlocListner extends StatelessWidget {
       bloc: BlocProvider.of<PrivacyPolicyBloc>(context),
       builder: (context, state) {
         if (state is Initial) {
-          return InitialStateWidget(user: user, appId: appId);
+          return InitialStateWidget(user: user, appId: app.getID.toString());
         } else if (state is Loading) {
           return LoadingWidget();
         } else if (state is InternetError) {
-          return InternetErrorWidget(user: user, appId: appId);
+          return InternetErrorWidget(user: user, appId: app.getID.toString());
         } else if (state is Loaded) {
           return PrivacyPolicyWidget(
             user: user,
+            app: app,
             privacyPolicy: state.privacyPolicy,
-            appId: appId,
           );
         } else {
           return Container();
