@@ -24,8 +24,7 @@ class PanelPrivacyOfficer extends StatelessWidget {
       @required this.sLine,
       @required this.tLine,
       @required this.foLine,
-      @required this.app
-      })
+      @required this.app})
       : super(key: key);
 
   @override
@@ -42,11 +41,11 @@ class PanelPrivacyOfficer extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Container(
-                    padding: EdgeInsets.only(
-                      bottom: 15
-                    ),
+                    padding: EdgeInsets.only(bottom: 15),
                     child: Text(
-                      "Having any problems related to the privacy policy of " + app.getName + " ?",
+                      "Having any problems related to the privacy policy of " +
+                          app.getName +
+                          " ?",
                       style: TextStyle(
                         fontSize: 18,
                         color: Theme.of(context).primaryColor,
@@ -58,15 +57,15 @@ class PanelPrivacyOfficer extends StatelessWidget {
                     builder: (context) {
                       if (email != null) {
                         return Container(
-                          padding: EdgeInsets.only(
-                            bottom: 15
-                          ),
+                          padding: EdgeInsets.only(bottom: 15),
                           child: GestureDetector(
                             onTap: () {
                               this._sendEmail(context);
                             },
                             child: Text(
-                              "Click here to send an email to " + app.getName + " about it",
+                              "Click here to send an email to " +
+                                  app.getName +
+                                  " about it",
                               style: TextStyle(
                                 fontSize: 15,
                                 color: Theme.of(context).accentColor,
@@ -89,15 +88,16 @@ class PanelPrivacyOfficer extends StatelessWidget {
                     builder: (context) {
                       if (contactLink != null && contactLink.isNotEmpty) {
                         return Container(
-                          padding: EdgeInsets.only(
-                            bottom: 15
-                          ),
+                          padding: EdgeInsets.only(bottom: 15),
                           child: GestureDetector(
                             onTap: () {
-                              this._launchInWebViewWithDomStorage(contactLink, context);
+                              this._launchInWebViewWithDomStorage(
+                                  contactLink, context);
                             },
                             child: Text(
-                              "Click here to send a message through " + app.getName + "'s website",
+                              "Click here to send a message through " +
+                                  app.getName +
+                                  "'s website",
                               style: TextStyle(
                                 fontSize: 15,
                                 color: Theme.of(context).accentColor,
@@ -118,20 +118,19 @@ class PanelPrivacyOfficer extends StatelessWidget {
                   //* snail mail
                   Builder(
                     builder: (context) {
-                      if (fiLine != null && contactLink.isNotEmpty) {
+                      if (fiLine != null) {
                         return Column(
                           children: <Widget>[
                             Container(
-                              padding: EdgeInsets.only(
-                                bottom: 10
-                              ),
+                              padding: EdgeInsets.only(bottom: 10),
                               child: Text(
                                 'Contact through snail mail',
                                 style: TextStyle(
-                                    fontSize: 15,
-                                    color: Theme.of(context).accentColor,
-                                    letterSpacing: 1,
-                                    fontWeight: FontWeight.w600),
+                                  fontSize: 15,
+                                  color: Theme.of(context).accentColor,
+                                  letterSpacing: 1,
+                                  fontWeight: FontWeight.w600,
+                                ),
                               ),
                             ),
                             Align(
@@ -155,7 +154,8 @@ class PanelPrivacyOfficer extends StatelessWidget {
                                         return Text(
                                           sLine,
                                           style: TextStyle(
-                                            color: Theme.of(context).accentColor,
+                                            color:
+                                                Theme.of(context).accentColor,
                                             fontSize: 17,
                                             //fontWeight: FontWeight.w600,
                                             letterSpacing: 1,
@@ -172,7 +172,8 @@ class PanelPrivacyOfficer extends StatelessWidget {
                                         return Text(
                                           tLine,
                                           style: TextStyle(
-                                            color: Theme.of(context).accentColor,
+                                            color:
+                                                Theme.of(context).accentColor,
                                             fontSize: 17,
                                             //fontWeight: FontWeight.w600,
                                             letterSpacing: 1,
@@ -201,9 +202,7 @@ class PanelPrivacyOfficer extends StatelessWidget {
                                       }
                                     },
                                   ),
-                                  Padding(
-                                    padding: EdgeInsets.only(bottom: 15)
-                                  ),
+                                  Padding(padding: EdgeInsets.only(bottom: 15)),
                                 ],
                               ),
                             ),
@@ -222,16 +221,15 @@ class PanelPrivacyOfficer extends StatelessWidget {
             } else {
               //* no privacy officer contacts available
               return Container(
-                padding: EdgeInsets.only(
-                  top: 10,
-                  bottom: 10
-                ),
+                padding: EdgeInsets.only(top: 10, bottom: 10),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
                     Text(
-                      "No Privacy Officer contacts are available for " + app.getName + "!",
+                      "No Privacy Officer contacts are available for " +
+                          app.getName +
+                          "!",
                       style: TextStyle(
                         fontSize: 22,
                         color: Theme.of(context).errorColor,

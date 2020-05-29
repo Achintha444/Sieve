@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:sieve_data_privacy_app/features/categories/presentation/widgets/apps_widget.dart';
-import 'package:sieve_data_privacy_app/features/login_screen/domain/entities/login_user.dart';
-import 'package:url_launcher/url_launcher.dart';
+
 import '../../../../core/Constants/theme_data.dart';
-import 'categories_widget.dart';
 
 class CategoriesCard extends StatelessWidget {
   final int id;
@@ -18,6 +15,7 @@ class CategoriesCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print (Icons.subway.toString());
     return Container(
       height: MediaQuery.of(context).size.height / 4.3,
       width: MediaQuery.of(context).size.height / 4.3,

@@ -11,7 +11,8 @@ class CategoriesWidget extends StatefulWidget {
   final LoginUser user;
   final List<Categories> categories;
 
-  const CategoriesWidget({Key key, @required this.user, @required this.categories})
+  const CategoriesWidget(
+      {Key key, @required this.user, @required this.categories})
       : super(key: key);
 
   @override
@@ -23,7 +24,9 @@ class CategoriesWidgetState extends State<CategoriesWidget> {
   final ValueNotifier<int> _categoryId = ValueNotifier<int>(0);
 //  final Widget goodJob = const Text('Good job!');
 
-  initState() {
+  @override
+  void initState() {
+    super.initState();
     categoryId = widget.categories[2].getID;
     _categoryId.value = widget.categories[2].getID;
   }
@@ -42,13 +45,17 @@ class CategoriesWidgetState extends State<CategoriesWidget> {
       body: Stack(
         children: <Widget>[
           ListView(
-            padding: EdgeInsets.only(top: MediaQuery.of(context).size.height / 2.8),
+            padding:
+                EdgeInsets.only(top: MediaQuery.of(context).size.height / 2.8),
             shrinkWrap: true,
             physics: AlwaysScrollableScrollPhysics(),
             children: <Widget>[
               ValueListenableBuilder(
                 builder: (BuildContext context, int value, Widget child) {
-                  return new AppsWidget(user: widget.user, categoryId: _categoryId.value);
+                  return new AppsWidget(
+                    user: widget.user,
+                    categoryId: _categoryId.value,
+                  );
                 },
                 valueListenable: _categoryId,
 //                child: goodJob,
@@ -85,12 +92,12 @@ class CategoriesWidgetState extends State<CategoriesWidget> {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: List.generate(
                             widget.categories.length,
-                                (index) {
+                            (index) {
                               return CategoriesCard(
                                 id: widget.categories[index].getID,
                                 name: widget.categories[index].getName,
                                 icon: widget.categories[index].getIcon,
-                                tapAction: (){
+                                tapAction: () {
                                   categoryId = widget.categories[index].getID;
                                   _categoryId.value = categoryId;
                                 },
@@ -103,7 +110,8 @@ class CategoriesWidgetState extends State<CategoriesWidget> {
                   ),
                   //! --*
                   Padding(
-                    padding: const EdgeInsets.only(top: 16.0, left: 8.0, right: 8.0, bottom: 8.0),
+                    padding: const EdgeInsets.only(
+                        top: 16.0, left: 8.0, right: 8.0, bottom: 8.0),
                     child: Align(
                       alignment: Alignment.centerLeft,
                       child: Text(

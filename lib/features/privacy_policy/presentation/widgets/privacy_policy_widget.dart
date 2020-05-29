@@ -39,7 +39,7 @@ class PrivacyPolicyWidget extends StatelessWidget {
             borderRadius: BorderRadius.circular(50.0),
             child: FadeInImage.assetNetwork(
               placeholder: 'icons/user_placeholder.png',
-              image: 'https://i.imgur.com/BoN9kdC.png',
+              image: _imageUrl(),
               fit: BoxFit.fill,
               width: 50,
               height: 50,
@@ -52,36 +52,21 @@ class PrivacyPolicyWidget extends StatelessWidget {
             children: <Widget>[
               Container(
                 height: MediaQuery.of(context).size.height / 5.5,
-                child: Card (
+                child: Card(
                   color: Color(0xffffff).withOpacity(0),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(15),
-                    side: BorderSide(
-                      color: Color(0xff1BA0F2),
-                    ),
                   ),
-                  margin: EdgeInsets.only(
-                    left: 15,
-                    right: 15,
-                    top: 0,
-                    bottom: 15
-                  ),
+                  margin:
+                      EdgeInsets.only(left: 15, right: 15, top: 0, bottom: 15),
                   borderOnForeground: true,
                   child: Row(
                     children: <Widget>[
-                      Card (
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(15),
-                          side: BorderSide(
-                            color: Color(0xff1BA0F2),
-                          ),
-                        ),
-                        child: Container (
-                          padding: EdgeInsets.all(12),
-                          child: Image(
-                            image: NetworkImage(app.getIcon),
-                            height: 80,
-                          ),
+                      Container(
+                        padding: EdgeInsets.all(12),
+                        child: Image(
+                          image: NetworkImage(app.getIcon),
+                          height: 80,
                         ),
                       ),
                       Expanded(
@@ -99,14 +84,10 @@ class PrivacyPolicyWidget extends StatelessWidget {
                   ),
                 ),
               ),
-              Container (
-                padding: EdgeInsets.only(
-                  left: 15,
-                  right: 15,
-                  top: 10,
-                  bottom: 5
-                ),
-                child:Align(
+              Container(
+                padding:
+                    EdgeInsets.only(left: 15, right: 15, top: 10, bottom: 10),
+                child: Align(
                   alignment: Alignment.topLeft,
                   child: Text(
                     'Simplifed Privacy Policy'.toUpperCase(),
@@ -124,9 +105,7 @@ class PrivacyPolicyWidget extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         child: Container(
-          padding: EdgeInsets.only(
-            bottom: 10
-          ),
+          padding: EdgeInsets.only(bottom: 10),
           child: Column(
             children: [
               PrivacyPolicyCard(
@@ -159,7 +138,7 @@ class PrivacyPolicyWidget extends StatelessWidget {
                   sLine: privacyPolicy.sLine,
                   tLine: privacyPolicy.tLine,
                   foLine: privacyPolicy.foLine,
-                  app: app
+                  app: app,
                 ),
               ),
               PrivacyPolicyCard(
@@ -187,5 +166,13 @@ class PrivacyPolicyWidget extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  String _imageUrl() {
+    if (user.imageUrl == null) {
+      return 'https://i.imgur.com/BoN9kdC.png';
+    } else {
+      return user.imageUrl;
+    }
   }
 }

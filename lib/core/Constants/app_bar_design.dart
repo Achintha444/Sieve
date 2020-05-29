@@ -14,6 +14,7 @@ class AppBarDesign extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
+    print (_imageUrl());
     return AppBar(
       key: Key('appBar'),
       title: Text(

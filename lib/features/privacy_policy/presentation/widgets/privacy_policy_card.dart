@@ -9,48 +9,37 @@ class PrivacyPolicyCard extends StatefulWidget {
   final Object content;
 
   PrivacyPolicyCard(
-      {Key key, @required this.user, @required this.title, @required this.content, @required this.subtitle})
+      {Key key,
+      @required this.user,
+      @required this.title,
+      @required this.content,
+      @required this.subtitle})
       : super(key: key);
 
   expandedChild() {
     return SingleChildScrollView(
-      physics: NeverScrollableScrollPhysics(),
-      child: Card(
-        borderOnForeground: true,
-        margin: EdgeInsets.only(
-            left: 15,
-            right: 15,
-            top: 5,
-            bottom: 5
-        ),
-        child: Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              content
-            ],
+        physics: NeverScrollableScrollPhysics(),
+        child: Card(
+          borderOnForeground: true,
+          margin: EdgeInsets.only(left: 15, right: 15, top: 5, bottom: 5),
+          child: Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[content],
+            ),
           ),
-        ),
-      )
-    );
+        ));
     return Card(
       borderOnForeground: true,
-      margin: EdgeInsets.only(
-          left: 15,
-          right: 15,
-          top: 5,
-          bottom: 5
-      ),
+      margin: EdgeInsets.only(left: 15, right: 15, top: 5, bottom: 5),
       child: Padding(
         padding: const EdgeInsets.all(20.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            content
-          ],
+          children: <Widget>[content],
         ),
       ),
     );
@@ -73,79 +62,76 @@ class _PrivacyPolicyCardState extends State<PrivacyPolicyCard> {
 
   @override
   Widget build(BuildContext context) {
-    return Column (
-        children: <Widget> [
-          Container (
-            width: double.infinity,
-            child: GestureDetector(
-              child: Card(
-                borderOnForeground: true,
-                margin: EdgeInsets.only(
-                    left: 15,
-                    right: 15,
-                    top: 5,
-                    bottom: 5
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: Stack(
+    return Column(children: <Widget>[
+      Container(
+        width: double.infinity,
+        child: GestureDetector(
+          child: Card(
+            color: Color(0xffffff).withOpacity(0),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(15),
+            ),
+            borderOnForeground: true,
+            margin: EdgeInsets.only(left: 15, right: 15, top: 5, bottom: 5),
+            child: Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Stack(
+                children: <Widget>[
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      Column (
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Text(
-                            widget.title,
-                            textAlign: TextAlign.left,
-                            style: TextStyle(
-                              color: Theme.of(context).primaryColor,
-                              fontSize: 25,
-                              fontWeight: FontWeight.w500,
-                              letterSpacing: 1,
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.only(
-                              top: 5,
-                            ),
-                          ),
-                          Text(
-                            widget.subtitle,
-                            textAlign: TextAlign.left,
-                            style: TextStyle(
-                              color: Theme.of(context).primaryColor,
-                              letterSpacing: 2,
-                            ),
-                          ),
-                        ],
+                      Text(
+                        widget.title,
+                        textAlign: TextAlign.left,
+                        style: TextStyle(
+                          color: Theme.of(context).primaryColor,
+                          fontSize: 21,
+                          fontWeight: FontWeight.w500,
+                          letterSpacing: 1,
+                        ),
                       ),
-                      Positioned (
-                          right: 3.0,
-                          child: Icon(
-                              isExpanded ? Icons.arrow_drop_up : Icons.arrow_drop_down,
-                              size: 35,
-                              color: Theme.of(context).primaryColor
-                          )
-                      )
+                      Padding(
+                        padding: EdgeInsets.only(
+                          top: 5,
+                        ),
+                      ),
+                      Text(
+                        widget.subtitle,
+                        textAlign: TextAlign.left,
+                        style: TextStyle(
+                          color: Theme.of(context).primaryColor,
+                          letterSpacing: 2,
+                        ),
+                      ),
                     ],
                   ),
-                ),
+                  Positioned(
+                    right: 3.0,
+                    child: Icon(
+                        isExpanded
+                            ? Icons.arrow_drop_up
+                            : Icons.arrow_drop_down,
+                        size: 35,
+                        color: Theme.of(context).primaryColor),
+                  )
+                ],
               ),
-              onTap: () {
-                setState(() {
-                  isExpanded = !isExpanded;
-                });
-              },
             ),
           ),
-
-          AnimatedContainer(
-            width: double.infinity,
-            duration: new Duration(milliseconds: 200),
-            curve: Curves.easeInOut,
-            child: isExpanded ? widget.expandedChild() : null,
-          ),
-        ]
-    );
+          onTap: () {
+            setState(() {
+              isExpanded = !isExpanded;
+            });
+          },
+        ),
+      ),
+      AnimatedContainer(
+        width: double.infinity,
+        duration: new Duration(milliseconds: 200),
+        curve: Curves.easeInOut,
+        child: isExpanded ? widget.expandedChild() : null,
+      ),
+    ]);
   }
 }

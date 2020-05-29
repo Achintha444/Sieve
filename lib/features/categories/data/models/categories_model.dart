@@ -16,6 +16,7 @@ class CategoriesModel extends Categories {
 
   static List<CategoriesModel> fromJsonList(Map<String, dynamic> json){
     List<CategoriesModel> _categories = new List<CategoriesModel>();
+    print (json);
     int _len = json['categories'].length;
     for (var i=0; i<_len; i++){
       _categories.add(CategoriesModel.fromJson(json['categories'][i]));
