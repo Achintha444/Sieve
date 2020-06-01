@@ -26,8 +26,6 @@ void main() {
       dCount:dCount ,
     )));
 
-    final String check=dCount.toString();
-
     final aNameFinder = find.text(aName);
     final cNameFinder = find.text(cName);
     //final iconImageFinder = find.text(iconImage);

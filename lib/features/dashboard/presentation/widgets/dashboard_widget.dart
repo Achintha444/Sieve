@@ -50,7 +50,7 @@ class DashboardWidget extends StatelessWidget {
                 this.dapp.length,
                 (index) {
                   //return Column(children: _check_cat(index, context));
-                  return _check_cat(index, context);
+                  return _checkCat(index, context);
                 },
               ),
             ),
@@ -67,7 +67,7 @@ class DashboardWidget extends StatelessWidget {
     );
   }
 
-  Widget _check_cat(int index, BuildContext context) {
+  Widget _checkCat(int index, BuildContext context) {
     if ((index == 0) ||
         (dapp[index].categoryName != dapp[index - 1].categoryName)) {
       Padding cat = Padding(

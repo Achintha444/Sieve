@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:sieve_data_privacy_app/features/categories/presentation/pages/app_categories.dart';
-import 'package:sieve_data_privacy_app/features/interesting_news/presentation/pages/interesting_news.dart';
-
-
 import '../../../../injection_container.dart';
+import '../../../categories/presentation/pages/app_categories.dart';
 import '../../../dashboard/presentation/pages/dsahboard.dart';
 import '../../../interesting_news/presentation/pages/interesting_news.dart';
 import '../../../login_screen/domain/entities/login_user.dart';
@@ -16,7 +13,6 @@ import '../widgets/bottom_nav_widget.dart';
 import '../widgets/initial_state_widget.dart';
 import '../widgets/internet_error_widget.dart';
 import '../widgets/loading_widget.dart';
-import '../widgets/temp.dart';
 
 class BottomNav extends StatelessWidget {
 

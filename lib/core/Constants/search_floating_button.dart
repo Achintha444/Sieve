@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
 
+import '../../features/categories/presentation/pages/search_page.dart';
+import '../../features/login_screen/domain/entities/login_user.dart';
+
 class SearchFloatingButton extends StatefulWidget {
+
+  final LoginUser user;
 
   const SearchFloatingButton({
     Key key,
+    @required this.user, 
   }) : super(key: key);
 
   @override
@@ -47,11 +53,11 @@ class _SearchFloatingButtonState extends State<SearchFloatingButton> {
   }
 
   void _dispatchEvent() {
-    // Navigator.push(
-    //   context,
-    //   MaterialPageRoute(
-    //     builder: (context) => AppSearch(),
-    //   ),
-    // );
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => SearchPage(user: widget.user,),
+      ),
+    );
   }
 }
