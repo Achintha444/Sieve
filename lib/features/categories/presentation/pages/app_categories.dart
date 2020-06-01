@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:sieve_data_privacy_app/core/Constants/refresh_floating_button.dart';
 
+import '../../../../core/Constants/refresh_floating_button.dart';
 import '../../../../injection_container.dart';
 import '../../../bottom_nav/presentation/widgets/loading_widget.dart';
 import '../../../login_screen/domain/entities/login_user.dart';
-import '../bloc/categories_bloc.dart';
+import '../bloc/apps_bloc.dart' as app_bloc;
+import '../bloc/categories_bloc.dart' as cat_bloc;
+import '../widgets/categories_widget.dart';
 import '../widgets/initial_state_widget.dart';
 import '../widgets/internet_error_widget.dart';
-import '../widgets/categories_widget.dart';
 
 class AppCategories extends StatelessWidget {
   final LoginUser user;
@@ -17,8 +18,15 @@ class AppCategories extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<CategoriesBloc>(
-      builder: (context) => sl<CategoriesBloc>(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<cat_bloc.CategoriesBloc>(
+          builder: (context) => sl<cat_bloc.CategoriesBloc>(),
+        ),
+        BlocProvider<app_bloc.AppsBloc>(
+          builder: (context) => sl<app_bloc.AppsBloc>(),
+        ),
+      ],
       child: Scaffold(
         body: Container(
           height: MediaQuery.of(context).size.height,
@@ -33,8 +41,8 @@ class AppCategories extends StatelessWidget {
   }
 
   void _dispatchEvent(BuildContext context) {
-    BlocProvider.of<CategoriesBloc>(context)
-        .dispatch(LoadCategoriesEvent(user: user));
+    BlocProvider.of<cat_bloc.CategoriesBloc>(context)
+        .dispatch(cat_bloc.LoadCategoriesEvent(user: user));
   }
 }
 
@@ -48,23 +56,23 @@ class _BlocListner extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<CategoriesBloc, CategoriesState>(
-      bloc: BlocProvider.of<CategoriesBloc>(context),
+    return BlocBuilder<cat_bloc.CategoriesBloc, cat_bloc.CategoriesState>(
+      bloc: BlocProvider.of<cat_bloc.CategoriesBloc>(context),
       builder: (context, state) {
-        if (state is Initial) {
+        if (state is cat_bloc.Initial) {
           return InitialStateWidget(
             user: user,
           );
-        } else if (state is Loading) {
+        } else if (state is cat_bloc.Loading) {
           return LoadingWidget();
-        } else if (state is InternetError) {
+        } else if (state is cat_bloc.InternetError) {
           return InternetErrorWidget(user: user);
-        } else if (state is Loaded) {
+        } else if (state is cat_bloc.Loaded) {
           return CategoriesWidget(
             user: user,
             categories: state.categories,
           );
-        } else{
+        } else {
           return Container();
         }
       },

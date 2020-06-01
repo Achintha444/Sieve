@@ -26,16 +26,13 @@ class Dashboard extends StatelessWidget {
           child: _BlocListner(
             user: user,
           ),
-
         ),
         floatingActionButton: RefreshFloatingButton(onTap: this._dispatchEvent),
       ),
     );
   }
 
-
   void _dispatchEvent(BuildContext context) {
-
     BlocProvider.of<DashboardBloc>(context)
         .dispatch(LoadDashboardEvent(user: user));
   }

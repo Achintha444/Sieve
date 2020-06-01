@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:sieve_data_privacy_app/features/categories/presentation/bloc/apps_bloc.dart';
 
 import '../../../login_screen/domain/entities/login_user.dart';
-import '../bloc/categories_bloc.dart';
+import '../bloc/apps_bloc.dart';
 
 class AppsInternetErrorWidget extends StatelessWidget {
 
