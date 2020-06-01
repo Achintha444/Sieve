@@ -3,11 +3,6 @@ import 'package:get_it/get_it.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'features/login_signup_screen/data/datasources/login_signup_screen_remote_datasource.dart';
-
-import 'package:sieve_data_privacy_app/features/login_signup_screen/data/datasources/login_signup_screen_remote_datasource.dart';
-
-
 import 'core/Platform/network_info.dart';
 import 'features/bottom_nav/data/repos/bottom_nav_repo_impl.dart';
 import 'features/bottom_nav/domain/repos/bottom_nav_repo.dart';
@@ -17,6 +12,18 @@ import 'features/bottom_nav/domain/usecases/navigate_to_news_feed.dart';
 import 'features/bottom_nav/domain/usecases/navigate_to_privacy_laws.dart';
 import 'features/bottom_nav/domain/usecases/navigate_to_privacy_tips.dart';
 import 'features/bottom_nav/presentation/bloc/bottom_nav_bloc.dart';
+import 'features/categories/data/datasources/apps_remote_datasource.dart';
+import 'features/categories/data/datasources/categories_remote_datasource.dart';
+import 'features/categories/data/repos/apps_repo_impl.dart';
+import 'features/categories/data/repos/categories_repo_impl.dart';
+import 'features/categories/domain/repos/apps_repo.dart';
+import 'features/categories/domain/repos/categories_repo.dart';
+import 'features/categories/domain/usecases/load_apps.dart';
+import 'features/categories/domain/usecases/load_apps_search.dart';
+import 'features/categories/domain/usecases/load_categories.dart';
+import 'features/categories/presentation/bloc/apps_bloc.dart';
+import 'features/categories/presentation/bloc/apps_search_bloc.dart';
+import 'features/categories/presentation/bloc/categories_bloc.dart';
 import 'features/dashboard/data/datasources/dashboard_remote_datasource.dart';
 import 'features/dashboard/data/repos/dashboard_repo_impl.dart';
 import 'features/dashboard/domain/repos/dashboard_repo.dart';
@@ -37,6 +44,7 @@ import 'features/login_screen/domain/usecases/get_google_login.dart'
     as gLoginScreen;
 import 'features/login_screen/domain/usecases/get_login.dart';
 import 'features/login_screen/presentation/bloc/login_screen_bloc.dart';
+import 'features/login_signup_screen/data/datasources/login_signup_screen_remote_datasource.dart';
 import 'features/login_signup_screen/data/repos/login_signup_screen_repo_impl.dart';
 import 'features/login_signup_screen/domain/repos/login_signup_screen_repo.dart';
 import 'features/login_signup_screen/domain/usecases/get_facebook_login.dart';
@@ -73,16 +81,6 @@ import 'features/suggestion/data/repos/suggestion_repo_impl.dart';
 import 'features/suggestion/domain/repos/suggestion_repo.dart';
 import 'features/suggestion/domain/usecases/send_suggestion.dart';
 import 'features/suggestion/presentation/bloc/suggestion_bloc.dart';
-import 'features/categories/data/datasources/categories_remote_datasource.dart';
-import 'features/categories/data/repos/categories_repo_impl.dart';
-import 'features/categories/domain/repos/categories_repo.dart';
-import 'features/categories/domain/usecases/load_categories.dart';
-import 'features/categories/presentation/bloc/categories_bloc.dart';
-import 'features/categories/data/datasources/apps_remote_datasource.dart';
-import 'features/categories/data/repos/apps_repo_impl.dart';
-import 'features/categories/domain/repos/apps_repo.dart';
-import 'features/categories/domain/usecases/load_apps.dart';
-import 'features/categories/presentation/bloc/apps_bloc.dart';
 
 final sl = GetIt.instance;
 Future<void> init() async {
@@ -448,6 +446,7 @@ Future<void> init() async {
     ),
   );
 
+
   //* repo
   sl.registerLazySingleton<AppsRepo>(
         () => AppsRepoImpl(
@@ -458,6 +457,24 @@ Future<void> init() async {
   sl.registerLazySingleton<AppsRemoteDatasource>(
           () => AppsRemoteDatasourceImpl(httpClient: sl()));
 
+
+  //! Sub Features - Categories - Search Page
+  //* Bloc
+  sl.registerFactory(
+        () => AppsSearchBloc(
+      loadAppsSearch: sl(),
+
+    ),
+  );
+
+  //* usecases
+  sl.registerLazySingleton(
+        () => LoadAppsSearch(
+      appsRepo: sl(),
+    ),
+  );
+
+  
 
   //! Features - privacy_policy
 

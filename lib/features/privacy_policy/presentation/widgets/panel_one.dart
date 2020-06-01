@@ -12,16 +12,14 @@ class PanelOne extends StatelessWidget {
         shrinkWrap: true,
         physics: NeverScrollableScrollPhysics(),
         children: List.generate(
-          list.length, (index) {
+          list.length,
+          (index) {
             return Row(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Container(
-                  padding: EdgeInsets.only(
-                      right: 15,
-                      top: 5
-                  ),
+                  padding: EdgeInsets.only(right: 15, top: 5),
                   child: Icon(
                     Icons.lens,
                     size: 10,
@@ -41,10 +39,7 @@ class PanelOne extends StatelessWidget {
                 Builder(
                   builder: (context) {
                     if (index < list.length - 1) {
-                      return Padding(
-                          padding: EdgeInsets.only(
-                              bottom: 30
-                          ));
+                      return Padding(padding: EdgeInsets.only(bottom: 30));
                     } else {
                       return Container(
                         height: 0,
@@ -60,10 +55,7 @@ class PanelOne extends StatelessWidget {
       );
     } else {
       return Container(
-        padding: EdgeInsets.only(
-            top: 10,
-            bottom: 10
-        ),
+        padding: EdgeInsets.only(top: 10, bottom: 10),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,

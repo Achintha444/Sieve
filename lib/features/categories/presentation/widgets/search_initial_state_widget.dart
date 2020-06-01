@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:sieve_data_privacy_app/features/categories/presentation/bloc/apps_bloc.dart';
-import '../../../login_screen/domain/entities/login_user.dart';
 
-class AppsInitialStateWidget extends StatefulWidget {
+import '../../../login_screen/domain/entities/login_user.dart';
+import '../bloc/apps_search_bloc.dart';
+
+class SearchInitialStateWidget extends StatefulWidget {
 
   final LoginUser user;
-  //final int categoryId;
 
-  const AppsInitialStateWidget({Key key, @required this.user, /*@required this.categoryId*/}) : super(key: key);
+  const SearchInitialStateWidget({Key key, @required this.user}) : super(key: key);
 
   @override
-  _InitialStateWidgetState createState() => _InitialStateWidgetState();
+  _SearchInitialStateWidgetState createState() => _SearchInitialStateWidgetState();
 }
 
-class _InitialStateWidgetState extends State<AppsInitialStateWidget> {
+class _SearchInitialStateWidgetState extends State<SearchInitialStateWidget> {
   @override
   void initState() {
     super.initState();
@@ -40,8 +40,8 @@ class _InitialStateWidgetState extends State<AppsInitialStateWidget> {
   }
 
   void _dispatchEvent(BuildContext context) {
-    BlocProvider.of<AppsBloc>(context).dispatch(
-      LoadAppsEvent(user: widget.user, categoryId: 1),
+    BlocProvider.of<AppsSearchBloc>(context).dispatch(
+      LoadAppsSearchEvent(user: widget.user),
     );
   }
 }

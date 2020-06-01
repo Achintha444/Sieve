@@ -12,25 +12,27 @@ part 'apps_event.dart';
 part 'apps_state.dart';
 
 class AppsBloc extends Bloc<AppsEvent, AppsState> {
-
   final LoadApps loadApps;
 
   AppsBloc({@required this.loadApps});
-
 
   @override
   AppsState get initialState => Initial();
 
   @override
   Stream<AppsState> mapEventToState(
-      AppsEvent event,
-      ) async* {
+    AppsEvent event,
+  ) async* {
     if (event is LoadAppsEvent) {
       yield Loading();
       final response = await this.loadApps([event.user, event.categoryId]);
+      print(response);
       yield response.fold(
-            (faliure) => InternetError(user: event.user),
-            (apps) => Loaded(user: event.user, apps: apps),
+        (faliure) => InternetError(user: event.user,categoryId:event.categoryId),
+        (apps) {
+          print(apps[0].getName);
+          return Loaded(user: event.user, apps: apps,categoryId:event.categoryId);
+        },
       );
     }
   }

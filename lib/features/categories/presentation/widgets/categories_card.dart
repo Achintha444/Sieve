@@ -1,23 +1,27 @@
 import 'package:flutter/material.dart';
-import 'package:sieve_data_privacy_app/features/categories/presentation/widgets/apps_widget.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:sieve_data_privacy_app/features/categories/presentation/bloc/apps_bloc.dart';
 import 'package:sieve_data_privacy_app/features/login_screen/domain/entities/login_user.dart';
-import 'package:url_launcher/url_launcher.dart';
+
 import '../../../../core/Constants/theme_data.dart';
-import 'categories_widget.dart';
 
 class CategoriesCard extends StatelessWidget {
   final int id;
   final String name;
   final String icon;
-
-  final VoidCallback tapAction;
+  final LoginUser user;
 
   CategoriesCard(
-      {Key key, @required this.id, @required this.name, @required this.icon, @required this.tapAction})
+      {Key key,
+      @required this.id,
+      @required this.name,
+      @required this.icon,
+      @required this.user})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    print(Icons.subway.toString());
     return Container(
       height: MediaQuery.of(context).size.height / 4.3,
       width: MediaQuery.of(context).size.height / 4.3,
@@ -37,10 +41,8 @@ class CategoriesCard extends StatelessWidget {
             decoration: categoryGradientData,
             child: Center(
               child: Column(
-                mainAxisAlignment:
-                MainAxisAlignment.center,
-                crossAxisAlignment:
-                CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
                   Text(
                     name.toUpperCase(),
@@ -58,7 +60,8 @@ class CategoriesCard extends StatelessWidget {
                     ),
                   ),
                   Icon(
-                    IconData(int.parse('0x' + icon), fontFamily: 'MaterialIcons'),
+                    IconData(int.parse('0x' + icon),
+                        fontFamily: 'MaterialIcons'),
                     color: Colors.white,
                     size: 100,
                   ),
@@ -67,10 +70,11 @@ class CategoriesCard extends StatelessWidget {
             ),
           ),
         ),
-        onTap: tapAction,
+        onTap: () {
+          BlocProvider.of<AppsBloc>(context).dispatch(
+              LoadAppsEvent(user: user, categoryId: id));
+        },
       ),
     );
   }
-
-
 }

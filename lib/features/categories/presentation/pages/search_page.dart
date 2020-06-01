@@ -1,24 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:sieve_data_privacy_app/features/categories/presentation/widgets/search_widget.dart';
 
 import '../../../../core/Constants/refresh_floating_button.dart';
 import '../../../../injection_container.dart';
 import '../../../bottom_nav/presentation/widgets/loading_widget.dart';
 import '../../../login_screen/domain/entities/login_user.dart';
-import '../bloc/dashboard_bloc.dart';
-import '../widgets/dashboard_widget.dart';
-import '../widgets/initial_state_widget.dart';
-import '../widgets/internet_error_widget.dart';
+import '../bloc/apps_search_bloc.dart';
+import '../widgets/search_initial_state_widget.dart';
+import '../widgets/search_internet_error_widget.dart';
 
-class Dashboard extends StatelessWidget {
+class SearchPage extends StatelessWidget {
   final LoginUser user;
 
-  const Dashboard({Key key, @required this.user}) : super(key: key);
+  const SearchPage({Key key, @required this.user}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<DashboardBloc>(
-      builder: (context) => sl<DashboardBloc>(),
+    return BlocProvider<AppsSearchBloc>(
+      builder: (context) => sl<AppsSearchBloc>(),
       child: Scaffold(
         body: Container(
           height: MediaQuery.of(context).size.height,
@@ -33,8 +33,9 @@ class Dashboard extends StatelessWidget {
   }
 
   void _dispatchEvent(BuildContext context) {
-    BlocProvider.of<DashboardBloc>(context)
-        .dispatch(LoadDashboardEvent(user: user));
+    print('assaas');
+    BlocProvider.of<AppsSearchBloc>(context)
+        .dispatch(LoadAppsSearchEvent(user: user));
   }
 }
 
@@ -48,22 +49,24 @@ class _BlocListner extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<DashboardBloc, DashboardState>(
-      bloc: BlocProvider.of<DashboardBloc>(context),
+    return BlocBuilder<AppsSearchBloc, AppsSearchState>(
+      bloc: BlocProvider.of<AppsSearchBloc>(context),
       builder: (context, state) {
         if (state is Initial) {
-          return InitialStateWidget(
+          return SearchInitialStateWidget(
             user: user,
           );
         } else if (state is Loading) {
           return LoadingWidget();
         } else if (state is InternetError) {
-          return InternetErrorWidget(user: user);
+          return SearchInternetErrorWidget(user: user);
         } else if (state is Loaded) {
-          return DashboardWidget(
+          return SearchWidget(
             user: user,
-            dapp: state.dapp,
+            apps: state.appsSearch,
           );
+        } else {
+          return Container();
         }
       },
     );

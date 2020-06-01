@@ -2,14 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../login_screen/domain/entities/login_user.dart';
-import '../bloc/apps_bloc.dart';
+import '../bloc/apps_search_bloc.dart';
 
-class AppsInternetErrorWidget extends StatelessWidget {
+class SearchInternetErrorWidget extends StatelessWidget {
 
   final LoginUser user;
-  final int categoryId;
 
-  const AppsInternetErrorWidget({Key key, @required this.user, @required this.categoryId}) : super(key: key);
+  const SearchInternetErrorWidget({Key key, @required this.user}) : super(key: key);
 
 
   @override
@@ -88,8 +87,8 @@ class AppsInternetErrorWidget extends StatelessWidget {
 
   void _dispatchEvent(BuildContext context) {
     print ('assaas');
-    BlocProvider.of<AppsBloc>(context).dispatch(
-        LoadAppsEvent(user: user, categoryId: categoryId)
+    BlocProvider.of<AppsSearchBloc>(context).dispatch(
+        LoadAppsSearchEvent(user: user)
     );
   }
 }

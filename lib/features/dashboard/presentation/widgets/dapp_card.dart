@@ -108,7 +108,6 @@ class DappCard extends StatelessWidget {
 
   // ignore: non_constant_identifier_names
   List _check_dashboard(int dCount) {
-    String cat = "";
     int num = 0;
     Color colour;
     if (dCount >= 25) {

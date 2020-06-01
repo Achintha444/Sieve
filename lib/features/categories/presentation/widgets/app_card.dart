@@ -38,7 +38,7 @@ class AppCard extends StatelessWidget {
                   alignment: Alignment.topLeft,
                   child: Image(
                     image: NetworkImage(app.getIcon),
-                    height: 70,
+                    height: 80,
                   ),
                 ),
                 Expanded(

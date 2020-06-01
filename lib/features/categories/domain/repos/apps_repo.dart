@@ -6,4 +6,5 @@ import '../entities/apps.dart';
 
 abstract class AppsRepo {
   Future <Either<Faliure,List<App>>> loadApps(LoginUser user, int categoryId);
+  Future <Either<Faliure,List<App>>> loadAppsSearch(LoginUser user);
 }
