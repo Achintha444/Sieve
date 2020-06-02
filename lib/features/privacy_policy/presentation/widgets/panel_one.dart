@@ -7,6 +7,7 @@ class PanelOne extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print (list.length);
     if (list.length > 0) {
       return ListView(
         shrinkWrap: true,
