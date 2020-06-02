@@ -125,6 +125,7 @@ class PanelPrivacyOfficer extends StatelessWidget {
                               padding: EdgeInsets.only(bottom: 10),
                               child: Text(
                                 'Contact through snail mail',
+                                textAlign: TextAlign.center,
                                 style: TextStyle(
                                   fontSize: 15,
                                   color: Theme.of(context).accentColor,
