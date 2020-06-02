@@ -23,7 +23,7 @@ class PrivacyPolicyRepoImpl implements PrivacyPolicyRepo {
       try {
         final finalPolicy =
             await privacyPolicyRemoteDatasource.loadPrivacyPolicy(id);
-        await Future.delayed(Duration(seconds: 3));
+        //await Future.delayed(Duration(seconds: 3));
         return Right(finalPolicy);
       } on ServerException {
         return (Left(ServerFaliure()));

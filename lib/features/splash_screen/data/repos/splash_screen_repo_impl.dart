@@ -26,7 +26,7 @@ class SplashScreenRepoImpl implements SplashScreenRepo {
 
   @override
   Future<Either<Faliure, LoginUser>> autoLogin() async {
-    await Future.delayed(Duration(seconds: 4));
+    await Future.delayed(Duration(milliseconds: 750));
     if (await networkInfo.isConnected) {
       try {
         final lgoinUser = await this.splashScreenLocalDataSource.autoLogin();

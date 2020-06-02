@@ -239,7 +239,7 @@ class Empty extends StatelessWidget {
               ),
               Padding(padding: EdgeInsets.only(top: 20, bottom: 20)),
               Text(
-                "Leave Suggestion about this app and we will get into it rightaway!",
+                "Leave a suggestion about this app and we will get into it rightaway!",
                 textAlign: TextAlign.center,
                 style: TextStyle(
                     fontSize: 17,
@@ -259,7 +259,8 @@ class Empty extends StatelessWidget {
                 textColor: Colors.white,
                 elevation: 0,
                 shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10)),
+                  borderRadius: BorderRadius.circular(10),
+                ),
                 color: Theme.of(context).primaryColor,
                 onPressed: () {
                   this._navigateSuggestion(context, user);
@@ -283,4 +284,3 @@ class Empty extends StatelessWidget {
     );
   }
 }
-

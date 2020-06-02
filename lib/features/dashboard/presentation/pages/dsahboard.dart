@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/Constants/refresh_floating_button.dart';
+import '../../../../core/Constants/search_floating_button.dart';
 import '../../../../injection_container.dart';
 import '../../../bottom_nav/presentation/widgets/loading_widget.dart';
 import '../../../login_screen/domain/entities/login_user.dart';
@@ -27,7 +28,23 @@ class Dashboard extends StatelessWidget {
             user: user,
           ),
         ),
-        floatingActionButton: RefreshFloatingButton(onTap: this._dispatchEvent),
+        floatingActionButton: Container(
+          height: 60,
+          width: 130,
+          child: Row(
+            key: Key('Category Floating Buttons'),
+            children: <Widget>[
+              SearchFloatingButton(user: user,),
+              Padding(
+                padding: EdgeInsets.only(
+                  left: 5,
+                  right: 5,
+                ),
+              ),
+              RefreshFloatingButton(onTap: this._dispatchEvent),
+            ],
+          ),
+        ),
       ),
     );
   }

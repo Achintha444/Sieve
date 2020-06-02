@@ -21,7 +21,7 @@ class PrivacyLawsRepoImpl implements PrivacyLawsRepo{
      if (await networkInfo.isConnected) {
       try {
         final finalLaws = await privacyLawsRemoteDatasource.loadPrivacyLaws();
-        await Future.delayed(Duration(seconds: 3));
+        //await Future.delayed(Duration(seconds: 3));
         return Right(finalLaws);
       } on ServerException {
         return (Left(ServerFaliure()));

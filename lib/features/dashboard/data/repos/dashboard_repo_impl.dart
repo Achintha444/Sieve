@@ -22,7 +22,7 @@ class DashboardRepoImpl implements DashboardRepo{
     if (await networkInfo.isConnected) {
       try {
         final finalDapp = await dashboardRemoteDatasource.loadDashboard();
-        await Future.delayed(Duration(seconds: 3));
+        //await Future.delayed(Duration(seconds: 3));
         return Right(finalDapp);
       } on ServerException {
         return (Left(ServerFaliure()));

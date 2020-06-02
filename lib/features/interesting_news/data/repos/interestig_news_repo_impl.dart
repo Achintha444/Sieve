@@ -22,7 +22,7 @@ class InterestingNewsRepoImpl implements InterestingNewsRepo{
     if (await networkInfo.isConnected) {
       try {
         final finalNews = await interestingNewsRemoteDatasource.loadInterestingNews();
-        await Future.delayed(Duration(seconds: 3));
+        //await Future.delayed(Duration(seconds: 3));
         return Right(finalNews);
       } on ServerException {
         return (Left(ServerFaliure()));
