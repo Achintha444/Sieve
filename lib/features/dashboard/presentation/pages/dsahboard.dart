@@ -81,6 +81,8 @@ class _BlocListner extends StatelessWidget {
             user: user,
             dapp: state.dapp,
           );
+        }else{
+          return Container();
         }
       },
     );

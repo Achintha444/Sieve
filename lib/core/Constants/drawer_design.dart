@@ -141,7 +141,6 @@ class DrawerDesign extends StatelessWidget {
               icon: Icons.flag,
               user: user,
             ),
-            
             Padding(
               padding: EdgeInsets.only(
                 top: 10,
