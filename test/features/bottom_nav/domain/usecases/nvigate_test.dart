@@ -18,7 +18,7 @@ void main() {
   NavigateToCategory navigateToCategory;
   NavigateToDashboard navigateToDashboard;
   NavigateToPrivacyTips navigateToPrivacyTips;
-  //NavigateToPrivacyLaws navigateToPrivacyLaws;
+  NavigateToPrivacyLaws navigateToPrivacyLaws;
 
   setUp(() {
     mockBottomNavRepo = new MockBottomNavRepo();
@@ -30,7 +30,7 @@ void main() {
         new NavigateToDashboard(bottomNavRepo: mockBottomNavRepo);
     navigateToPrivacyTips =
         new NavigateToPrivacyTips(bottomNavRepo: mockBottomNavRepo);
-    //navigateToPrivacyLaws =
+    navigateToPrivacyLaws =
         new NavigateToPrivacyLaws(bottomNavRepo: mockBottomNavRepo);
   });
 
@@ -174,18 +174,18 @@ void main() {
     );
   });
 
-  group('NavigateToNewsFeed', () {
+  group('NavigateToPrivacyLaws', () {
     test(
       'should return LoginUser when there is internet',
       () async {
         //arrange
-        when(mockBottomNavRepo.navigateToNewsFeed(any))
+        when(mockBottomNavRepo.navigateToPrivacyLaws(any))
             .thenAnswer((_) async => Right(loginUser));
         //act
-        final result = await navigateToNewsFeed(loginUser);
+        final result = await navigateToPrivacyLaws(loginUser);
         //assert
         expect(result, Right(loginUser));
-        verify(mockBottomNavRepo.navigateToNewsFeed(loginUser));
+        verify(mockBottomNavRepo.navigateToPrivacyLaws(loginUser));
         verifyNoMoreInteractions(mockBottomNavRepo);
       },
     );
@@ -194,13 +194,13 @@ void main() {
       'should return InternetConnectionFaliure when there is no internet',
       () async {
         //arrange
-        when(mockBottomNavRepo.navigateToNewsFeed(any))
+        when(mockBottomNavRepo.navigateToPrivacyLaws(any))
             .thenAnswer((_) async => Left(InternetConnectionFaliure()));
         //act
-        final result = await navigateToNewsFeed(loginUser);
+        final result = await navigateToPrivacyLaws(loginUser);
         //assert
         expect(result, Left(InternetConnectionFaliure()));
-        verify(mockBottomNavRepo.navigateToNewsFeed(loginUser));
+        verify(mockBottomNavRepo.navigateToPrivacyLaws(loginUser));
         verifyNoMoreInteractions(mockBottomNavRepo);
       },
     );

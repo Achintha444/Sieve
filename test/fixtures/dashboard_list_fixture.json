@@ -1,0 +1,18 @@
+{
+    "dapp": [
+        {
+            "app_id": 1,
+            "app_name": "UBER",
+            "icon_image": "https://seeklogo.com/images/U/uber-logo-2BB8EC4342-seeklogo.com.png",
+            "category_name": "Transport",
+            "d_count": 10
+        },
+        {
+            "app_id": 4,
+            "app_name": "Pick Me",
+            "icon_image": "https://upload.wikimedia.org/wikipedia/commons/0/0c/PickMe_SriLanka_Logo.png",
+            "category_name": "Transport",
+            "d_count": 15
+        }
+    ]
+}

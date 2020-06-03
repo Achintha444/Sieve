@@ -7,15 +7,25 @@ import 'package:sieve_data_privacy_app/features/dashboard/domain/entities/dapp.d
 import '../../../../fixtures/fixture_reader.dart';
 
 void main() {
-  final tDappModel = DappModel(appName: 'test app1', iconImage: 'test icon1',categoryName:"test category1",dCount:14 );
-  final tDappModel1 = DappModel(appName: 'test app2', iconImage: 'test icon2',categoryName:"test category2",dCount:24 );
+  final tDappModel = DappModel(
+      appName: 'UBER',
+      iconImage:
+          'https://seeklogo.com/images/U/uber-logo-2BB8EC4342-seeklogo.com.png',
+      categoryName: "Transport",
+      dCount: 10);
+  final tDappModel1 = DappModel(
+      appName: 'Pick Me',
+      iconImage:
+          'https://upload.wikimedia.org/wikipedia/commons/0/0c/PickMe_SriLanka_Logo.png',
+      categoryName: "Transport",
+      dCount: 15);
   final List<DappModel> tips = new List<DappModel>();
   tips.add(tDappModel);
   tips.add(tDappModel1);
 
   test(
     'should be a subclass of Dapp entity',
-        () async {
+    () async {
       //assert
       expect(tDappModel, isA<Dapp>());
     },
@@ -24,10 +34,10 @@ void main() {
   group('fromJson', () {
     test(
       'should return DappModel when input a valid json object',
-          () async {
+      () async {
         //arrange
         final Map<String, dynamic> jsonMap =
-        json.decode(fixtureReader('dashboard_fixture.json'));
+            json.decode(fixtureReader('dashboard_fixture.json'));
         //act
         final result = DappModel.fromJson(jsonMap);
         //assert
@@ -39,10 +49,10 @@ void main() {
   group('fromJsonList', () {
     test(
       'should return List<DappModel> when input a valid json list object',
-          () async {
+      () async {
         //arrange
         final Map<String, dynamic> jsonMap =
-        json.decode(fixtureReader('dashboard_list_fixture.json'));
+            json.decode(fixtureReader('dashboard_list_fixture.json'));
         //act
         final result = DappModel.fromJsonList(jsonMap);
         //assert
@@ -54,14 +64,19 @@ void main() {
   group('toJson()', () {
     test(
       'should return a JSON map containinf the proper data',
-          () async {
+      () async {
         //act
         final result = tDappModel.toJson();
         //assert
-        final expectedMap = {'appName': 'test app1', 'iconImage': 'test icon1','categoryName':'test category1','dCount':14};
+        final expectedMap = {
+          "appName": "UBER",
+          "iconImage":
+              "https://seeklogo.com/images/U/uber-logo-2BB8EC4342-seeklogo.com.png",
+          "categoryName": "Transport",
+          "dCount": 10
+        };
         expect(result, expectedMap);
       },
     );
   });
 }
-

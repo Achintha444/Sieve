@@ -41,7 +41,7 @@ void main() {
     );
   }
 
-  testWidgets('BottomNavWidget', (WidgetTester tester) async {
+  testWidgets('BottomNavWidget Initial State Widget', (WidgetTester tester) async {
     //* Create the widget by telling the tester to build it.
     await tester.pumpWidget(buildTestableWidget(InitialStateWidget(
       user: loginUser,
