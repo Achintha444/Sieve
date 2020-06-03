@@ -36,7 +36,7 @@ void main() {
     );
   }
 
-  testWidgets('Ininital State Widget - PrivacyLaws', (WidgetTester tester) async {
+  testWidgets('Ininital State Widget - PrivacyTips', (WidgetTester tester) async {
     //* Create the widget by telling the tester to build it.
     await tester.pumpWidget(buildTestableWidget(InitialStateWidget(
       user: loginUser,

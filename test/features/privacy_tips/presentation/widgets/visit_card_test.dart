@@ -6,7 +6,7 @@ void main() {
   List<String> links;
 
   setUp(() {
-    links = ['www.test1.com', 'www.test1.com', 'www.test1.com'];
+    links = ['https://www.youtube.com/watch?v=2fspTrO0ed0', 'https://www.youtube.com/watch?v=2fspTrO0ed0', 'https://www.youtube.com/watch?v=2fspTrO0ed0'];
   });
 
   Widget buildTestableWidget(Widget widget) {
@@ -14,7 +14,9 @@ void main() {
       data: MediaQueryData(),
       child: MaterialApp(
         home: Material(
-          child: widget,
+          child: Scaffold(
+            body: widget,
+          ),
         ),
       ),
     );
