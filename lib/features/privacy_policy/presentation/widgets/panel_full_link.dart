@@ -53,7 +53,7 @@ class PanelFullLink extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             Text(
-              "No details available!",
+              "No Privacy Available available!",
               style: TextStyle(
                 fontSize: 22,
                 color: Theme.of(context).errorColor,

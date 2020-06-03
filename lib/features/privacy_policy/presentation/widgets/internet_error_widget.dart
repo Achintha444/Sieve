@@ -5,12 +5,12 @@ import '../../../login_screen/domain/entities/login_user.dart';
 import '../bloc/privacy_policy_bloc.dart';
 
 class InternetErrorWidget extends StatelessWidget {
-
   final LoginUser user;
   final String appId;
 
-  const InternetErrorWidget({Key key, @required this.user, @required this.appId}) : super(key: key);
-  
+  const InternetErrorWidget(
+      {Key key, @required this.user, @required this.appId})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -87,8 +87,7 @@ class InternetErrorWidget extends StatelessWidget {
   }
 
   void _dispatchEvent(BuildContext context) {
-    BlocProvider.of<PrivacyPolicyBloc>(context).dispatch(
-      LoadPrivacyPolicyEvent(user: user, appId: appId)
-    );
+    BlocProvider.of<PrivacyPolicyBloc>(context)
+        .dispatch(LoadPrivacyPolicyEvent(user: user, appId: appId));
   }
 }

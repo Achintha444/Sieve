@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:sieve_data_privacy_app/features/privacy_policy/presentation/bloc/privacy_policy_bloc.dart';
 
 import '../../../login_screen/domain/entities/login_user.dart';
+import '../bloc/privacy_policy_bloc.dart';
 
 class InitialStateWidget extends StatefulWidget {
-
   final LoginUser user;
   final String appId;
 
-  const InitialStateWidget({Key key, @required this.user, @required this.appId}) : super(key: key);
+  const InitialStateWidget({Key key, @required this.user, @required this.appId})
+      : super(key: key);
 
   @override
   _InitialStateWidgetState createState() => _InitialStateWidgetState();

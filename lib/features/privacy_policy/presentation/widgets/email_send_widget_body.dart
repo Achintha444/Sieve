@@ -4,7 +4,6 @@ import 'package:url_launcher/url_launcher.dart';
 class EmailSendWidgetBody extends StatelessWidget {
   final String email;
 
-
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _subjectController = new TextEditingController();
   final TextEditingController _bodyController = new TextEditingController();
@@ -140,7 +139,7 @@ class EmailSendWidgetBody extends StatelessWidget {
                     ),
                     Expanded(
                       child: Container(
-                        key: Key('login_button'),
+                        key: Key('send_email_button'),
                         height: 45,
                         child: RaisedButton(
                           child: Text(
