@@ -69,6 +69,8 @@ void main() {
           'id': '1',
           'email': 'Test123@gmail.com',
           'password': 'Test@123',
+          'uid':null,
+          'imageUrl':null
         };
         expect(result, expectedMap);
       },

@@ -30,8 +30,8 @@ void main() {
 
   final Key loginKey = Key('login');
   final Key loginButtonKey = Key('login_button');
-  final Key googleKey = Key('google_loginscreen');
-  final Key fbKey = Key('fb_loginscreen');
+  final Key googleKey = Key('google_login');
+  final Key fbKey = Key('fb_login');
 
   testWidgets(
     'LoginScreenWidget',
