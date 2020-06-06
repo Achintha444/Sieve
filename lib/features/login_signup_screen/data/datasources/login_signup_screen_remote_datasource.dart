@@ -68,7 +68,7 @@ class LoginSignupScreenRemoteDataSourceImpl
         throw ServerException();
       }
     }).catchError((Object error) {
-      print('');
+      print('HIiiiiiii');
       throw ServerException();
     });
   }
@@ -81,7 +81,9 @@ class LoginSignupScreenRemoteDataSourceImpl
 
   @override
   Future<void> facebookLogout() {
-    return facebookLogin.logOut();
+    return facebookLogin.logOut().catchError((Object error) {
+      throw ServerException();
+    });
   }
 
   @override
