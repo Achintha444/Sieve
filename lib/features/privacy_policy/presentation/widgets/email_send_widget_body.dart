@@ -70,7 +70,7 @@ class EmailSendWidgetBody extends StatelessWidget {
                       ),
                     ),
                     style: TextStyle(
-                      fontSize: 20,
+                      fontSize: 18,
                     ),
                     validator: (value) {
                       return _subjectValidator(value);
@@ -78,7 +78,7 @@ class EmailSendWidgetBody extends StatelessWidget {
                     onChanged: (value) {
                       this._subject = value;
                     },
-                    maxLines: 2,
+                    maxLines: 1,
                   ),
                 ),
                 //* Body
@@ -116,7 +116,7 @@ class EmailSendWidgetBody extends StatelessWidget {
                       ),
                     ),
                     style: TextStyle(
-                      fontSize: 20,
+                      fontSize: 18,
                     ),
                     validator: (value) {
                       return _bodyValidator(value);
@@ -124,7 +124,7 @@ class EmailSendWidgetBody extends StatelessWidget {
                     onChanged: (value) {
                       this._body = value;
                     },
-                    maxLines: 13,
+                    maxLines: 8,
                   ),
                 ),
 

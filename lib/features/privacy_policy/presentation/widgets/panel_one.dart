@@ -62,7 +62,7 @@ class PanelOne extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             Text(
-              "No details available!",
+              "No Details Available!",
               style: TextStyle(
                 fontSize: 22,
                 color: Theme.of(context).errorColor,

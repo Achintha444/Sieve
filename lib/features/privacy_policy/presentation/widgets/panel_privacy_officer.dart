@@ -29,6 +29,8 @@ class PanelPrivacyOfficer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print (email);
+    print ('aaaa');
     return ListView(
       shrinkWrap: true,
       physics: NeverScrollableScrollPhysics(),
