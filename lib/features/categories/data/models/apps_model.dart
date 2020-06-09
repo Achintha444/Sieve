@@ -19,7 +19,6 @@ class AppsModel extends App {
 
   static List<AppsModel> fromJsonList(Map<String, dynamic> json){
     List<AppsModel> _apps = new List<AppsModel>();
-    print (json);
     int _len = json['apps'].length;
     if (_len > 0) {
       for (var i=0; i<_len; i++){

@@ -1,0 +1,14 @@
+{
+  "categories":[
+    {
+      "category_id":"1",
+      "category_name":"category 1",
+      "icon_link":"e2bc"
+    },
+    {
+      "category_id":"2",
+      "category_name":"category 2",
+      "icon_link":"e57a"
+    }
+  ]
+}
