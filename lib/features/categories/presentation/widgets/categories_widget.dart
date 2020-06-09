@@ -41,7 +41,7 @@ class CategoriesWidget extends StatelessWidget {
               shrinkWrap: true,
               physics: AlwaysScrollableScrollPhysics(),
               children: <Widget>[
-                _BlocListner(user: user, categoryId: 1),
+                _BlocListner(user: user, categoryId: categories[0].getID),
               ],
             ),
             Positioned(
@@ -134,6 +134,7 @@ class _BlocListner extends StatelessWidget {
         if (state is Initial) {
           return AppsInitialStateWidget(
             user: user,
+            categoryId: categoryId,
           );
         } else if (state is Loading) {
           return LoadingWidget();
