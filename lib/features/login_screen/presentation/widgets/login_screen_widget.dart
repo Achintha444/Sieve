@@ -58,6 +58,7 @@ class _LoginScreenWidgetState extends State<LoginScreenWidget> {
                       right: 20,
                     ),
                     child: TextFormField(
+                      key: Key('email_field'),
                       keyboardType: TextInputType.emailAddress,
                       style: TextStyle(
                         color: Colors.white,
@@ -82,6 +83,7 @@ class _LoginScreenWidgetState extends State<LoginScreenWidget> {
                       bottom: 50,
                     ),
                     child: TextFormField(
+                      key: Key('password_field'),
                       keyboardType: TextInputType.visiblePassword,
                       obscureText: true,
                       style: TextStyle(

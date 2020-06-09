@@ -58,6 +58,7 @@ class _SignupScreenWidgetState extends State<SignupScreenWidget> {
                       right: 20,
                     ),
                     child: TextFormField(
+                      key: Key('email_field'),
                       keyboardType: TextInputType.emailAddress,
                       style: TextStyle(
                         color: Colors.white,
@@ -83,6 +84,7 @@ class _SignupScreenWidgetState extends State<SignupScreenWidget> {
                       bottom: 20,
                     ),
                     child: TextFormField(
+                      key: Key('password_field'),
                       keyboardType: TextInputType.visiblePassword,
                       obscureText: true,
                       style: TextStyle(
@@ -108,6 +110,7 @@ class _SignupScreenWidgetState extends State<SignupScreenWidget> {
                       bottom: 50,
                     ),
                     child: TextFormField(
+                      key: Key('re_enter_password_field'),
                       keyboardType: TextInputType.visiblePassword,
                       obscureText: true,
                       style: TextStyle(

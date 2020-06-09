@@ -1,7 +1,7 @@
 import 'package:flutter_driver/flutter_driver.dart';
 import 'package:test/test.dart';
 
-//! Sieve Data Privacy App - Integration Testing
+//! Splash Screen, Login-Signup and Signup
 
 void main() {
   FlutterDriver driver;
@@ -38,7 +38,9 @@ void main() {
   });
 
   //* Login-Signup screen to Signup Screen Transistion
-  group('Login-Signup Screen to Singup Screen Transition + LOGIN and SIGN UP GestureDetector Test', () {
+  group(
+      'Login-Signup Screen to Singup Screen Transition + LOGIN and SIGN UP GestureDetector Test',
+      () {
     final loginFinder = find.text('LOGIN');
     final signupFinder = find.text('SIGNUP');
     final loginWithTextFinder = find.text('Login With'.toUpperCase());
@@ -52,7 +54,6 @@ void main() {
     final signupFinder1 = find.text('SIGN UP');
     final text3Finder = find.text('DO NOT HAVE AN ACCOUNT '.toUpperCase());
     final text4Finder = find.text(' NOW!'.toUpperCase());
-
 
     test('Login-Singup Screen check', () async {
       expect(await driver.getText(loginFinder), 'LOGIN');
@@ -74,11 +75,13 @@ void main() {
         'Check LOGIN gesture detector is working and move back to the signup screen',
         () async {
       await driver.tap(loginFinder1);
-      //should navigate to the login-signup screen
+      //should navigate to the login screen
       await driver.waitFor(signupFinder1);
       expect(await driver.getText(signupFinder1), 'SIGN UP');
-      expect(await driver.getText(text3Finder),'DO NOT HAVE AN ACCOUNT '.toUpperCase());
+      expect(await driver.getText(text3Finder),
+          'DO NOT HAVE AN ACCOUNT '.toUpperCase());
       expect(await driver.getText(text4Finder), ' NOW!'.toUpperCase());
+
       await driver.tap(signupFinder1);
       // Should navigate to the signup screen
       await driver.waitFor(text1Finder);
