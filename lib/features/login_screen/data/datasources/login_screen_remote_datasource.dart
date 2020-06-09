@@ -26,17 +26,20 @@ class LoginScreenRemoteDataSourceImpl implements LoginScreenRemoteDataSource {
           body: {'email': email, 'password': password});
       if (response.statusCode != 200) {
         final error = json.decode(response.body);
+        print (error);
         if (error['serverError'] == true) {
           throw ServerException();
         } else {
+          print('object');
           throw InvalidInputException();
         }
       } else {
         return LoginUserModel.fromJson(json.decode(response.body));
       }
     } catch (e) {
-      print(e);
-      throw ServerException();
+      if (e.runtimeType==InvalidInputException){
+        throw InvalidInputException();
+      } throw ServerException();
     }
   }
 }

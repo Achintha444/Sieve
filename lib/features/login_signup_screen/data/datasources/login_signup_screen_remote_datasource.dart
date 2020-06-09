@@ -64,7 +64,9 @@ class LoginSignupScreenRemoteDataSourceImpl
           return LoginUserModel.fromJsonGF(json.decode(response.body));
         }
       } catch (e) {
-        print(e);
+        if (e.runtimeType == InvalidInputException) {
+          throw InvalidInputException();
+        }
         throw ServerException();
       }
     }).catchError((Object error) {
@@ -116,7 +118,10 @@ class LoginSignupScreenRemoteDataSourceImpl
             return LoginUserModel.fromJsonGF(json.decode(response.body));
           }
         } catch (e) {
-          print(e);
+          print (e);
+          if (e.runtimeType == InvalidInputException) {
+            throw InvalidInputException();
+          }
           throw ServerException();
         }
 
