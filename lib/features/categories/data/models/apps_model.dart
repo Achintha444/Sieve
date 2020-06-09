@@ -19,9 +19,15 @@ class AppsModel extends App {
 
   static List<AppsModel> fromJsonList(Map<String, dynamic> json){
     List<AppsModel> _apps = new List<AppsModel>();
+    print (json);
     int _len = json['apps'].length;
-    for (var i=0; i<_len; i++){
-      _apps.add(AppsModel.fromJson(json['apps'][i]));
+    if (_len > 0) {
+      for (var i=0; i<_len; i++){
+        _apps.add(AppsModel.fromJson(json['apps'][i]));
+      }
+    }
+    else {
+      _apps.add(AppsModel.fromJson({"app_id": 0, "category_id": 0, "description": "", "icon_image": "", "background_image": "", "app_name": "", "privacy_policy_link": ""}));
     }
     return _apps;
   }
