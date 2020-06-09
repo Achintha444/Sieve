@@ -31,7 +31,7 @@ void main() {
         http.Response(fixtureReader('login_user_server_error_true.json'), 404));
   }
 
-  final List<CategoriesModel> tLawsModel = CategoriesModel.fromJsonList(
+  final List<CategoriesModel> tCategoriesModel = CategoriesModel.fromJsonList(
       json.decode(fixtureReader('categories_list_fixture.json')));
 
   test(
@@ -43,7 +43,7 @@ void main() {
       final result = await remoteDatasource.loadCategories();
       //assert
       verify(mockHttpClient.post(API_URL + "/categories/view_all"));
-      expect(result, tLawsModel);
+      expect(result, tCategoriesModel);
     },
   );
 
