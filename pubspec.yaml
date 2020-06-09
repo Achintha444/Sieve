@@ -9,7 +9,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
- # Service Locator
+  # Service Locator
   get_it: ^2.0.1
 
   #Bloc for state management
@@ -57,8 +57,13 @@ flutter_icons:
   ios: true
 
 dev_dependencies:
+  #for functional and UI(widget) testing
   flutter_test:
     sdk: flutter
+  #for integration testing
+  flutter_driver:
+    sdk: flutter
+  test: any
   
   #For creating mock tests
   mockito: ^4.1.0

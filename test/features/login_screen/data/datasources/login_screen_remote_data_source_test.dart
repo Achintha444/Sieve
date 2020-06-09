@@ -78,7 +78,7 @@ void main() {
         mockHttpClientResponse404ServerErrorFalse();
         //act
         final call = remoteDataSource.getLoginUser;
-        
+        expect(() => call(email, password), throwsException);
         //assert
       },
     );
