@@ -30,7 +30,6 @@ class AppsSearchBloc extends Bloc<AppsSearchEvent, AppsSearchState> {
       yield response.fold(
         (faliure) => InternetError(user: event.user),
         (appsSearch) {
-          print(appsSearch[0].getName);
           return Loaded(user: event.user, appsSearch: appsSearch);
         },
       );

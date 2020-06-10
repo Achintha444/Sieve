@@ -47,6 +47,19 @@ void main() {
   );
 
   test(
+    'should perform the POST request on /apps/view_all_search',
+        () async {
+      //arrange
+      mockHttpClientResponse200();
+      //act
+      final result = await remoteDatasource.loadAppsSearch();
+      //assert
+      verify(mockHttpClient.post(API_URL + "/apps/view_all_search"));
+      expect(result, tAppsModel);
+    },
+  );
+
+  test(
     'should return ServerFaliure when the response code is 404 and serverError is true',
         () async {
       //arrange

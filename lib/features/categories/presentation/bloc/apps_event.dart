@@ -8,5 +8,5 @@ class LoadAppsEvent extends AppsEvent {
   final LoginUser user;
   final int categoryId;
 
-  LoadAppsEvent({@required this.user, @required this.categoryId}): super([user]);
+  LoadAppsEvent({@required this.user, @required this.categoryId}): super([user, categoryId]);
 }
