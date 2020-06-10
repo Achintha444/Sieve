@@ -29,6 +29,7 @@ class _SearchInitialStateWidgetState extends State<SearchInitialStateWidget> {
         height: (MediaQuery.of(context).size.height) / 2,
         child: Center(
           child: CircularProgressIndicator(
+            key: Key('circularProgressIndicator'),
             strokeWidth: 8,
             backgroundColor: Color.fromARGB(0, 0, 0, 0),
             valueColor:
