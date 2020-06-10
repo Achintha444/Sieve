@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:sieve_data_privacy_app/features/categories/domain/entities/apps.dart';
-import 'package:sieve_data_privacy_app/features/categories/presentation/widgets/app_card.dart';
+import 'package:sieve_data_privacy_app/features/categories/presentation/widgets/search_widget.dart';
 import 'package:sieve_data_privacy_app/features/login_screen/domain/entities/login_user.dart';
-import 'package:network_image_mock/network_image_mock.dart';
 
 void main() {
 
@@ -35,15 +34,15 @@ void main() {
   }
 
   testWidgets('Apps Card Widget', (WidgetTester tester) async {
-    await tester.pumpWidget(buildTestableWidget(AppCard(
+    await tester.pumpWidget(buildTestableWidget(AppCard1(
+      imageLocation: app.getIcon,
+      name: app.getName,
       user: user,
       app: app,
     )));
 
-    final nameFinder = find.text(app.getName.toUpperCase());
-    final descFinder = find.text(app.getDesc);
+    final nameFinder = find.text(app.getName);
 
-    expect(descFinder, findsOneWidget);
     expect(nameFinder, findsOneWidget);
 
     await tester.pumpAndSettle();
