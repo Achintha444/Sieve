@@ -33,7 +33,7 @@ class PrivacyLawsWidget extends StatelessWidget {
               child: Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
-                  'Privacy Laws implemented across the Globe',
+                  'Privacy Laws Implemented across the Globe',
                   textAlign: TextAlign.left,
                   style: TextStyle(
                     fontSize: 18,

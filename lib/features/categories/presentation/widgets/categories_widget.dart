@@ -55,7 +55,7 @@ class CategoriesWidget extends StatelessWidget {
                       child: Align(
                         alignment: Alignment.centerLeft,
                         child: Text(
-                          'Select a Category'.toUpperCase(),
+                          'Select a Category',
                           textAlign: TextAlign.left,
                           style: TextStyle(
                               color: Theme.of(context).primaryColor,
@@ -94,7 +94,7 @@ class CategoriesWidget extends StatelessWidget {
                       child: Align(
                         alignment: Alignment.centerLeft,
                         child: Text(
-                          'Apps on the category'.toUpperCase(),
+                          'Apps on the Category',
                           textAlign: TextAlign.left,
                           style: TextStyle(
                             color: Theme.of(context).primaryColor,

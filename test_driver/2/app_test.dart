@@ -1,7 +1,7 @@
 import 'package:flutter_driver/flutter_driver.dart';
 import 'package:test/test.dart';
 
-//! Signup Screen Function
+//! Signup Screen to Login Out Integration Testing
 
 void main() {
   FlutterDriver driver;
@@ -15,8 +15,13 @@ void main() {
       driver.close();
     }
   });
-  //* Signup screen Functions
-  group('Signup screen Functions Test', () {
+
+  group('Signup screen to Logging Out', () {
+    // Elements on the Login-Signup Page
+    final login1Finder = find.text('LOGIN');
+    final signup1Finder = find.text('SIGNUP');
+    final loginWithTextFinder = find.text('Login With'.toUpperCase());
+
     // Elements on the Signup Page
     final signupFinder = find.byValueKey('Signup_button');
     final emailFinder = find.byValueKey('email_field');
@@ -30,10 +35,10 @@ void main() {
     final loginFinder = find.byValueKey('login_button');
 
     // Elements on the BottomNavBar
-    final categoryBottomNavItem = find.byValueKey('Category');
+    //final categoryBottomNavItem = find.byValueKey('Category');
     final dashboardBottomNavItem = find.byValueKey('Dashboard');
     final newsFeedBottomNavItem = find.byValueKey('News Feed');
-    final tipBottomNavItem = find.byValueKey('Privacy Tips');
+    //final tipBottomNavItem = find.byValueKey('Privacy Tips');
     final lawBottomNavItem = find.byValueKey('Privacy Laws');
 
     // FloatingButtons
@@ -49,7 +54,10 @@ void main() {
 
     // Elements on the Category Page
     final catText1Finder = find.text('Select a Category');
-    final catTextFinder2 = find.text('Apps on the Category');
+    final catTextFinder3 = find.text('Apps on the Category');
+
+    // Elements on the search page
+    final searchTextFinder = find.text('SEARCH APP');
 
     // Elements on the Dashboard Page
     final dashboardTextFinder = find.text('Data Privacy Intruseivess');
@@ -60,28 +68,30 @@ void main() {
     // Elements on the Privacy Laws Page
     final privacyLawsTextFinder = find.text('Privacy Laws Implemented across the Globe');
 
-
-
-
     test('Signup a user to Logout a user Functions', () async {
+      
+      //* Signup Page
+
       await driver.clearTimeline();
-      await Future.delayed(Duration(seconds: 2));
+      await Future.delayed(Duration(seconds: 3));
       await driver.waitFor(emailFinder);
       await driver.tap(find.byValueKey('email_field'));
       await driver.enterText(
           'intTest@gmail.com'); // change this email , if the test is not working
       await driver.waitFor(find.text('intTest@gmail.com'));
       await driver.tap(passwordFinder);
-      await driver.enterText('Temp@123');
+      await driver.enterText('Temp@133');
       //await driver.waitFor(find.text('intTest@gmail.com'));
       await driver.tap(reEnterPassword);
-      await driver.enterText('Temp@123');
-      await Future.delayed(Duration(seconds: 2));
+      await driver.enterText('Temp@133');
+      await Future.delayed(Duration(seconds: 3));
       //await driver.waitFor(find.text('intTest@gmail.com'));
       await driver.tap(signupFinder);
 
-      //* Now we should be in Login Page
+      //* Login Page
+     
       await driver.waitFor(signupFinder1);
+       print('Now we should be in Login Page');
       expect(await driver.getText(signupFinder1), 'SIGN UP');
       expect(await driver.getText(text3Finder),
           'DO NOT HAVE AN ACCOUNT '.toUpperCase());
@@ -90,13 +100,138 @@ void main() {
       await driver.tap(emailFinder);
       await driver.enterText('intTest@gmail.com');
       await driver.tap(passwordFinder);
-      await driver.enterText('Temp@123');
+      await driver.enterText('Temp@133');
       await driver.tap(loginFinder);
       
-      //* Now we should be in the category page
-      expect(await driver.getText(find.text('SELECT A CATEGORY')), 'SELECT A CATEGORY');
-      await driver.tap(find.byType('Icons.category'));
-      expect(await driver.getText(find.text('SELECT A CATEGORY')), 'SELECT A CATEGORY');
-    });
+      //* Category Page
+
+      print('Now we should be in the category page');
+      await Future.delayed(Duration(seconds: 3));
+      expect(await driver.getText(catText1Finder), 'Select a Category');
+      expect(await driver.getText(catTextFinder3), 'Apps on the Category');
+      
+      await driver.tap(refreshFinder);
+      print('Again we should be on the category page');
+      await Future.delayed(Duration(seconds: 3));
+      expect(await driver.getText(catText1Finder), 'Select a Category');
+      expect(await driver.getText(catTextFinder3), 'Apps on the Category');
+
+      await driver.tap(drawerFinder);
+      print('Drawer Should open');
+      await Future.delayed(Duration(seconds: 3));
+      expect(await driver.getText(suggestionFinder), 'SUGGESTIONS');
+      expect(await driver.getText(licensesFinder), 'LICENSES');
+      expect(await driver.getText(logoutFinder), 'LOGOUT');
+      await driver.tap(closeButtonFinder);
+      print('Now we should be back on the category page');
+      await Future.delayed(Duration(seconds: 3));
+      expect(await driver.getText(catText1Finder), 'Select a Category');
+      expect(await driver.getText(catTextFinder3), 'Apps on the Category');
+
+      await driver.tap(searchFinder);
+      print('Now we should be on the search page');
+      await Future.delayed(Duration(seconds: 4));
+      expect(await driver.getText(searchTextFinder), 'SEARCH APP');
+      await driver.tap(find.pageBack());
+      print('Now we should be on the category page');
+      await Future.delayed(Duration(seconds: 3));
+      expect(await driver.getText(catText1Finder), 'Select a Category');
+      expect(await driver.getText(catTextFinder3), 'Apps on the Category');
+
+      //* Dashboard Page
+
+      await driver.tap(dashboardBottomNavItem);
+      print ('Now we should be on the Dashboard Page');
+      await Future.delayed(Duration(seconds: 3));
+      expect(await driver.getText(dashboardTextFinder), 'Data Privacy Intruseivess');
+
+      await driver.tap(refreshFinder);
+      print ('Again we should be on the Dashboard Page');
+      await Future.delayed(Duration(seconds: 3));
+      expect(await driver.getText(dashboardTextFinder), 'Data Privacy Intruseivess');
+      
+      await driver.tap(drawerFinder);
+      print('Drawer Should open');
+      await Future.delayed(Duration(seconds: 3));
+      expect(await driver.getText(suggestionFinder), 'SUGGESTIONS');
+      expect(await driver.getText(licensesFinder), 'LICENSES');
+      expect(await driver.getText(logoutFinder), 'LOGOUT');
+      await driver.tap(closeButtonFinder);
+      print('Now we should be back on the dashboard page');
+      await Future.delayed(Duration(seconds: 3));
+      expect(await driver.getText(dashboardTextFinder), 'Data Privacy Intruseivess');
+
+      await driver.tap(searchFinder);
+      print('Now we should be on the search page');
+      await Future.delayed(Duration(seconds: 3));
+      expect(await driver.getText(searchTextFinder), 'SEARCH APP');
+      await driver.tap(find.pageBack());
+      print('Now we should be on the dashboard page');
+      await Future.delayed(Duration(seconds: 3));
+      expect(await driver.getText(dashboardTextFinder), 'Data Privacy Intruseivess');
+
+      //* News Feed Page
+
+      await driver.tap(newsFeedBottomNavItem);
+      print('Now we should be on the news feed page');
+      await Future.delayed(Duration(seconds: 3));
+      expect(await driver.getText(newsFeedTextFinder), 'Interesting News About Data Privacy');
+
+      await driver.tap(refreshFinder);
+      print ('Again we should be on the News Feed Page');
+      await Future.delayed(Duration(seconds: 3));
+      expect(await driver.getText(newsFeedTextFinder), 'Interesting News About Data Privacy');
+      
+      await driver.tap(drawerFinder);
+      print('Drawer Should open');
+      await Future.delayed(Duration(seconds: 3));
+      expect(await driver.getText(suggestionFinder), 'SUGGESTIONS');
+      expect(await driver.getText(licensesFinder), 'LICENSES');
+      expect(await driver.getText(logoutFinder), 'LOGOUT');
+      await driver.tap(closeButtonFinder);
+      print ('Again we should be on the News Feed Page');
+      await Future.delayed(Duration(seconds: 3));
+      expect(await driver.getText(newsFeedTextFinder), 'Interesting News About Data Privacy');
+
+      //* Privacy Laws Page
+
+      await driver.tap(lawBottomNavItem);
+      print('Now we should be on the Privacy Laws Page');
+      await Future.delayed(Duration(seconds: 3));
+      expect(await driver.getText(privacyLawsTextFinder), 'Privacy Laws Implemented across the Globe');
+
+      await driver.tap(refreshFinder);
+      print('Again we should be on the Privacy Laws Page');
+      await Future.delayed(Duration(seconds: 3));
+      expect(await driver.getText(privacyLawsTextFinder), 'Privacy Laws Implemented across the Globe');
+      
+      await driver.tap(drawerFinder);
+      print('Drawer Should open');
+      await Future.delayed(Duration(seconds: 3));
+      expect(await driver.getText(suggestionFinder), 'SUGGESTIONS');
+      expect(await driver.getText(licensesFinder), 'LICENSES');
+      expect(await driver.getText(logoutFinder), 'LOGOUT');
+      await driver.tap(closeButtonFinder);
+      print('Again we should be on the Privacy Laws Page');
+      await Future.delayed(Duration(seconds: 3));
+      expect(await driver.getText(privacyLawsTextFinder), 'Privacy Laws Implemented across the Globe');
+
+      //* Logging Out
+
+      await driver.tap(drawerFinder);
+      print('Drawer Should open');
+      await Future.delayed(Duration(seconds: 3));
+      expect(await driver.getText(suggestionFinder), 'SUGGESTIONS');
+      expect(await driver.getText(licensesFinder), 'LICENSES');
+      expect(await driver.getText(logoutFinder), 'LOGOUT');
+
+      await driver.tap(logoutFinder);
+      print('Now we should be logged out of the system');
+      await Future.delayed(Duration(seconds: 3));
+      expect(await driver.getText(login1Finder), 'LOGIN');
+      expect(await driver.getText(signup1Finder), 'SIGNUP');
+      expect(await driver.getText(loginWithTextFinder),'Login With'.toUpperCase());
+      
+    },timeout:Timeout(Duration(seconds:999999)));
   });
 }
