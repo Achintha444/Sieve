@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "195174233692",
+    "firebase_url": "https://sieve-55f93.firebaseio.com",
+    "project_id": "sieve-55f93",
+    "storage_bucket": "sieve-55f93.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:195174233692:android:9eb352e63fd3d7a2c3d899",
+        "android_client_info": {
+          "package_name": "com.example.sieve_data_privacy_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "195174233692-54ah2m9encve4mhgfjtkar6nb1lia5ph.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.sieve_data_privacy_app",
+            "certificate_hash": "df2e9f73eaa653be043a1fcbb21d41fec99b18d3"
+          }
+        },
+        {
+          "client_id": "195174233692-7lao14g32t0q7rf0egroiucrmq5im02v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDnriXDL5XOFA9wyx37ztsZA9mbOSOE9Ko"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "195174233692-7lao14g32t0q7rf0egroiucrmq5im02v.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

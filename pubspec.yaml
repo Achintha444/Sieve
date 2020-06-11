@@ -9,7 +9,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
- # Service Locator
+  # Service Locator
   get_it: ^2.0.1
 
   #Bloc for state management
@@ -37,6 +37,18 @@ dependencies:
   #url_launcer
   url_launcher: ^5.4.2
   
+  #google_signin
+  google_sign_in: ^4.4.4
+
+  #flutter_facebook_login
+  flutter_facebook_login: ^3.0.0
+
+  #material_icons_flutter
+  material_design_icons_flutter: ^4.0.5345
+
+  #search_bar
+  flappy_search_bar: ^1.7.2
+
   cupertino_icons: ^0.1.2
 
 flutter_icons:
@@ -45,11 +57,18 @@ flutter_icons:
   ios: true
 
 dev_dependencies:
+  #for functional and UI(widget) testing
   flutter_test:
     sdk: flutter
+  #for integration testing
+  flutter_driver:
+    sdk: flutter
+  test: any
   
   #For creating mock tests
   mockito: ^4.1.0
+
+  network_image_mock: ^1.0.0
   
 flutter:
   uses-material-design: true

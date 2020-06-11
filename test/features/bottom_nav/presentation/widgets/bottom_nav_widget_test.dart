@@ -14,9 +14,16 @@ void main() {
   final String email = 'test@gmail.com';
   final String password = 'Test@123';
   final String id = '1';
+  final String _imageUrl = 'www.google.com';
+  final String _uid = '123';
   LoginUser loginUser;
   setUp(() {
-    loginUser = new LoginUser(id: id, email: email, password: password);
+    loginUser = new LoginUser(
+        id: id,
+        email: email,
+        password: password,
+        imageUrl: _imageUrl,
+        uid: _uid);
     mockBottomNavBloc = new MockBottomNavBloc();
   });
 
@@ -36,7 +43,9 @@ void main() {
 
   testWidgets('BottomNavWidget', (WidgetTester tester) async {
     //* Create the widget by telling the tester to build it.
-    await tester.pumpWidget(buildTestableWidget(BottomNavWidget(user: loginUser,)));
+    await tester.pumpWidget(buildTestableWidget(BottomNavWidget(
+      user: loginUser,
+    )));
 
     final bottomNavFinder = find.byKey(Key('bottomNav'));
     final newsFeedFinder = find.byKey(Key('News Feed'));
@@ -73,6 +82,4 @@ void main() {
     await tester.pump();
     verify(mockBottomNavBloc.dispatch(LawsEvent(user: loginUser)));
   });
-
-
 }

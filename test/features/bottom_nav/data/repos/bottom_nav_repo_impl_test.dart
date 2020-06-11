@@ -20,10 +20,14 @@ void main() {
   final String email = 'test@gmail.com';
   final String password = 'Test@123';
   final String id = '1';
-
-  final LoginUser loginUser =
-      new LoginUser(id: id, email: email, password: password);
-
+  final String _imageUrl = 'www.google.com';
+  final String _uid = '123';
+  final LoginUser loginUser = new LoginUser(
+      id: id,
+      email: email,
+      password: password,
+      imageUrl: _imageUrl,
+      uid: _uid);
   group('NavigateToNewsFeed', () {
     test(
       'should return LoginUser when there is internet',
@@ -75,14 +79,14 @@ void main() {
       },
     );
   });
-  group('NavigateToNewsFeed', () {
+  group('NavigateToDashboard', () {
     test(
       'should return LoginUser when there is internet',
       () async {
         //arrange
         when(mockNetowrkInfo.isConnected).thenAnswer((_) async => true);
         //act
-        final result = await bottomNavRepo.navigateToNewsFeed(loginUser);
+        final result = await bottomNavRepo.navigateToDashboard(loginUser);
         //assert
         expect(result, Right(loginUser));
       },
@@ -94,20 +98,20 @@ void main() {
         //arrange
         when(mockNetowrkInfo.isConnected).thenAnswer((_) async => false);
         //act
-        final result = await bottomNavRepo.navigateToNewsFeed(loginUser);
+        final result = await bottomNavRepo.navigateToDashboard(loginUser);
         //assert
         expect(result, Left(InternetConnectionFaliure()));
       },
     );
   });
-  group('NavigateToNewsFeed', () {
+  group('NavigateToPrivacyTips', () {
     test(
       'should return LoginUser when there is internet',
       () async {
         //arrange
         when(mockNetowrkInfo.isConnected).thenAnswer((_) async => true);
         //act
-        final result = await bottomNavRepo.navigateToNewsFeed(loginUser);
+        final result = await bottomNavRepo.navigateToPrivacyTips(loginUser);
         //assert
         expect(result, Right(loginUser));
       },
@@ -119,20 +123,20 @@ void main() {
         //arrange
         when(mockNetowrkInfo.isConnected).thenAnswer((_) async => false);
         //act
-        final result = await bottomNavRepo.navigateToNewsFeed(loginUser);
+        final result = await bottomNavRepo.navigateToPrivacyTips(loginUser);
         //assert
         expect(result, Left(InternetConnectionFaliure()));
       },
     );
   });
-  group('NavigateToNewsFeed', () {
+  group('NavigateToPrivacyLaws', () {
     test(
       'should return LoginUser when there is internet',
       () async {
         //arrange
         when(mockNetowrkInfo.isConnected).thenAnswer((_) async => true);
         //act
-        final result = await bottomNavRepo.navigateToNewsFeed(loginUser);
+        final result = await bottomNavRepo.navigateToPrivacyLaws(loginUser);
         //assert
         expect(result, Right(loginUser));
       },
@@ -144,7 +148,7 @@ void main() {
         //arrange
         when(mockNetowrkInfo.isConnected).thenAnswer((_) async => false);
         //act
-        final result = await bottomNavRepo.navigateToNewsFeed(loginUser);
+        final result = await bottomNavRepo.navigateToPrivacyLaws(loginUser);
         //assert
         expect(result, Left(InternetConnectionFaliure()));
       },

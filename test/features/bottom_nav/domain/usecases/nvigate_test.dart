@@ -37,9 +37,14 @@ void main() {
   final String email = 'test@gmail.com';
   final String password = 'Test@123';
   final String id = '1';
-
-  final LoginUser loginUser =
-      new LoginUser(id: id, email: email, password: password);
+  final String _imageUrl = 'www.google.com';
+  final String _uid = '123';
+  final LoginUser loginUser = new LoginUser(
+      id: id,
+      email: email,
+      password: password,
+      imageUrl: _imageUrl,
+      uid: _uid);
 
   group('NavigateToNewsFeed', () {
     test(
@@ -169,18 +174,18 @@ void main() {
     );
   });
 
-  group('NavigateToNewsFeed', () {
+  group('NavigateToPrivacyLaws', () {
     test(
       'should return LoginUser when there is internet',
       () async {
         //arrange
-        when(mockBottomNavRepo.navigateToNewsFeed(any))
+        when(mockBottomNavRepo.navigateToPrivacyLaws(any))
             .thenAnswer((_) async => Right(loginUser));
         //act
-        final result = await navigateToNewsFeed(loginUser);
+        final result = await navigateToPrivacyLaws(loginUser);
         //assert
         expect(result, Right(loginUser));
-        verify(mockBottomNavRepo.navigateToNewsFeed(loginUser));
+        verify(mockBottomNavRepo.navigateToPrivacyLaws(loginUser));
         verifyNoMoreInteractions(mockBottomNavRepo);
       },
     );
@@ -189,13 +194,13 @@ void main() {
       'should return InternetConnectionFaliure when there is no internet',
       () async {
         //arrange
-        when(mockBottomNavRepo.navigateToNewsFeed(any))
+        when(mockBottomNavRepo.navigateToPrivacyLaws(any))
             .thenAnswer((_) async => Left(InternetConnectionFaliure()));
         //act
-        final result = await navigateToNewsFeed(loginUser);
+        final result = await navigateToPrivacyLaws(loginUser);
         //assert
         expect(result, Left(InternetConnectionFaliure()));
-        verify(mockBottomNavRepo.navigateToNewsFeed(loginUser));
+        verify(mockBottomNavRepo.navigateToPrivacyLaws(loginUser));
         verifyNoMoreInteractions(mockBottomNavRepo);
       },
     );

@@ -5,7 +5,6 @@ import '../../../../core/Constants/drawer_design.dart';
 import '../../../login_screen/domain/entities/login_user.dart';
 import '../../domain/entities/news.dart';
 import 'news_card.dart';
-import 'visit_card.dart';
 
 class InterestingNewsWidget extends StatelessWidget {
   final LoginUser user;
@@ -22,7 +21,7 @@ class InterestingNewsWidget extends StatelessWidget {
       ),
       appBar: AppBarDesign(
         title: 'NewsFeed',
-
+        imageUrl: user.getImageUrl,
 
       ),
       body: SingleChildScrollView(
@@ -30,14 +29,14 @@ class InterestingNewsWidget extends StatelessWidget {
           children: <Widget>[
             //* TIPS
             Padding(
-              padding: const EdgeInsets.only(top: 5.0, left: 15),
+              padding: const EdgeInsets.only(top: 5.0, left: 15,bottom: 5),
               child: Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
                   'Interesting News About Data Privacy',
                   textAlign: TextAlign.left,
                   style: TextStyle(
-                    fontSize: 16,
+                    fontSize: 18,
                     color: Theme.of(context).primaryColor,
                     letterSpacing: 1.3,
                   ),

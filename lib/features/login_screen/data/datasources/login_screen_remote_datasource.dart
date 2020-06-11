@@ -21,18 +21,25 @@ class LoginScreenRemoteDataSourceImpl implements LoginScreenRemoteDataSource {
 
   @override
   Future<LoginUserModel> getLoginUser(String email, String password) async {
-    final response = await httpClient.post(API_URL + "/user/login",
-        body: {'email': email, 'password': password});
-        print('aaaaaa');
-    if (response.statusCode != 200) {
-      final error = json.decode(response.body);
-      if(error['serverError']==true){
-        throw ServerException();
-      }else{
-        throw InvalidInputException();
+    try {
+      final response = await httpClient.post(API_URL + "/user/login",
+          body: {'email': email, 'password': password});
+      if (response.statusCode != 200) {
+        final error = json.decode(response.body);
+        print (error);
+        if (error['serverError'] == true) {
+          throw ServerException();
+        } else {
+          print('object');
+          throw InvalidInputException();
+        }
+      } else {
+        return LoginUserModel.fromJson(json.decode(response.body));
       }
-    } else {
-      return LoginUserModel.fromJson(json.decode(response.body));
+    } catch (e) {
+      if (e.runtimeType==InvalidInputException){
+        throw InvalidInputException();
+      } throw ServerException();
     }
   }
 }

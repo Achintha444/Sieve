@@ -22,8 +22,14 @@ class SplashScreenLocalDataSourceImpl implements SplashScreenLocalDataSource {
     final String loginUserModelString =
         sharedPreferences.getString(AUTO_LOGIN_USER_KEY);
     if (loginUserModelString != null) {
-      return Future.value(
+      Map<String,dynamic> _userJson = json.decode(loginUserModelString);
+      if (_userJson['imageUrl']==null){
+        return Future.value(
           LoginUserModel.fromJson(json.decode(loginUserModelString)));
+      }
+      return Future.value(
+          LoginUserModel.fromJsonGF(json.decode(loginUserModelString)));
+      
     } else {
       //There is an error in throwing this error!
       throw CacheException();

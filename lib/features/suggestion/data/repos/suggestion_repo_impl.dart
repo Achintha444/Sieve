@@ -22,7 +22,7 @@ class SuggestionRepoImpl implements SuggestionRepo{
       try {
         final response =
             await suggestionRemoteDataSource.insertSuggestion(user, suggestion);
-        await Future.delayed(Duration(seconds: 2));
+        //await Future.delayed(Duration(seconds: 2));
         return Right(response);
       } on ServerException {
         return (Left(ServerFaliure()));

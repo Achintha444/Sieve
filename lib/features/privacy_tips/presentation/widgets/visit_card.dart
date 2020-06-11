@@ -47,19 +47,24 @@ class VistCard extends StatelessWidget {
                         GestureDetector(
                           onTap: () => this._launchInWebViewWithDomStorage(
                               links[index], context),
-                          child: AbsorbPointer(
-                            absorbing: true,
-                            child: LinkPreviewer(
-                              link: links[index],
-                              titleFontSize: 10,
-                              borderColor: Theme.of(context).accentColor,
-                              defaultPlaceholderColor: Theme.of(context)
-                                  .accentColor
-                                  .withOpacity(0.5),
-                              borderRadius: 4,
-                              bodyMaxLines: 2,
-                              bodyTextOverflow: TextOverflow.ellipsis,
-                              bodyFontSize: 6,
+                          child: Card(
+                            margin: EdgeInsets.all(0),
+                            elevation: 4,
+                            child: AbsorbPointer(
+                              absorbing: true,
+                              child: LinkPreviewer(
+                                placeholder: Container(),
+                                link: links[index],
+                                titleFontSize: 10,
+                                borderColor: Colors.white,
+                                defaultPlaceholderColor: Theme.of(context)
+                                    .accentColor
+                                    .withOpacity(0.5),
+                                borderRadius: 4,
+                                bodyMaxLines: 2,
+                                bodyTextOverflow: TextOverflow.ellipsis,
+                                bodyFontSize: 6,
+                              ),
                             ),
                           ),
                         ),

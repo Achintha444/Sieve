@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:sieve_data_privacy_app/features/interesting_news/presentation/pages/interesting_news.dart';
 
 import '../../../../injection_container.dart';
+import '../../../categories/presentation/pages/app_categories.dart';
+import '../../../dashboard/presentation/pages/dsahboard.dart';
+import '../../../interesting_news/presentation/pages/interesting_news.dart';
 import '../../../login_screen/domain/entities/login_user.dart';
 import '../../../privacy_laws/presentation/pages/privacy_laws.dart';
 import '../../../privacy_tips/presentation/pages/privacy_tips.dart';
@@ -11,7 +13,6 @@ import '../widgets/bottom_nav_widget.dart';
 import '../widgets/initial_state_widget.dart';
 import '../widgets/internet_error_widget.dart';
 import '../widgets/loading_widget.dart';
-import '../widgets/temp.dart';
 
 class BottomNav extends StatelessWidget {
 
@@ -58,9 +59,9 @@ class _BlocListner extends StatelessWidget {
         } else if (state is NewsFeedState) {
           return InterestingNews(user: user,);
         } else if (state is CategoryState) {
-          return Temp(user: user,);
+          return AppCategories(user: user,);
         } else if (state is DashboardState) {
-          return Temp(user: user,);
+          return Dashboard(user: user,);
         } else if (state is PrivacyTipsState) {
           return PrivacyTips(user: user,);
         } else if (state is PrivacyLawsState) {

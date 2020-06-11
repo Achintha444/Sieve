@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../core/Constants/theme_data.dart' as td;
 import '../../../../injection_container.dart';
+import '../../../bottom_nav/presentation/pages/bottom_nav.dart';
 import '../bloc/login_signup_screen_bloc.dart';
 import '../widgets/login_signup_screen_widget.dart';
-import '../../../../core/Constants/theme_data.dart' as td;
 
 class LoginSignupScreen extends StatelessWidget {
   @override
@@ -42,13 +43,30 @@ class _BlocListener extends StatelessWidget {
         if (state is Loading) {
           Scaffold.of(context).showSnackBar(
             SnackBar(
-              content: Text(
-                'Connecting'.toUpperCase(),
-                style: TextStyle(
-                  fontSize: 17,
-                  letterSpacing: 2,
-                ),
-                textAlign: TextAlign.center,
+              content: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  CircularProgressIndicator(
+                    backgroundColor: Color.fromARGB(0, 0, 0, 0),
+                    valueColor: AlwaysStoppedAnimation<Color>(
+                        Theme.of(context).primaryColor),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(
+                      left: 5,
+                      right: 5,
+                    ),
+                  ),
+                  Text(
+                    'Connecting'.toUpperCase(),
+                    style: TextStyle(
+                      fontSize: 17,
+                      letterSpacing: 2,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                ],
               ),
               duration: Duration(seconds: 4),
             ),
@@ -68,20 +86,16 @@ class _BlocListener extends StatelessWidget {
               ),
             ),
           );
+        
         } else if (state is Loaded) {
-          Scaffold.of(context).showSnackBar(
-            SnackBar(
-              content: Text(
-                'Loaded'.toUpperCase(),
-              ),
-              duration: Duration(seconds: 10),
-              action: SnackBarAction(
-                label: 'Close',
-                onPressed: () {
-                  Scaffold.of(context).hideCurrentSnackBar();
-                },
+          Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute(
+              builder: (context) => BottomNav(
+                user: state.loginUser,
               ),
             ),
+            (Route<dynamic> route) => false,
           );
         }
       },

@@ -12,6 +12,23 @@ import 'features/bottom_nav/domain/usecases/navigate_to_news_feed.dart';
 import 'features/bottom_nav/domain/usecases/navigate_to_privacy_laws.dart';
 import 'features/bottom_nav/domain/usecases/navigate_to_privacy_tips.dart';
 import 'features/bottom_nav/presentation/bloc/bottom_nav_bloc.dart';
+import 'features/categories/data/datasources/apps_remote_datasource.dart';
+import 'features/categories/data/datasources/categories_remote_datasource.dart';
+import 'features/categories/data/repos/apps_repo_impl.dart';
+import 'features/categories/data/repos/categories_repo_impl.dart';
+import 'features/categories/domain/repos/apps_repo.dart';
+import 'features/categories/domain/repos/categories_repo.dart';
+import 'features/categories/domain/usecases/load_apps.dart';
+import 'features/categories/domain/usecases/load_apps_search.dart';
+import 'features/categories/domain/usecases/load_categories.dart';
+import 'features/categories/presentation/bloc/apps_bloc.dart';
+import 'features/categories/presentation/bloc/apps_search_bloc.dart';
+import 'features/categories/presentation/bloc/categories_bloc.dart';
+import 'features/dashboard/data/datasources/dashboard_remote_datasource.dart';
+import 'features/dashboard/data/repos/dashboard_repo_impl.dart';
+import 'features/dashboard/domain/repos/dashboard_repo.dart';
+import 'features/dashboard/domain/usecases/load_dashboard.dart';
+import 'features/dashboard/presentation/bloc/dashboard_bloc.dart';
 import 'features/interesting_news/data/datasources/interesting_news_remote_datasource.dart';
 import 'features/interesting_news/data/repos/interestig_news_repo_impl.dart';
 import 'features/interesting_news/domain/repos/interesting_news_repo.dart';
@@ -27,6 +44,7 @@ import 'features/login_screen/domain/usecases/get_google_login.dart'
     as gLoginScreen;
 import 'features/login_screen/domain/usecases/get_login.dart';
 import 'features/login_screen/presentation/bloc/login_screen_bloc.dart';
+import 'features/login_signup_screen/data/datasources/login_signup_screen_remote_datasource.dart';
 import 'features/login_signup_screen/data/repos/login_signup_screen_repo_impl.dart';
 import 'features/login_signup_screen/domain/repos/login_signup_screen_repo.dart';
 import 'features/login_signup_screen/domain/usecases/get_facebook_login.dart';
@@ -37,6 +55,11 @@ import 'features/privacy_laws/data/repos/privacy_laws_repo_impl.dart';
 import 'features/privacy_laws/domain/repos/privacy_laws_repo.dart';
 import 'features/privacy_laws/domain/usecases/load_privacy_laws.dart';
 import 'features/privacy_laws/presentation/bloc/privacy_laws_bloc.dart';
+import 'features/privacy_policy/data/datasources/privacy_policy_remote_datasource.dart';
+import 'features/privacy_policy/data/repos/privacy_policy_repo_impl.dart';
+import 'features/privacy_policy/domain/repos/privacy_policy_repo.dart';
+import 'features/privacy_policy/domain/usecases/get_privacy_policy.dart';
+import 'features/privacy_policy/presentation/bloc/privacy_policy_bloc.dart';
 import 'features/privacy_tips/data/datasources/privacy_tips_remote_datasource.dart';
 import 'features/privacy_tips/data/repos/privacy_tips_repo_impl.dart';
 import 'features/privacy_tips/domain/repos/privacy_tips_repo.dart';
@@ -98,8 +121,6 @@ Future<void> init() async {
 
   //! Features - login_signup_screen
 
-  // TODO: Need to update bloc when fully implemented
-
   //* Bloc
   sl.registerFactory(
     () => LoginSignupScreenBloc(
@@ -122,12 +143,18 @@ Future<void> init() async {
 
   //* repo
   sl.registerLazySingleton<LoginSignuScreenRepo>(
-    () => LoginSignupScreenRepoImpl(networkInfo: sl()),
+    () => LoginSignupScreenRepoImpl(
+      networkInfo: sl(),
+      loginSignupScreenRemoteDataSource: sl(),
+      loginScreenLocalDataSource: sl(),
+    ),
   );
 
-  //! Features - login_screen
+  //* datascources
+  sl.registerLazySingleton<LoginSignupScreenRemoteDataSource>(
+      () => LoginSignupScreenRemoteDataSourceImpl(httpClient: sl()));
 
-  // TODO: Need to update bloc when fully implemented
+  //! Features - login_screen
 
   //* Bloc
   sl.registerFactory(
@@ -296,6 +323,34 @@ Future<void> init() async {
   sl.registerLazySingleton<InterestingNewsRemoteDatasource>(
       () => InterestingNewsRemoteDatasourceImpl(httpClient: sl()));
 
+
+  //! Feature - Dashboard
+
+  //* Bloc
+  sl.registerFactory(
+    () => DashboardBloc(
+      loadDashboard:  sl(),
+    ),
+  );
+
+  //* usecases
+  sl.registerLazySingleton(
+    () => LoadDashboard(
+      dashboardRepo:  sl(),
+    ),
+  );
+
+  //* repo
+  sl.registerLazySingleton<DashboardRepo>(
+    () => DashboardRepoImpl(
+        networkInfo: sl(), dashboardRemoteDatasource:  sl()),
+  );
+
+  //* datasource
+  sl.registerLazySingleton<DashboardRemoteDatasource>(
+      () => DashboardRemoteDatasourceImpl(httpClient: sl()));
+
+
   //! Features - privacy_laws
 
   //* Bloc
@@ -347,6 +402,105 @@ Future<void> init() async {
   //* datasource
   sl.registerLazySingleton<SuggestionRemoteDataSource>(
       () => SuggestionRemoteDataSourceImpl(httpClient: sl()));
+
+
+  //! Features - Categories
+
+  //* Bloc
+  sl.registerFactory(
+        () => CategoriesBloc(
+      loadCategories: sl(),
+    ),
+  );
+
+  //* usecases
+  sl.registerLazySingleton(
+        () => LoadCategories(
+      categoriesRepo: sl(),
+    ),
+  );
+
+  //* repo
+  sl.registerLazySingleton<CategoriesRepo>(
+        () => CategoriesRepoImpl(
+        networkInfo: sl(), categoriesRemoteDatasource: sl()),
+  );
+
+  //* datasource
+  sl.registerLazySingleton<CategoriesRemoteDatasource>(
+          () => CategoriesRemoteDatasourceImpl(httpClient: sl()));
+
+  //! Features - Categories - Apps
+
+  //* Bloc
+  sl.registerFactory(
+        () => AppsBloc(
+      loadApps: sl(),
+    ),
+  );
+
+  //* usecases
+  sl.registerLazySingleton(
+        () => LoadApps(
+      appsRepo: sl(),
+    ),
+  );
+
+
+  //* repo
+  sl.registerLazySingleton<AppsRepo>(
+        () => AppsRepoImpl(
+        networkInfo: sl(), appsRemoteDatasource: sl()),
+  );
+
+  //* datasource
+  sl.registerLazySingleton<AppsRemoteDatasource>(
+          () => AppsRemoteDatasourceImpl(httpClient: sl()));
+
+
+  //! Sub Features - Categories - Search Page
+  //* Bloc
+  sl.registerFactory(
+        () => AppsSearchBloc(
+      loadAppsSearch: sl(),
+
+    ),
+  );
+
+  //* usecases
+  sl.registerLazySingleton(
+        () => LoadAppsSearch(
+      appsRepo: sl(),
+    ),
+  );
+
+  
+
+  //! Features - privacy_policy
+
+  //* Bloc
+  sl.registerFactory(
+    () => PrivacyPolicyBloc(
+      getPriacyPolicy: sl(),
+    ),
+  );
+
+  //* usecases
+  sl.registerLazySingleton(
+    () => GetPriacyPolicy(
+      privacyPolicyRepo: sl(),
+    ),
+  );
+
+  //* repo
+  sl.registerLazySingleton<PrivacyPolicyRepo>(
+    () => PrivacyPolicyRepoImpl(
+        networkInfo: sl(), privacyPolicyRemoteDatasource: sl()),
+  );
+
+  //* datasource
+  sl.registerLazySingleton<PrivacyPolicyRemoteDatasource>(
+      () => PrivacyPolicyRemoteDatasourceImpl(httpClient: sl()));
 
   //! Core
   sl.registerLazySingleton<NetworkInfo>(() => NetworkInfoImpl(sl()));

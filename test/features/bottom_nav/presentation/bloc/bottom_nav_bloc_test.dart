@@ -55,10 +55,14 @@ void main() {
   final String email = 'test@gmail.com';
   final String password = 'Test@123';
   final String id = '1';
-
-  final LoginUser loginUser =
-      new LoginUser(id: id, email: email, password: password);
-
+  final String _imageUrl = 'www.google.com';
+  final String _uid = '123';
+  final LoginUser loginUser = new LoginUser(
+      id: id,
+      email: email,
+      password: password,
+      imageUrl: _imageUrl,
+      uid: _uid);
   group('NavigateToNewsFeed', () {
     BottomNavEvent event = NewsFeedEvent(user: loginUser);
 

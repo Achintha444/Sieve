@@ -1,0 +1,15 @@
+{
+  "news": [
+    {
+      "news":"test news1",
+      "description":"test desc1",
+      "full_link": "test link1"
+    },
+    {
+      "news":"test news2",
+      "description":"test desc2",
+      "full_link": "test link2"
+    }
+
+  ]
+}

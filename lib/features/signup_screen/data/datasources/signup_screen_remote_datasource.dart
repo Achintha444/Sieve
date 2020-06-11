@@ -21,18 +21,26 @@ class SignupScreenRemoteDataSourceImpl implements SignupScreenRemoteDataSource {
 
   @override
   Future<EmptyEntity> getSignupUser(String email, String password) async {
-    final response = await httpClient.post(API_URL + "/user/signup",
-        body: {'email': email, 'password': password});
-        print('aaaaaa');
-    if (response.statusCode != 200) {
-      final error = json.decode(response.body);
-      if(error['serverError']==true){
-        throw ServerException();
-      }else{
+    try {
+      final response = await httpClient.post(API_URL + "/user/signup",
+          body: {'email': email, 'password': password});
+      print('aaaaaa');
+      if (response.statusCode != 200) {
+        final error = json.decode(response.body);
+        if (error['serverError'] == true) {
+          throw ServerException();
+        } else {
+          throw InvalidInputException();
+        }
+      } else {
+        return EmptyEntity();
+      }
+    } catch (e) {
+      print(e);
+      if (e.runtimeType == InvalidInputException) {
         throw InvalidInputException();
       }
-    } else {
-      return EmptyEntity();
+      throw ServerException();
     }
   }
 }
