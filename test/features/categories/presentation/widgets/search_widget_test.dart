@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:sieve_data_privacy_app/features/categories/domain/entities/apps.dart';
-import 'package:sieve_data_privacy_app/features/categories/presentation/widgets/search_widget.dart';
 import 'package:sieve_data_privacy_app/features/login_screen/domain/entities/login_user.dart';
 
 void main() {

@@ -5,13 +5,9 @@ import 'package:sieve_data_privacy_app/core/error/Faliure.dart';
 import 'package:sieve_data_privacy_app/core/error/exceptions.dart';
 import 'package:sieve_data_privacy_app/core/Platform/network_info.dart';
 import 'package:sieve_data_privacy_app/features/categories/data/datasources/apps_remote_datasource.dart';
-import 'package:sieve_data_privacy_app/features/categories/data/datasources/categories_remote_datasource.dart';
 import 'package:sieve_data_privacy_app/features/categories/data/models/apps_model.dart';
-import 'package:sieve_data_privacy_app/features/categories/data/models/categories_model.dart';
 import 'package:sieve_data_privacy_app/features/categories/data/repos/apps_repo_impl.dart';
-import 'package:sieve_data_privacy_app/features/categories/data/repos/categories_repo_impl.dart';
 import 'package:sieve_data_privacy_app/features/categories/domain/entities/apps.dart';
-import 'package:sieve_data_privacy_app/features/categories/domain/entities/categories.dart';
 import 'package:sieve_data_privacy_app/features/login_screen/domain/entities/login_user.dart';
 
 class MockNetworkInfo extends Mock implements NetworkInfo {}
