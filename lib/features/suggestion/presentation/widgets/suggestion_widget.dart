@@ -49,6 +49,7 @@ class _SuggestionWidgetState extends State<SuggestionWidget> {
                   padding: const EdgeInsets.only(
                       top: 45.0, left: 15, right: 15, bottom: 50),
                   child: TextFormField(
+                    key: Key('text_filed'),
                     autofocus: true,
                     controller: _controller,
                     decoration: InputDecoration(
@@ -81,7 +82,7 @@ class _SuggestionWidgetState extends State<SuggestionWidget> {
                     ),
                     Expanded(
                       child: Container(
-                        key: Key('login_button'),
+                        key: Key('suggestion_button'),
                         height: 45,
                         child: RaisedButton(
                           child: Text(

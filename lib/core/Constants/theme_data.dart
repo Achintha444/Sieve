@@ -6,7 +6,7 @@ var themeData = ThemeData(
   errorColor: Color(0xffde483e),
   cursorColor: Color(0xff85C8F2),
   scaffoldBackgroundColor: Colors.white,
-  backgroundColor: Colors.white,
+  backgroundColor: Color(0xff85C8F2).withOpacity(0.05),
   fontFamily: 'Questrial',
   snackBarTheme: SnackBarThemeData(
     backgroundColor: Colors.white,
@@ -23,14 +23,14 @@ var themeData = ThemeData(
   ),
   cardTheme: CardTheme(
     elevation: 0,
-    color: Color(0xff85C8F2).withOpacity(0.05),
+    color: Color(0xff85C8F2).withOpacity(0.1),
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(4),
-      side: BorderSide(
-        color: Color(0xff1BA0F2),
-      ),
+      // side: BorderSide(
+      //   color: Color(0xff1BA0F2),
+      // ),
     ),
-    margin: EdgeInsets.all(15),
+   // margin: EdgeInsets.all(15),
   ),
   buttonTheme: ButtonThemeData(
     shape: RoundedRectangleBorder(

@@ -14,7 +14,7 @@ void main() {
     );
   }
 
-  testWidgets('BottomNavWidget', (WidgetTester tester) async {
+  testWidgets('BottomNavWidget Loading State Widget', (WidgetTester tester) async {
     //* Create the widget by telling the tester to build it.
     await tester.pumpWidget(buildTestableWidget(LoadingWidget()));
     final circularProgressIndicatorFinder =

@@ -39,6 +39,9 @@ class SuggestionRemoteDataSourceImpl implements SuggestionRemoteDataSource {
       }
     } catch (e) {
       print(e);
+      if (e.runtimeType == InvalidInputException) {
+        throw InvalidInputException();
+      }
       throw ServerException();
     }
   }

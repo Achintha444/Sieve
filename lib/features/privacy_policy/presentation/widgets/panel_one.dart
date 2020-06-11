@@ -7,6 +7,7 @@ class PanelOne extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print (list.length);
     if (list.length > 0) {
       return ListView(
         shrinkWrap: true,
@@ -61,7 +62,7 @@ class PanelOne extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             Text(
-              "No details available!",
+              "No Details Available!",
               style: TextStyle(
                 fontSize: 22,
                 color: Theme.of(context).errorColor,

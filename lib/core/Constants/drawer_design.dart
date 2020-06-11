@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:sieve_data_privacy_app/core/Constants/logout.dart';
 
 import '../../features/login_screen/domain/entities/login_user.dart';
 import '../util/input_converter.dart';
+import 'licenses.dart';
+import 'logout.dart';
 import 'sugg_and_logout.dart';
 
 class DrawerDesign extends StatelessWidget {
@@ -56,7 +57,8 @@ class DrawerDesign extends StatelessWidget {
                       key: Key('login'),
                       duration: Duration(milliseconds: 400),
                       curve: Curves.easeInQuint,
-                      builder: (BuildContext context, double size, Widget child) {
+                      builder:
+                          (BuildContext context, double size, Widget child) {
                         return Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.center,
@@ -66,28 +68,27 @@ class DrawerDesign extends StatelessWidget {
                                 left: 8,
                                 right: 8,
                               ),
-                              child:  Container(
-                                  width: size,
-                                  height: size,
-                                  decoration: new BoxDecoration(
+                              child: Container(
+                                width: size,
+                                height: size,
+                                decoration: new BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: new BorderRadius.all(
+                                      new Radius.circular(60.0)),
+                                  border: new Border.all(
                                     color: Colors.white,
-                                    borderRadius: new BorderRadius.all(
-                                        new Radius.circular(60.0)),
-                                    border: new Border.all(
-                                      color: Colors.white,
-                                      width: 6.0,
-                                    ),
-                                  ),
-                                  key: Key('user_image'),
-                                  child: ClipOval(
-                                    child: FadeInImage.assetNetwork(
-                                      placeholder: 'icons/user_placeholder.png',
-                                      image: _imageUrl(),
-                                      fit: BoxFit.fill,
-                                    ),
+                                    width: 6.0,
                                   ),
                                 ),
-                              
+                                key: Key('user_image'),
+                                child: ClipOval(
+                                  child: FadeInImage.assetNetwork(
+                                    placeholder: 'icons/user_placeholder.png',
+                                    image: _imageUrl(),
+                                    fit: BoxFit.fill,
+                                  ),
+                                ),
+                              ),
                             ),
                           ],
                         );
@@ -146,6 +147,17 @@ class DrawerDesign extends StatelessWidget {
                 bottom: 10,
               ),
             ),
+            Licences(
+              title: 'Licenses',
+              icon: Icons.bookmark,
+              user: user,
+            ),
+            Padding(
+              padding: EdgeInsets.only(
+                top: 5,
+                bottom: 5,
+              ),
+            ),
             //* Logout
             Logout(
               title: 'logout',
@@ -158,7 +170,7 @@ class DrawerDesign extends StatelessWidget {
     );
   }
 
-    String _imageUrl() {
+  String _imageUrl() {
     if (user.getImageUrl == null) {
       return 'https://i.imgur.com/BoN9kdC.png';
     } else {

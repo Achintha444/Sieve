@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:sieve_data_privacy_app/features/privacy_policy/presentation/widgets/panel_full_link.dart';
 import '../../../categories/domain/entities/apps.dart';
 import '../../../login_screen/domain/entities/login_user.dart';
 import '../../domain/entities/privacy_policy.dart';
@@ -118,13 +119,13 @@ class PrivacyPolicyWidget extends StatelessWidget {
               PrivacyPolicyCard(
                 user: user,
                 title: "Data Usage Policy",
-                subtitle: "What is data being used for",
+                subtitle: "Eg: For Research and Development",
                 content: PanelOne(list: privacyPolicy.getUsages),
               ),
               PrivacyPolicyCard(
                 user: user,
                 title: "Data Removal Policy",
-                subtitle: "What happens to data if app is deleted",
+                subtitle: "Eg: Data retains as long as a user maintains an account",
                 content: PanelOne(list: privacyPolicy.getRemoval),
               ),
               PrivacyPolicyCard(
@@ -145,7 +146,7 @@ class PrivacyPolicyWidget extends StatelessWidget {
               PrivacyPolicyCard(
                 user: user,
                 title: "Full Privacy Policy",
-                subtitle: "Web link to Privacy Policy",
+   /*             subtitle: "Web link to Privacy Policy",
                 content: ListView(
                   shrinkWrap: true,
                   physics: NeverScrollableScrollPhysics(),
@@ -193,7 +194,9 @@ class PrivacyPolicyWidget extends StatelessWidget {
                       },
                     ),
                   ],
-                ),
+                ), */
+                subtitle: "",
+                content: PanelFullLink(link: app.getLink),
               ),
             ],
           ),

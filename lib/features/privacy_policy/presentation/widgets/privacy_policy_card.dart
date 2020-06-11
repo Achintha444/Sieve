@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:sieve_data_privacy_app/features/login_screen/domain/entities/login_user.dart';
+
+import '../../../login_screen/domain/entities/login_user.dart';
 
 class PrivacyPolicyCard extends StatefulWidget {
   final LoginUser user;
@@ -18,28 +19,17 @@ class PrivacyPolicyCard extends StatefulWidget {
 
   expandedChild() {
     return SingleChildScrollView(
-        physics: NeverScrollableScrollPhysics(),
-        child: Card(
-          borderOnForeground: true,
-          margin: EdgeInsets.only(left: 15, right: 15, top: 5, bottom: 5),
-          child: Padding(
-            padding: const EdgeInsets.all(20.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[content],
-            ),
+      physics: NeverScrollableScrollPhysics(),
+      child: Card(
+        borderOnForeground: true,
+        margin: EdgeInsets.only(left: 15, right: 15, top: 5, bottom: 5),
+        child: Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[content],
           ),
-        ));
-    return Card(
-      borderOnForeground: true,
-      margin: EdgeInsets.only(left: 15, right: 15, top: 5, bottom: 5),
-      child: Padding(
-        padding: const EdgeInsets.all(20.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[content],
         ),
       ),
     );

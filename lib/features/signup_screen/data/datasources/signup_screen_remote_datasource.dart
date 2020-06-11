@@ -37,6 +37,9 @@ class SignupScreenRemoteDataSourceImpl implements SignupScreenRemoteDataSource {
       }
     } catch (e) {
       print(e);
+      if (e.runtimeType == InvalidInputException) {
+        throw InvalidInputException();
+      }
       throw ServerException();
     }
   }

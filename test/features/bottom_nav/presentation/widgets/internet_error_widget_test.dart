@@ -43,7 +43,7 @@ void main() {
     );
   }
 
-  testWidgets('BottomNavWidget', (WidgetTester tester) async {
+  testWidgets('BottomNavWidget Internet Error State Widget', (WidgetTester tester) async {
     //* Create the widget by telling the tester to build it.
     await tester.pumpWidget(buildTestableWidget(InternetErrorWidget(
       user: loginUser,

@@ -64,11 +64,13 @@ class LoginSignupScreenRemoteDataSourceImpl
           return LoginUserModel.fromJsonGF(json.decode(response.body));
         }
       } catch (e) {
-        print(e);
+        if (e.runtimeType == InvalidInputException) {
+          throw InvalidInputException();
+        }
         throw ServerException();
       }
     }).catchError((Object error) {
-      print('');
+      print('HIiiiiiii');
       throw ServerException();
     });
   }
@@ -81,7 +83,9 @@ class LoginSignupScreenRemoteDataSourceImpl
 
   @override
   Future<void> facebookLogout() {
-    return facebookLogin.logOut();
+    return facebookLogin.logOut().catchError((Object error) {
+      throw ServerException();
+    });
   }
 
   @override
@@ -114,7 +118,10 @@ class LoginSignupScreenRemoteDataSourceImpl
             return LoginUserModel.fromJsonGF(json.decode(response.body));
           }
         } catch (e) {
-          print(e);
+          print (e);
+          if (e.runtimeType == InvalidInputException) {
+            throw InvalidInputException();
+          }
           throw ServerException();
         }
 

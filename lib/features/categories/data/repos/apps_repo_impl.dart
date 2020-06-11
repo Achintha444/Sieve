@@ -22,7 +22,7 @@ class AppsRepoImpl implements AppsRepo {
     if (await networkInfo.isConnected) {
       try {
         final finalApps = await appsRemoteDatasource.loadApps(categoryId);
-        await Future.delayed(Duration(seconds: 3));
+        //await Future.delayed(Duration(seconds: 3));
         return Right(finalApps);
       } on ServerException {
         return (Left(ServerFaliure()));
@@ -37,7 +37,7 @@ class AppsRepoImpl implements AppsRepo {
     if (await networkInfo.isConnected) {
       try {
         final finalApps = await appsRemoteDatasource.loadAppsSearch();
-        await Future.delayed(Duration(seconds: 3));
+        //await Future.delayed(Duration(seconds: 3));
         return Right(finalApps);
       } on ServerException {
         return (Left(ServerFaliure()));

@@ -38,7 +38,7 @@ void main() {
     );
   }
 
-  testWidgets('InternetErrorWidget', (WidgetTester tester) async {
+  testWidgets('InternetErrorWidget - PrivacyPolicy', (WidgetTester tester) async {
     //* Create the widget by telling the tester to build it.
     await tester.pumpWidget(buildTestableWidget(InternetErrorWidget(
       user: loginUser,

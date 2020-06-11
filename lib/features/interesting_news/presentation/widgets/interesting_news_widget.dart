@@ -29,7 +29,7 @@ class InterestingNewsWidget extends StatelessWidget {
           children: <Widget>[
             //* TIPS
             Padding(
-              padding: const EdgeInsets.only(top: 5.0, left: 15),
+              padding: const EdgeInsets.only(top: 5.0, left: 15,bottom: 5),
               child: Align(
                 alignment: Alignment.centerLeft,
                 child: Text(

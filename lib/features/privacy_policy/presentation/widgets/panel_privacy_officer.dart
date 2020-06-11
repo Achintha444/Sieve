@@ -29,6 +29,8 @@ class PanelPrivacyOfficer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print (email);
+    print ('aaaa');
     return ListView(
       shrinkWrap: true,
       physics: NeverScrollableScrollPhysics(),
@@ -125,6 +127,7 @@ class PanelPrivacyOfficer extends StatelessWidget {
                               padding: EdgeInsets.only(bottom: 10),
                               child: Text(
                                 'Contact through snail mail',
+                                textAlign: TextAlign.center,
                                 style: TextStyle(
                                   fontSize: 15,
                                   color: Theme.of(context).accentColor,

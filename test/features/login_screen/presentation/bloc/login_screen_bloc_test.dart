@@ -69,7 +69,7 @@ void main() {
     );
 
     test(
-      'should return [Loaded] when EmptyEntity is returned',
+      'should return [Loaded] when LoginUser is returned',
       () async {
         //arrange
         when(mockGetFacebookLogin(any))

@@ -48,11 +48,13 @@ void main() {
     expect(facebookButtonFinder, findsOneWidget);
 
     //* should dispatch GetGoogleLoginEvent when google button tapped
+    //! facebook_signin_widget is also tested here
     await tester.tap(googleButtonFinder);
     await tester.pump();
     verify(mockLoginSignupScreenBloc.dispatch(GetGoogleLoginEvent()));
 
     //* should dispatch GetGoogleLoginEvent when google button tapped
+    //! google_signin_widget is also tested here
     await tester.tap(facebookButtonFinder);
     await tester.pump();
     verify(mockLoginSignupScreenBloc.dispatch(GetFacebookLoginEvent()));

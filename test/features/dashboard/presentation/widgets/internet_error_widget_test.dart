@@ -43,7 +43,7 @@ void main() {
     );
   }
 
-  testWidgets('InternetErrorWidget - InterestingNews', (WidgetTester tester) async {
+  testWidgets('InternetErrorWidget - Dashboard', (WidgetTester tester) async {
     //* Create the widget by telling the tester to build it.
     await tester.pumpWidget(buildTestableWidget(InternetErrorWidget(
       user: loginUser,

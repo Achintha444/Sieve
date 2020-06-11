@@ -22,7 +22,7 @@ class CategoriesRepoImpl implements CategoriesRepo{
     if (await networkInfo.isConnected) {
       try {
         final finalCategories = await categoriesRemoteDatasource.loadCategories();
-        await Future.delayed(Duration(seconds: 3));
+        //await Future.delayed(Duration(seconds: 3));
         return Right(finalCategories);
       } on ServerException {
         return (Left(ServerFaliure()));

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:sieve_data_privacy_app/features/privacy_policy/presentation/widgets/title_panel.dart';
 
-// TODO : privacy_policy_widget_test.dart need to be created.
 
 void main() {
   Widget buildTestableWidget(Widget widget) {

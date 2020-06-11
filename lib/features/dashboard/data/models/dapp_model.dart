@@ -29,7 +29,7 @@ class DappModel extends Dapp {
     return {
       'appName': super.getAppName,
       'iconImage': super.getIconImage,
-      'categoryName': super.getAppName,
+      'categoryName': super.getCategoryName,
       'dCount': super.getDCount
     };
   }

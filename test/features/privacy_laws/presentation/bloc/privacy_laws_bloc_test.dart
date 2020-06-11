@@ -56,7 +56,7 @@ void main() {
   );
 
   test(
-    'should return [InterntetError] when the Laws returned',
+    'should return [InterntetError] when the Laws do not returned',
     () async {
       //arrange
       when(mockLoadPrivacyLaws(any))

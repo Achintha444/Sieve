@@ -16,7 +16,7 @@ class SendSuggestion implements UseCase<EmptyEntity, List<dynamic>> {
   //* params[1] == suggestion
 
   @override
-  Future<Either<Faliure, EmptyEntity>> call(List params) async{
+  Future<Either<Faliure, EmptyEntity>> call(List params) async {
     return await this.suggestionRepo.sendSuggestion(params[0], params[1]);
   }
 }

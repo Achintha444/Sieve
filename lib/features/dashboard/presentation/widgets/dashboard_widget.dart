@@ -28,17 +28,16 @@ class DashboardWidget extends StatelessWidget {
           children: <Widget>[
             //* Dashboard
             Padding(
-              padding: const EdgeInsets.only(top: 3.0, left: 15, bottom: 3),
+              padding: const EdgeInsets.only(top: 5.0, left: 15, bottom: 10),
               child: Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
-                  "DATA PRIVACY INTRUSEIVENESS"
-                  "\n",
+                  "Data Privacy Intruseivess",
                   textAlign: TextAlign.start,
                   style: TextStyle(
                     fontSize: 18,
                     color: Theme.of(context).primaryColor,
-                    letterSpacing: 1,
+                    letterSpacing: 1.3,
                     fontWeight: FontWeight.w500,
                   ),
                 ),

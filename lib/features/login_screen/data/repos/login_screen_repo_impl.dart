@@ -41,14 +41,16 @@ class LoginScreenRepoImpl implements LoginScreenRepo {
       try {
         final finalLoginUser =
             await loginScreenRemoteDataSource.getLoginUser(email, password);
-        print (finalLoginUser.getEmail);
+        print(finalLoginUser.getEmail);
         await this.loginScreenLocalDataSource.cacheLoginUser(finalLoginUser);
-        await Future.delayed(Duration(seconds: 2));
+        //await Future.delayed(Duration(seconds: 2));
         return Right(finalLoginUser);
-      } on ServerException {
-        return (Left(ServerFaliure()));
       } on InvalidInputException {
+        print('xsxsx');
         return (Left(InvalidInputFaliure()));
+      } on ServerException {
+        print('xsxsx-1');
+        return (Left(ServerFaliure()));
       }
     } else {
       return Left(InternetConnectionFaliure());
