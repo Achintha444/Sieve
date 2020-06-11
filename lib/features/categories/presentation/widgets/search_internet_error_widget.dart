@@ -86,7 +86,6 @@ class SearchInternetErrorWidget extends StatelessWidget {
   }
 
   void _dispatchEvent(BuildContext context) {
-    print ('assaas');
     BlocProvider.of<AppsSearchBloc>(context).dispatch(
         LoadAppsSearchEvent(user: user)
     );

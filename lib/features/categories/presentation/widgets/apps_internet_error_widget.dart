@@ -87,7 +87,6 @@ class AppsInternetErrorWidget extends StatelessWidget {
   }
 
   void _dispatchEvent(BuildContext context) {
-    print ('assaas');
     BlocProvider.of<AppsBloc>(context).dispatch(
         LoadAppsEvent(user: user, categoryId: categoryId)
     );

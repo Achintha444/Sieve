@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:sieve_data_privacy_app/features/privacy_policy/presentation/widgets/panel_full_link.dart';
 import '../../../categories/domain/entities/apps.dart';
 import '../../../login_screen/domain/entities/login_user.dart';
@@ -145,6 +146,55 @@ class PrivacyPolicyWidget extends StatelessWidget {
               PrivacyPolicyCard(
                 user: user,
                 title: "Full Privacy Policy",
+   /*             subtitle: "Web link to Privacy Policy",
+                content: ListView(
+                  shrinkWrap: true,
+                  physics: NeverScrollableScrollPhysics(),
+                  children: <Widget>[
+                    Builder(
+                      builder: (context) {
+                        if (app.getLink != null || app.getLink != "") {
+                          return Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              GestureDetector(
+                                onTap: () async=>await this._launchInWebViewWithDomStorage(app.getLink, context),
+                                child: Container(
+                                  padding: EdgeInsets.only(bottom: 15),
+                                  child: Text(
+                                    app.getLink,
+                                    style: TextStyle(
+                                      fontSize: 18,
+                                      color: Theme.of(context).primaryColor,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ]
+                          );
+                        } else {
+                          return Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: <Widget>[
+                              Container(
+                                padding: EdgeInsets.only(bottom: 15),
+                                child: Text(
+                                  "Not available",
+                                  style: TextStyle(
+                                    fontSize: 22,
+                                    color: Theme.of(context).primaryColor,
+                                  ),
+                                ),
+                              ),
+                            ]
+                          );
+                        }
+                      },
+                    ),
+                  ],
+                ), */
                 subtitle: "",
                 content: PanelFullLink(link: app.getLink),
               ),
@@ -160,6 +210,36 @@ class PrivacyPolicyWidget extends StatelessWidget {
       return 'https://i.imgur.com/BoN9kdC.png';
     } else {
       return user.imageUrl;
+    }
+  }
+
+  Future<void> _launchInWebViewWithDomStorage(String url,BuildContext context) async {
+    if (await canLaunch(url)) {
+      await launch(
+        url,
+        forceSafariVC: true,
+        forceWebView: true,
+        enableJavaScript: true,
+        enableDomStorage: true,
+      );
+    } else {
+      Scaffold.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+            'Something went wrong\nTry again'.toUpperCase(),
+            style: TextStyle(color: Colors.white),
+          ),
+          backgroundColor: Theme.of(context).primaryColor,
+          duration: Duration(seconds: 6),
+          action: SnackBarAction(
+            label: 'Close',
+            textColor: Colors.white,
+            onPressed: () {
+              Scaffold.of(context).hideCurrentSnackBar();
+            },
+          ),
+        ),
+      );
     }
   }
 }

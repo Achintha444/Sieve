@@ -21,12 +21,12 @@ class CategoriesCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(Icons.subway.toString());
     return Container(
       height: MediaQuery.of(context).size.height / 4.3,
       width: MediaQuery.of(context).size.height / 4.3,
       alignment: Alignment.center,
       child: GestureDetector(
+        key: Key('categoryCard'),
         child: Card(
           elevation: 4,
           borderOnForeground: true,

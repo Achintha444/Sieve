@@ -30,7 +30,6 @@ class AppsBloc extends Bloc<AppsEvent, AppsState> {
       yield response.fold(
         (faliure) => InternetError(user: event.user,categoryId:event.categoryId),
         (apps) {
-          print(apps[0].getName);
           return Loaded(user: event.user, apps: apps,categoryId:event.categoryId);
         },
       );

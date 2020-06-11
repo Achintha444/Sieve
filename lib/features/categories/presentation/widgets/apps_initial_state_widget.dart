@@ -6,9 +6,9 @@ import '../../../login_screen/domain/entities/login_user.dart';
 class AppsInitialStateWidget extends StatefulWidget {
 
   final LoginUser user;
-  //final int categoryId;
+  final int categoryId;
 
-  const AppsInitialStateWidget({Key key, @required this.user, /*@required this.categoryId*/}) : super(key: key);
+  const AppsInitialStateWidget({Key key, @required this.user, @required this.categoryId}) : super(key: key);
 
   @override
   _InitialStateWidgetState createState() => _InitialStateWidgetState();
@@ -29,6 +29,7 @@ class _InitialStateWidgetState extends State<AppsInitialStateWidget> {
         height: (MediaQuery.of(context).size.height) / 2,
         child: Center(
           child: CircularProgressIndicator(
+            key: Key('circularProgressIndicator'),
             strokeWidth: 8,
             backgroundColor: Color.fromARGB(0, 0, 0, 0),
             valueColor:
@@ -41,7 +42,7 @@ class _InitialStateWidgetState extends State<AppsInitialStateWidget> {
 
   void _dispatchEvent(BuildContext context) {
     BlocProvider.of<AppsBloc>(context).dispatch(
-      LoadAppsEvent(user: widget.user, categoryId: 1),
+      LoadAppsEvent(user: widget.user, categoryId: widget.categoryId),
     );
   }
 }

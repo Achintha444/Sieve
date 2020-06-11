@@ -41,7 +41,7 @@ class CategoriesWidget extends StatelessWidget {
               shrinkWrap: true,
               physics: AlwaysScrollableScrollPhysics(),
               children: <Widget>[
-                _BlocListner(user: user, categoryId: 1),
+                _BlocListner(user: user, categoryId: categories[0].getID),
               ],
             ),
             Positioned(
@@ -134,6 +134,7 @@ class _BlocListner extends StatelessWidget {
         if (state is Initial) {
           return AppsInitialStateWidget(
             user: user,
+            categoryId: categoryId,
           );
         } else if (state is Loading) {
           return LoadingWidget();
@@ -141,18 +142,50 @@ class _BlocListner extends StatelessWidget {
           return AppsInternetErrorWidget(
               user: user, categoryId: state.categoryId);
         } else if (state is Loaded) {
-          return Column(
-            children: List.generate(
-              state.apps.length,
-              (index) {
-                print(categoryId);
-                return AppCard(
-                  user: user,
-                  app: state.apps[index],
-                );
-              },
-            ),
-          );
+          if (state.apps[0].getID == 0 && state.apps[0].getName == "") {
+            return Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+                Padding(
+                  padding: EdgeInsets.only(top: 25, bottom: 25, left: 8, right: 8),
+                  child: Container(
+                    width: MediaQuery.of(context).size.width,
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: Color(0xff265699),
+                        width: 2,
+                      ),
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    padding: EdgeInsets.only(left:12, right: 12, top: 20, bottom: 20),
+                    child: Text(
+                      "No apps found.",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 25,
+                        color: Theme.of(context).primaryColor,
+                      ),
+                    ),
+                  ),
+                ),
+
+              ]
+            );
+          } else {
+            return Column(
+              children: List.generate(
+                state.apps.length,
+                    (index) {
+                  print(categoryId);
+                  return AppCard(
+                    user: user,
+                    app: state.apps[index],
+                  );
+                },
+              ),
+            );
+          }
         } else {
           return Container();
         }
