@@ -86,7 +86,21 @@ class _BlocListener extends StatelessWidget {
               ),
             ),
           );
-        
+        } else if (state is ServerError) {
+          Scaffold.of(context).showSnackBar(
+            SnackBar(
+              content: Text(
+                'Server Connection Error.\nTry Again!'.toUpperCase(),
+              ),
+              duration: Duration(seconds: 20),
+              action: SnackBarAction(
+                label: 'Close',
+                onPressed: () {
+                  Scaffold.of(context).hideCurrentSnackBar();
+                },
+              ),
+            ),
+          );
         } else if (state is Loaded) {
           Navigator.pushAndRemoveUntil(
             context,
