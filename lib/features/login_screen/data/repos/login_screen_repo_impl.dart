@@ -51,6 +51,8 @@ class LoginScreenRepoImpl implements LoginScreenRepo {
       } on ServerException {
         print('xsxsx-1');
         return (Left(ServerFaliure()));
+      } on UserBlockedException {
+         return (Left(UserBlockedFaliure()));
       }
     } else {
       return Left(InternetConnectionFaliure());

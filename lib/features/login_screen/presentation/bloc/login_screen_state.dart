@@ -14,6 +14,8 @@ class InvalidInputError extends LoginScreenState{}
 
 class InternetError extends LoginScreenState{}
 
+class UserBlockedError extends LoginScreenState{}
+
 class Loaded extends LoginScreenState{
   final LoginUser loginUser;
 

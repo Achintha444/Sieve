@@ -52,6 +52,8 @@ class LoginSignupScreenRepoImpl implements LoginSignuScreenRepo {
         // await this.loginScreenLocalDataSource.removeCacheLoginType();
         // await this.loginScreenLocalDataSource.removeCacheLoginUser();
         return Left(ServerFaliure());
+      } on UserBlockedException {
+        return Left(UserBlockedFaliure());
       }
     } else {
       return Left(InternetConnectionFaliure());

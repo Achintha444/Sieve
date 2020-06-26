@@ -5,6 +5,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
 
 import '../../../../core/Usecase/use_case.dart';
+import '../../../../core/error/Faliure.dart';
 import '../../../login_screen/domain/entities/login_user.dart';
 import '../../domain/usecases/get_facebook_login.dart';
 import '../../domain/usecases/get_google_login.dart';
@@ -34,7 +35,13 @@ class LoginSignupScreenBloc
       final response = await getFacebookLogin(NoParams());
 
       yield* response.fold((faliure) async* {
-        yield InternetError();
+        if (faliure.runtimeType == InternetConnectionFaliure) {
+          yield InternetError();
+        } else if (faliure.runtimeType == UserBlockedFaliure) {
+          yield UserBlockedError();
+        } else {
+          yield ServerError();
+        }
       }, (user) async* {
         yield Loaded(loginUser: user);
       });
@@ -42,10 +49,16 @@ class LoginSignupScreenBloc
     if (event is GetGoogleLoginEvent) {
       yield Loading();
       final response = await getGoogleLogin(NoParams());
-      print (response);
+      print(response);
 
       yield* response.fold((faliure) async* {
-        yield InternetError();
+        if (faliure.runtimeType == InternetConnectionFaliure) {
+          yield InternetError();
+        } else if (faliure.runtimeType == UserBlockedFaliure) {
+          yield UserBlockedError();
+        } else {
+          yield ServerError();
+        }
       }, (user) async* {
         yield Loaded(loginUser: user);
       });

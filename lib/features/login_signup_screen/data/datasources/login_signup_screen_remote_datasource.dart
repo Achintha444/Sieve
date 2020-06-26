@@ -56,6 +56,8 @@ class LoginSignupScreenRemoteDataSourceImpl
           final error = json.decode(response.body);
           if (error['serverError'] == true) {
             throw ServerException();
+          } else if (error['blockedError'] == true) {
+            throw UserBlockedException();
           } else {
             throw InvalidInputException();
           }
@@ -66,6 +68,8 @@ class LoginSignupScreenRemoteDataSourceImpl
       } catch (e) {
         if (e.runtimeType == InvalidInputException) {
           throw InvalidInputException();
+        } else if (e.runtimeType == UserBlockedException) {
+          throw UserBlockedException();
         }
         throw ServerException();
       }
@@ -118,7 +122,7 @@ class LoginSignupScreenRemoteDataSourceImpl
             return LoginUserModel.fromJsonGF(json.decode(response.body));
           }
         } catch (e) {
-          print (e);
+          print(e);
           if (e.runtimeType == InvalidInputException) {
             throw InvalidInputException();
           }

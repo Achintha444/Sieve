@@ -9,3 +9,5 @@ class InvalidInputException implements Exception{}
 class InternetConnectionException implements Exception{}
 
 class ScreenRenderException implements Exception{}
+
+class UserBlockedException implements Exception {}

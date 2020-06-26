@@ -42,6 +42,8 @@ class LoginScreenBloc extends Bloc<LoginScreenEvent, LoginScreenState> {
             yield ServerError();
           } else if (failure.runtimeType == InternetConnectionFaliure) {
             yield InternetError();
+          } else if (failure.runtimeType == UserBlockedFaliure) {
+            yield UserBlockedError();
           }
         },
         (user) async* {
@@ -55,7 +57,13 @@ class LoginScreenBloc extends Bloc<LoginScreenEvent, LoginScreenState> {
       final response = await this.getGoogleLogin(NoParams());
       yield* response.fold(
         (failure) async* {
-          yield InternetError();
+          if (failure.runtimeType == InternetConnectionFaliure) {
+            yield InternetError();
+          } else if (failure.runtimeType == UserBlockedFaliure) {
+            yield UserBlockedError();
+          } else {
+            yield ServerError();
+          }
         },
         (user) async* {
           yield Loaded(loginUser: user); //* Loaded need to come here
@@ -66,7 +74,13 @@ class LoginScreenBloc extends Bloc<LoginScreenEvent, LoginScreenState> {
       final response = await this.getFacebookLogin(NoParams());
       yield* response.fold(
         (failure) async* {
-          yield InternetError();
+          if (failure.runtimeType == InternetConnectionFaliure) {
+            yield InternetError();
+          } else if (failure.runtimeType == UserBlockedFaliure) {
+            yield UserBlockedError();
+          } else {
+            yield ServerError();
+          }
         },
         (user) async* {
           yield Loaded(loginUser: user); //* Loaded need to come here

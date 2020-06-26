@@ -10,6 +10,10 @@ class Loading extends LoginSignupScreenState{}
 
 class InternetError extends LoginSignupScreenState{}
 
+class ServerError extends LoginSignupScreenState{}
+
+class UserBlockedError extends LoginSignupScreenState{}
+
 class Loaded extends LoginSignupScreenState{
   final LoginUser loginUser;
 

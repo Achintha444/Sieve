@@ -29,6 +29,8 @@ class LoginScreenRemoteDataSourceImpl implements LoginScreenRemoteDataSource {
         print (error);
         if (error['serverError'] == true) {
           throw ServerException();
+        } else if (error['blockedError']==true){
+          throw UserBlockedException();
         } else {
           print('object');
           throw InvalidInputException();
@@ -39,7 +41,9 @@ class LoginScreenRemoteDataSourceImpl implements LoginScreenRemoteDataSource {
     } catch (e) {
       if (e.runtimeType==InvalidInputException){
         throw InvalidInputException();
-      } throw ServerException();
+      } else if (e.runtimeType==UserBlockedException){
+        throw UserBlockedException();
+      }throw ServerException();
     }
   }
 }

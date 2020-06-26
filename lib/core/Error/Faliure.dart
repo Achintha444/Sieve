@@ -17,3 +17,5 @@ class InvalidInputFaliure extends Faliure {}
 class InternetConnectionFaliure extends Faliure {}
 
 class ScreenRenderFaliure extends Faliure{}
+
+class UserBlockedFaliure extends Faliure{}
