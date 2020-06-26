@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../core/Error/exceptions.dart';
+import '../../../../core/error/exceptions.dart';
 import '../../../../core/Platform/network_info.dart';
 import '../../../../core/error/Faliure.dart';
 import '../../../login_screen/data/datasources/login_screen_local_datasource.dart';
@@ -30,6 +30,8 @@ class LoginSignupScreenRepoImpl implements LoginSignuScreenRepo {
         // await this.loginScreenLocalDataSource.removeCacheLoginType();
         // await this.loginScreenLocalDataSource.removeCacheLoginUser();
         return Left(ServerFaliure());
+      } on UserBlockedException {
+        return Left(UserBlockedFaliure());
       }
     } else {
       return Left(InternetConnectionFaliure());

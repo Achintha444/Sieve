@@ -70,7 +70,6 @@ class _BlocListener extends StatelessWidget {
                   ),
                 ],
               ),
-              
               duration: Duration(seconds: 4),
             ),
           );
@@ -107,6 +106,8 @@ class _BlocListener extends StatelessWidget {
               ),
             ),
           );
+        } else if (state is UserBlockedError) {
+          this._showBlockedAlertDialog(context);
         } else if (state is ServerError) {
           Scaffold.of(context).showSnackBar(
             SnackBar(
@@ -135,6 +136,49 @@ class _BlocListener extends StatelessWidget {
         }
       },
       child: LoginScreenWidget(),
+    );
+  }
+
+  void _showBlockedAlertDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      child: new AlertDialog(
+        title: Center(
+          child: new Text(
+            "Account Blocked",
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              color: Colors.white.withOpacity(0.9),
+            ),
+          ),
+        ),
+        content: new Text(
+          "Your account has been temporarily blocked. Tell us if you think we made a mistake on sieveprivacyapp@gmail.com",
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            color: Colors.white.withOpacity(0.9),
+          ),
+        ),
+        actions: <Widget>[
+          Row(
+            children: <Widget>[
+              new FlatButton(
+                child: new Text(
+                  "OK",
+                  style: TextStyle(
+                    color: Colors.white.withOpacity(0.8),
+                  ),
+                ),
+                onPressed: () => Navigator.pop(context),
+              ),
+            ],
+          ),
+        ],
+        shape: RoundedRectangleBorder(
+          borderRadius: new BorderRadius.circular(4),
+        ),
+        backgroundColor: Theme.of(context).errorColor.withOpacity(0.9),
+      ),
     );
   }
 }

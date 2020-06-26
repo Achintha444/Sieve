@@ -6,7 +6,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:http/http.dart' as http;
 
 import '../../../../core/Constants/key.dart';
-import '../../../../core/Error/exceptions.dart';
+import '../../../../core/error/exceptions.dart';
 import '../../../login_screen/data/models/login_user_model.dart';
 
 abstract class LoginSignupScreenRemoteDataSource {
@@ -73,8 +73,12 @@ class LoginSignupScreenRemoteDataSourceImpl
         }
         throw ServerException();
       }
-    }).catchError((Object error) {
+    }).catchError((Object error) async {
       print('HIiiiiiii');
+      if (error.runtimeType == UserBlockedException) {
+        await this.googleLogout();
+        throw UserBlockedException();
+      }
       throw ServerException();
     });
   }
@@ -109,11 +113,13 @@ class LoginSignupScreenRemoteDataSourceImpl
             'uid': user['id'],
             'imageUrl': user["picture"]["data"]["url"]
           });
-          print(response);
+          print(response.body);
           if (response.statusCode != 200) {
             final error = json.decode(response.body);
             if (error['serverError'] == true) {
               throw ServerException();
+            } else if (error['blockedError'] == true) {
+              throw UserBlockedException();
             } else {
               throw InvalidInputException();
             }
@@ -125,6 +131,8 @@ class LoginSignupScreenRemoteDataSourceImpl
           print(e);
           if (e.runtimeType == InvalidInputException) {
             throw InvalidInputException();
+          } else if (e.runtimeType == UserBlockedException) {
+            throw UserBlockedException();
           }
           throw ServerException();
         }
