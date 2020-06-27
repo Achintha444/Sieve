@@ -69,6 +69,42 @@ void main() {
     );
 
     test(
+      'should return [ServerError] when ServerFaliure is returned',
+      () async {
+        //arrange
+        when(mockGetFacebookLogin(any))
+            .thenAnswer((_) async => Left(ServerFaliure()));
+        //act
+        loginScreenBloc.dispatch(GetFacebookLoginEvent());
+        //assert
+        final expected = [
+          Initial(),
+          Loading(),
+          ServerError(),
+        ];
+        expectLater(loginScreenBloc.state, emitsInOrder(expected));
+      },
+    );
+
+    test(
+      'should return [UserBlockedError] when UserBlockedFaliure is returned',
+      () async {
+        //arrange
+        when(mockGetFacebookLogin(any))
+            .thenAnswer((_) async => Left(UserBlockedFaliure()));
+        //act
+        loginScreenBloc.dispatch(GetFacebookLoginEvent());
+        //assert
+        final expected = [
+          Initial(),
+          Loading(),
+          UserBlockedError(),
+        ];
+        expectLater(loginScreenBloc.state, emitsInOrder(expected));
+      },
+    );
+
+    test(
       'should return [Loaded] when LoginUser is returned',
       () async {
         //arrange
@@ -101,6 +137,42 @@ void main() {
           Initial(),
           Loading(),
           InternetError(),
+        ];
+        expectLater(loginScreenBloc.state, emitsInOrder(expected));
+      },
+    );
+
+    test(
+      'should return [ServerError] when ServerFaliure is returned',
+      () async {
+        //arrange
+        when(mockGetGoogleLogin(any))
+            .thenAnswer((_) async => Left(ServerFaliure()));
+        //act
+        loginScreenBloc.dispatch(GetGoogleLoginEvent());
+        //assert
+        final expected = [
+          Initial(),
+          Loading(),
+          ServerError(),
+        ];
+        expectLater(loginScreenBloc.state, emitsInOrder(expected));
+      },
+    );
+
+    test(
+      'should return [UserBlockedError] when UserBlockedFaliure is returned',
+      () async {
+        //arrange
+        when(mockGetGoogleLogin(any))
+            .thenAnswer((_) async => Left(UserBlockedFaliure()));
+        //act
+        loginScreenBloc.dispatch(GetGoogleLoginEvent());
+        //assert
+        final expected = [
+          Initial(),
+          Loading(),
+          UserBlockedError(),
         ];
         expectLater(loginScreenBloc.state, emitsInOrder(expected));
       },
@@ -183,6 +255,25 @@ void main() {
           Initial(),
           Loading(),
           ServerError(),
+        ];
+        expectLater(loginScreenBloc.state, emitsInOrder(expected));
+      },
+    );
+
+    test(
+      'should return [UserBlockedError] when UserBlockedFaliure is returned',
+      () async {
+        //arrange
+        when(mockGetLogin(any))
+            .thenAnswer((_) async => Left(UserBlockedFaliure()));
+        //act
+        loginScreenBloc
+            .dispatch(GetLoginEvent(email: email, password: password));
+        //assert
+        final expected = [
+          Initial(),
+          Loading(),
+          UserBlockedError(),
         ];
         expectLater(loginScreenBloc.state, emitsInOrder(expected));
       },

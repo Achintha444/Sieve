@@ -1,9 +1,9 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
-import 'package:sieve_data_privacy_app/core/Error/exceptions.dart';
 import 'package:sieve_data_privacy_app/core/error/Faliure.dart';
 import 'package:sieve_data_privacy_app/core/Platform/network_info.dart';
+import 'package:sieve_data_privacy_app/core/Error/exceptions.dart';
 import 'package:sieve_data_privacy_app/features/login_screen/data/datasources/login_screen_local_datasource.dart';
 import 'package:sieve_data_privacy_app/features/login_screen/data/datasources/login_screen_remote_datasource.dart';
 import 'package:sieve_data_privacy_app/features/login_screen/data/models/login_user_model.dart';
@@ -89,6 +89,38 @@ void main() {
         verifyNoMoreInteractions(mockLoginSignupScreenRepo);
       },
     );
+
+    test(
+      'should return ServerFaliure when not returned properly',
+      () async {
+        //arrange
+        when(mockLoginSignupScreenRepo.getGoogleLogin())
+            .thenAnswer((_) async => Left(ServerFaliure()));
+        //act
+        final response = await loginScreenRepoImpl.getGoogleLogin();
+
+        //assert
+        verify(mockLoginSignupScreenRepo.getGoogleLogin());
+        expect(response, Left(ServerFaliure()));
+        verifyNoMoreInteractions(mockLoginSignupScreenRepo);
+      },
+    );
+
+    test(
+      'should return UserBlockedFaliure when not returned properly',
+      () async {
+        //arrange
+        when(mockLoginSignupScreenRepo.getGoogleLogin())
+            .thenAnswer((_) async => Left(UserBlockedFaliure()));
+        //act
+        final response = await loginScreenRepoImpl.getGoogleLogin();
+
+        //assert
+        verify(mockLoginSignupScreenRepo.getGoogleLogin());
+        expect(response, Left(UserBlockedFaliure()));
+        verifyNoMoreInteractions(mockLoginSignupScreenRepo);
+      },
+    );
   });
 
   group('getGoogleLogin', () {
@@ -120,6 +152,38 @@ void main() {
         //assert
         verify(mockLoginSignupScreenRepo.getGoogleLogin());
         expect(response, Left(InternetConnectionFaliure()));
+        verifyNoMoreInteractions(mockLoginSignupScreenRepo);
+      },
+    );
+
+    test(
+      'should return ServerFaliure when not returned properly',
+      () async {
+        //arrange
+        when(mockLoginSignupScreenRepo.getGoogleLogin())
+            .thenAnswer((_) async => Left(ServerFaliure()));
+        //act
+        final response = await loginScreenRepoImpl.getGoogleLogin();
+
+        //assert
+        verify(mockLoginSignupScreenRepo.getGoogleLogin());
+        expect(response, Left(ServerFaliure()));
+        verifyNoMoreInteractions(mockLoginSignupScreenRepo);
+      },
+    );
+
+    test(
+      'should return UserBlockedFaliure when not returned properly',
+      () async {
+        //arrange
+        when(mockLoginSignupScreenRepo.getGoogleLogin())
+            .thenAnswer((_) async => Left(UserBlockedFaliure()));
+        //act
+        final response = await loginScreenRepoImpl.getGoogleLogin();
+
+        //assert
+        verify(mockLoginSignupScreenRepo.getGoogleLogin());
+        expect(response, Left(UserBlockedFaliure()));
         verifyNoMoreInteractions(mockLoginSignupScreenRepo);
       },
     );
@@ -165,7 +229,6 @@ void main() {
           expect(resilt, Left(InvalidInputFaliure()));
         },
       );
-
       test(
         'should return ServerFaliure when ServerException',
         () async {
@@ -178,7 +241,20 @@ void main() {
           expect(resilt, Left(ServerFaliure()));
         },
       );
+      test(
+        'should return UserBlockedFaliure when sent the incorrect data',
+        () async {
+          //arrange
+          when(mockLoginScreenRemoteDataSource.getLoginUser(any, any))
+              .thenThrow(UserBlockedException());
+          //act
+          final resilt = await loginScreenRepoImpl.getLogin(email, password);
+          //assert
+          expect(resilt, Left(UserBlockedFaliure()));
+        },
+      );
     });
+
     test(
       'should return InternetConnectionFaliure when there is no internet',
       () async {

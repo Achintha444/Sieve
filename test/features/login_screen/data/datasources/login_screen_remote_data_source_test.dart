@@ -39,6 +39,12 @@ void main() {
             fixtureReader('login_user_server_error_true.json'), 404));
   }
 
+  void mockHttpClientResponse404BlockedErrorTrue() {
+    when(mockHttpClient.post(any, body: anyNamed('body'))).thenAnswer(
+        (_) async => http.Response(
+            fixtureReader('login_user_blocked_error_true.json'), 404));
+  }
+
   group('getLoginUser', () {
     final email = "Test123@gmail.com";
     final password = "Test@123";
@@ -76,6 +82,18 @@ void main() {
       () async {
         //arrange
         mockHttpClientResponse404ServerErrorFalse();
+        //act
+        final call = remoteDataSource.getLoginUser;
+        expect(() => call(email, password), throwsException);
+        //assert
+      },
+    );
+
+    test(
+      'should return InvalidInputFaliure when the response code is 404 and serverError is false',
+      () async {
+        //arrange
+        mockHttpClientResponse404BlockedErrorTrue();
         //act
         final call = remoteDataSource.getLoginUser;
         expect(() => call(email, password), throwsException);
