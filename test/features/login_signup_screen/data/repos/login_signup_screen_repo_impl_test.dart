@@ -2,7 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:sieve_data_privacy_app/core/error/Faliure.dart';
-import 'package:sieve_data_privacy_app/core/Error/exceptions.dart';
+import 'package:sieve_data_privacy_app/core/error/exceptions.dart';
 import 'package:sieve_data_privacy_app/core/Platform/network_info.dart';
 import 'package:sieve_data_privacy_app/features/login_screen/data/datasources/login_screen_local_datasource.dart';
 import 'package:sieve_data_privacy_app/features/login_screen/data/models/login_user_model.dart';
